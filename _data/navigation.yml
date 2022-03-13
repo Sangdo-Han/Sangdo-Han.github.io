@@ -18,11 +18,11 @@ postai:
   - title: AI paper reviews
     children:
       - title: "Fundamental AI"
-        url: /postai-archive/:path/
+        url: /postai/:path/
       - title: "Computer Vision"
-        url: /postai-archive/:path/
+        url: /postai/:path/
       - title: "Reinforcement Learning"
-        url: /postai-archive/:path/
+        url: /postai/:path/
 
   # - title: "Parent Page B"
   #   children:
