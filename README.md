@@ -1,2 +1,4 @@
 # Sangdo-Han's Blog
-# Powered bu [Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-mistakes/)
+hello world
+
+# Powered by [Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-mistakes/)
