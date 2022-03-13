@@ -264,7 +264,7 @@ defaults:
       path: ""
       type: postai
     values:
-      layout: post
+      layout: postai-archive
       author_profile: true
       read_time: false
       comments: false
