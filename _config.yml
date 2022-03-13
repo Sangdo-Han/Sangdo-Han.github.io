@@ -104,9 +104,9 @@ analytics:
 author:
   name             : "Sangdo Han"
   avatar           : "/assets/images/sanhan.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  bio              : "Bigdata Scientist @LGE"
+  location         : "ko-KR"
+  email            : "sanhan@umich.edu"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -184,7 +184,7 @@ sass:
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins (previously gems:)
@@ -251,24 +251,28 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true # true
       share: true
       related: true
-  # _ai
+  # _AI
   - scope:
-      path: "_pages"
-      type: pages
+      path: ""
+      type: AI
     values:
       layout: single
       author_profile: true
-  # # _recipes
-  # - scope:
-  #     path: ""
-  #     type: recipes
-  #   values:
-  #     layout: single
-  #     author_profile: true
-  #     share: true
+      read_time: false
+      comments: false
+      share: false
+      related: false
+  # _computer vision
+  - scope:
+      path: ""
+      type: computer_vision
+    values:
+      layout: single
+      author_profile: true
+      share: true
   # # _pets
   # - scope:
   #     path: ""
