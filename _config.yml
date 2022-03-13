@@ -264,7 +264,7 @@ defaults:
       path: ""
       type: postai
     values:
-      layout: single
+      layout: collection
       author_profile: true
       read_time: false
       comments: false

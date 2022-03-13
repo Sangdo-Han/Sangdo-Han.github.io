@@ -6,4 +6,4 @@ categories:
   - Blog
 ---
 
-Just for test if my blog works well
+Just for test if my blog works well lol.

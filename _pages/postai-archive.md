@@ -1,11 +1,10 @@
 ---
-title: "Posts by Year"
+title: "AI Posts"
 layout: collection
 permalink: /postai/
 collection: postai
 entries_layout: grid
 classes: wide
-author_profile: true
 ---
 
 AI review posts

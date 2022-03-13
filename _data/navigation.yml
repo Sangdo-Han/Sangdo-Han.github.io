@@ -3,7 +3,7 @@ main:
   - title: "All Posts"
     url: /year-archive/
   - title: "AI"
-    url: /postai-archive/
+    url: /postai/
   # - title: "Quick-Start Guide"
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "About"
@@ -18,11 +18,11 @@ postai:
   - title: AI paper reviews
     children:
       - title: "Fundamental AI"
-        url: /postai/fundamental/
+        url: /postai-archive/:path/
       - title: "Computer Vision"
-        url: /postai/fundamental/
+        url: /postai-archive/:path/
       - title: "Reinforcement Learning"
-        url: /postai/rl/
+        url: /postai-archive/:path/
 
   # - title: "Parent Page B"
   #   children:
