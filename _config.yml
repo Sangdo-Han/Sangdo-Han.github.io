@@ -1,9 +1,10 @@
 title: sanHan's Bizarre AI
 description: Lesson 5
-remote_theme: pmarsceill/just-the-docs
-
+baseurl:
 url: https://Sangdo-Han.github.io/sanhan
 
+remote_theme: pmarsceill/just-the-docs
+permalink: pretty
 search_enable: true
 search:
     heading_level: 5
