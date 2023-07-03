@@ -1,10 +1,9 @@
 title: sanHan's Bizarre AI
 description: Lesson 5
-baseurl:
+theme: just-the-docs
+
 url: https://Sangdo-Han.github.io/sanhan
 
-remote_theme: pmarsceill/just-the-docs
-permalink: pretty
 search_enable: true
 search:
     heading_level: 5
@@ -48,8 +47,6 @@ callouts:
   warning:
     title: Warning
     color: red
-
-load_paths:
-   - _sass
 # aux_links:
 #   Template Repository: https://github.com/just-the-docs/just-the-docs-template
+
