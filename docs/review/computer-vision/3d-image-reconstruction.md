@@ -1,21 +1,23 @@
 ---
 layout: default
-title: 3D Image Reconstruction
+title: 3D Image Reconstruction - Introduction
 parent: Computer Vision
 grand_parent: AI Review
 math: katex
 nav_order: 1
 ---
 
-# 3D Reconstruction
+# 3D Reconstruction - Introduction
 
-Review survey (23.07.02)
+Post Completed (23.07.02)
 {: .label .label-green}
 
-Review Detailed Methodology (comming-soon)
+Format Updated (23.07.13)
 {: .label .label-yellow}
 
-## Introduction
+Introductions to 3D Reconstruction : Backgrounds, Metrics and Representations
+
+## Backgrounds
 
 3D reconstruction, which is 3-Dimensional representation of objects,  can be used for many applications such as video games, animation, navigation and so on.    
 
@@ -25,7 +27,8 @@ It is true that understanding the basics of photogrammetry is very important to 
 
  In this post, however, it is assumed that the readers have knowledge about deep learning models rather than 3D reconstructions. Hence, the discussion will focus on deep-learning based 3D reconstructions while traditional techniques will be mentioned only as needed for readers to comprehend the deep-learning models.
 
-## 3D reconstruction using deep learning : a survey [[1](#jin-et-al)]
+## Datasets, Metrics and Representations 
+**Based on 3D reconstruction using deep learning : a survey [[1](#jin-et-al)]**
 
 Starting with a good review paper helps to understand the field and the potential research directions. In deep learning based 3D reconstruction, luckily we can access a good review paper [[1](#jin-et-al)] for free.    
 
