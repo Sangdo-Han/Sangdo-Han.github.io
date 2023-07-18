@@ -11,13 +11,21 @@ tags:
 ---
 
 # Concurrent / Parallel Programming  
-Introduction and Term (23.07.13)
-{: .label .label-green}
 
-Concurrency and Parallelism(TBD)
+In Writing (23.07.13~)
 {: .label .label-yellow}
 
+Though my primary programming language is python, for explaining concurrent or parallel programming, understanding low level features such as register, memory, and pointers are needed for this post. Therefore, I choose RUST programming language as a practice considering the hardship of mastering C pointers (as C pointers allow you to do ***EVERYTHING***) and considering of mastering RUST just for myself.
+
+About RUST programming, you can check [here](https://sangdo-han.github.io/docs/fundamentals/programming/concurrent-programming) that will be posted parallel to this page.
+
 ## Introduction
+
+Introduction and terms (23.07.13)
+{: .label .label-green}
+
+More accurate explanation on 'thread' (23.07.18)
+{: .label .label-green}
 
 When a top-level programmer encounters a time-efficiency issue in an algorithm, program, or system, it is natural for them to think of divide-and-conquer first. As systems grow in size and demand for speed increases, the ways in which divide-and-conquer is used have evolved alongside the work of top-level software researchers.
 
@@ -60,5 +68,10 @@ The understanding of those aspects also helpful for understanding how processes 
 
 ### More Specific Definition on Thread
 
-A thread is the smallest sequence of instructions that can be executed not depending on the others. Each thread has its own stack and registers, however, it shares the same memory with others in the same process. It means that threads can access the same data, but they cannot modify each other's data without synchronization.
+A thread is the smallest sequence of instructions that can be executed not depending on the others. Each thread has its own stack and registers, however, it shares the same memory with others in the same process. (This is because a single CPU contains only a single physical thread and the other threads are simply software based threads : physically, we do not separate the memory) It means that threads can access the same data, but they cannot modify each other's register data without synchronization.
 
+## Sync / Async
+
+### Synchronizations (Mutex, Semaphore, Barrier)
+Comming Soon
+{: .label .label-yellow}

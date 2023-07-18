@@ -1,16 +1,22 @@
 ---
 layout: default
 title: Programming
-nav_order: 1
+nav_order: 2
 has_children: true
 parent: Fundamentals
 permalink: /docs/fundamentals/programming
 ---
 
 # Programming
-Mainly focus on Python, Not like a math tab, I will only post what I think it is important. 
+Mainly focus on Python (my primary language), Rust and Javascript. 
+The followings I want to share in the future.
 
+### **Python** 
 
-  - Python / AI frameworks 
-  - Rust / C++ / System Designs (for my own interests)
-  - HTML/CSS/JavaScript (for my own interests)
+**Deep Learning** (**tensorflow**, **pytorch**, jax), **Machine Learning**, **Algorithms & Data Structures**, **Software design**, Web backend (flask)
+
+### **Rust** / C / C++
+**Concurrent / Parallel Programming**, **Game engine (Physics Engine)**
+
+### HTML / CSS / JS
+Web frontend
