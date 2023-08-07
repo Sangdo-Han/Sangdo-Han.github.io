@@ -129,8 +129,6 @@ fn main(){
 2. Unlike mutable variable, shadowing allows to use the same name when we change the data type. This sounds like powerful. However, type-changing situation sometimes leads a serious dynamic errors that compiler cannot discern. Therefore, shadowing should be avoided in general cases.
 
 ### 2.2. Rust is a statically-typed language.
-Comming Soon
-{: .label .label-yellow}  
 
 Like modern object-oriented programming like python or javascript, Rust supports type inference.   
 However, Rust generally requires concrete (static) types during compilation for memory-safe efficient programming. We call this type compliance as statically-typed language, which means the types of variables and expressions are checked at compile-time rather than at runtime.
