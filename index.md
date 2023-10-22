@@ -25,4 +25,4 @@ the shortest route is a detour.
 ----
 ## sanHan
 
-Software Researcher \| LG Electronics [Email](mailto:sangdo.han@lge.com){: .btn .btn-primary .fs-2 .mb-4 .mb-md-0 .mr-2}
+Software Researcher [Email](mailto:sanhan@umich.edu){: .btn .btn-primary .fs-2 .mb-4 .mb-md-0 .mr-2}

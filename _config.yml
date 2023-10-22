@@ -3,7 +3,7 @@ description: Lesson 5
 theme: just-the-docs
 
 url: https://Sangdo-Han.github.io/sanhan
-
+favicon_icon: "/assets/images/favicon.ico"
 search_enable: true
 search:
     heading_level: 5

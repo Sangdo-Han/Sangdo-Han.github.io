@@ -9,8 +9,9 @@ tags:
 ---
 
 # Rust Programming Language
-Initialized (23.07.18)
+Updated (23.10.22)
 {: .label .label-green}
+
 
 About rust programming. I hope everyone to read [the official documentation](https://www.rust-lang.org), especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice.
 
@@ -178,5 +179,63 @@ fn main(){
 
 #### 2.2.2. Custom Types
 
-In progress (23.08.07)
+The following components' usage will be introduced more specifically in the future.
+
+**Struct**
+
+Like C programming language, Rust has a `struct` type that user can define a custom data. While rust's struct is more expansive than C struct, 
+it enables users to use flexible and memory-safe custom data. 
+
+```rust
+struct Person{
+    name: String,
+    age: u8,
+}
+
+fn main(){
+    let person = Person{
+        name:"Sangdo Han".to_string(),
+        age:33,
+    };
+}
+```
+
+**Enums**
+
+Enums, which stands for enumerations, is one of the powerful custom type that enables to make custom types in modern programming language.
+Briefly speaking, enums gives user to selecting a value of a possible set of values. With this concept, users can write more safe and expressive codes.
+
+```rust
+enum OrderStatus{
+    Pending,
+    Approved,
+    Processing,
+    Shipped,
+    Delievered,
+    Canceled,
+}
+struct Order{
+    id: u32,
+    customer_name: String,
+    items: Vec<String>,
+    status: OrderStatus,
+}
+fn main(){
+    let mut order = Order{
+        id:1,
+        customer_name: "Sangdo Han".to_string(),
+        items: vec!["TV".to_string(), "Laptop".to_string()],
+        status:OrderStatus::Pending,
+    };
+
+    order.status = OrderStatus::Processing;
+}
+```
+
+Like the example above, programmer can set the `Order`'s status using enum `OrderStatus` with the follwing **valid** variables :
+`Pending`, `Approved`, `Procesing`, `Shipped`, `Delivered` and `Canceled`.
+
+#### 2.3. Ownership
+
+comming-soon
 {: .label .label-yellow}
