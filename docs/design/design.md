@@ -7,6 +7,4 @@ permalink: /docs/design
 ---
 
 # **Design**
-\+Coming soon
-{: .label .label-yellow }
-  - This page is for my personal side projects and thoughts.
+This page is for my personal side projects and thoughts.
