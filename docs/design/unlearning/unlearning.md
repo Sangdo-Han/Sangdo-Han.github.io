@@ -29,7 +29,7 @@ Simple Rolling in Forget Logits (SRFL) is a simple way of disturbing the forget 
 
 Train curve in `CIFAR-10` (since cifar-10 from starter-kit, it would not represent facial unlearning as in the neurips challenge.)
 
-![image](./cifar10_accuracy.png)
+![image](https://sangdo-han.github.io/docs/design/unlearning/cifar10_accuracy.png)
 
 ### Algorithm
 1. **Copy** a model from original trained model   
