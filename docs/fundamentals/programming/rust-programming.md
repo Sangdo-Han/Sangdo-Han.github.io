@@ -9,17 +9,27 @@ tags:
 ---
 
 # Rust Programming Language
-Updated (23.10.22)
-{: .label .label-green}
+Update 2 & 3 (Jan.21.2024)
+{: .label .label-purple}
 
 
 About rust programming. I hope everyone to read [the official documentation](https://www.rust-lang.org), especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice.
 
 This post includes from basic to advanced:
 
-1. Of course, "Hello, world!"
-2. Basic syntax
-3. Pointer / memory related features
+-------------------
+
+1. [Of course, "Hello, world!"](#1-of-course-"hello-world")   
+2. [Basic syntax](#2-basic-synthax)  
+2.1. [Immutables and mutables](#21-immutables-and-mutables)    
+2.2. [Rust is a statically typed language](#22-rust-is-a-statically-typed-language)    
+2.3. [Control Flow](#23-control-flow)    
+2.4. [OOP](#24-oop)   
+3. [Pointer / memory related features](#3-pointer--memory-related-features)      
+3.1. [Memory in computer](#31-memory-in-computer)     
+3.2. [Ownership](#32-owenership)     
+3.3. Pointers   
+3.4. Lifetimes
 4. Sync / async programming 
 5. Building a simple physics engine.
 
@@ -235,7 +245,154 @@ fn main(){
 Like the example above, programmer can set the `Order`'s status using enum `OrderStatus` with the follwing **valid** variables :
 `Pending`, `Approved`, `Procesing`, `Shipped`, `Delivered` and `Canceled`.
 
-#### 2.3. Ownership
+#### 2.2.3 Common collections
+Rust's standard library supports useful data structures called collections.
+It supports `Vec` (vector), `VecDeque` (queue), `HashMap` and so on.
+<a href="https://doc.rust-lang.org/std/collections/index.html">
+   see the details in the official documentation of std::collections
+</a>
 
-comming-soon
-{: .label .label-yellow}
+
+### 2.3. Control Flow
+
+In any programming language, if you know if-else and loop, you can write any program even if it is too hard to read or too slow.
+
+#### 2.3.1. if expression
+
+Rust's `if` is an expression, so it returns value. If there is no explicit `return` statement, it automatically returns `Unit Type` (`()`), which represents an empty tuple.
+
+As `if` is an expression, we can assign value as the following:
+```rust
+let result = if condition { 
+        value_1 ;
+    } else if condition_2 {
+        value_2 ;
+    } else {
+        value_3 ;
+}
+```
+about the conditions, rust only supports boolean type.
+
+#### 2.3.2. pattern matching    
+
+Rust has a powerful control flow construct keyword : `match` expression.
+Basically, match works as the following:
+```rust
+match expression {
+    pattern1 => { code_block1 },
+    pattern2 => { code_block2 },
+    // ..
+}
+```
+For a simple example, you can register patterns with literals and wildcard (`_`) as the following:
+```rust
+let dice_roll = 3;
+match dice_roll {
+    3 => println!("you got the prize : candies !"),
+    5 => println!("you got the prize : chocolate !"),
+    _ => println!("try again")
+}
+```
+
+Generally, enum is widely used for pattern constraints. the following example is originated from `the book`.
+
+```rust
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+```
+
+
+#### 2.3.3. loop, while, for
+1. loop    
+`loop` is basically means `while true` in rust, unlike `while` or `for`, however, it can be used as expression with `break`. In addition, rust can assign a label to a loop as followings:
+```rust
+'outer_loop: loop {
+    'inner_loop: loop {
+        // ...
+        if some_condition {
+            break 'outer_loop;  // with label, loop can exit directly to outer loop
+        }
+    }
+}
+```
+2. while    
+`while` is a repitition keyword as widely used in other programming language. With a condition phrase beside `while`, we can control the repetition. `while` needs discrimitive condition to break the repetition.
+```rust
+while some_condition {
+    // ... 
+    if other_condition {
+        break;
+    }
+}
+```
+3. for    
+`for` could be the best option that handling the repetition with fixed range.
+```rust
+let mut factorial = 1;
+    for idx in 1..10 { // starts 1 to 9, if you want to include 10, use 1..=10
+        factorial *= idx;
+        println!("{idx}! = {factorial}");
+}
+```
+
+### 2.4. OOP     
+
+TBD 
+{: .label .label-yellow}      
+
+
+-------------------
+
+## 3. Pointer / memory related features
+
+### 3.1 Memory in Computer
+In operating system, memory (RAM) is divided into 5 parts (regions, segments): Text (code), bss, data, heap and stack. Those manage memory in runtime.
+
+<div align="center">
+<p>
+<image src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Program_memory_layout.pdf/page1-234px-Program_memory_layout.pdf.jpg" />
+</p>
+ ref: data segment image <a href="https://en.wikipedia.org/wiki/Data_segment"> from wikipedia </a>
+</div>
+
+1. Text (code)  
+Text stores executable code, generally fixed size.
+
+2. Data    
+Data stores initialized global variables and `static` variables.
+
+3. BSS (Block Started by Symbol)    
+BSS generally depends on Programming language, however, like C programming language, manages unintialized static variable.
+
+4. Stack    
+Stack is a LIFO (last-in first-out) data structure, using a mechanism like a piling up pancakes on a plate. Stack manages function calls, local variables, function parameters, and return addresses. Stack pointer is a special register in the CPU keeps track of the top of the stack, pointing the current memory address where new data can be added(malloc), also deleting(free) the topmost data easily. 
+- When a function is called, a new stack frame is created on the stack to hold its local variables, parameters and return address.
+- For a memory allocation, compiler analyzes the code to determine the size of each function's stack frame. Next, compiler generates instructions to adjust the stack pointer, allocating and dellocating space as needed.
+- function calls and returns automatically add (push) and remove (pop) stack frames, ensuring efficient memory usage.
+
+5. Heap  
+Heap is a kind of less organized region of memory, which can be manually directed by user. In the sense of automatic managing, 
+many languages support `garbage collection` in these days. Rust does not have a traditional garbage collector. Instead, 
+it relies on ownership and borrowing. Rust also supports pointers for user's memory manipulation, some of them is safer than those in C / C++.
+
+### 3.2. Owenership
+
+
+TBD 
+{: .label .label-yellow}      
+
+
+Ownership is one of unique features in rust for handling memory not only within a code block (scope) but also between code blocks.
