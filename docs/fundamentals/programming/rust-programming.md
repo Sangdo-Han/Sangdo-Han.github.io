@@ -9,7 +9,7 @@ tags:
 ---
 
 # Rust Programming Language
-Update 2 & 3 (Jan.21.2024)
+Update 2.2.2 Custom Types - Enum (Feb.10.2024)
 {: .label .label-purple}
 
 
@@ -24,7 +24,7 @@ This post includes from basic to advanced:
 2.1. [Immutables and mutables](#21-immutables-and-mutables)    
 2.2. [Rust is a statically typed language](#22-rust-is-a-statically-typed-language)    
 2.3. [Control Flow](#23-control-flow)    
-2.4. [OOP](#24-oop)   
+2.4. [Functions](#24-functions)
 3. [Pointer / memory related features](#3-pointer--memory-related-features)      
 3.1. [Memory in computer](#31-memory-in-computer)     
 3.2. [Ownership](#32-owenership)     
@@ -60,7 +60,7 @@ Before talking about data structures and syntaxes of Rust, I will put the genera
 | Item | Convention |
 | --- | --- |
 | Modules | snake_case |
-| Types / Traits / Enum variants | PascalCase |
+| Types / Traits / Enum / Struct | PascalCase |
 | Macros / Functions / Methods | snake_case |
 | Local variables | snake_case |
 | Static variables / Constants | SCREAMING_SNAKE_CASE |
@@ -170,13 +170,13 @@ fn main(){
     let t = true; // bool
     let f : bool =  false; // bool
     let ch = 'c';
-    let ch_char : char = 'c';
+    let ch_char : char = 'c'; // char is 32 bit length
 
     // about tuple
     let compound_tup : (i32, f64, u16) = (400, 6.28, 2);
     let four_hundred = compound_tup.0;
     let tau = compound_tup.1;
-    let two = x.2;
+    let two = compound_tup.2;
 
     // about array
     let arr_1 = [1,2,3,4,5];
@@ -189,12 +189,12 @@ fn main(){
 
 #### 2.2.2. Custom Types
 
-The following components' usage will be introduced more specifically in the future.
+Rust also supports algebraic types. `struct` can be used as a `multiple type`, `enum` can be used as a `sum type`.
 
 **Struct**
 
 Like C programming language, Rust has a `struct` type that user can define a custom data. While rust's struct is more expansive than C struct, 
-it enables users to use flexible and memory-safe custom data. 
+it enables users to use flexible and memory-safe custom data.
 
 ```rust
 struct Person{
@@ -245,13 +245,48 @@ fn main(){
 Like the example above, programmer can set the `Order`'s status using enum `OrderStatus` with the follwing **valid** variables :
 `Pending`, `Approved`, `Procesing`, `Shipped`, `Delivered` and `Canceled`.
 
-#### 2.2.3 Common collections
+These options might have different types and amounts of associated data. Enums with inline-struct can make more properous types as followings:
+
+```rust
+use chrono::{DateTime, Local, TimeZone, Utc};
+
+#[derive(Debug)]
+enum OrderStatus{
+    Pending,
+    Approved{start_date:DateTime<Utc>, approver:String},
+    Processing{start_date:DateTime<Utc>, provider:String},
+    Shipped{start_date:DateTime<Utc>, ship_no:u32},
+    Delievered{start_date:DateTime<Utc>, expected_date:DateTime<Utc>},
+    Canceled
+}
+
+#[derive(Debug)]
+struct Order{
+    id: u32,
+    customer_name: String,
+    items: Vec<String>,
+    status: OrderStatus,
+}
+
+fn main(){
+    let mut order = Order{
+        id:1,
+        customer_name: "Sangdo Han".to_string(),
+        items: vec!["TV".to_string(), "Laptop".to_string()],
+        status:OrderStatus::Pending,
+    };
+
+    order.status = OrderStatus::Processing{start_date:Utc::now(), provider:"sangdo".to_string()};
+    println!("{:?}", order)
+}
+```
+
+#### 2.2.3. Common collections
 Rust's standard library supports useful data structures called collections.
 It supports `Vec` (vector), `VecDeque` (queue), `HashMap` and so on.
 <a href="https://doc.rust-lang.org/std/collections/index.html">
    see the details in the official documentation of std::collections
 </a>
-
 
 ### 2.3. Control Flow
 
@@ -348,11 +383,47 @@ let mut factorial = 1;
 }
 ```
 
-### 2.4. OOP     
 
-TBD 
-{: .label .label-yellow}      
+### 2.4. functions
 
+We've already used a function : `main`. As you might know already, to make a function, the keyword `fn` is needed. Also, the function named `main` is a crucial function, that rust compiler identifies the project. So far, we don't put the parameters for the function. To give a parameters to a function, we have some rules as follows:
+
+```rust
+fn make_2d_circle(x:f64, y:f64, r:f64){
+    assert!( r>0.0 , "r needs to be larger than 0 but you put : {}",r);
+    println!("circle created at ({x}, {y}) with radius {r}");
+}
+
+fn main(){
+    let inputs : (f64, f64, f64) = (2.0, 3.0, 2.0);
+    make_2d_circle(inputs.0, inputs.1, inputs.2);
+}
+```
+
+with the outputs, we should declare return type.
+
+```rust
+fn calculate_polar_coordinates(original_x: f64, original_y: f64) -> (f64, f64) {
+    // Calculate radius using the Pythagorean theorem
+    let polar_radius = (original_x.powf(2.0) + original_y.powf(2.0)).sqrt();
+
+    // Calculate theta using atan2 (handles 0/0 case)
+    let polar_theta = original_y.atan2(original_x);
+
+    (polar_radius, polar_theta) // return (polar_radius, polar_theta);
+}
+
+fn main() {
+    let original_x = 2.0;
+    let original_y = 3.0;
+
+    let (polar_radius, polar_theta) = calculate_polar_coordinates(original_x, original_y);
+
+    println!("Original x: {}, y: {}", original_x, original_y);
+    println!("Converted to Polar Coordinates:");
+    println!("Radius: {}, Theta: {}", polar_radius, polar_theta);
+}
+```
 
 -------------------
 
@@ -396,3 +467,9 @@ TBD
 
 
 Ownership is one of unique features in rust for handling memory not only within a code block (scope) but also between code blocks.
+
+`the book` suggests three ownership rules as follows:
+
+1. Each value in Rust has an owner.
+2. There can only be one owner at a time.
+3. When the owner goes out of scope, the value will be dropped.
