@@ -461,15 +461,51 @@ it relies on ownership and borrowing. Rust also supports pointers for user's mem
 
 ### 3.2. Owenership
 
-
-TBD 
-{: .label .label-yellow}      
-
-
-Ownership is one of unique features in rust for handling memory not only within a code block (scope) but also between code blocks.
+Ownership is one of the unique features in rust for handling memory not only within a code block (scope) but also between code blocks.
 
 `the book` suggests three ownership rules as follows:
 
 1. Each value in Rust has an owner.
 2. There can only be one owner at a time.
 3. When the owner goes out of scope, the value will be dropped.
+
+Because of axiom #2 and #3, programmers who are familiar with other languages could have in trouble.
+
+For instance, in the case of python, the following would work.
+
+```python
+# python
+if __name__ == "__main__":
+    x = "hello"
+    y = x
+    print((id(x) == id(y))) # you can see True, they indicates the same memory address
+    print(y) # you can get 'hello'
+    print(x) # you can get 'hello'
+```
+with checking ids of x and y are equal, we can see x and y indicates the same address.
+
+however, in rust programming, the following rust code  which is similar to the above code won't be compiled.
+
+```rust
+fn main(){
+    let x = String::from("hello");
+    let y = x;
+    println!("{}", y);
+    println!("{}", x); // compile error because x has no ownership of value
+}
+```
+It seems that y and x "shares" the same address, however, it is not. As I mentioned first, in dealing with heap memory, rust basically moves the ownership from `x` to `y`.
+As `y` has got ownership of the string value "hello", `x` cannot access the value until it retrieved ownership back or get new value assigned. Another option that `x` can 
+stands the original value "hello" is `borrowing`. Here are the example that y borrows the value from x, and return back automatically when y is called.
+
+```rust
+fn main(){
+    let x = String::from("hello");
+    let y = &x; // y borrows (refers) the value of x; 
+    println!("{}", y);
+    println!("{}", x); // no error: Still, x is owner of "hello"
+}
+```
+
+This is a basic concept and example of ownership and borrowing.
+
