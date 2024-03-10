@@ -3,13 +3,13 @@ layout: default
 title: Rust Programming Language
 parent: Programming
 grand_parent: Fundamentals
-nav_order: 2
+nav_order: 1
 tags: 
   - rust
 ---
 
 # Rust Programming Language
-Update 2.2.2 Custom Types - Enum (Feb.10.2024)
+Update 2.5. Methods and 3.3. Pointers (March.10.2024)
 {: .label .label-purple}
 
 
@@ -19,25 +19,27 @@ This post includes from basic to advanced:
 
 -------------------
 
-1. [Of course, "Hello, world!"](#1-of-course-"hello-world")   
+1. [Hello, world!](#1-hello-world)   
 2. [Basic syntax](#2-basic-synthax)  
 2.1. [Immutables and mutables](#21-immutables-and-mutables)    
 2.2. [Rust is a statically typed language](#22-rust-is-a-statically-typed-language)    
-2.3. [Control Flow](#23-control-flow)    
-2.4. [Functions](#24-functions)
-3. [Pointer / memory related features](#3-pointer--memory-related-features)      
+2.3. [Control Flow](#23-control-flow)     
+2.4. [Functions](#24-functions)    
+2.5. [Methods](#25-method)    
+2.6. [Generics / Traits](#26-generics--traits)    
+3. [Pointer / memory related features](#3-pointer--memory-related-features)        
 3.1. [Memory in computer](#31-memory-in-computer)     
-3.2. [Ownership](#32-owenership)     
-3.3. Pointers   
-3.4. Lifetimes
-4. Sync / async programming 
-5. Building a simple physics engine.
+3.2. [Ownership](#32-owenership)      
+3.3. [Pointers](#33-pointers)      
+3.4. [Lifetimes](#34-lifetimes)    
+4. What's left?    
+4.1. Packages, Crates and Modules   
 
 -------------------
 
-## 1. Of course, "Hello, world!"
+## 1. Hello, world!
 
-First of all, it is very simple as python for printing hello world:
+First of all, `printing hello world!` in rust is as simple as in python:
 
 ```rust
 fn main(){
@@ -45,7 +47,7 @@ fn main(){
 }
 ```
 
-But there are important things in this simple code: 
+But there are important things even in this simple code: 
 
 1. RUST always needs main function named main().
 2. We can define function with `fn`
@@ -55,7 +57,7 @@ But there are important things in this simple code:
 > Macros are expanded at compile time, so that the actual generated codes will replace the macro before the program is executed. When you want to use macro to generate code in compile level, you need to put `!` right after the name of macro.
 > You can also make your codes be a macro. However, there is no free lunch. Macro makes you comfortable in writing a program or save execution time (by avoiding function call) but your compile time might also increase as much you use macro.  
 
-Before talking about data structures and syntaxes of Rust, I will put the general naming rules.
+And before talking about data structures and syntaxes of Rust, I will put the general naming rules.
 
 | Item | Convention |
 | --- | --- |
@@ -70,13 +72,14 @@ Before talking about data structures and syntaxes of Rust, I will put the genera
 -------------------
 
 ## 2. Basic Synthax
-One of the reason why we use Rust is for a memory-safe efficient programming
+One of the reason why we use Rust is for a memory-safe efficient programming. It is because that rust compiler strictly yells 
+the programmer to follow their memory-safe instructions. 
 
 ### 2.1. Immutables and mutables  
 
-Like I've said, Rust targets to a memory-safe efficient programming. For safety, Rust sets variable as an immutable by default. 
+In rust, `let` is used for declaration of a variable, without `mut` keyword, rust generally declare the variables be immutable by default. 
 
-Basically, Rust supports three ways to assign a value as follows : 
+Basically, rust supports three ways to assign a value as follows : 
 
 | Variable Type | Advantages | Disadvantages | Syntax
 | --- | --- | --- |---|
@@ -84,9 +87,9 @@ Basically, Rust supports three ways to assign a value as follows :
 | Immutable | Thread safety, predictability, simplicity | Memory usage, performance | `let mut x = 3;` | 
 | Constant | Readability, predictability, optimization | Limited flexibility, potential for code duplication | `const x = 3;` |
 
-The following code is from official rust language book but with my commentary
+The following code snippet is from `the book` but with my commentary
 
-**mutable vs immutable**
+#### 2.1.1. mutable vs immutable  
 ```rust
 // the following code occurs compile error, this example is from `the book` of rust-lang.org
 
@@ -101,7 +104,7 @@ fn main(){
 
 1. To avoid the error, we need to write (1) as `let mut x = 5;`
 
-**constant**
+#### 2.1.2. constant
 ```rust
 fn main(){
     const mut X = 5; // compile error occurs here, unlike `let` expression which initializes variables, `const` does not allow `mut` expression.
@@ -121,9 +124,9 @@ fn main() {
 }
 ```
 
-**shadowing**
-Shadow means that a variable is declared with the same name of previous variable.
-I am posting the usage because it is in `the book` of rust-lang, however, shadowing is not recommended in general cases.
+#### 2.1.3. shadowing   
+Shadowing means that a variable is declared with the same name of previous variable.
+I posted the usage because it is in `the book` of rust-lang, however, shadowing is not recommended in general cases.
 
 ```rust
 fn main(){
@@ -141,8 +144,8 @@ fn main(){
 
 ### 2.2. Rust is a statically-typed language.
 
-Like modern object-oriented programming like python or javascript, Rust supports type inference.   
-However, Rust generally requires concrete (static) types during compilation for memory-safe efficient programming. We call this type compliance as statically-typed language, which means the types of variables and expressions are checked at compile-time rather than at runtime.
+Like modern programming languages like python or javascript, Rust supports type inference.   
+However, rust generally requires concrete (static) types during compilation for memory-safe efficient programming. We call this type compliance as statically-typed language, which means the types of variables and expressions are checked at compile-time rather than at runtime.
 
 #### 2.2.1. Basic Scalar Types
 
@@ -425,6 +428,97 @@ fn main() {
 }
 ```
 
+### 2.5. Method
+
+In rust, there is no `class` keyword, however, we can use `enum` and `struct` for OOP.   
+If you are not familiar with reference (`&`) or dereference(`*`), I hope you to visit chapter 3 first then come back to this chapter.  
+For instance, we can assign method with `impl` keyword as follows:
+
+```rust
+// based on an example from `the book`
+struct Rectangle {
+    width : u32,
+    height: u32,
+}
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+    fn radius_inscribe(&self) -> f64{
+        let _width:f64 = self.width as f64;
+        let _height:f64 = self.height as f64;
+
+        f64::sqrt(_width.powf(2.0) + _height.powf(2.0))
+    }
+    fn has_larger_width_than(&self, other:&Rectangle) -> bool {
+        // this function can get another argument : rectangle instance.
+        self.width > other.width
+    }
+
+    // associated functions, we can instantiate with other way
+    fn square(size:u32) -> Self {
+        Self {
+            width:size,
+            height:size,
+        }
+    }
+}
+fn main(){
+    let rect1 = Rectangle{
+        width:30,
+        height:40,
+    };
+    println!("the area of rectangle 1 is {}", rect1.area());
+    println!("the radius of outer circle of rectangle {}", rect1.radius_inscribe());
+
+    let rect2 = Rectangle{
+        width: 10,
+        height: 100,
+    };
+
+    println!("rect1 has larger width than rect2? : {}", 
+            rect1.has_larger_width_than(&rect2));
+
+    let square1 = Rectangle::square(30);
+    println!("the area of square1 is {}", square1.area());
+}
+```
+
+`enum` also can have methods, the following example is generated by copilot, 
+which is also a good example that shows pattern matching.  
+
+```rust
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right,
+}
+
+impl Direction {
+    fn is_vertical(&self) -> bool {
+        match *self { // *self means dereference Direction, that gives a value.
+            Direction::Up | Direction::Down => true,
+            _ => false,
+        }
+    }
+
+    fn is_horizontal(&self) -> bool {
+        !self.is_vertical()
+    }
+}
+
+fn main() {
+    let up = Direction::Up;
+    let left = Direction::Left;
+
+    println!("Is 'up' vertical? {}", up.is_vertical()); // Prints: Is 'up' vertical? true
+    println!("Is 'left' horizontal? {}", left.is_horizontal()); // Prints: Is 'left' horizontal? true
+}
+```
+
+### 2.6. Generics / Traits
+
 -------------------
 
 ## 3. Pointer / memory related features
@@ -494,9 +588,17 @@ fn main(){
     println!("{}", x); // compile error because x has no ownership of value
 }
 ```
+
 It seems that y and x "shares" the same address, however, it is not. As I mentioned first, in dealing with heap memory, rust basically moves the ownership from `x` to `y`.
-As `y` has got ownership of the string value "hello", `x` cannot access the value until it retrieved ownership back or get new value assigned. Another option that `x` can 
-stands the original value "hello" is `borrowing`. Here are the example that y borrows the value from x, and return back automatically when y is called.
+As `y` has got ownership of the string value "hello", `x` cannot access the value until it retrieved ownership back or get new value assigned. 
+
+### 3.3. Pointers
+To solve the above ownership problem, we can also use other options : use memory address!  
+
+#### 3.3.1. Reference
+
+The foremost option is that borrow `x`'s value with `reference`.   
+Here is an example of `borrowing` that y borrows the value from x, and return back automatically when y is called.   
 
 ```rust
 fn main(){
@@ -507,5 +609,93 @@ fn main(){
 }
 ```
 
-This is a basic concept and example of ownership and borrowing.
+This `&` operator is for referring to x, or borrowing x address. It seems that reference is the same as the pointer in C, however 
+references are always valid and automatically managed by Rust's borrow checker. **They cannot outlive the data they brought and cannot be null.**
 
+You can see that those exmaples are based on `string` type because string in rust works allocating the memory based on move, not copy or clone.
+If you use the same examples but `int` allocation, there is no error since the basic trait of allocation in `int` is value shallow copying.
+
+The following code which seems like simply adding a dereference operator `*` could make you a little bit crazy.   
+```rust
+fn main() {
+    let x = String::from("hello"); // we know, x is a string value "hello"; String
+    let y = &x; // y borrows (refers) the value of x; &String
+    let z = &*x; // (*x) is dereference of x, which is inner string (or string slice) : str 
+                 // and then we refer &(*x), which is reference of string slice : &str
+
+    println!("{}", y);
+    println!("{}", x);
+    println!("{}", z);
+}
+```  
+I added the explanation of x, y and z in the code above with inline comment.
+
+#### 3.3.2. Raw Pointer
+
+Still, C-like pointer is also supported in Rust, named as `raw pointer`. 
+
+Raw pointers in Rust are necessary for certain tasks where you need to interact with low-level code, 
+such as interfacing with C libraries, implementing low-level data structures, or performing certain operations 
+that can't be expressed safely within Rust's safe abstraction.
+
+Here are some scenarios where raw pointers are useful:
+
+1. **Interfacing with C Code**: Rust often needs to interact with C libraries, which typically use raw pointers extensively. Rust's FFI (Foreign Function Interface) allows you to call functions from C libraries and vice versa, and raw pointers are often used to pass data between Rust and C code.
+
+2. **Unsafe Operations**: Some operations inherently require unsafe behavior, such as dereferencing a pointer to arbitrary memory or performing low-level memory manipulation. While these operations should be avoided whenever possible, there are situations where they're necessary for performance reasons or to implement certain algorithms.
+
+3. **Unsafe Abstractions**: Sometimes, you may need to implement your own safe abstractions that rely on unsafe operations internally. While the interface exposed to the user remains safe, the implementation may use raw pointers or other unsafe constructs to achieve certain behaviors efficiently.
+
+4. **Low-Level Data Structures**: Implementing low-level data structures like linked lists, trees, or graphs may require direct manipulation of memory addresses, which is facilitated by raw pointers. While Rust's standard library provides safe abstractions for common data structures, there are cases where custom implementations are necessary or desirable.
+
+5. **Embedded Systems and Systems Programming**: In systems programming and embedded systems development, you often need precise control over memory layout and low-level hardware interactions. Raw pointers allow you to express such operations safely within the context of an `unsafe` block.
+
+It's important to note that while raw pointers are a powerful tool, they come with significant responsibility. Rust's safety guarantees are designed to prevent common programming errors and security vulnerabilities, and bypassing these guarantees with raw pointers can introduce bugs, crashes, or security vulnerabilities if used incorrectly.
+
+```rust
+fn main() {
+    let x = 42;
+
+    // Reference to x
+    let reference = &x;
+    println!("Reference: {}", reference);
+
+    // Raw pointer to x
+    let raw_ptr: *const i32 = &x as *const i32;
+    unsafe {
+        println!("Raw pointer: {}", *raw_ptr);
+    }
+}
+```
+
+#### 3.3.3. Smart Pointer
+
+Smart pointers in Rust are data structures that not only hold a value but also contain metadata and provide additional 
+functionality beyond what regular pointers offer. 
+They enforce various safety guarantees at compile time, ensuring memory safety and preventing common programming errors.
+
+One of the most commonly used smart pointers in Rust is `Box<T>`. 
+It allows you to allocate values on the heap rather than the stack and provides ownership semantics like any other value in Rust. 
+Here's a brief overview of `Box<T>`:
+
+- **Box\<T\>**:  Box is a smart pointer that owns the data it points to and is stored on the heap. 
+It's used when you need to have a value with a known size at compile time but don't know the precise size until runtime, 
+or when you want to transfer ownership of a value across scopes or threads.
+
+Here's a simple example of `Box<T>`:
+
+```rust
+fn main() {
+    let x = Box::new(42); // Allocate an integer on the heap
+    println!("Value: {}", x); // Print the value stored in the Box
+}
+```
+
+In addition to `Box<T>`, Rust provides other smart pointers like `Rc<T>` and `Arc<T>` for shared ownership, 
+`Cell<T>` and `RefCell<T>` for interior mutability, and `Mutex<T>` and `RwLock<T>` for synchronization, among others. 
+Each smart pointer type has its own characteristics and use cases, allowing you to choose the appropriate one based on your requirements.
+
+Smart pointers enable you to write safer, more expressive code by encapsulating complex memory management logic and providing clear ownership semantics. 
+
+
+### 3.4. Lifetimes

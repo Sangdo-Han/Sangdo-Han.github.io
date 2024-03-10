@@ -3,7 +3,7 @@ layout: default
 title: Concurrent / Parallel Programming
 parent: Programming
 grand_parent: Fundamentals
-nav_order: 1
+nav_order: 2
 tags: 
   - concurrent programming
   - parallel computing

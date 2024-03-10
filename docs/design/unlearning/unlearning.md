@@ -1,9 +1,9 @@
 ---
 layout: default
-title: unlearning
+title: Machine Unlearning
 nav_order: 1
 has_children: false
-parent: Design
+parent: Design and Research
 permalink: /docs/design/unlearning
 ---
 
@@ -11,7 +11,7 @@ permalink: /docs/design/unlearning
 Initialized in 12/02/2023
 {: .label .label-green}
 
-This code is based on my submissions on NeurIPS 2023 Machine Unlearning Challenge, which ranked terribly low in the sense of their metric (comparing to oracle model). However, it seems that it achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `unlearning`.
+This code is based on my submissions on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `machine unlearning`.
 
 I will upload the code in [my-github](https://github.com/Sangdo-Han/unlearning) when all the code (including mock of nips unlearning, verifications) is ready, so far, I will just post the brief algorithms and ideation as below (SRFL : done).
 
@@ -29,17 +29,19 @@ Simple Rolling in Forget Logits (SRFL) is a simple way of disturbing the forget 
 
 Train curve in `CIFAR-10` (since cifar-10 from starter-kit, it would not represent facial unlearning as in the neurips challenge.)
 
-![image](https://sangdo-han.github.io/docs/design/unlearning/cifar10_accuracy.png)
+<p align="center">
+ <img src="https://sangdo-han.github.io/docs/design/unlearning/cifar10_accuracy.png">
+</p>
 
-### Algorithm
-1. **Copy** a model from original trained model   
+In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset.
 
+### Algorithm with Pseudo Code
+1. **Copy** a model from original trained model    
 ```
 teacher_model <- copy.deepcopy(model)
 teacher_model.eval() // teacher model will not be trained
 ```
-
-2. **Freeze layers of model except for first two backbones (feature extracting)**
+2. **Freeze layers of model except for first two backbones (feature extracting)**    
 
 3. Loop : Generate logits by teacher model   
 ```
@@ -49,22 +51,18 @@ for data in datasets (retain + forget dataset):
     pseudo_retain_logits <- teacher_model(retain_data)
 ```
 
-4. **Roll** only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1] )
-
+4. **Roll** only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1] )  
 ```
     rolled_pseudo_logits <- roll(pseudo_forget_logits)
-```
-
+```  
 5. **Minimize** KL-divergence between rolled_pseudo_logits and model's output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset)    
 ```
     forget_outputs <- model(forget_data)
     retain_outputs <- model(retain_data)
 
-    forget_loss <- \
-        KLDiv(rolled_pseudo_logits, forget_outputs) + \
-        -1 * cosine_similarity(rolled_pseudo_logits, 
-        forget_outputs) + \
-        KLDiv(pseudo_retain_logits, retain_outputs)
+    forget_loss <-  KLDiv(rolled_pseudo_logits, forget_outputs) \
+                    - cosine_similarity(rolled_pseudo_logits, forget_outputs)\
+                    + KLDiv(pseudo_retain_logits, retain_outputs)
 ```
 
 6. **backward** propagation by forget_loss

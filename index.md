@@ -15,11 +15,11 @@ the shortest route is a detour.
 [Fundamentals](https://sangdo-han.github.io/docs/fundamentals)
   - Mathematics and Programming Knowledge to share
 
-[AI Review](https://sangdo-han.github.io/docs/review)
-  - Reviews on AI papers which are academic intriguing to me.
-
-[Design](https://sangdo-han.github.io/docs/design)
+[Design and Research](https://sangdo-han.github.io/docs/design)
   - This page is for my personal side projects and thoughts.
+
+[AI Paper Review](https://sangdo-han.github.io/docs/reviews)
+  - Reviews on AI papers which are academic intriguing to me.
 
 
 ----
