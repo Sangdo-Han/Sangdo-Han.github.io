@@ -9,7 +9,7 @@ tags:
 ---
 
 # Rust Programming Language
-Update 2.5. Methods and 3.3. Pointers (March.10.2024)
+release - v.1.0.0 (March.17.2024)
 {: .label .label-purple}
 
 
@@ -32,8 +32,7 @@ This post includes from basic to advanced:
 3.2. [Ownership](#32-owenership)      
 3.3. [Pointers](#33-pointers)      
 3.4. [Lifetimes](#34-lifetimes)    
-4. What's left?    
-4.1. Packages, Crates and Modules   
+4. [What's next?](#4-whats-next)    
 
 -------------------
 
@@ -519,6 +518,59 @@ fn main() {
 
 ### 2.6. Generics / Traits
 
+So far, we construct functions, enums and structs with strong type signatures or members. However, sometimes these strict way may induce duplications. For instance, let us define a function that give result of addtion of two numbers. 
+
+```rust
+fn add(a:f64, b:f64)->f64{
+    a+b
+}
+fn main(){
+    let a32:f32 = 3.0;
+    let b32:f32 = 5.0;
+    println!("{}", add(a32,b32)); 
+    // we have error cuz we defined function `add` only with `f64`, not `f32` 
+}
+```
+
+The above code causes compiler error. This is because the function can only takes `f64`. Even if we know that addition works with the same way with `i32` or `f32`, as we only defined add function only works for `f64`, the code has issues. To solve this problem we might need more add functions respect to each type. However this approach could result in redundancies in your code and it makes hard for you (or your team) to maintain the code. One of the idea to solve these redundant-prone coding is using `generics`. With generics, we can set a generic defintion of a function that can handles multiple types as followings:
+
+```rust
+fn add<T: std::ops::Add<Output= T>> (a :T, b : T ) -> T {
+    a + b
+}
+fn main(){
+    let a32:f32 = 3.0;
+    let b32:f32 = 5.0;
+    println!("{}", add(a32,b32));
+
+    let a64:f64 = 4.0;
+    let b64:f64 = 53.0;
+    println!("{}", add(a64, b64));
+}
+```
+
+Here, we set `T` as a abstract type, by putting angle bracket `< >` right next to the name of function. In this example, since we use standard add operator `+` we need to say that `T` has a special `trait` (or a constraint or characteristic) that this generic type `T` uses standard add operator's output. However, if we don't have those constraints (in this case, use of add-operator), The code snippet would be compiled.
+
+The trait `std::ops::Add<Output=T>` is a powerful concept in Rust. Traits define functionality that types can implement. In this case, `std::ops::Add<Output=T>` constraint guarantees type T can be properly added within the function.
+
+One of the interesting thing is that rust's generics don't impact performance.
+The compiler generates specific code for each type at compile time, ensuring efficiency, resulting in performance equivalent to writing separate functions for each type.
+
+Sometimes, we assume that the generalized members / signatures would not always be the same types. In this case, the generic type placeholder needs to be distinguished as followings:
+
+```rust
+struct Point <T,U>{
+    x:T,
+    y:U
+}
+
+fn main(){
+    let x: i32 = 5;
+    let y: f64 = 3.0;
+    let pointxy = Point{x,y};
+}
+```
+
 -------------------
 
 ## 3. Pointer / memory related features
@@ -699,3 +751,87 @@ Smart pointers enable you to write safer, more expressive code by encapsulating 
 
 
 ### 3.4. Lifetimes
+
+The following's a code from `the book`.
+
+```rust
+fn longest(x: &str, y:&str) -> &str {
+    if x.len() >= y.len() {
+        return x;
+    }
+    else {
+        return y;
+    }
+}
+
+fn main() {
+    let string1 = String::from("abcd");
+    let string2 = "xyz";
+
+    let result = longest(string1.as_str(), string2);
+    println!("The longest string is {}", result);
+}
+
+```
+
+If you compile the code above, you will get an error
+
+```sh
+error[E0106]: missing lifetime specifier
+ --> src/main.rs:1:32
+  |
+1 | fn longest(x: &str, y:&str) -> &str {
+  |               ----    ----     ^ expected named lifetime parameter
+  |
+  = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `x` or `y`
+help: consider introducing a named lifetime parameter
+  |
+1 | fn longest<'a>(x: &'a str, y:&'a str) -> &'a str {
+  |           ++++     ++         ++          ++
+
+For more information about this error, try `rustc --explain E0106`.
+```
+
+what is a lifetime?
+
+As we mentioned in [3.1.3. reference](#331-reference), rust compiler prevent the reference outlive the data by using borrow checker : so to speak, try to prevent `dangling pointer`.
+
+With this function of references signatures, rust compiler worry about the rest of reference. If x is returned, what about y? y could become a dangling pointer. vice versa.
+
+Therefore, we need to notify to compiler (actually for ourselves) that the rest reference will be terminated in the same lifetime of the picked (returned) one.
+
+In function `longest`, returning a reference to x would invalidate y (become a dangling reference) if x was longer. Lifetimes prevent this by making the references' validity explicit.
+
+The fixed version is as follows:
+
+```rust
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() >= y.len() {
+        return x;
+    } else {
+        return y;
+    }
+}
+```
+
+-------------------
+
+## 4. What's next?
+
+It seems that we only discuss basic syntax, memory related features ... What's next?       
+You might think that you didn't finish at all. Because we didn't discuss modules and crates, I/O, threading, standard libraries, handling errors and so on!
+
+Those subjects are different from the subjects we've discussed. So far, we only focus on the distinct and basic characteristics of rust programming language. The subjects we haven't discucssed, actually, are not recommended to be learned only by reading. From now on, we need to start...
+
+
+<div 
+  align="center" 
+  style="
+  font-size:300%;
+  text-decoration-line: underline;
+  text-decoration-style: double;
+  text-decoration-thickness: 5px; 
+  "
+>
+LEARNING BY DOING!
+</div>

@@ -7,25 +7,19 @@ nav_order: 2
 tags: 
   - concurrent programming
   - parallel computing
+  - Assembly
+  - C
   - rust
 ---
 
 # Concurrent / Parallel Programming  
 
-In Writing (23.07.13~)
-{: .label .label-yellow}
+Revisited (MARCH.17.2024)
+{: .label .label-purple}
 
-Though my primary programming language is python, for explaining concurrent or parallel programming, understanding low level features such as register, memory, and pointers are needed for this post. Therefore, I choose RUST programming language as a practice considering the hardship of mastering C pointers (as C pointers allow you to do ***EVERYTHING***) and considering of mastering RUST just for myself.
-
-About RUST programming, you can check [here](https://sangdo-han.github.io/docs/fundamentals/programming/concurrent-programming) that will be posted parallel to this page.
+For explaining concurrent or parallel programming, understanding the low level features such as register, memory, and pointers are needed.
 
 ## Introduction
-
-Introduction and terms (23.07.13)
-{: .label .label-green}
-
-More accurate explanation on 'thread' (23.07.18)
-{: .label .label-green}
 
 When a top-level programmer encounters a time-efficiency issue in an algorithm, program, or system, it is natural for them to think of divide-and-conquer first. As systems grow in size and demand for speed increases, the ways in which divide-and-conquer is used have evolved alongside the work of top-level software researchers.
 
