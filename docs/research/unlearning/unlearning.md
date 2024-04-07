@@ -3,8 +3,8 @@ layout: default
 title: Machine Unlearning
 nav_order: 1
 has_children: false
-parent: Design and Research
-permalink: /docs/design/unlearning
+parent: AI Research
+permalink: /docs/research/unlearning
 ---
 
 # Machine Unlearning
@@ -30,7 +30,7 @@ Simple Rolling in Forget Logits (SRFL) is a simple way of disturbing the forget 
 Train curve in `CIFAR-10` (since cifar-10 from starter-kit, it would not represent facial unlearning as in the neurips challenge.)
 
 <p align="center">
- <img src="https://sangdo-han.github.io/docs/design/unlearning/cifar10_accuracy.png">
+ <img src="https://sangdo-han.github.io/docs/research/unlearning/cifar10_accuracy.png">
 </p>
 
 In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset.

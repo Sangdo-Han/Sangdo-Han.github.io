@@ -3,7 +3,7 @@ layout: default
 title: 2D Physics Engine
 nav_order: 2
 has_children: false
-parent: Design and Research
+parent: Design
 permalink: /docs/design/2d-physics-engine
 ---
 

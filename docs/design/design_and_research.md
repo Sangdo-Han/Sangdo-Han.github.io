@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Design and Research
-nav_order: 3
+title: Design
+nav_order: 4
 has_children: true
 permalink: /docs/design
 ---
 
-# **Design and Research**
-This page is for my side projects and Research (mainly on AI and Game Engine).
+# **Design**
+This page is for my side projects.
