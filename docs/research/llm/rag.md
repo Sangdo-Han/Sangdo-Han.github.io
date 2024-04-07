@@ -9,7 +9,10 @@ nav_order: 1
 
 # RAG
 
-&nbsp;&nbsp;&nbsp;&nbsp;After the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. 
+Initialized (apr.06.2024)
+{: .label .label-purple}
+
+&nbsp;&nbsp;&nbsp;&nbsp;In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. 
 In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [[1](#lewis-et-al)]. The concept of RAG is quite simple but powerful.   
 &nbsp;&nbsp;&nbsp;&nbsp;The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[[1](#lewis-et-al)].
 
@@ -18,6 +21,9 @@ In this background, one of the powerful engaging method is RAG (Retrieval-augmen
 </p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user's query to LLM, we can get generated output with our intended contexts. 
+
+## with Langchain   
+&nbsp;&nbsp;&nbsp;&nbsp;
 
 
 # References

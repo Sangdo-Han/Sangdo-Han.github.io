@@ -8,26 +8,26 @@ permalink: /docs/research/unlearning
 ---
 
 # Machine Unlearning
-Initialized in 12/02/2023
-{: .label .label-green}
+Initialized (Dec.02.2023)
+{: .label .label-purple}
 
-This code is based on my submissions on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `machine unlearning`.
+&nbsp;&nbsp;&nbsp;&nbsp;This code is based on my submissions on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `machine unlearning`.
 
-I will upload the code in [my-github](https://github.com/Sangdo-Han/unlearning) when all the code (including mock of nips unlearning, verifications) is ready, so far, I will just post the brief algorithms and ideation as below (SRFL : done).
+I will upload the code in [my-github](https://github.com/Sangdo-Han/unlearning) when all the code (including mock of nips unlearning, verifications) is ready, so far, I will just post the brief algorithms and ideation as below (sRFL : done).
 
 # Unlearning Ideation
 
 The code contains two novel way of unlearning, both of them achieved decoupling in forget/retain accuracy : forget goes low, while retain goes high.
 
-1. SRFL (Simple Rolling in Forget Logits, that I submitted in the challenge.) 
+1. sRFL (simple Rolling in Forget Logits) 
 2. ALIF (Auxilary Layer for Inducing Forget)
 
-## SRFL   
-Initialized in 12/02/2023
-{: .label .label-green}
-Simple Rolling in Forget Logits (SRFL) is a simple way of disturbing the forget label in finetuning framework. 
+## sRFL   
+Initialized (Dec.02.2023)
+{: .label .label-purple}
+simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. 
 
-Train curve in `CIFAR-10` (since cifar-10 from starter-kit, it would not represent facial unlearning as in the neurips challenge.)
+The following is about train accuracy about `CIFAR-10`
 
 <p align="center">
  <img src="https://sangdo-han.github.io/docs/research/unlearning/cifar10_accuracy.png">
@@ -36,14 +36,14 @@ Train curve in `CIFAR-10` (since cifar-10 from starter-kit, it would not represe
 In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset.
 
 ### Algorithm with Pseudo Code
-1. **Copy** a model from original trained model    
+1\. **Copy** a model from original trained model    
 ```
 teacher_model <- copy.deepcopy(model)
 teacher_model.eval() // teacher model will not be trained
 ```
-2. **Freeze layers of model except for first two backbones (feature extracting)**    
+2\. **Freeze layers of model except for first two backbones (feature extracting)**    
 
-3. Loop : Generate logits by teacher model   
+3-1. **Loop : Generate logits by teacher model**   
 ```
 for data in datasets (retain + forget dataset):
     retain_data, forget_data <- data
@@ -51,11 +51,11 @@ for data in datasets (retain + forget dataset):
     pseudo_retain_logits <- teacher_model(retain_data)
 ```
 
-4. **Roll** only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1] )  
+3-2. **Roll** only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1] )  
 ```
     rolled_pseudo_logits <- roll(pseudo_forget_logits)
 ```  
-5. **Minimize** KL-divergence between rolled_pseudo_logits and model's output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset)    
+3-3. **Minimize** KL-divergence between rolled_pseudo_logits and model's output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset)    
 ```
     forget_outputs <- model(forget_data)
     retain_outputs <- model(retain_data)
@@ -65,10 +65,11 @@ for data in datasets (retain + forget dataset):
                     + KLDiv(pseudo_retain_logits, retain_outputs)
 ```
 
-6. **backward** propagation by forget_loss
+3-4. **backward** propagation by forget_loss
 ```
    forget_loss.backward()
 ```
+End of Loop.  
 
-## ALIF
-TBD
+## ALIF  
+TBD  

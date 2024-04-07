@@ -9,13 +9,10 @@ nav_order: 1
 
 # 3D Reconstruction - Introduction
 
-Post Completed (23.07.02)
-{: .label .label-green}
+release (jul.02.2023)
+{: .label .label-purple}
 
-Format Updated (23.07.13)
-{: .label .label-yellow}
-
-Introductions to 3D Reconstruction : Backgrounds, Metrics and Representations
+&nbsp;Introductions to 3D Reconstruction : Backgrounds, Metrics and Representations
 
 ## Backgrounds
 
