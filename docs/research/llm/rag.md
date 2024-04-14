@@ -9,7 +9,7 @@ nav_order: 1
 
 # RAG
 
-Initialized (apr.06.2024)
+WIP (apr.14.2024)
 {: .label .label-purple}
 
 &nbsp;&nbsp;&nbsp;&nbsp;In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. 
@@ -22,8 +22,11 @@ In this background, one of the powerful engaging method is RAG (Retrieval-augmen
 
 &nbsp;&nbsp;&nbsp;&nbsp;In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user's query to LLM, we can get generated output with our intended contexts. 
 
-## with Langchain   
-&nbsp;&nbsp;&nbsp;&nbsp;
+## Implementation
+WIP (apr.14.2024)
+{: .label .label-purple}
+
+ > visit : [my-git-repository](https://github.com/Sangdo-Han/research/tree/master/rag)
 
 
 # References
