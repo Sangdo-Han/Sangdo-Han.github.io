@@ -10,6 +10,9 @@ description: "Learn to Learn AI, Software Engineering and Future Life"
 the shortest route is a detour.    
 {: .text-right .fs-5 .fw-400 }
 
+<p align="center">
+ <img src="https://avatars.githubusercontent.com/u/40454683?v=4">
+</p>
 
 
 [Fundamentals](https://sangdo-han.github.io/docs/fundamentals)
