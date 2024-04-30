@@ -41,6 +41,7 @@ Done (apr.30.2024)
 │   └── .gitkeep
 ├── download_model.sh
 ├── easy_rag.py
+├── vector_index.py
 └── README.md
 ```
 
@@ -51,7 +52,7 @@ For detailed installation and usage, please visit my git repository.
 ## Output
 
 <p align="center">
-  <img src="https://github.com/Sangdo-Han/research/blob/master/rag/rag_chat_example.png">
+  <img src="https://github.com/Sangdo-Han/research/blob/master/rag/rag_chat_example.png?raw=true">
 </p>
 
 # References
