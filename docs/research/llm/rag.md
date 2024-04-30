@@ -22,12 +22,37 @@ In this background, one of the powerful engaging method is RAG (Retrieval-augmen
 
 &nbsp;&nbsp;&nbsp;&nbsp;In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user's query to LLM, we can get generated output with our intended contexts. 
 
-## Implementation
-WIP (apr.14.2024)
+## Basic Implementation
+Done (apr.30.2024)
 {: .label .label-purple}
 
- > visit : [my-git-repository](https://github.com/Sangdo-Han/research/tree/master/rag)
+```bash
+.
+├── lib
+│   ├── llm
+│   └── OpenBLAS
+├── scripts
+│   └── add_document.py
+├── src
+│   ├── core.py
+│   ├── embedding.py
+│   └── utils.py
+├── vector_store
+│   └── .gitkeep
+├── download_model.sh
+├── easy_rag.py
+└── README.md
+```
 
+For detailed installation and usage, please visit my git repository.
+
+ > visit : [easy_rag](https://github.com/Sangdo-Han/research/tree/master/rag)
+
+## Output
+
+<p align="center">
+  <img src="https://github.com/Sangdo-Han/research/blob/master/rag/rag_chat_example.png">
+</p>
 
 # References
 <span id="lewis-et-al">[1]</span> Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474.
