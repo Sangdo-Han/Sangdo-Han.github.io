@@ -54,5 +54,9 @@ For detailed installation and usage, please visit my git repository.
   <img src="https://github.com/Sangdo-Han/research/blob/master/rag/rag_chat_example.png?raw=true">
 </p>
 
+In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations.
+> Focus on the answer (`The concept of RAG is simple but powerful`), which is derived in the first paragraph of this post (`The concept of RAG is quite simple but powerful`).   
+
+
 # References
 <span id="lewis-et-al">[1]</span> Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474.
