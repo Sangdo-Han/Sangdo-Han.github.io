@@ -11,16 +11,14 @@ permalink: /docs/research/unlearning
 Initialized (Dec.02.2023)
 {: .label .label-purple}
 
-&nbsp;&nbsp;&nbsp;&nbsp;This code is based on my submissions on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `machine unlearning`.
-
-I will upload the code in [my-github](https://github.com/Sangdo-Han/unlearning) when all the code (including mock of nips unlearning, verifications) is ready, so far, I will just post the brief algorithms and ideation as below (sRFL : done).
+&nbsp;&nbsp;&nbsp;&nbsp;This code is based on my works based on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `machine unlearning`.
 
 # Unlearning Ideation
 
 The code contains two novel way of unlearning, both of them achieved decoupling in forget/retain accuracy : forget goes low, while retain goes high.
 
 1. sRFL (simple Rolling in Forget Logits) 
-2. ALIF (Auxilary Layer for Inducing Forget)
+2. ALIF (Auxilary Layer for Inducing Forget) - WIP
 
 ## sRFL   
 Initialized (Dec.02.2023)
@@ -70,6 +68,3 @@ for data in datasets (retain + forget dataset):
    forget_loss.backward()
 ```
 End of Loop.  
-
-## ALIF  
-TBD  
