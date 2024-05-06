@@ -4,7 +4,7 @@ title: Control theory of LLM
 parent: LLM
 grand_parent: AI Research
 math: katex
-nav_order: 3
+nav_order: 2
 ---
 
 # A Control Theory of LLM prompting

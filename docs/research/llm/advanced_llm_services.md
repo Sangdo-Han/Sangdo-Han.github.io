@@ -4,7 +4,6 @@ title: Advanced LLM service architectures
 parent: LLM
 grand_parent: AI Research
 math: katex
-nav_order: 2
+nav_order: 3
 ---
 
-# COMMINGSOON
