@@ -37,11 +37,12 @@ nav_order: 2
 
 &nbsp; In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a `system`. Let us say that the `state` be `the top face of dice`, `control input` be the `human random force` of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the `transition map` be the state transition between `trials`. However, even we designed `this rolling a dice` to be a `system` with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be `controllable`?
 
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/6sided_dice_%28cropped%29.jpg" width="30%">   
-   ref: dices image from wikipedia 
+<div align="center">
+<p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/6sided_dice_%28cropped%29.jpg" width="30%">
 </p>  
-
+   ref: dices image from wikipedia 
+</div>
 
 As in the definition of `system`, controllability can also be mathematically defined in control theory.  
 But first, we need to know about the concept of `reachability` first.
