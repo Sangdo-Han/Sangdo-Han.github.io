@@ -35,24 +35,25 @@ nav_order: 2
 
 ## Basic Control Theory: Reachability, Observability and Controllability
 
-&nbsp; In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a `system`. Let us say that the `state` be `the top face of dice`, `control input` be the `human random force` of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the `transition map` be the state transition between `trials`. However, even we designed `this rolling a dice` to be a `system` with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be `controllable`?  
+&nbsp; In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a `system`. Let us say that the `state` be `the top face of dice`, `control input` be the `human random force` of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the `transition map` be the state transition between `trials`. However, even we designed `this rolling a dice` to be a `system` with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be `controllable`?
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/6sided_dice_%28cropped%29.jpg" width="30%">
-   ref: dices <a href="https://upload.wikimedia.org/wikipedia/commons/1/1c/6sided_dice_%28cropped%29.jpg"> from wikipedia 
-</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/6sided_dice_%28cropped%29.jpg" width="30%">   
+   ref: dices image from wikipedia 
+</p>  
+
 
 As in the definition of `system`, controllability can also be mathematically defined in control theory.  
 But first, we need to know about the concept of `reachability` first.
 
 
-### Reachability  
+### Reachability   
 
 &nbsp; 
 
 Back to `the rolling a dice system`, we can say that this system is reachable because we could potentially role any number, and always be observable.
 
-### Controllability  
+### Controllability   
 
 Again with `the rolling a dice system`, now we can see the problem, we put the `human random force` be the control input.
 
@@ -72,6 +73,6 @@ $$ \dot{X} =  AX + Bu$$
 $$ Y =  CX + Du$$  
 2. Control Input -->
 
-# References
-<span id="Bhargava-Aman-et-al">[1]</span> Bhargava, A., Witkowski, C., Shah, M., & Thomson, M. (2023). What's the Magic Word? A Control Theory of LLM Prompting. arXiv preprint arXiv:2310.04444.
+# References  
+<span id="Bhargava-Aman-et-al">[1]</span> Bhargava, A., Witkowski, C., Shah, M., & Thomson, M. (2023). What's the Magic Word? A Control Theory of LLM Prompting. arXiv preprint arXiv:2310.04444.  
 <span id="sontag-E-D">[2]</span> Sontag, E. D. (2013). Mathematical control theory: deterministic finite dimensional systems (Vol. 6). Springer Science & Business Media.
