@@ -46,12 +46,12 @@ In this background, one of the powerful engaging method is RAG (Retrieval-augmen
 
 For detailed installation and usage, please visit my git repository.
 
- > visit : [easy_rag](https://github.com/Sangdo-Han/research/tree/master/rag)
+ > visit : [easy_rag](https://github.com/Sangdo-Han/research/tree/master/llm/rag)
 
 ## Output
 
 <p align="center">
-  <img src="https://github.com/Sangdo-Han/research/blob/master/rag/rag_chat_example.png?raw=true">
+  <img src="https://github.com/Sangdo-Han/research/tree/master/llm/rag/rag_chat_example.png?raw=true">
 </p>
 
 In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations.
