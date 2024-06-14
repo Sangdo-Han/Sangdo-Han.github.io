@@ -49,9 +49,8 @@ For detailed installation and usage, please visit my git repository.
  > visit : [easy_rag](https://github.com/Sangdo-Han/research/tree/master/llm/rag)
 
 ## Output
-
 <p align="center">
-  <img src="https://github.com/Sangdo-Han/research/tree/master/llm/rag/rag_chat_example.png?raw=true">
+  <img src="https://github.com/Sangdo-Han/Sangdo-Han.github.io/blob/main/docs/research/llm/rag_chat_example.png">
 </p>
 
 In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations.
