@@ -106,14 +106,33 @@ $$x' \sim P_{LM}(x' | x(t)) $$. Sadly because they use the plus sign as a operat
 #### Definition 5. $$k-\epsilon$$ Controllability
 &nbsp; If a datset of state-output pairs $$D = \{(x^{i}_{0}, y^{i})\}_{i\in [N]}$$, an LLM system $$\Sigma = (V, P_{LM})$$ is $$k-\epsilon$$ controllable with respect to D, if and only if $$P\{y \notin R^{k}_{y}(x_0)\} < \epsilon$$ for $$(x_0, y) \sim D$$, where $$R^k_y(x^i_0)$$ is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length $$|u| \leqq k$$.
 
-### Apply to the Self-Attention Mechanism.
+### Apply to the Self-Attention Mechanism. - Preliminaries
 
+&nbsp; Above the definition on LLM controllability could be nice for generalization, we need to prove it with actual models and calculations. The paper choose the self-attention which dominates in LLMs.
 
-WIP (aug.3.2024)
-{: .label .label-purple}
+#### Definition 6. Self-attention.
 
-&nbsp; Above the definition on LLM controllability could be nice for generalization, we need to prove it is actually applicable with calculation. The paper choose the transformer based langauge model which is dominating.
+&nbsp; Self-attention $$\Xi$$ is parameterized by weight metrics $$\theta = (W_q, W_{key}, W_v)$$ (query, key, value). $$\Xi$$ is a mapping from the input token ($$R^{N \times d_{in}}$$) to output token ($$R^{N \times d_{out}}$$),
 
+$$\Xi(X;\theta) = D^{-1} exp\left( {QK^{T}}\over{\sqrt{d_{key}}} \right)$$
+
+where exp() denotes element-wise exponential of matrix entries, $$W_q, W_{key} \in R^{d_{in} \times d_{key}}$$, $$W_v \in R^{d_{in} \times d_{out}}$$, $$Q = XW_q$$, $$K=XW_{key}$$, $$V=XW_{v}$$ and D is a diagonal positive definite matrix, $$D:= diag \left( exp\left( {QK^{T}}\over{\sqrt{d_{key}}} \right) \bm{1}_{N \times 1 } \right) $$
+
+&nbsp; In this paper, the reachability of output token representations $$\Xi (X; \theta)$$, they partitioned the input $$X \in R^{(k+m)\times d_{in}}$$ into a $$k \times d_{in}$$ block of control input representations $$U$$ and an $$m\times d_{in}$$ block of imposed state representations $$X_0$$ where $$k + m = N$$. With this partitioning, the definition of self-attention can be re-written as followings:
+
+$$\Xi (X; \theta) = \Xi \left( \left[{U \atop X_0} \right] ; \theta \right) = \Xi ([U; X_0]; \theta) = \left[{U' \atop Y} \right] = [U' ; Y]$$
+
+Also, the output $$X' = \Xi (X; \theta) \in R^{(k+m) \times d_{in}}$$ into a corresponding $$k \times d_{out}$$ matrix $$U'$$ and an $$m \times d_{out}$$ matrix Y.
+
+#### definition 7. Reachability of self-attention
+&nbsp; Following the definition 2, let $$Y^* \in R^{m \times d_{out}}$$ be the desired output, reachability for Self-attention can be defined as followings:   
+&nbsp; $$Y^*$$ is reachable from initial state $$X_0$$ if and only if there exists some U that steers the output of $$\Xi (\left[U; X_0 \right] ; \theta ]$$ to output $$\left[ U' ; Y \right] $$ such that $$Y = Y^*$$
+
+### Apply to the Self-Attention mechanism - Theorem
+
+&nbsp; The approach in this paper is depend on the partitioning: $$Y = Y_u + Y_x$$ where 
+
+#### Self-attention control theorem
 
 <!-- 
 ## Control Theory Background
