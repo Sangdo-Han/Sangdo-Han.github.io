@@ -130,7 +130,24 @@ Also, the output $$X' = \Xi (X; \theta) \in R^{(k+m) \times d_{in}}$$ into a cor
 
 ### Apply to the Self-Attention mechanism - Theorem
 
-&nbsp; The approach in this paper is depend on the partitioning: $$Y = Y_u + Y_x$$ where 
+&nbsp; The approach in this paper begins with partitioning the output: $$Y = Y_u + Y_x$$, assuming that the output can be partitioned by output from control input and that from imposed state. $$Y_x$$ can be bounded as a function of $$X$$, $$k$$, and $$theta$$. While $$Y_u$$ is the remaining component from U. Remind of linear algebra, each output vectors can be decomposed into orthogonal vectors.
+
+$$
+\begin{align}
+& Y = Y_u + Y_x \\
+& = (Y_{u,\|} + Y_{u, \perp}) + (Y_{x, \|} + Y_{x, \perp}) \\
+& = (Y_{u,\|} + Y_{x, \|}) + (Y_{u, \perp} + Y_{x, \perp}) \in span(Y^*) \oplus span(Y^*)^\perp \\
+\end{align}
+$$
+
+#### Theorem - reachable desired output
+&nbsp; If $$Y^*$$ is desired reachable output, and the $$Y$$ is actual output of the self-attention layer, $$Y_{u, \perp} + Y_{x, \perp} = 0$$ and also $$\| Y_{u, \perp} \| = \| Y_x, \perp \|$$
+
+&nbsp; The paper put the proof as appendix, however, I will explain the details right away.
+
+
+
+
 
 #### Self-attention control theorem
 
