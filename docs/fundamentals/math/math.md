@@ -11,8 +11,9 @@ permalink: /docs/fundamentals/math/
 
 Starting from Topology, It will be a long term project of posting, with my own reveiewing and learning each topics, I try to write the idea as much precisely as possible.     
 
-  - Set theory and Topology
+  - Linear algebra (linear control system)  
   - Probability and Random process
-  - Linear algebra and Graph theory   
+  - Set theory and Topology
+  - Graph theory   
   - Mathematical Analysis, Differential Equations  
   - Mathematical Manifolds and Categorical Theorem

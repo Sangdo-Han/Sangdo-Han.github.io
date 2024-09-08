@@ -95,16 +95,16 @@ $$x' \sim P_{LM}(x' | x(t)) $$. Sadly because they use the plus sign as a operat
 5. The readout map returns the most recent r tokens from the state x: $$h(x(t);r) = [x^{t-r}(t), ... , x^{t}(t)]$$
 
 #### Definition 2. LLM Output Reachability
-&nbsp; $$y \in V^r$$ is reachable from the initial state $$x_0 \in V^*$$ if and only if there exists some time $$T$$ and input sequences $$u^* \in U^k$$ for some $$k + |x_0| \leqq  T $$ that makes the initial state $$x_0$$ move to output $$y = h(x(T), r)$$ at time $$T$$
+&nbsp; $$y \in V^r$$ is reachable from the initial state $$x_0 \in V^*$$ if and only if there exists some time $$T$$ and input sequences $$u^* \in U^k$$ for some $$k + |x_0| \leq  T $$ that makes the initial state $$x_0$$ move to output $$y = h(x(T), r)$$ at time $$T$$
 
 #### Definition 3. Output Reachablility Set
 &nbsp; The reachable output set from the initial state $$x_0 \in V^*$$ is denoted $$R_y(x_0)$$.
 
 #### Definition 4. Output Controllabilty (Revised from the paper.)
-&nbsp; An LLM system is output controllable if and only if, $$\forall x_0 \in V^*$$ and $$\forall y \in V^r$$, there exists a time $$T \geqq |x_0|$$ and the input sequence $$u^* \in U^k$$, where $$k\leqq T - |x_0|$$ such that the probability $$P(h(x(T),r) = y | x_0, u^*) > 0$$.
+&nbsp; An LLM system is output controllable if and only if, $$\forall x_0 \in V^*$$ and $$\forall y \in V^r$$, there exists a time $$T \geq |x_0|$$ and the input sequence $$u^* \in U^k$$, where $$k\leq T - |x_0|$$ such that the probability $$P(h(x(T),r) = y | x_0, u^*) > 0$$.
 
 #### Definition 5. $$k-\epsilon$$ Controllability
-&nbsp; If a datset of state-output pairs $$D = \{(x^{i}_{0}, y^{i})\}_{i\in [N]}$$, an LLM system $$\Sigma = (V, P_{LM})$$ is $$k-\epsilon$$ controllable with respect to D, if and only if $$P\{y \notin R^{k}_{y}(x_0)\} < \epsilon$$ for $$(x_0, y) \sim D$$, where $$R^k_y(x^i_0)$$ is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length $$|u| \leqq k$$.
+&nbsp; If a datset of state-output pairs $$D = \{(x^{i}_{0}, y^{i})\}_{i\in [N]}$$, an LLM system $$\Sigma = (V, P_{LM})$$ is $$k-\epsilon$$ controllable with respect to D, if and only if $$P\{y \notin R^{k}_{y}(x_0)\} < \epsilon$$ for $$(x_0, y) \sim D$$, where $$R^k_y(x^i_0)$$ is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length $$|u| \leq k$$.
 
 ### Apply to the Self-Attention Mechanism. - Preliminaries
 
@@ -120,7 +120,8 @@ where exp() denotes element-wise exponential of matrix entries, $$W_q, W_{key} \
 
 &nbsp; In this paper, the reachability of output token representations $$\Xi (X; \theta)$$, they partitioned the input $$X \in R^{(k+m)\times d_{in}}$$ into a $$k \times d_{in}$$ block of control input representations $$U$$ and an $$m\times d_{in}$$ block of imposed state representations $$X_0$$ where $$k + m = N$$. With this partitioning, the definition of self-attention can be re-written as followings:
 
-$$\Xi (X; \theta) = \Xi \left( \left[{U \atop X_0} \right] ; \theta \right) = \Xi ([U; X_0]; \theta) = \left[{U' \atop Y} \right] = [U' ; Y]$$
+$$\begin{align}\Xi (X; \theta) = \Xi \left( \left[{U \atop X_0} \right] ; \theta \right) = \Xi ([U; X_0]; \theta) = \left[{U' \atop Y} \right] = [U' ; Y]
+\end{align}$$
 
 Also, the output $$X' = \Xi (X; \theta) \in R^{(k+m) \times d_{in}}$$ into a corresponding $$k \times d_{out}$$ matrix $$U'$$ and an $$m \times d_{out}$$ matrix Y.
 
@@ -130,7 +131,7 @@ Also, the output $$X' = \Xi (X; \theta) \in R^{(k+m) \times d_{in}}$$ into a cor
 
 ### Apply to the Self-Attention mechanism - Theorem
 
-&nbsp; The approach in this paper begins with partitioning the output: $$Y = Y_u + Y_x$$, assuming that the output can be partitioned by output from control input and that from imposed state. $$Y_x$$ can be bounded as a function of $$X$$, $$k$$, and $$theta$$. While $$Y_u$$ is the remaining component from U. Remind of linear algebra, each output vectors can be decomposed into orthogonal vectors.
+&nbsp; The key of defining the reachability begins with partitioning the output: $$Y = Y_u + Y_x$$, assuming that the output can be partitioned by output from control input and that from imposed state. $$Y_x$$ can be bounded as a function of $$X$$, $$k$$, and $$theta$$. While $$Y_u$$ is the remaining component from U. 
 
 $$
 \begin{align}
@@ -139,28 +140,124 @@ $$
 & = (Y_{u,\|} + Y_{x, \|}) + (Y_{u, \perp} + Y_{x, \perp}) \in span(Y^*) \oplus span(Y^*)^\perp \\
 \end{align}
 $$
+  
+Here, the parallel to and orthogonal to is in respect to the desired output $$Y^*$$.  
+Remember that Y is partitioned output  
 
-#### Theorem - reachable desired output
-&nbsp; If $$Y^*$$ is desired reachable output, and the $$Y$$ is actual output of the self-attention layer, $$Y_{u, \perp} + Y_{x, \perp} = 0$$ and also $$\| Y_{u, \perp} \| = \| Y_x, \perp \|$$
+$$\Xi ([U; X_0]; \theta) = \left[ {U' \atop Y} \right] $$
 
-&nbsp; The paper put the proof as appendix, however, I will explain the details right away.
+Before the theorem and its proof, let us define matrix $$A$$.
+
+$$
+ A := exp\left(\frac{QK^T}{\sqrt{d_{key}}}\right) = exp \left( \left[
+\begin{matrix}
+Q_u K_u^T & Q_u K_x^T\\
+Q_x K_u^T & Q_x K_x^T
+\end{matrix}
+\right] \frac{1} {\sqrt{d_{key}}}
+\right) = \left[
+  \begin{matrix}
+    A_{uu} & A_{ux}\\
+    A_{xu} & A_{xx}
+  \end{matrix}
+  \right]
+
+$$
+
+where, $$Q.$$ and $$K.$$ are partitioned components of $$Q$$ and $$K$$:
+
+$$
+Q = \left[ Q_u \atop Q_x \right]= \left[U \atop X_0 \right] W_q\\
+$$
+
+$$
+K=\left[K_u \atop K_x \right]=\left[U \atop X_0 \right] W_{key}
+$$
+
+Similarly, $$D$$ is also be partitioned as followigs:
+
+$$
+D = diag \left(exp \left(\frac{Q K^T}{\sqrt{d_{key}}}\right) \bm{1}_{N \times 1}\right)
+= \left[\begin{matrix}
+D_u & \bm{0}\\
+\bm{0} & D_x
+\end{matrix}
+\right]
+$$
+
+  
+With the definitions and notions above, $$Y$$ can be defined as follows:
+
+$$\begin{align}
+& \Xi(X; \theta) = D^{-1} A V \\
+& = \left[
+  \begin{matrix} D^{-1}_u & \bm{0}\\
+  \bm{0} & D^{-1}_{x}
+\end{matrix}
+\right]
+\left[
+  \begin{matrix}
+  A_{uu} & A_{xu}\\
+  A_{ux} & A_{xx}
+  \end{matrix}
+\right]
+\left[
+  \begin{matrix}
+  V_{u} \\
+  V_{x}
+  \end{matrix}
+\right] \\
+& = \left[ 
+ \begin{matrix}
+ D^{-1}_u A_{uu} V_u + D^{-1}_u A_{ux}  V_x\\
+ D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x
+ \end{matrix}
+\right] \\
+& = \left[
+U' \atop Y
+\right]
+\end{align}
+$$
+
+$$\begin{align}
+\therefore Y =  D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x = Y_u + Y_x
+\end{align}$$
 
 
+#### **Theorem: reachability in the Self-attention mechanism**
+&nbsp; Let $$Y^{max}_x = \Xi (X_0 ; \theta) $$ be the output of the self-attention layer given only the imposed state (initial state) $$X_0$$, and _i_-th row of the orthogonal component of $$Y^{max}_x$$ to the desired output $$Y^*$$ be $$Y^{max, i}_{x, \perp}$$.  
+&nbsp; $${Y^*}$$ is unreachable for any control input $${U}$$ if, for any $${i \in \{1, ... , m\}  }$$,  
 
+$$
+\begin{align}
+\|Y^{max, i}_{x, \perp}\| > k \gamma_{i} (X_0, \theta) \\
+\end{align}
+$$
 
+where,
 
-#### Self-attention control theorem
+$$
+\begin{align}
+\gamma_{i}(X_0 , \theta) := \frac{e^\alpha}{g_i}\sigma_v M_u, \quad \alpha = \sigma_q \sigma_{key} M_u
+M_x / \sqrt{d_{key}}
+\end{align}
+$$
 
-<!-- 
-## Control Theory Background
+$$
+\begin{align}
+g_i (X_0, \theta) := \Sigma^{m}_{j=1} exp ((X_0)^i W_q W^T_{key} (X_0)^{jT} / \sqrt{d_{key}})
+\end{align}
+$$
 
-&nbsp; 
+$$\sigma_v$$, $$\sigma_q$$ and $$\sigma_{key}$$ being the maximum singular values of the value, query, and key projection matrices, respectively. and with $$M_u := \max_j \|(X_0)^j \| $$ being the maximum norms of the control and imposed token embeddings, respectively. 
 
-1. System   
-$$\Sigma =  (\Tau, X, U, \phi)$$  
-$$ \dot{X} =  AX + Bu$$  
-$$ Y =  CX + Du$$  
-2. Control Input -->
+I will not repeat the proof of the paper because after partitioning, the rest of the proof is only about how to set some-what contrived constant and use basic row-wise summation and applying rudimentary inequity (Cauchy-Schwarz).
+
+<!-- &nbsp; In other words, the output from the control input needs to make the output from the initial state be parallel to the desired output, cancelling out the astrayed direction.
+
+&nbsp; The paper put the proof behind in appendix, howev8er, the decomposition above is the key idea of proof.
+
+&nbsp; -->
 
 ## References  
 <span id="Bhargava-Aman-et-al">[1]</span> Bhargava, A., Witkowski, C., Shah, M., & Thomson, M. (2023). What's the Magic Word? A Control Theory of LLM Prompting. arXiv preprint arXiv:2310.04444.  
