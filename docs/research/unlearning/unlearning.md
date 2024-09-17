@@ -7,23 +7,19 @@ parent: AI Research
 permalink: /docs/research/unlearning
 ---
 
-# Machine Unlearning
-Initialized (Dec.02.2023)
-{: .label .label-purple}
+# Machine Unlearning  
 
-&nbsp;&nbsp;&nbsp;&nbsp;This code is based on my works based on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `machine unlearning`.
+&nbsp;This code is based on my works based on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `machine unlearning`.
 
-# Unlearning Ideation
+## sRFL - Ideation
 
-The code contains two novel way of unlearning, both of them achieved decoupling in forget/retain accuracy : forget goes low, while retain goes high.
+&nbsp; The code contains a novel way of unlearning, it achieved decoupling in forget/retain accuracy : forget goes low, while that of retain-set goes high.
+I focused on the decoupling in the logit spaces, using teacher-student framework.
 
-1. sRFL (simple Rolling in Forget Logits) 
-2. ALIF (Auxilary Layer for Inducing Forget) - WIP
+- sRFL (simple Rolling in Forget Logits) 
 
-## sRFL   
-Initialized (Dec.02.2023)
-{: .label .label-purple}
-simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. 
+## sRFL - conclusion   
+&nbsp; simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. 
 
 The following is about train accuracy about `CIFAR-10`
 
@@ -33,7 +29,7 @@ The following is about train accuracy about `CIFAR-10`
 
 In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset.
 
-### Algorithm with Pseudo Code
+## sRFL - pseudo code
 1\. **Copy** a model from original trained model    
 ```
 teacher_model <- copy.deepcopy(model)
@@ -68,3 +64,7 @@ for data in datasets (retain + forget dataset):
    forget_loss.backward()
 ```
 End of Loop.  
+
+## Conclusion   
+&nbsp; While it achieved high decoupling, there's a huge claim about their metrics and evaluation. Even though the competition is completed with some argues, 
+the main idea of machine unlearning is quite crucial in privacy and robustness of the ml-based services. In the future, I will progress my works.

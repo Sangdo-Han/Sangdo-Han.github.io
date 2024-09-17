@@ -9,9 +9,6 @@ nav_order: 1
 
 # 3D Reconstruction - Introduction
 
-release (jul.02.2023)
-{: .label .label-purple}
-
 &nbsp;Introductions to 3D Reconstruction : Backgrounds, Metrics and Representations
 
 ## Backgrounds

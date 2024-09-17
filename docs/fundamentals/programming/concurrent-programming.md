@@ -14,9 +14,6 @@ tags:
 
 # Concurrent / Parallel Programming  
 
-Revisited (MARCH.17.2024)
-{: .label .label-purple}
-
 For explaining concurrent or parallel programming, understanding the low level features such as register, memory, and pointers are needed.
 
 ## Introduction

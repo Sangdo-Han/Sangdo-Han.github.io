@@ -9,8 +9,6 @@ tags:
 ---
 
 # Rust Programming Language
-release - v.1.0.0 (March.17.2024)
-{: .label .label-purple}
 
 
 About rust programming. I hope everyone to read [the official documentation](https://www.rust-lang.org), especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice.

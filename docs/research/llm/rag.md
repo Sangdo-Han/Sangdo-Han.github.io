@@ -9,8 +9,6 @@ nav_order: 1
 
 # RAG
 
-Release (apr.30.2024)
-{: .label .label-purple}
 
 &nbsp;&nbsp;&nbsp;&nbsp;In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. 
 In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [[1](#lewis-et-al)]. The concept of RAG is quite simple but powerful.   
