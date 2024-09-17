@@ -253,11 +253,6 @@ $$\sigma_v$$, $$\sigma_q$$ and $$\sigma_{key}$$ being the maximum singular value
 
 I will not repeat the proof of the paper because after partitioning, the rest of the proof is only about how to set some-what contrived constant and use basic row-wise summation and applying rudimentary inequity (Cauchy-Schwarz).
 
-<!-- &nbsp; In other words, the output from the control input needs to make the output from the initial state be parallel to the desired output, cancelling out the astrayed direction.
-
-&nbsp; The paper put the proof behind in appendix, howev8er, the decomposition above is the key idea of proof.
-
-&nbsp; -->
 
 ## References  
 <span id="Bhargava-Aman-et-al">[1]</span> Bhargava, A., Witkowski, C., Shah, M., & Thomson, M. (2023). What's the Magic Word? A Control Theory of LLM Prompting. arXiv preprint arXiv:2310.04444.  
