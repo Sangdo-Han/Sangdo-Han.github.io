@@ -74,9 +74,22 @@ hex_colors = ['#000000', '#0074D9','#FF4136','#2ECC40','#FFDC00',
 <p align="center">
   <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/hex_colors.png">
 </p>
-<!-- 
-#### Visualization
 
+#### Visualization
+Let's visualize the data (I choose `f35d900a` and `fcb5c309`)
+<p align="center">
+  <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/f35d900a.png" width="30%"/>
+  <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/fcb5c309.png" width="30%"/>
+</p>
+
+If we apply one-hot encoding on the data, we can visualize the colors be points. (For visualization, I put the same color)
+
+<p align="center">
+
+  <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/f35d900a_pointcloud.png" width="30%"/>
+  <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/fcb5c309_pointcloud.png" width="30%"/>
+</p>
+<!-- 
 ### TDA
 Assuming that the output data is quite induced from the input, the output data needs to be reversed 
 
