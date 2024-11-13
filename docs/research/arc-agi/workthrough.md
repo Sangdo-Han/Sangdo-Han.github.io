@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: default
 title: Workthrough
 parent: ARC-AGI Challenge
@@ -124,4 +124,4 @@ Thinking of Generating the output solution
 
 topologically induced condition in Diffusion
 
-Suppose that we have a topological homolgy in `Input + output`s sample space. The task of diffusion is now trying to make output that keeps `input+output` homology. -->
+Suppose that we have a topological homolgy in `Input + output`s sample space. The task of diffusion is now trying to make output that keeps `input+output` homology. --> -->
