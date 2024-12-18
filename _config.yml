@@ -48,6 +48,8 @@ callouts:
     title: Warning
     color: red
 google_site_verification: "TumEYHq6xpSNuebLNUkEWUMOUm3w7a6mdrQ33DQPEwA"
+plugins:
+    - jekyll-sitemap
+    - jekyll-feed
 # aux_links:
 #   Template Repository: https://github.com/just-the-docs/just-the-docs-template
-
