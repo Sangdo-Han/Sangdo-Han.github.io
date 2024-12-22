@@ -1,0 +1,765 @@
+{"0": {
+    "doc": "2D Physics Engine",
+    "title": "2D Physics Engine",
+    "content": "In this design chapter, we will make a simple 2D phyiscs engine… (Maybe 3D in later) I will display more than 10,000 particles and make those particles be applied in a newtonian fluid dynamcis. ",
+    "url": "/docs/design/2d-physics-engine",
+    
+    "relUrl": "/docs/design/2d-physics-engine"
+  },"1": {
+    "doc": "2D Physics Engine",
+    "title": "TO-DO list",
+    "content": ". | Rough design with python. | Increase performance with rust programming. | Make rust compiled engine be interfaced to python. | . ",
+    "url": "/docs/design/2d-physics-engine#to-do-list",
+    
+    "relUrl": "/docs/design/2d-physics-engine#to-do-list"
+  },"2": {
+    "doc": "2D Physics Engine",
+    "title": "1. Rough Design with Python",
+    "content": "Approach: . | Implement a basic 2D particle physics engine in Python. | Visualize the particles using the Pygame library. | Simulate Newtonian fluid dynamics for the particles. | . Tasks: . | Define Particle class with position, velocity, mass, and methods for applying forces and updating position. | Implement a Particle System class to manage multiple particles. | Use Pygame for visualization and user interaction. | . ",
+    "url": "/docs/design/2d-physics-engine#1-rough-design-with-python",
+    
+    "relUrl": "/docs/design/2d-physics-engine#1-rough-design-with-python"
+  },"3": {
+    "doc": "2D Physics Engine",
+    "title": "2. Increase Performance with Rust Programming",
+    "content": "Approach: . | Rewrite the physics engine and visualization components in Rust. | Leverage Rust’s performance benefits for large-scale simulations. | Utilize the Bevy game engine for rendering and simulation. | . Tasks: . | Translate the Particle and Particle System logic to Rust. | Implement Newtonian fluid dynamics in Rust. | Utilize Bevy for rendering and simulation management. | . ",
+    "url": "/docs/design/2d-physics-engine#2-increase-performance-with-rust-programming",
+    
+    "relUrl": "/docs/design/2d-physics-engine#2-increase-performance-with-rust-programming"
+  },"4": {
+    "doc": "2D Physics Engine",
+    "title": "3. Interface Rust Compiled Engine to Python",
+    "content": "Approach: . | Create a bridge between Python and Rust for seamless integration. | Use FFI (Foreign Function Interface) or other inter-process communication mechanisms. | Enable Python scripts to interact with the compiled Rust engine. | . Tasks: . | Expose Rust functions as a library callable from Python. | Handle data exchange between Python and Rust for particle state and simulation parameters. | Ensure compatibility and performance between Python and Rust components. | . ",
+    "url": "/docs/design/2d-physics-engine#3-interface-rust-compiled-engine-to-python",
+    
+    "relUrl": "/docs/design/2d-physics-engine#3-interface-rust-compiled-engine-to-python"
+  },"5": {
+    "doc": "3D Image Reconstruction - Introduction",
+    "title": "3D Reconstruction - Introduction",
+    "content": " Introductions to 3D Reconstruction : Backgrounds, Metrics and Representations . ",
+    "url": "/docs/research/computer-vision/3d-image-reconstruction.html#3d-reconstruction---introduction",
+    
+    "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#3d-reconstruction---introduction"
+  },"6": {
+    "doc": "3D Image Reconstruction - Introduction",
+    "title": "Backgrounds",
+    "content": "3D reconstruction, which is 3-Dimensional representation of objects, can be used for many applications such as video games, animation, navigation and so on. There are many traditional methods in 3D reconstruction like SfM(Structure from Motion), Dense Reconstruction and MVS(Multi-View Stereo). Those traditional methods are based on photogrammetry. It is true that understanding the basics of photogrammetry is very important to understand deep-learning based 3D reconstruction because deep-learning based methods are built on top of these photogrammetry techniques. In this post, however, it is assumed that the readers have knowledge about deep learning models rather than 3D reconstructions. Hence, the discussion will focus on deep-learning based 3D reconstructions while traditional techniques will be mentioned only as needed for readers to comprehend the deep-learning models. ",
+    "url": "/docs/research/computer-vision/3d-image-reconstruction.html#backgrounds",
+    
+    "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#backgrounds"
+  },"7": {
+    "doc": "3D Image Reconstruction - Introduction",
+    "title": "Datasets, Metrics and Representations",
+    "content": "Based on 3D reconstruction using deep learning : a survey [1] . Starting with a good review paper helps to understand the field and the potential research directions. In deep learning based 3D reconstruction, luckily we can access a good review paper [1] for free. ",
+    "url": "/docs/research/computer-vision/3d-image-reconstruction.html#datasets-metrics-and-representations",
+    
+    "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#datasets-metrics-and-representations"
+  },"8": {
+    "doc": "3D Image Reconstruction - Introduction",
+    "title": "Datasets",
+    "content": "The paper[1] show us several useful dataset for 3D reconstructions: . | ShapeNet It is a very large scale dataset for CAD models developed by Chang et al.[2] from Stanford University, Princeton University and the Toyota Technological Institute at Chicago, USA. | Pascal3D+ It is a multi-view datasets, if you are familiar with Object Detection Task, you might be heard of PASCAL VOC dataset. Pascal3D+ has 12 categories of rigid object from PASCAL VOC 2012. This dataset is developed by Yu Xiang et al[3] from Computational Vision and Geometry Lab at Stanford University. | ObjectNet3D It is a large scale database for 3D objects. Like as Pascal3D+, this dataset is developed by Yu Xiang et al[4] from Computational Vision and Geometry Lab at Stanford University. | KITTI If you are familiar with Computer Vision in automous driving and mobile robotics, I am sure that you heard of this dataset. This was introduced by Andres Geiger et al[5]. | . ",
+    "url": "/docs/research/computer-vision/3d-image-reconstruction.html#datasets",
+    
+    "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#datasets"
+  },"9": {
+    "doc": "3D Image Reconstruction - Introduction",
+    "title": "Metrics",
+    "content": "The paper[1] briefly explains 3 commonly used metric used: MSE, Voxel IoU and cross-entropy. I think the reader might familiar with MSE and cross-entropy. Therefore, I will skip their details. Voxel IoU . In many cases in Computer Vision, IoU represents an abbreviation of Intersection over Union. As you might guess. Voxel IoU is mere volumetric extension of 2D-pixel-IoU. which is: . \\[{IoU={G \\cap P \\over G \\cup P}}\\] Here, G stands for a set of voxels in a ground truth, while P stands for a set of voxels in prediction/reconstruction. This metric is also widely used for 3D object detection or segmentation. Also, for point cloud and mesh representation, sevaral distance metrics between groundtruth and reconstruction can be used as metric. I beleive that readers are familiar with Euclidean Distance, I will post about Chamfer Distance and EMD instead. Chamfer Distance . Chamfer Distance is average of the summation of closest point pairs. \\[Chamfer(G,P) = {1\\over{n}}(\\sum_i \\min_j(||g_i - p_j||) + \\sum_j \\min_i(||g_i - p_j||))\\] More precisely, The formula represents average of distance from each point in one point cloud to its closest point in the other point cloud. and vice versa. EMD . Earth mover’s distance (EMD), also known as the Wasserstein distance, stands for the distance between probability distributions over a region in statistics. \\[EMD(P, \\hat{P})=\\min_{\\phi:P\\rightarrow\\hat{P}} \\sum_{p_i\\in P}||p_i - \\phi(p_i)||\\] This can be computed using the Hungarian Algorithm or Sinkhorn-Knopp algorithm. ",
+    "url": "/docs/research/computer-vision/3d-image-reconstruction.html#metrics",
+    
+    "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#metrics"
+  },"10": {
+    "doc": "3D Image Reconstruction - Introduction",
+    "title": "3D Computer Vision Representation",
+    "content": "The original survey [1] divides the reconstruction techniques into two main categories by the number of sources. (Reconstruction based on single image or multiple images.) After that, it lists up middle categories with way of representations or how outcome look like with a short descriptions. These could be very helpful for the researchers who are familiar with 3D Computer Vision. However, for the newcomers (I assume that most of readers of survey papers are newcomers), I think that it would be more effective writing if it explains the ways of representing 3D object first, and then explains the models and results. Voxel Representation . Voxel is a volumetric representation which can be comparing to pixel representation in 2D images. Actually, by adding depth (D) into pixel, Voxel achieves representation of 3D. \\(pixel : H \\times W \\times C\\) \\(voxel : H \\times W \\times D \\times C\\) \\(, where \\ H : height , \\ W : width, \\ D : depth, \\ C : channel \\ (color)\\) . Point Cloud Representation . Point Cloud is another way to represent 3D object. A single point cloud is a collection of 3D points (mostly a collection of Cartesian coordinate positions) : . point_cloud = [ [x1, y1, z1], [x2, y2, z2], ... [xN, yN, zN] ] . Mesh Representation . Mesh representation could be another option. Mesh is a collection of base geometry to represent surface. Since the least number of points to construct a surface is 3 (triangle), triangle is widely used for mesh representations: . mesh_representation = [ [point_1, point_2, point_3], [point_4, point_5, point_6], ... [point_a, point_b, point_c] ] . Each point (vertex) represents 3d point (x,y,z) . Other Representation . Implicit Surface . Implicit Surface is a model based surface representation. Models can be a continuous decision boundary of deeplearning network classifiers, suggested in OccNet6, or multi-layer network architecture to extract geometry features and represents 3D shapes in an Euclidean preserving latent space as in UCLID-Net7 This concept is novel but thinking of the mathematics, we can easily see the concepts: . \\[f_{model}(x,y,z) = 0\\] which resembles our well-known implicit surface: . \\[f(x,y,z) = x^2+y^2+z^2 -1 =0\\] a sphere! . depth . About generating depths based on a 2D images, 3D representation also be achieved. ",
+    "url": "/docs/research/computer-vision/3d-image-reconstruction.html#3d-computer-vision-representation",
+    
+    "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#3d-computer-vision-representation"
+  },"11": {
+    "doc": "3D Image Reconstruction - Introduction",
+    "title": "References",
+    "content": "[1] Jin, Y., Jiang, D., &amp; Cai, M. (2020). 3d reconstruction using deep learning: a survey. Communications in Information and Systems, 20(4), 389-413. [2] Chang, A. X., Funkhouser, T., Guibas, L., Hanrahan, P., Huang, Q., Li, Z., … &amp; Yu, F. (2015). Shapenet: An information-rich 3d model repository. arXiv preprint arXiv:1512.03012. [3] Y. Xiang, R. Mottaghi and S. Savarese, “Beyond PASCAL: A benchmark for 3D object detection in the wild,” IEEE Winter Conference on Applications of Computer Vision, Steamboat Springs, CO, USA, 2014, pp. 75-82, doi: 10.1109/WACV.2014.6836101. [4] Xiang, Y., Kim, W., Chen, W., Ji, J., Choy, C., Su, H., … &amp; Savarese, S. (2016). Objectnet3d: A large scale database for 3d object recognition. In Computer Vision–ECCV 2016: 14th European Conference, Amsterdam, The Netherlands, October 11-14, 2016, Proceedings, Part VIII 14 (pp. 160-176). Springer International Publishing. [5] A. Geiger, P. Lenz and R. Urtasun, “Are we ready for autonomous driving? The KITTI vision benchmark suite,” 2012 IEEE Conference on Computer Vision and Pattern Recognition, Providence, RI, USA, 2012, pp. 3354-3361, doi: 10.1109/CVPR.2012.6248074. [6] L. Mescheder, M. Oechsle, M. Niemeyer, S. Nowozin, and A. Geiger, “Occupancy networks: Learning 3d reconstruction in function space,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019, pp. 4460–4470. [7] L. Mescheder, M. Oechsle, M. Niemeyer, S. Nowozin, and A. Geiger, “Occupancy networks: Learning 3d reconstruction in function space,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019, pp. 4460–4470. ",
+    "url": "/docs/research/computer-vision/3d-image-reconstruction.html#references",
+    
+    "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#references"
+  },"12": {
+    "doc": "3D Image Reconstruction - Introduction",
+    "title": "3D Image Reconstruction - Introduction",
+    "content": " ",
+    "url": "/docs/research/computer-vision/3d-image-reconstruction.html",
+    
+    "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html"
+  },"13": {
+    "doc": "Computer Vision",
+    "title": "Computer Vision",
+    "content": "simple definition : Computer Vision is a visionary understanding of computer. With a significant acheivement in Deep Learning Architectures ( CNN, RNN, transformers, GAN, leveraging LLM, Diffusion Models, and so on) with large datasets like ImageNet, there are a significant progress in computer vision. However, there are still unsolved questions, efficiency, reliability, robustness, linkage to other modalities, temporal evolution of scene in computer vision and understanding the gap between computer vision and human visionary behavior. As I startd my AI career with computer vision, I will cautiously post the contents and fix the contents regularily. ",
+    "url": "/docs/research/computer-vision",
+    
+    "relUrl": "/docs/research/computer-vision"
+  },"14": {
+    "doc": "Concurrent / Parallel Programming",
+    "title": "Concurrent / Parallel Programming",
+    "content": "For explaining concurrent or parallel programming, understanding the low level features such as register, memory, and pointers are needed. ",
+    "url": "/docs/fundamentals/programming/concurrent-programming.html",
+    
+    "relUrl": "/docs/fundamentals/programming/concurrent-programming.html"
+  },"15": {
+    "doc": "Concurrent / Parallel Programming",
+    "title": "Introduction",
+    "content": "When a top-level programmer encounters a time-efficiency issue in an algorithm, program, or system, it is natural for them to think of divide-and-conquer first. As systems grow in size and demand for speed increases, the ways in which divide-and-conquer is used have evolved alongside the work of top-level software researchers. Concurrent / parallel programming is a recent paradigm of divide-and-conquer that is being used in practice. With this post, I hope the readers (also myself) to study the concurrent / parallel programming thoroughly with Rust. ",
+    "url": "/docs/fundamentals/programming/concurrent-programming.html#introduction",
+    
+    "relUrl": "/docs/fundamentals/programming/concurrent-programming.html#introduction"
+  },"16": {
+    "doc": "Concurrent / Parallel Programming",
+    "title": "Prerequisite (Terminology)",
+    "content": "The following table is a basic terminology about process and thread. Even if you are not interested in concurrent / parallel programming, if you’re a software engineer, you need to know those things. | Term | Description | . | Process | A program in execution. It is an instance of a program that is running on a computer. | . | Thread | A lightweight process. It is a sequence of instructions that can be executed independently of other threads. | . | Process ID (PID) | A unique identifier that is assigned to each process. It is used to identify the process and to distinguish it from other processes. | . | Thread ID (TID) | A unique identifier that is assigned to each thread. It is used to identify the thread and to distinguish it from other threads. | . | Parent process | A process that creates another process. The created process is called the child process. | . | Child process | A process that is created by another process. The creating process is called the parent process. | . | Kernel | The core of the operating system. It is responsible for managing processes and other resources. | . | Scheduler | The scheduler is responsible for scheduling processes to run on the CPU. | . | Context switching | The process of switching from one process to another. | . | Inter-process communication (IPC) | IPC is the process of communication between processes. | . | register | A small, fast memory that is used to store data that is being used by the CPU (for frequent uses) | . | Program counter | A register that stores the address of the next instruction that the CPU will execute | . ",
+    "url": "/docs/fundamentals/programming/concurrent-programming.html#prerequisite-terminology",
+    
+    "relUrl": "/docs/fundamentals/programming/concurrent-programming.html#prerequisite-terminology"
+  },"17": {
+    "doc": "Concurrent / Parallel Programming",
+    "title": "More Specific Definition on Process",
+    "content": "From the table above, a process is a program in execution. It means it has not only a space aspect (a program) but also time aspect (in execution) . A process’s space is the allocated memory. This memory includes the code of the program, the data using for the program, and the stack. Here, the stack is used to store the state of the process, such as the values of the registers and the program counter . Note stack is a linear LIFO (Last-In First-Out) data structure. In terms of time aspect, the time includes the process waiting time for its running, process running time, and its waiting I/O time. These aspects of a process are closely related. the allocated memory of a process determines how long the process can run. vice versa. The understanding of those aspects also helpful for understanding how processes interact with each other (concurrent / parallel programming). When two processes share memory, they must be careful not to overwrite each other’s data. And when two processes communicate with each other, they must be careful not to send each other too much data. ",
+    "url": "/docs/fundamentals/programming/concurrent-programming.html#more-specific-definition-on-process",
+    
+    "relUrl": "/docs/fundamentals/programming/concurrent-programming.html#more-specific-definition-on-process"
+  },"18": {
+    "doc": "Concurrent / Parallel Programming",
+    "title": "More Specific Definition on Thread",
+    "content": "A thread is the smallest sequence of instructions that can be executed not depending on the others. Each thread has its own stack and registers, however, it shares the same memory with others in the same process. (This is because a single CPU contains only a single physical thread and the other threads are simply software based threads : physically, we do not separate the memory) It means that threads can access the same data, but they cannot modify each other’s register data without synchronization. ",
+    "url": "/docs/fundamentals/programming/concurrent-programming.html#more-specific-definition-on-thread",
+    
+    "relUrl": "/docs/fundamentals/programming/concurrent-programming.html#more-specific-definition-on-thread"
+  },"19": {
+    "doc": "Concurrent / Parallel Programming",
+    "title": "Sync / Async",
+    "content": " ",
+    "url": "/docs/fundamentals/programming/concurrent-programming.html#sync--async",
+    
+    "relUrl": "/docs/fundamentals/programming/concurrent-programming.html#sync--async"
+  },"20": {
+    "doc": "Concurrent / Parallel Programming",
+    "title": "Synchronizations (Mutex, Semaphore, Barrier)",
+    "content": "Comming Soon . ",
+    "url": "/docs/fundamentals/programming/concurrent-programming.html#synchronizations-mutex-semaphore-barrier",
+    
+    "relUrl": "/docs/fundamentals/programming/concurrent-programming.html#synchronizations-mutex-semaphore-barrier"
+  },"21": {
+    "doc": "Control theory of LLM",
+    "title": "A Control Theory of LLM prompting",
+    "content": " ",
+    "url": "/docs/research/llm/control_llm.html#a-control-theory-of-llm-prompting",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#a-control-theory-of-llm-prompting"
+  },"22": {
+    "doc": "Control theory of LLM",
+    "title": "Introduction",
+    "content": "  In this post, I will review a very interesting recenet paper about LLM : What's the Magic Word? A Control Theory of LLM prompting.[1]. The reason why I review this paper is that it gives us a new perspective on LLM, with the glasses of control theory. The main concept of the paper is that analogy on LLM system to control system : LLM be as a plant and the prompt be as a control input. Unlike other ML/DL framework, most of studies on LLM prompting were emperical, without mathematical evidence. This is because that LLM is too huge to understand. The paper, however, tries to understand LLM itself but treat it as a plant to control and give us a concrete understanding. ",
+    "url": "/docs/research/llm/control_llm.html#introduction",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#introduction"
+  },"23": {
+    "doc": "Control theory of LLM",
+    "title": "Basic Control Theory: System",
+    "content": "  To understand this paper, we need to know basic concepts of state space representation and control theory. The authors put the Appendix on the paper [1], however, it is better to read Chapter 1-3 of [2]. It is online free.   Briefly speaking, control theory depicts a system whether it is reachable (observable, controllable) and find out how to observe the system’s state and control the system with external inputs (force, current and so on.) .   In mathematically, system is the set of state of plant, time, control input. and transition of state. If we have output space (observable output), we could add output and readout map to the original system. In addition to the appendix [1], .   A system (\\(\\Sigma\\)) consists of: . | State (\\(X\\)): The state of a plant refers to the minimal set of variables that completely define its behavior at any given time. These variables capture the internal condition of the plant. | Control Input (\\(U\\)): Control inputs are the external influences applied to the plant to manipulate its behavior. | Time (\\(T\\)): Time set, the ordered set of positive values. | Transition map (\\(\\phi: X \\times U \\times T^{2} \\rightarrow X\\)): Transition map takes a current state (X(t)) at time t and a control input (u(t)) at time t, and returns the next state (X(t+1)) at the next time step (t+1). Note: \\(T\\) or \\(T^2\\)? If the control varies in time like as in feedback control or time-varying control strategy, we could add additional time space to describe the transition map. In the paper, however, as the transitted time t’ differs from the original t, it seems that author put the additional time space into the collection. I suppose that the authors want to describe t’ and t are nomially different. | Output (\\(Y\\)): Observed output space. | Readout map (\\(h: X \\times U \\times T \\rightarrow Y\\)): Readout map takes a current state (X(t)) at time t and a control input (u(t)) at the time t, and returns the observed(read out) value (Y(t)). | . ",
+    "url": "/docs/research/llm/control_llm.html#basic-control-theory-system",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#basic-control-theory-system"
+  },"24": {
+    "doc": "Control theory of LLM",
+    "title": "Basic Control Theory: Reachability, Observability and Controllability",
+    "content": "  In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a system. Let us say that the state be the top face of dice, control input be the human random force of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the transition map be the state transition between trials. However, even we designed this rolling a dice to be a system with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be controllable? . ref: dices image from wikipedia ",
+    "url": "/docs/research/llm/control_llm.html#basic-control-theory-reachability-observability-and-controllability",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#basic-control-theory-reachability-observability-and-controllability"
+  },"25": {
+    "doc": "Control theory of LLM",
+    "title": "Reachability, Observable and Controllability",
+    "content": "  Back to the rolling a dice system, we can say that this system is reachable because we could potentially role any number, and always be observable. However, we cannot say that this system is controllable because we cannot make intended input. Mathematically, we can define the reachability as in [2]. ",
+    "url": "/docs/research/llm/control_llm.html#reachability-observable-and-controllability",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#reachability-observable-and-controllability"
+  },"26": {
+    "doc": "Control theory of LLM",
+    "title": "Event",
+    "content": "  As we defined before, an arbitary system \\(\\Sigma\\) can be defined as \\(\\Sigma = (T, X, U, \\phi)\\) . An event is a state at a time, a pair of state and time \\((x, t) \\in X \\times T\\). ",
+    "url": "/docs/research/llm/control_llm.html#event",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#event"
+  },"27": {
+    "doc": "Control theory of LLM",
+    "title": "Reacability and Controllability",
+    "content": "The event \\((z, \\tau)\\) can be reached from a state \\((x,\\sigma)\\), if and only if there is a path of \\(\\Sigma\\) on \\([\\sigma, \\tau]\\) and if there exists an \\(\\omega \\in U^{[\\sigma, \\tau)}\\) such that \\(\\phi(\\tau, \\sigma, x, \\omega) = z\\), we can say we can control the state x to state z.   Again with the rolling a dice system, now we can see the problem, we put the human random force be the input, but it is not controllable. ",
+    "url": "/docs/research/llm/control_llm.html#reacability-and-controllability",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#reacability-and-controllability"
+  },"28": {
+    "doc": "Control theory of LLM",
+    "title": "Control Theory of LLM",
+    "content": "  Now we can discuss control of LLM with the paper [1]. All the following concepts and logics are originated from the paper. ",
+    "url": "/docs/research/llm/control_llm.html#control-theory-of-llm",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#control-theory-of-llm"
+  },"29": {
+    "doc": "Control theory of LLM",
+    "title": "Notations",
+    "content": "  In the paper, they denoted \\(P_{LM}\\) be a causal language model, \\(V\\) be a vocabulary set, \\(V^*\\) be the set of all possible sequences of any length composed of tokens from \\(V\\). The bold lowercase stands for sequence (vector) \\(\\bm{x}\\), while the unbolded lowercase letter \\(x\\) be an individual token. ",
+    "url": "/docs/research/llm/control_llm.html#notations",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#notations"
+  },"30": {
+    "doc": "Control theory of LLM",
+    "title": "Assumptions",
+    "content": "  Here are some assumptions before stating the definitions: . | The LLM system is discrete time: It is quite natural if we come across LLM chatbots, we get output token from LLM when we put query input. | The LLM system follows Shift-and-Grow State dynamics: Whereas the system state in an ODE-based system has a fixed size over time, the system state x(t) for LLM systems grows as tokens are added to the state sequence. | It is assumed that the LLM system follows a Markov Transition (In paper it is said in more gently as Mutual exclusion on control input token vs. generated token): The newest token is either drawn from the control input \\(u(t)\\) or is generated by the LLM by sampling \\(x{'} \\sim P_{LM} (x' | x(t))\\). This differs from traditional discrete stochastic systems, where the control sequence and internal dynamics generally affect the state synchronously. | .   From the basic control theory and the followed assumptions, the authors defined the LLM systems and Control Input as follows: . ",
+    "url": "/docs/research/llm/control_llm.html#assumptions",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#assumptions"
+  },"31": {
+    "doc": "Control theory of LLM",
+    "title": "Definitions",
+    "content": " ",
+    "url": "/docs/research/llm/control_llm.html#definitions",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#definitions"
+  },"32": {
+    "doc": "Control theory of LLM",
+    "title": "Definition 1. Autoregressive LLM system",
+    "content": "  An autoregressive LLM system \\(\\Sigma = (V, P_{LM})\\) with control input consists of time set (\\(T\\)), state space (\\(X\\)), input (\\(U\\)), transition map (\\(\\phi\\)) and readout map \\(h\\). | Time set \\(T\\) is a set of sequence number (natural number): \\(T = N\\). | The state space \\(X\\) is the set of all possible sequences of any length formed from the vocabulary set \\(V\\): \\(X = V^{*}\\) | The input space is the set of sequences but also allows the no inputs \\(\\empty\\): \\(U = V \\bigcup {\\{ \\empty \\}}\\) | The transition map \\(\\phi\\) is sum of current state and input: \\(\\phi : X \\times U \\times T^{2}\\) such that \\(\\phi(x(t), u(t), t, t+1) = \\begin{cases} x(t) + u(t) &amp; \\text{if $u(t) \\neq \\empty$}\\\\ x(t) + x' &amp; \\text{otherwise} \\end{cases}\\) where \\(x' \\sim P_{LM}(x' | x(t))\\). Sadly because they use the plus sign as a operator wihtout the definition, we need to assume that this is an operator that represent concatenation of state because we assume that it is autoregressive. More than that, as it is autoregressive, the output is deterministic. | The readout map returns the most recent r tokens from the state x: \\(h(x(t);r) = [x^{t-r}(t), ... , x^{t}(t)]\\) | . ",
+    "url": "/docs/research/llm/control_llm.html#definition-1-autoregressive-llm-system",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#definition-1-autoregressive-llm-system"
+  },"33": {
+    "doc": "Control theory of LLM",
+    "title": "Definition 2. LLM Output Reachability",
+    "content": "  \\(y \\in V^r\\) is reachable from the initial state \\(x_0 \\in V^*\\) if and only if there exists some time \\(T\\) and input sequences \\(u^* \\in U^k\\) for some \\(k + |x_0| \\leq T\\) that makes the initial state \\(x_0\\) move to output \\(y = h(x(T), r)\\) at time \\(T\\) . ",
+    "url": "/docs/research/llm/control_llm.html#definition-2-llm-output-reachability",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#definition-2-llm-output-reachability"
+  },"34": {
+    "doc": "Control theory of LLM",
+    "title": "Definition 3. Output Reachablility Set",
+    "content": "  The reachable output set from the initial state \\(x_0 \\in V^*\\) is denoted \\(R_y(x_0)\\). ",
+    "url": "/docs/research/llm/control_llm.html#definition-3-output-reachablility-set",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#definition-3-output-reachablility-set"
+  },"35": {
+    "doc": "Control theory of LLM",
+    "title": "Definition 4. Output Controllabilty (Revised from the paper.)",
+    "content": "  An LLM system is output controllable if and only if, \\(\\forall x_0 \\in V^*\\) and \\(\\forall y \\in V^r\\), there exists a time \\(T \\geq |x_0|\\) and the input sequence \\(u^* \\in U^k\\), where \\(k\\leq T - |x_0|\\) such that the probability \\(P(h(x(T),r) = y | x_0, u^*) &gt; 0\\). ",
+    "url": "/docs/research/llm/control_llm.html#definition-4-output-controllabilty-revised-from-the-paper",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#definition-4-output-controllabilty-revised-from-the-paper"
+  },"36": {
+    "doc": "Control theory of LLM",
+    "title": "Definition 5. \\(k-\\epsilon\\) Controllability",
+    "content": "  If a datset of state-output pairs \\(D = \\{(x^{i}_{0}, y^{i})\\}_{i\\in [N]}\\), an LLM system \\(\\Sigma = (V, P_{LM})\\) is \\(k-\\epsilon\\) controllable with respect to D, if and only if \\(P\\{y \\notin R^{k}_{y}(x_0)\\} &lt; \\epsilon\\) for \\((x_0, y) \\sim D\\), where \\(R^k_y(x^i_0)\\) is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length \\(|u| \\leq k\\). ",
+    "url": "/docs/research/llm/control_llm.html#definition-5-k-epsilon-controllability",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#definition-5-k-epsilon-controllability"
+  },"37": {
+    "doc": "Control theory of LLM",
+    "title": "Apply to the Self-Attention Mechanism. - Preliminaries",
+    "content": "  Above the definition on LLM controllability could be nice for generalization, we need to prove it with actual models and calculations. The paper choose the self-attention which dominates in LLMs. ",
+    "url": "/docs/research/llm/control_llm.html#apply-to-the-self-attention-mechanism---preliminaries",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#apply-to-the-self-attention-mechanism---preliminaries"
+  },"38": {
+    "doc": "Control theory of LLM",
+    "title": "Definition 6. Self-attention.",
+    "content": "  Self-attention \\(\\Xi\\) is parameterized by weight metrics \\(\\theta = (W_q, W_{key}, W_v)\\) (query, key, value). \\(\\Xi\\) is a mapping from the input token (\\(R^{N \\times d_{in}}\\)) to output token (\\(R^{N \\times d_{out}}\\)), . \\[\\Xi(X;\\theta) = D^{-1} exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right)\\] where exp() denotes element-wise exponential of matrix entries, \\(W_q, W_{key} \\in R^{d_{in} \\times d_{key}}\\), \\(W_v \\in R^{d_{in} \\times d_{out}}\\), \\(Q = XW_q\\), \\(K=XW_{key}\\), \\(V=XW_{v}\\) and D is a diagonal positive definite matrix, \\(D:= diag \\left( exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right) \\bm{1}_{N \\times 1 } \\right)\\) .   In this paper, the reachability of output token representations \\(\\Xi (X; \\theta)\\), they partitioned the input \\(X \\in R^{(k+m)\\times d_{in}}\\) into a \\(k \\times d_{in}\\) block of control input representations \\(U\\) and an \\(m\\times d_{in}\\) block of imposed state representations \\(X_0\\) where \\(k + m = N\\). With this partitioning, the definition of self-attention can be re-written as followings: . \\[\\begin{align}\\Xi (X; \\theta) = \\Xi \\left( \\left[{U \\atop X_0} \\right] ; \\theta \\right) = \\Xi ([U; X_0]; \\theta) = \\left[{U' \\atop Y} \\right] = [U' ; Y] \\end{align}\\] Also, the output \\(X' = \\Xi (X; \\theta) \\in R^{(k+m) \\times d_{in}}\\) into a corresponding \\(k \\times d_{out}\\) matrix \\(U'\\) and an \\(m \\times d_{out}\\) matrix Y. ",
+    "url": "/docs/research/llm/control_llm.html#definition-6-self-attention",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#definition-6-self-attention"
+  },"39": {
+    "doc": "Control theory of LLM",
+    "title": "definition 7. Reachability of self-attention",
+    "content": "  Following the definition 2, let \\(Y^* \\in R^{m \\times d_{out}}\\) be the desired output, reachability for Self-attention can be defined as followings:   \\(Y^*\\) is reachable from initial state \\(X_0\\) if and only if there exists some U that steers the output of \\(\\Xi (\\left[U; X_0 \\right] ; \\theta ]\\) to output \\(\\left[ U' ; Y \\right]\\) such that \\(Y = Y^*\\) . ",
+    "url": "/docs/research/llm/control_llm.html#definition-7-reachability-of-self-attention",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#definition-7-reachability-of-self-attention"
+  },"40": {
+    "doc": "Control theory of LLM",
+    "title": "Apply to the Self-Attention mechanism - Theorem",
+    "content": "  The key of defining the reachability begins with partitioning the output: \\(Y = Y_u + Y_x\\), assuming that the output can be partitioned by output from control input and that from imposed state. \\(Y_x\\) can be bounded as a function of \\(X\\), \\(k\\), and \\(theta\\). While \\(Y_u\\) is the remaining component from U. \\[\\begin{align} &amp; Y = Y_u + Y_x \\\\ &amp; = (Y_{u,\\|} + Y_{u, \\perp}) + (Y_{x, \\|} + Y_{x, \\perp}) \\\\ &amp; = (Y_{u,\\|} + Y_{x, \\|}) + (Y_{u, \\perp} + Y_{x, \\perp}) \\in span(Y^*) \\oplus span(Y^*)^\\perp \\\\ \\end{align}\\] Here, the parallel to and orthogonal to is in respect to the desired output \\(Y^*\\). Remember that Y is partitioned output . \\[\\Xi ([U; X_0]; \\theta) = \\left[ {U' \\atop Y} \\right]\\] Before the theorem and its proof, let us define matrix \\(A\\). \\[A := exp\\left(\\frac{QK^T}{\\sqrt{d_{key}}}\\right) = exp \\left( \\left[ \\begin{matrix} Q_u K_u^T &amp; Q_u K_x^T\\\\ Q_x K_u^T &amp; Q_x K_x^T \\end{matrix} \\right] \\frac{1} {\\sqrt{d_{key}}} \\right) = \\left[ \\begin{matrix} A_{uu} &amp; A_{ux}\\\\ A_{xu} &amp; A_{xx} \\end{matrix} \\right]\\] where, \\(Q.\\) and \\(K.\\) are partitioned components of \\(Q\\) and \\(K\\): . \\[Q = \\left[ Q_u \\atop Q_x \\right]= \\left[U \\atop X_0 \\right] W_q\\\\\\] \\[K=\\left[K_u \\atop K_x \\right]=\\left[U \\atop X_0 \\right] W_{key}\\] Similarly, \\(D\\) is also be partitioned as followigs: . \\[D = diag \\left(exp \\left(\\frac{Q K^T}{\\sqrt{d_{key}}}\\right) \\bm{1}_{N \\times 1}\\right) = \\left[\\begin{matrix} D_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D_x \\end{matrix} \\right]\\] With the definitions and notions above, \\(Y\\) can be defined as follows: . \\[\\begin{align} &amp; \\Xi(X; \\theta) = D^{-1} A V \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D^{-1}_{x} \\end{matrix} \\right] \\left[ \\begin{matrix} A_{uu} &amp; A_{xu}\\\\ A_{ux} &amp; A_{xx} \\end{matrix} \\right] \\left[ \\begin{matrix} V_{u} \\\\ V_{x} \\end{matrix} \\right] \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u A_{uu} V_u + D^{-1}_u A_{ux} V_x\\\\ D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x \\end{matrix} \\right] \\\\ &amp; = \\left[ U' \\atop Y \\right] \\end{align}\\] \\[\\begin{align} \\therefore Y = D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x = Y_u + Y_x \\end{align}\\] ",
+    "url": "/docs/research/llm/control_llm.html#apply-to-the-self-attention-mechanism---theorem",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#apply-to-the-self-attention-mechanism---theorem"
+  },"41": {
+    "doc": "Control theory of LLM",
+    "title": "Theorem: reachability in the Self-attention mechanism",
+    "content": "  Let \\(Y^{max}_x = \\Xi (X_0 ; \\theta)\\) be the output of the self-attention layer given only the imposed state (initial state) \\(X_0\\), and i-th row of the orthogonal component of \\(Y^{max}_x\\) to the desired output \\(Y^*\\) be \\(Y^{max, i}_{x, \\perp}\\).   \\({Y^*}\\) is unreachable for any control input \\({U}\\) if, for any \\({i \\in \\{1, ... , m\\} }\\), . \\[\\begin{align} \\|Y^{max, i}_{x, \\perp}\\| &gt; k \\gamma_{i} (X_0, \\theta) \\\\ \\end{align}\\] where, . \\[\\begin{align} \\gamma_{i}(X_0 , \\theta) := \\frac{e^\\alpha}{g_i}\\sigma_v M_u, \\quad \\alpha = \\sigma_q \\sigma_{key} M_u M_x / \\sqrt{d_{key}} \\end{align}\\] \\[\\begin{align} g_i (X_0, \\theta) := \\Sigma^{m}_{j=1} exp ((X_0)^i W_q W^T_{key} (X_0)^{jT} / \\sqrt{d_{key}}) \\end{align}\\] \\(\\sigma_v\\), \\(\\sigma_q\\) and \\(\\sigma_{key}\\) being the maximum singular values of the value, query, and key projection matrices, respectively. and with \\(M_u := \\max_j \\|(X_0)^j \\|\\) being the maximum norms of the control and imposed token embeddings, respectively. I will not repeat the proof of the paper because after partitioning, the rest of the proof is only about how to set some-what contrived constant and use basic row-wise summation and applying rudimentary inequity (Cauchy-Schwarz). ",
+    "url": "/docs/research/llm/control_llm.html#theorem-reachability-in-the-self-attention-mechanism",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#theorem-reachability-in-the-self-attention-mechanism"
+  },"42": {
+    "doc": "Control theory of LLM",
+    "title": "References",
+    "content": "[1] Bhargava, A., Witkowski, C., Shah, M., &amp; Thomson, M. (2023). What’s the Magic Word? A Control Theory of LLM Prompting. arXiv preprint arXiv:2310.04444. [2] Sontag, E. D. (2013). Mathematical control theory: deterministic finite dimensional systems (Vol. 6). Springer Science &amp; Business Media. ",
+    "url": "/docs/research/llm/control_llm.html#references",
+    
+    "relUrl": "/docs/research/llm/control_llm.html#references"
+  },"43": {
+    "doc": "Control theory of LLM",
+    "title": "Control theory of LLM",
+    "content": " ",
+    "url": "/docs/research/llm/control_llm.html",
+    
+    "relUrl": "/docs/research/llm/control_llm.html"
+  },"44": {
+    "doc": "Controls & Robotics",
+    "title": "Controls and Robotics",
+    "content": "Based on the books Sontag’s mathematical control theory, Thrun’s probabilistic robotics and lecture notes which I took in University of Michigan. ",
+    "url": "/docs/fundamentals/controls#controls-and-robotics",
+    
+    "relUrl": "/docs/fundamentals/controls#controls-and-robotics"
+  },"45": {
+    "doc": "Controls & Robotics",
+    "title": "Controls & Robotics",
+    "content": " ",
+    "url": "/docs/fundamentals/controls",
+    
+    "relUrl": "/docs/fundamentals/controls"
+  },"46": {
+    "doc": "Design",
+    "title": "Design",
+    "content": "This page is for my side projects. ",
+    "url": "/docs/design",
+    
+    "relUrl": "/docs/design"
+  },"47": {
+    "doc": "Fundamentals",
+    "title": "Fundamentals",
+    "content": "This pages is about fundamentals for understanding AI and Programming. ",
+    "url": "/docs/fundamentals",
+    
+    "relUrl": "/docs/fundamentals"
+  },"48": {
+    "doc": "Fundamentals",
+    "title": "Mathematics",
+    "content": "Starting from Topology, It will be a long term project of posting, with my own reviewing and learning each topics, I try to write the idea as much precisely as possible. ",
+    "url": "/docs/fundamentals#mathematics",
+    
+    "relUrl": "/docs/fundamentals#mathematics"
+  },"49": {
+    "doc": "Fundamentals",
+    "title": "Programming",
+    "content": "Mainly focus on Python, Not like a math tab, I will only post what I think it is important. ",
+    "url": "/docs/fundamentals#programming",
+    
+    "relUrl": "/docs/fundamentals#programming"
+  },"50": {
+    "doc": "About",
+    "title": "sanhan research",
+    "content": "Roundabout the shortest route is a detour. ",
+    "url": "/#sanhan-research",
+    
+    "relUrl": "/#sanhan-research"
+  },"51": {
+    "doc": "About",
+    "title": "Fundamentals",
+    "content": ". | Fundamental knowledge for understanding AI, programming and control theory. | . ",
+    "url": "/#fundamentals",
+    
+    "relUrl": "/#fundamentals"
+  },"52": {
+    "doc": "About",
+    "title": "AI Research",
+    "content": ". | Studies on SOTA AI, and personal AI researches. | . ",
+    "url": "/#ai-research",
+    
+    "relUrl": "/#ai-research"
+  },"53": {
+    "doc": "About",
+    "title": "Design",
+    "content": ". | Programming side projects and some design concepts. | . ",
+    "url": "/#design",
+    
+    "relUrl": "/#design"
+  },"54": {
+    "doc": "About",
+    "title": "sanhan",
+    "content": ". ",
+    "url": "/#sanhan",
+    
+    "relUrl": "/#sanhan"
+  },"55": {
+    "doc": "About",
+    "title": "Research / Programming Interest",
+    "content": " ",
+    "url": "/#research--programming-interest",
+    
+    "relUrl": "/#research--programming-interest"
+  },"56": {
+    "doc": "About",
+    "title": "AI",
+    "content": ". | Machine unlearning. | Controllability on machine learning. | Manifold learning. | . ",
+    "url": "/#ai",
+    
+    "relUrl": "/#ai"
+  },"57": {
+    "doc": "About",
+    "title": "Programming",
+    "content": ". | Game engine. | Concurrent programming. | ML/DL/LLM service design. | . ",
+    "url": "/#programming",
+    
+    "relUrl": "/#programming"
+  },"58": {
+    "doc": "About",
+    "title": "Careers &amp; Education",
+    "content": " ",
+    "url": "/#careers--education",
+    
+    "relUrl": "/#careers--education"
+  },"59": {
+    "doc": "About",
+    "title": "Software Researcher at LG Electronics, Seoul",
+    "content": ". | AI Bigdata department in CDO division (Aug.2022~) | Smartdata department in CTO division (Aug.2020~Aug.2022) | . ",
+    "url": "/#software-researcher-at-lg-electronics-seoul",
+    
+    "relUrl": "/#software-researcher-at-lg-electronics-seoul"
+  },"60": {
+    "doc": "About",
+    "title": "Master of Science in Engineering at University of Michigan, Ann Arbor",
+    "content": ". | Mechanical Engineering specialized on mechatronics and controls (May.2020) | . ",
+    "url": "/#master-of-science-in-engineering-at-university-of-michigan-ann-arbor",
+    
+    "relUrl": "/#master-of-science-in-engineering-at-university-of-michigan-ann-arbor"
+  },"61": {
+    "doc": "About",
+    "title": "Bachelor of Science in Engineering at Yonsei University, Seoul",
+    "content": ". | Mechanical Engineering (Aug.2018) | . ",
+    "url": "/#bachelor-of-science-in-engineering-at-yonsei-university-seoul",
+    
+    "relUrl": "/#bachelor-of-science-in-engineering-at-yonsei-university-seoul"
+  },"62": {
+    "doc": "About",
+    "title": "Contact",
+    "content": "Email . ",
+    "url": "/#contact",
+    
+    "relUrl": "/#contact"
+  },"63": {
+    "doc": "About",
+    "title": "About",
+    "content": " ",
+    "url": "/",
+    
+    "relUrl": "/"
+  },"64": {
+    "doc": "LLM",
+    "title": "LLM",
+    "content": "This sections for LLM, assuming that the readers have already known about basic blocks of deep learning architecture like RNN, LSTM, seq2seq, attention, transformers and so on. ",
+    "url": "/docs/research/llm",
+    
+    "relUrl": "/docs/research/llm"
+  },"65": {
+    "doc": "Mathematics",
+    "title": "Mathematics",
+    "content": "Starting from Topology, It will be a long term project of posting, with my own reveiewing and learning each topics, I try to write the idea as much precisely as possible. | Linear algebra (linear control system) | Probability and Random process | Set theory and Topology | Graph theory | Mathematical Analysis, Differential Equations | Mathematical Manifolds and Categorical Theorem | . ",
+    "url": "/docs/fundamentals/math/",
+    
+    "relUrl": "/docs/fundamentals/math/"
+  },"66": {
+    "doc": "Minimal layout test",
+    "title": "Minimal layout test",
+    "content": "Return to main website. This page demonstrates the packaged minimal layout, which does not render the sidebar or header. It can be used for standalone pages. It is also an example of using the new modular site components to define custom layouts; see “Custom layouts and includes” in the customization docs for more information. ",
+    "url": "/docs/minimal-test.html",
+    
+    "relUrl": "/docs/minimal-test.html"
+  },"67": {
+    "doc": "Programming",
+    "title": "Programming",
+    "content": "Mainly focus on Python (my primary language), Rust and Javascript. The followings I want to share in the future. ",
+    "url": "/docs/fundamentals/programming",
+    
+    "relUrl": "/docs/fundamentals/programming"
+  },"68": {
+    "doc": "Programming",
+    "title": "Python",
+    "content": "Deep Learning (tensorflow, pytorch, jax), Machine Learning, Algorithms &amp; Data Structures, Software design, Web backend (flask) . ",
+    "url": "/docs/fundamentals/programming#python",
+    
+    "relUrl": "/docs/fundamentals/programming#python"
+  },"69": {
+    "doc": "Programming",
+    "title": "Rust / C / C++",
+    "content": "Concurrent / Parallel Programming, Game engine (Physics Engine) . ",
+    "url": "/docs/fundamentals/programming#rust--c--c",
+    
+    "relUrl": "/docs/fundamentals/programming#rust--c--c"
+  },"70": {
+    "doc": "Programming",
+    "title": "HTML / CSS / JS",
+    "content": "Web frontend . ",
+    "url": "/docs/fundamentals/programming#html--css--js",
+    
+    "relUrl": "/docs/fundamentals/programming#html--css--js"
+  },"71": {
+    "doc": "RAG",
+    "title": "RAG",
+    "content": "    In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [1]. The concept of RAG is quite simple but powerful.     The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[1].     In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user’s query to LLM, we can get generated output with our intended contexts. ",
+    "url": "/docs/research/llm/rag.html",
+    
+    "relUrl": "/docs/research/llm/rag.html"
+  },"72": {
+    "doc": "RAG",
+    "title": "Basic Implementation",
+    "content": ". ├── lib │ ├── llm │ └── OpenBLAS ├── scripts │ └── add_document.py ├── src │ ├── core.py │ ├── embedding.py │ └── utils.py ├── vector_store │ └── .gitkeep ├── download_model.sh ├── easy_rag.py ├── vector_index.py └── README.md . For detailed installation and usage, please visit my git repository. visit : easy_rag . ",
+    "url": "/docs/research/llm/rag.html#basic-implementation",
+    
+    "relUrl": "/docs/research/llm/rag.html#basic-implementation"
+  },"73": {
+    "doc": "RAG",
+    "title": "Output",
+    "content": ". In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations. Focus on the answer (The concept of RAG is simple but powerful), which is derived in the first paragraph of this post (The concept of RAG is quite simple but powerful). ",
+    "url": "/docs/research/llm/rag.html#output",
+    
+    "relUrl": "/docs/research/llm/rag.html#output"
+  },"74": {
+    "doc": "RAG",
+    "title": "References",
+    "content": "[1] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., … &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474. ",
+    "url": "/docs/research/llm/rag.html#references",
+    
+    "relUrl": "/docs/research/llm/rag.html#references"
+  },"75": {
+    "doc": "AI Research",
+    "title": "AI Paper Reviews",
+    "content": "This page is about studies on AI. Since AI is growing and becoming more complex than ever, this page will not be beginner-friendly, but I will try to provide a detailed review. ",
+    "url": "/docs/research#ai-paper-reviews",
+    
+    "relUrl": "/docs/research#ai-paper-reviews"
+  },"76": {
+    "doc": "AI Research",
+    "title": "AI Research",
+    "content": " ",
+    "url": "/docs/research",
+    
+    "relUrl": "/docs/research"
+  },"77": {
+    "doc": "Rust Programming Language",
+    "title": "Rust Programming Language",
+    "content": "About rust programming. I hope everyone to read the official documentation, especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice. This post includes from basic to advanced: . | Hello, world! | Basic syntax 2.1. Immutables and mutables 2.2. Rust is a statically typed language 2.3. Control Flow 2.4. Functions 2.5. Methods 2.6. Generics / Traits | Pointer / memory related features 3.1. Memory in computer 3.2. Ownership 3.3. Pointers 3.4. Lifetimes | What’s next? | . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html"
+  },"78": {
+    "doc": "Rust Programming Language",
+    "title": "1. Hello, world!",
+    "content": "First of all, printing hello world! in rust is as simple as in python: . fn main(){ println!(\"Hello, world!\"); } . But there are important things even in this simple code: . | RUST always needs main function named main(). | We can define function with fn | println! is not a function, is a macro: macro is a piece of code that generates another piece of code. | . Note : Macro Macros are expanded at compile time, so that the actual generated codes will replace the macro before the program is executed. When you want to use macro to generate code in compile level, you need to put ! right after the name of macro. You can also make your codes be a macro. However, there is no free lunch. Macro makes you comfortable in writing a program or save execution time (by avoiding function call) but your compile time might also increase as much you use macro. And before talking about data structures and syntaxes of Rust, I will put the general naming rules. | Item | Convention | . | Modules | snake_case | . | Types / Traits / Enum / Struct | PascalCase | . | Macros / Functions / Methods | snake_case | . | Local variables | snake_case | . | Static variables / Constants | SCREAMING_SNAKE_CASE | . | Type parameters | usually single uppercase letter: T or consice PascalCase | . | Lifetimes | usually a single letter: ‘a or short lowercase : ‘de, ‘src | . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#1-hello-world",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#1-hello-world"
+  },"79": {
+    "doc": "Rust Programming Language",
+    "title": "2. Basic Synthax",
+    "content": "One of the reason why we use Rust is for a memory-safe efficient programming. It is because that rust compiler strictly yells the programmer to follow their memory-safe instructions. ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#2-basic-synthax",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#2-basic-synthax"
+  },"80": {
+    "doc": "Rust Programming Language",
+    "title": "2.1. Immutables and mutables",
+    "content": "In rust, let is used for declaration of a variable, without mut keyword, rust generally declare the variables be immutable by default. Basically, rust supports three ways to assign a value as follows : . | Variable Type | Advantages | Disadvantages | Syntax | . | Mutable | Flexibility, efficiency | Thread safety, complexity | let x = 3; | . | Immutable | Thread safety, predictability, simplicity | Memory usage, performance | let mut x = 3; | . | Constant | Readability, predictability, optimization | Limited flexibility, potential for code duplication | const x = 3; | . The following code snippet is from the book but with my commentary . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#21-immutables-and-mutables",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#21-immutables-and-mutables"
+  },"81": {
+    "doc": "Rust Programming Language",
+    "title": "2.1.1. mutable vs immutable",
+    "content": "// the following code occurs compile error, this example is from `the book` of rust-lang.org fn main(){ let x = 5; // rust sets value be immutable by default. (1) println!(\"the value of x is {x}\"); x = 6; // here the mutation occurs however as we did not set x be mutable, this occurs compile error in rust. println!(\"the value of x is {x}\"); //compiler cannot reach here. } . | To avoid the error, we need to write (1) as let mut x = 5; | . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#211-mutable-vs-immutable",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#211-mutable-vs-immutable"
+  },"82": {
+    "doc": "Rust Programming Language",
+    "title": "2.1.2. constant",
+    "content": "fn main(){ const mut X = 5; // compile error occurs here, unlike `let` expression which initializes variables, `const` does not allow `mut` expression. } . | Compiler might tell you change const to static. However, even if you change it, the expression of static mut is unsafe, so you get compiler error again with : error[E0133]: use of mutable static is unsafe and requires unsafe function or block . | This error ([E0133]) can be avoided with unsafe block (which allows memory-unsafe coding) like the following, however, you might not need this usages right now. (not recommended) . | . fn main() { unsafe{ static mut A:i32 = 1024; // static needs the concrete type like i32 here. println!(\"Hello, world!\"); println!(\"{A}\"); } } . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#212-constant",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#212-constant"
+  },"83": {
+    "doc": "Rust Programming Language",
+    "title": "2.1.3. shadowing",
+    "content": "Shadowing means that a variable is declared with the same name of previous variable. I posted the usage because it is in the book of rust-lang, however, shadowing is not recommended in general cases. fn main(){ let x = 5; let x = x + 1; // shadow variable x to be x (prev) + 1 : 6 { let x = x * 2; // inner shadow of x : } // shadowing scope ends here. so the value of the variable x is now 6, } . | Unlike mutable variable, we can change the value of variable in compile-time. | Unlike mutable variable, shadowing allows to use the same name when we change the data type. This sounds like powerful. However, type-changing situation sometimes leads a serious dynamic errors that compiler cannot discern. Therefore, shadowing should be avoided in general cases. | . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#213-shadowing",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#213-shadowing"
+  },"84": {
+    "doc": "Rust Programming Language",
+    "title": "2.2. Rust is a statically-typed language.",
+    "content": "Like modern programming languages like python or javascript, Rust supports type inference. However, rust generally requires concrete (static) types during compilation for memory-safe efficient programming. We call this type compliance as statically-typed language, which means the types of variables and expressions are checked at compile-time rather than at runtime. ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#22-rust-is-a-statically-typed-language",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#22-rust-is-a-statically-typed-language"
+  },"85": {
+    "doc": "Rust Programming Language",
+    "title": "2.2.1. Basic Scalar Types",
+    "content": "Here are the table for Rust’s basic types . | Type | Description | Literal | . | i8 ~ i128 | 8 ~ 128 bit integer |   | . | u8 ~ i128 | 8 ~ 128 bit unsigned integer |   | . | isize | integer depends on the architecture |   | . | usize | unsigned integer depends on the architecture |   | . | f32 ~ f64 | 32 ~ 64 bit floating points | 3.1415 | . | bool | boolean type | true / false | . | char | letter type | ‘a’ | . | (type, type, … ) | tuple | (true, 5) | . | [type; integer value ] | array | [3; 10] | . Here the following codes are about declaration of types: . fn main(){ let five = 5 ; // Rust basically infers integer value as i32. let five_i32 : i32 = 5; // i32 let pi = 3.14; // Rust baically infers float value as f64 let pi_f32 : f32 = 3.14; // f32 let t = true; // bool let f : bool = false; // bool let ch = 'c'; let ch_char : char = 'c'; // char is 32 bit length // about tuple let compound_tup : (i32, f64, u16) = (400, 6.28, 2); let four_hundred = compound_tup.0; let tau = compound_tup.1; let two = compound_tup.2; // about array let arr_1 = [1,2,3,4,5]; let arr_2 : [i32; 5] = [1,2,3,4,5]; // let arr_3 = [3; 5]; // [3,3,3,3,3] let arr_first = arr_1[0]; let arr_second = arr_1[1]; } . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#221-basic-scalar-types",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#221-basic-scalar-types"
+  },"86": {
+    "doc": "Rust Programming Language",
+    "title": "2.2.2. Custom Types",
+    "content": "Rust also supports algebraic types. struct can be used as a multiple type, enum can be used as a sum type. Struct . Like C programming language, Rust has a struct type that user can define a custom data. While rust’s struct is more expansive than C struct, it enables users to use flexible and memory-safe custom data. struct Person{ name: String, age: u8, } fn main(){ let person = Person{ name:\"Sangdo Han\".to_string(), age:33, }; } . Enums . Enums, which stands for enumerations, is one of the powerful custom type that enables to make custom types in modern programming language. Briefly speaking, enums gives user to selecting a value of a possible set of values. With this concept, users can write more safe and expressive codes. enum OrderStatus{ Pending, Approved, Processing, Shipped, Delievered, Canceled, } struct Order{ id: u32, customer_name: String, items: Vec&lt;String&gt;, status: OrderStatus, } fn main(){ let mut order = Order{ id:1, customer_name: \"Sangdo Han\".to_string(), items: vec![\"TV\".to_string(), \"Laptop\".to_string()], status:OrderStatus::Pending, }; order.status = OrderStatus::Processing; } . Like the example above, programmer can set the Order’s status using enum OrderStatus with the follwing valid variables : Pending, Approved, Procesing, Shipped, Delivered and Canceled. These options might have different types and amounts of associated data. Enums with inline-struct can make more properous types as followings: . use chrono::{DateTime, Local, TimeZone, Utc}; #[derive(Debug)] enum OrderStatus{ Pending, Approved{start_date:DateTime&lt;Utc&gt;, approver:String}, Processing{start_date:DateTime&lt;Utc&gt;, provider:String}, Shipped{start_date:DateTime&lt;Utc&gt;, ship_no:u32}, Delievered{start_date:DateTime&lt;Utc&gt;, expected_date:DateTime&lt;Utc&gt;}, Canceled } #[derive(Debug)] struct Order{ id: u32, customer_name: String, items: Vec&lt;String&gt;, status: OrderStatus, } fn main(){ let mut order = Order{ id:1, customer_name: \"Sangdo Han\".to_string(), items: vec![\"TV\".to_string(), \"Laptop\".to_string()], status:OrderStatus::Pending, }; order.status = OrderStatus::Processing{start_date:Utc::now(), provider:\"sangdo\".to_string()}; println!(\"{:?}\", order) } . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#222-custom-types",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#222-custom-types"
+  },"87": {
+    "doc": "Rust Programming Language",
+    "title": "2.2.3. Common collections",
+    "content": "Rust’s standard library supports useful data structures called collections. It supports Vec (vector), VecDeque (queue), HashMap and so on. see the details in the official documentation of std::collections . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#223-common-collections",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#223-common-collections"
+  },"88": {
+    "doc": "Rust Programming Language",
+    "title": "2.3. Control Flow",
+    "content": "In any programming language, if you know if-else and loop, you can write any program even if it is too hard to read or too slow. ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#23-control-flow",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#23-control-flow"
+  },"89": {
+    "doc": "Rust Programming Language",
+    "title": "2.3.1. if expression",
+    "content": "Rust’s if is an expression, so it returns value. If there is no explicit return statement, it automatically returns Unit Type (()), which represents an empty tuple. As if is an expression, we can assign value as the following: . let result = if condition { value_1 ; } else if condition_2 { value_2 ; } else { value_3 ; } . about the conditions, rust only supports boolean type. ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#231-if-expression",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#231-if-expression"
+  },"90": {
+    "doc": "Rust Programming Language",
+    "title": "2.3.2. pattern matching",
+    "content": "Rust has a powerful control flow construct keyword : match expression. Basically, match works as the following: . match expression { pattern1 =&gt; { code_block1 }, pattern2 =&gt; { code_block2 }, // .. } . For a simple example, you can register patterns with literals and wildcard (_) as the following: . let dice_roll = 3; match dice_roll { 3 =&gt; println!(\"you got the prize : candies !\"), 5 =&gt; println!(\"you got the prize : chocolate !\"), _ =&gt; println!(\"try again\") } . Generally, enum is widely used for pattern constraints. the following example is originated from the book. enum Coin { Penny, Nickel, Dime, Quarter, } fn value_in_cents(coin: Coin) -&gt; u8 { match coin { Coin::Penny =&gt; 1, Coin::Nickel =&gt; 5, Coin::Dime =&gt; 10, Coin::Quarter =&gt; 25, } } . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#232-pattern-matching",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#232-pattern-matching"
+  },"91": {
+    "doc": "Rust Programming Language",
+    "title": "2.3.3. loop, while, for",
+    "content": ". | loop loop is basically means while true in rust, unlike while or for, however, it can be used as expression with break. In addition, rust can assign a label to a loop as followings: 'outer_loop: loop { 'inner_loop: loop { // ... if some_condition { break 'outer_loop; // with label, loop can exit directly to outer loop } } } . | while while is a repitition keyword as widely used in other programming language. With a condition phrase beside while, we can control the repetition. while needs discrimitive condition to break the repetition. while some_condition { // ... if other_condition { break; } } . | for for could be the best option that handling the repetition with fixed range. let mut factorial = 1; for idx in 1..10 { // starts 1 to 9, if you want to include 10, use 1..=10 factorial *= idx; println!(\"{idx}! = {factorial}\"); } . | . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#233-loop-while-for",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#233-loop-while-for"
+  },"92": {
+    "doc": "Rust Programming Language",
+    "title": "2.4. functions",
+    "content": "We’ve already used a function : main. As you might know already, to make a function, the keyword fn is needed. Also, the function named main is a crucial function, that rust compiler identifies the project. So far, we don’t put the parameters for the function. To give a parameters to a function, we have some rules as follows: . fn make_2d_circle(x:f64, y:f64, r:f64){ assert!( r&gt;0.0 , \"r needs to be larger than 0 but you put : {}\",r); println!(\"circle created at ({x}, {y}) with radius {r}\"); } fn main(){ let inputs : (f64, f64, f64) = (2.0, 3.0, 2.0); make_2d_circle(inputs.0, inputs.1, inputs.2); } . with the outputs, we should declare return type. fn calculate_polar_coordinates(original_x: f64, original_y: f64) -&gt; (f64, f64) { // Calculate radius using the Pythagorean theorem let polar_radius = (original_x.powf(2.0) + original_y.powf(2.0)).sqrt(); // Calculate theta using atan2 (handles 0/0 case) let polar_theta = original_y.atan2(original_x); (polar_radius, polar_theta) // return (polar_radius, polar_theta); } fn main() { let original_x = 2.0; let original_y = 3.0; let (polar_radius, polar_theta) = calculate_polar_coordinates(original_x, original_y); println!(\"Original x: {}, y: {}\", original_x, original_y); println!(\"Converted to Polar Coordinates:\"); println!(\"Radius: {}, Theta: {}\", polar_radius, polar_theta); } . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#24-functions",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#24-functions"
+  },"93": {
+    "doc": "Rust Programming Language",
+    "title": "2.5. Method",
+    "content": "In rust, there is no class keyword, however, we can use enum and struct for OOP. If you are not familiar with reference (&amp;) or dereference(*), I hope you to visit chapter 3 first then come back to this chapter. For instance, we can assign method with impl keyword as follows: . // based on an example from `the book` struct Rectangle { width : u32, height: u32, } impl Rectangle { fn area(&amp;self) -&gt; u32 { self.width * self.height } fn radius_inscribe(&amp;self) -&gt; f64{ let _width:f64 = self.width as f64; let _height:f64 = self.height as f64; f64::sqrt(_width.powf(2.0) + _height.powf(2.0)) } fn has_larger_width_than(&amp;self, other:&amp;Rectangle) -&gt; bool { // this function can get another argument : rectangle instance. self.width &gt; other.width } // associated functions, we can instantiate with other way fn square(size:u32) -&gt; Self { Self { width:size, height:size, } } } fn main(){ let rect1 = Rectangle{ width:30, height:40, }; println!(\"the area of rectangle 1 is {}\", rect1.area()); println!(\"the radius of outer circle of rectangle {}\", rect1.radius_inscribe()); let rect2 = Rectangle{ width: 10, height: 100, }; println!(\"rect1 has larger width than rect2? : {}\", rect1.has_larger_width_than(&amp;rect2)); let square1 = Rectangle::square(30); println!(\"the area of square1 is {}\", square1.area()); } . enum also can have methods, the following example is generated by copilot, which is also a good example that shows pattern matching. enum Direction { Up, Down, Left, Right, } impl Direction { fn is_vertical(&amp;self) -&gt; bool { match *self { // *self means dereference Direction, that gives a value. Direction::Up | Direction::Down =&gt; true, _ =&gt; false, } } fn is_horizontal(&amp;self) -&gt; bool { !self.is_vertical() } } fn main() { let up = Direction::Up; let left = Direction::Left; println!(\"Is 'up' vertical? {}\", up.is_vertical()); // Prints: Is 'up' vertical? true println!(\"Is 'left' horizontal? {}\", left.is_horizontal()); // Prints: Is 'left' horizontal? true } . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#25-method",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#25-method"
+  },"94": {
+    "doc": "Rust Programming Language",
+    "title": "2.6. Generics / Traits",
+    "content": "So far, we construct functions, enums and structs with strong type signatures or members. However, sometimes these strict way may induce duplications. For instance, let us define a function that give result of addtion of two numbers. fn add(a:f64, b:f64)-&gt;f64{ a+b } fn main(){ let a32:f32 = 3.0; let b32:f32 = 5.0; println!(\"{}\", add(a32,b32)); // we have error cuz we defined function `add` only with `f64`, not `f32` } . The above code causes compiler error. This is because the function can only takes f64. Even if we know that addition works with the same way with i32 or f32, as we only defined add function only works for f64, the code has issues. To solve this problem we might need more add functions respect to each type. However this approach could result in redundancies in your code and it makes hard for you (or your team) to maintain the code. One of the idea to solve these redundant-prone coding is using generics. With generics, we can set a generic defintion of a function that can handles multiple types as followings: . fn add&lt;T: std::ops::Add&lt;Output= T&gt;&gt; (a :T, b : T ) -&gt; T { a + b } fn main(){ let a32:f32 = 3.0; let b32:f32 = 5.0; println!(\"{}\", add(a32,b32)); let a64:f64 = 4.0; let b64:f64 = 53.0; println!(\"{}\", add(a64, b64)); } . Here, we set T as a abstract type, by putting angle bracket &lt; &gt; right next to the name of function. In this example, since we use standard add operator + we need to say that T has a special trait (or a constraint or characteristic) that this generic type T uses standard add operator’s output. However, if we don’t have those constraints (in this case, use of add-operator), The code snippet would be compiled. The trait std::ops::Add&lt;Output=T&gt; is a powerful concept in Rust. Traits define functionality that types can implement. In this case, std::ops::Add&lt;Output=T&gt; constraint guarantees type T can be properly added within the function. One of the interesting thing is that rust’s generics don’t impact performance. The compiler generates specific code for each type at compile time, ensuring efficiency, resulting in performance equivalent to writing separate functions for each type. Sometimes, we assume that the generalized members / signatures would not always be the same types. In this case, the generic type placeholder needs to be distinguished as followings: . struct Point &lt;T,U&gt;{ x:T, y:U } fn main(){ let x: i32 = 5; let y: f64 = 3.0; let pointxy = Point{x,y}; } . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#26-generics--traits",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#26-generics--traits"
+  },"95": {
+    "doc": "Rust Programming Language",
+    "title": "3. Pointer / memory related features",
+    "content": " ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#3-pointer--memory-related-features",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#3-pointer--memory-related-features"
+  },"96": {
+    "doc": "Rust Programming Language",
+    "title": "3.1 Memory in Computer",
+    "content": "In operating system, memory (RAM) is divided into 5 parts (regions, segments): Text (code), bss, data, heap and stack. Those manage memory in runtime. ref: data segment image from wikipedia . | Text (code) Text stores executable code, generally fixed size. | Data Data stores initialized global variables and static variables. | BSS (Block Started by Symbol) BSS generally depends on Programming language, however, like C programming language, manages unintialized static variable. | Stack Stack is a LIFO (last-in first-out) data structure, using a mechanism like a piling up pancakes on a plate. Stack manages function calls, local variables, function parameters, and return addresses. Stack pointer is a special register in the CPU keeps track of the top of the stack, pointing the current memory address where new data can be added(malloc), also deleting(free) the topmost data easily. | When a function is called, a new stack frame is created on the stack to hold its local variables, parameters and return address. | For a memory allocation, compiler analyzes the code to determine the size of each function’s stack frame. Next, compiler generates instructions to adjust the stack pointer, allocating and dellocating space as needed. | function calls and returns automatically add (push) and remove (pop) stack frames, ensuring efficient memory usage. | . | Heap Heap is a kind of less organized region of memory, which can be manually directed by user. In the sense of automatic managing, many languages support garbage collection in these days. Rust does not have a traditional garbage collector. Instead, it relies on ownership and borrowing. Rust also supports pointers for user’s memory manipulation, some of them is safer than those in C / C++. | . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#31-memory-in-computer",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#31-memory-in-computer"
+  },"97": {
+    "doc": "Rust Programming Language",
+    "title": "3.2. Owenership",
+    "content": "Ownership is one of the unique features in rust for handling memory not only within a code block (scope) but also between code blocks. the book suggests three ownership rules as follows: . | Each value in Rust has an owner. | There can only be one owner at a time. | When the owner goes out of scope, the value will be dropped. | . Because of axiom #2 and #3, programmers who are familiar with other languages could have in trouble. For instance, in the case of python, the following would work. # python if __name__ == \"__main__\": x = \"hello\" y = x print((id(x) == id(y))) # you can see True, they indicates the same memory address print(y) # you can get 'hello' print(x) # you can get 'hello' . with checking ids of x and y are equal, we can see x and y indicates the same address. however, in rust programming, the following rust code which is similar to the above code won’t be compiled. fn main(){ let x = String::from(\"hello\"); let y = x; println!(\"{}\", y); println!(\"{}\", x); // compile error because x has no ownership of value } . It seems that y and x “shares” the same address, however, it is not. As I mentioned first, in dealing with heap memory, rust basically moves the ownership from x to y. As y has got ownership of the string value “hello”, x cannot access the value until it retrieved ownership back or get new value assigned. ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#32-owenership",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#32-owenership"
+  },"98": {
+    "doc": "Rust Programming Language",
+    "title": "3.3. Pointers",
+    "content": "To solve the above ownership problem, we can also use other options : use memory address! . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#33-pointers",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#33-pointers"
+  },"99": {
+    "doc": "Rust Programming Language",
+    "title": "3.3.1. Reference",
+    "content": "The foremost option is that borrow x’s value with reference. Here is an example of borrowing that y borrows the value from x, and return back automatically when y is called. fn main(){ let x = String::from(\"hello\"); let y = &amp;x; // y borrows (refers) the value of x; println!(\"{}\", y); println!(\"{}\", x); // no error: Still, x is owner of \"hello\" } . This &amp; operator is for referring to x, or borrowing x address. It seems that reference is the same as the pointer in C, however references are always valid and automatically managed by Rust’s borrow checker. They cannot outlive the data they brought and cannot be null. You can see that those exmaples are based on string type because string in rust works allocating the memory based on move, not copy or clone. If you use the same examples but int allocation, there is no error since the basic trait of allocation in int is value shallow copying. The following code which seems like simply adding a dereference operator * could make you a little bit crazy. fn main() { let x = String::from(\"hello\"); // we know, x is a string value \"hello\"; String let y = &amp;x; // y borrows (refers) the value of x; &amp;String let z = &amp;*x; // (*x) is dereference of x, which is inner string (or string slice) : str // and then we refer &amp;(*x), which is reference of string slice : &amp;str println!(\"{}\", y); println!(\"{}\", x); println!(\"{}\", z); } . I added the explanation of x, y and z in the code above with inline comment. ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#331-reference",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#331-reference"
+  },"100": {
+    "doc": "Rust Programming Language",
+    "title": "3.3.2. Raw Pointer",
+    "content": "Still, C-like pointer is also supported in Rust, named as raw pointer. Raw pointers in Rust are necessary for certain tasks where you need to interact with low-level code, such as interfacing with C libraries, implementing low-level data structures, or performing certain operations that can’t be expressed safely within Rust’s safe abstraction. Here are some scenarios where raw pointers are useful: . | Interfacing with C Code: Rust often needs to interact with C libraries, which typically use raw pointers extensively. Rust’s FFI (Foreign Function Interface) allows you to call functions from C libraries and vice versa, and raw pointers are often used to pass data between Rust and C code. | Unsafe Operations: Some operations inherently require unsafe behavior, such as dereferencing a pointer to arbitrary memory or performing low-level memory manipulation. While these operations should be avoided whenever possible, there are situations where they’re necessary for performance reasons or to implement certain algorithms. | Unsafe Abstractions: Sometimes, you may need to implement your own safe abstractions that rely on unsafe operations internally. While the interface exposed to the user remains safe, the implementation may use raw pointers or other unsafe constructs to achieve certain behaviors efficiently. | Low-Level Data Structures: Implementing low-level data structures like linked lists, trees, or graphs may require direct manipulation of memory addresses, which is facilitated by raw pointers. While Rust’s standard library provides safe abstractions for common data structures, there are cases where custom implementations are necessary or desirable. | Embedded Systems and Systems Programming: In systems programming and embedded systems development, you often need precise control over memory layout and low-level hardware interactions. Raw pointers allow you to express such operations safely within the context of an unsafe block. | . It’s important to note that while raw pointers are a powerful tool, they come with significant responsibility. Rust’s safety guarantees are designed to prevent common programming errors and security vulnerabilities, and bypassing these guarantees with raw pointers can introduce bugs, crashes, or security vulnerabilities if used incorrectly. fn main() { let x = 42; // Reference to x let reference = &amp;x; println!(\"Reference: {}\", reference); // Raw pointer to x let raw_ptr: *const i32 = &amp;x as *const i32; unsafe { println!(\"Raw pointer: {}\", *raw_ptr); } } . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#332-raw-pointer",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#332-raw-pointer"
+  },"101": {
+    "doc": "Rust Programming Language",
+    "title": "3.3.3. Smart Pointer",
+    "content": "Smart pointers in Rust are data structures that not only hold a value but also contain metadata and provide additional functionality beyond what regular pointers offer. They enforce various safety guarantees at compile time, ensuring memory safety and preventing common programming errors. One of the most commonly used smart pointers in Rust is Box&lt;T&gt;. It allows you to allocate values on the heap rather than the stack and provides ownership semantics like any other value in Rust. Here’s a brief overview of Box&lt;T&gt;: . | Box&lt;T&gt;: Box is a smart pointer that owns the data it points to and is stored on the heap. It’s used when you need to have a value with a known size at compile time but don’t know the precise size until runtime, or when you want to transfer ownership of a value across scopes or threads. | . Here’s a simple example of Box&lt;T&gt;: . fn main() { let x = Box::new(42); // Allocate an integer on the heap println!(\"Value: {}\", x); // Print the value stored in the Box } . In addition to Box&lt;T&gt;, Rust provides other smart pointers like Rc&lt;T&gt; and Arc&lt;T&gt; for shared ownership, Cell&lt;T&gt; and RefCell&lt;T&gt; for interior mutability, and Mutex&lt;T&gt; and RwLock&lt;T&gt; for synchronization, among others. Each smart pointer type has its own characteristics and use cases, allowing you to choose the appropriate one based on your requirements. Smart pointers enable you to write safer, more expressive code by encapsulating complex memory management logic and providing clear ownership semantics. ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#333-smart-pointer",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#333-smart-pointer"
+  },"102": {
+    "doc": "Rust Programming Language",
+    "title": "3.4. Lifetimes",
+    "content": "The following’s a code from the book. fn longest(x: &amp;str, y:&amp;str) -&gt; &amp;str { if x.len() &gt;= y.len() { return x; } else { return y; } } fn main() { let string1 = String::from(\"abcd\"); let string2 = \"xyz\"; let result = longest(string1.as_str(), string2); println!(\"The longest string is {}\", result); } . If you compile the code above, you will get an error . error[E0106]: missing lifetime specifier --&gt; src/main.rs:1:32 | 1 | fn longest(x: &amp;str, y:&amp;str) -&gt; &amp;str { | ---- ---- ^ expected named lifetime parameter | = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `x` or `y` help: consider introducing a named lifetime parameter | 1 | fn longest&lt;'a&gt;(x: &amp;'a str, y:&amp;'a str) -&gt; &amp;'a str { | ++++ ++ ++ ++ For more information about this error, try `rustc --explain E0106`. what is a lifetime? . As we mentioned in 3.1.3. reference, rust compiler prevent the reference outlive the data by using borrow checker : so to speak, try to prevent dangling pointer. With this function of references signatures, rust compiler worry about the rest of reference. If x is returned, what about y? y could become a dangling pointer. vice versa. Therefore, we need to notify to compiler (actually for ourselves) that the rest reference will be terminated in the same lifetime of the picked (returned) one. In function longest, returning a reference to x would invalidate y (become a dangling reference) if x was longer. Lifetimes prevent this by making the references’ validity explicit. The fixed version is as follows: . fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str { if x.len() &gt;= y.len() { return x; } else { return y; } } . ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#34-lifetimes",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#34-lifetimes"
+  },"103": {
+    "doc": "Rust Programming Language",
+    "title": "4. What’s next?",
+    "content": "It seems that we only discuss basic syntax, memory related features … What’s next? You might think that you didn’t finish at all. Because we didn’t discuss modules and crates, I/O, threading, standard libraries, handling errors and so on! . Those subjects are different from the subjects we’ve discussed. So far, we only focus on the distinct and basic characteristics of rust programming language. The subjects we haven’t discucssed, actually, are not recommended to be learned only by reading. From now on, we need to start… . LEARNING BY DOING! ",
+    "url": "/docs/fundamentals/programming/rust-programming.html#4-whats-next",
+    
+    "relUrl": "/docs/fundamentals/programming/rust-programming.html#4-whats-next"
+  },"104": {
+    "doc": "Machine Unlearning",
+    "title": "Machine Unlearning",
+    "content": " This code is based on my works based on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the machine unlearning. ",
+    "url": "/docs/research/unlearning",
+    
+    "relUrl": "/docs/research/unlearning"
+  },"105": {
+    "doc": "Machine Unlearning",
+    "title": "sRFL - Ideation",
+    "content": "  The code contains a novel way of unlearning, it achieved decoupling in forget/retain accuracy : forget goes low, while that of retain-set goes high. I focused on the decoupling in the logit spaces, using teacher-student framework. | sRFL (simple Rolling in Forget Logits) | . ",
+    "url": "/docs/research/unlearning#srfl---ideation",
+    
+    "relUrl": "/docs/research/unlearning#srfl---ideation"
+  },"106": {
+    "doc": "Machine Unlearning",
+    "title": "sRFL - conclusion",
+    "content": "  simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. The following is about train accuracy about CIFAR-10 . In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset. ",
+    "url": "/docs/research/unlearning#srfl---conclusion",
+    
+    "relUrl": "/docs/research/unlearning#srfl---conclusion"
+  },"107": {
+    "doc": "Machine Unlearning",
+    "title": "sRFL - pseudo code",
+    "content": "1. Copy a model from original trained model . teacher_model &lt;- copy.deepcopy(model) teacher_model.eval() // teacher model will not be trained . 2. Freeze layers of model except for first two backbones (feature extracting) . 3-1. Loop : Generate logits by teacher model . for data in datasets (retain + forget dataset): retain_data, forget_data &lt;- data pseudo_forget_logits &lt;- teacher_model(forget_data) pseudo_retain_logits &lt;- teacher_model(retain_data) . 3-2. Roll only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1] ) . rolled_pseudo_logits &lt;- roll(pseudo_forget_logits) . 3-3. Minimize KL-divergence between rolled_pseudo_logits and model’s output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset) . forget_outputs &lt;- model(forget_data) retain_outputs &lt;- model(retain_data) forget_loss &lt;- KLDiv(rolled_pseudo_logits, forget_outputs) \\ - cosine_similarity(rolled_pseudo_logits, forget_outputs)\\ + KLDiv(pseudo_retain_logits, retain_outputs) . 3-4. backward propagation by forget_loss . forget_loss.backward() . End of Loop. ",
+    "url": "/docs/research/unlearning#srfl---pseudo-code",
+    
+    "relUrl": "/docs/research/unlearning#srfl---pseudo-code"
+  },"108": {
+    "doc": "Machine Unlearning",
+    "title": "Conclusion",
+    "content": "  While it achieved high decoupling, there’s a huge claim about their metrics and evaluation. Even though the competition is completed with some argues, the main idea of machine unlearning is quite crucial in privacy and robustness of the ml-based services. In the future, I will progress my works. ",
+    "url": "/docs/research/unlearning#conclusion",
+    
+    "relUrl": "/docs/research/unlearning#conclusion"
+  }
+}

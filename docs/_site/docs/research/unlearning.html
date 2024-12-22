@@ -1,0 +1,61 @@
+<h1 id="machine-unlearning">Machine Unlearning</h1>
+<p class="label label-purple">Initialized (Dec.02.2023)</p>
+
+<p>    This code is based on my submissions on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the <code class="language-plaintext highlighter-rouge">machine unlearning</code>.</p>
+
+<p>I will upload the code in <a href="https://github.com/Sangdo-Han/unlearning">my-github</a> when all the code (including mock of nips unlearning, verifications) is ready, so far, I will just post the brief algorithms and ideation as below (sRFL : done).</p>
+
+<h1 id="unlearning-ideation">Unlearning Ideation</h1>
+
+<p>The code contains two novel way of unlearning, both of them achieved decoupling in forget/retain accuracy : forget goes low, while retain goes high.</p>
+
+<ol>
+  <li>sRFL (simple Rolling in Forget Logits)</li>
+  <li>ALIF (Auxilary Layer for Inducing Forget)</li>
+</ol>
+
+<h2 id="srfl">sRFL</h2>
+<p class="label label-purple">Initialized (Dec.02.2023)</p>
+<p>simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework.</p>
+
+<p>The following is about train accuracy about <code class="language-plaintext highlighter-rouge">CIFAR-10</code></p>
+
+<p align="center">
+ <img src="https://sangdo-han.github.io/docs/research/unlearning/cifar10_accuracy.png" />
+</p>
+
+<p>In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset.</p>
+
+<h3 id="algorithm-with-pseudo-code">Algorithm with Pseudo Code</h3>
+<p>1. <strong>Copy</strong> a model from original trained model</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>teacher_model &lt;- copy.deepcopy(model)
+teacher_model.eval() // teacher model will not be trained
+</code></pre></div></div>
+<p>2. <strong>Freeze layers of model except for first two backbones (feature extracting)</strong></p>
+
+<p>3-1. <strong>Loop : Generate logits by teacher model</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for data in datasets (retain + forget dataset):
+    retain_data, forget_data &lt;- data
+    pseudo_forget_logits &lt;- teacher_model(forget_data)
+    pseudo_retain_logits &lt;- teacher_model(retain_data)
+</code></pre></div></div>
+
+<p>3-2. <strong>Roll</strong> only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1] )</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    rolled_pseudo_logits &lt;- roll(pseudo_forget_logits)
+</code></pre></div></div>
+<p>3-3. <strong>Minimize</strong> KL-divergence between rolled_pseudo_logits and model’s output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    forget_outputs &lt;- model(forget_data)
+    retain_outputs &lt;- model(retain_data)
+
+    forget_loss &lt;-  KLDiv(rolled_pseudo_logits, forget_outputs) \
+                    - cosine_similarity(rolled_pseudo_logits, forget_outputs)\
+                    + KLDiv(pseudo_retain_logits, retain_outputs)
+</code></pre></div></div>
+
+<p>3-4. <strong>backward</strong> propagation by forget_loss</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   forget_loss.backward()
+</code></pre></div></div>
+<p>End of Loop.</p>
+
+<h2 id="alif">ALIF</h2>
+<p>TBD</p>

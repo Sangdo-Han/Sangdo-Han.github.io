@@ -1,0 +1,101 @@
+<h1 id="concurrent--parallel-programming">Concurrent / Parallel Programming</h1>
+
+<p class="label label-purple">Revisited (MARCH.17.2024)</p>
+
+<p>For explaining concurrent or parallel programming, understanding the low level features such as register, memory, and pointers are needed.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>When a top-level programmer encounters a time-efficiency issue in an algorithm, program, or system, it is natural for them to think of divide-and-conquer first. As systems grow in size and demand for speed increases, the ways in which divide-and-conquer is used have evolved alongside the work of top-level software researchers.</p>
+
+<p>Concurrent / parallel programming is a recent paradigm of divide-and-conquer that is being used in practice.</p>
+
+<p>With this post, I hope the readers (also myself) to study the concurrent / parallel programming thoroughly with Rust.</p>
+
+<h2 id="prerequisite-terminology">Prerequisite (Terminology)</h2>
+
+<p>The following table is a basic terminology about process and thread. Even if you are not interested in concurrent / parallel programming, if you’re a software engineer, you need to know those things.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Term</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Process</strong></td>
+      <td>A program in execution. It is an instance of a program that is running on a computer.</td>
+    </tr>
+    <tr>
+      <td><strong>Thread</strong></td>
+      <td>A lightweight process. It is a sequence of instructions that can be executed independently of other threads.</td>
+    </tr>
+    <tr>
+      <td><strong>Process ID (PID)</strong></td>
+      <td>A unique identifier that is assigned to each process. It is used to identify the process and to distinguish it from other processes.</td>
+    </tr>
+    <tr>
+      <td><strong>Thread ID (TID)</strong></td>
+      <td>A unique identifier that is assigned to each thread. It is used to identify the thread and to distinguish it from other threads.</td>
+    </tr>
+    <tr>
+      <td><strong>Parent process</strong></td>
+      <td>A process that creates another process. The created process is called the child process.</td>
+    </tr>
+    <tr>
+      <td><strong>Child process</strong></td>
+      <td>A process that is created by another process. The creating process is called the parent process.</td>
+    </tr>
+    <tr>
+      <td><strong>Kernel</strong></td>
+      <td>The core of the operating system. It is responsible for managing processes and other resources.</td>
+    </tr>
+    <tr>
+      <td><strong>Scheduler</strong></td>
+      <td>The scheduler is responsible for scheduling processes to run on the CPU.</td>
+    </tr>
+    <tr>
+      <td><strong>Context switching</strong></td>
+      <td>The process of switching from one process to another.</td>
+    </tr>
+    <tr>
+      <td><strong>Inter-process communication (IPC)</strong></td>
+      <td>IPC is the process of communication between processes.</td>
+    </tr>
+    <tr>
+      <td><strong>register</strong></td>
+      <td>A small, fast memory that is used to store data that is being used by the CPU (for frequent uses)</td>
+    </tr>
+    <tr>
+      <td><strong>Program counter</strong></td>
+      <td>A register that stores the address of the next instruction that the CPU will execute</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="more-specific-definition-on-process">More Specific Definition on Process</h3>
+<p>From the table above, a process is a program in execution. It means it has not only a space aspect (a program) but also time aspect (in execution)</p>
+
+<p>A process’s space is the allocated memory. This memory includes the code of the program, the data using for the program, and the stack. Here, the stack is used to store the state of the process, such as the values of the registers and the program counter</p>
+
+<blockquote>
+  <p><strong>Note</strong><br />
+ <u>stack</u> is a linear LIFO (Last-In First-Out) data structure.</p>
+</blockquote>
+
+<p>In terms of time aspect, the time includes the process <strong>waiting</strong> time for its running, process <strong>running</strong> time, and its <strong>waiting I/O</strong> time.</p>
+
+<p>These aspects of a process are closely related. the allocated memory of a process determines how long the process can run. vice versa.</p>
+
+<p>The understanding of those aspects also helpful for understanding how processes interact with each other (concurrent / parallel programming). When two processes share memory, they must be careful not to overwrite each other’s data. And when two processes communicate with each other, they must be careful not to send each other too much data.</p>
+
+<h3 id="more-specific-definition-on-thread">More Specific Definition on Thread</h3>
+
+<p>A thread is the smallest sequence of instructions that can be executed not depending on the others. Each thread has its own stack and registers, however, it shares the same memory with others in the same process. (This is because a single CPU contains only a single physical thread and the other threads are simply software based threads : physically, we do not separate the memory) It means that threads can access the same data, but they cannot modify each other’s register data without synchronization.</p>
+
+<h2 id="sync--async">Sync / Async</h2>
+
+<h3 id="synchronizations-mutex-semaphore-barrier">Synchronizations (Mutex, Semaphore, Barrier)</h3>
+<p class="label label-yellow">Comming Soon</p>
