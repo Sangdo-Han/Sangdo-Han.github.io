@@ -78,7 +78,7 @@ DEPENDENCIES
   jekyll (~> 4.3)
   jekyll-feed
   jekyll-sitemap
-  just-the-docs (= 0.4.1)
+  just-the-docs
 
 BUNDLED WITH
    2.5.23
