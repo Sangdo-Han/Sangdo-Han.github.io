@@ -1,7 +1,7 @@
 title: sanhan research
 description: Lesson 5
-theme: just-the-docs
-# remote_theme: just-the-docs
+# theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
 url: https://Sangdo-Han.github.io/
 favicon_icon: "https://Sangdo-Han.github.io/assets/images/favicon.ico"
 search_enable: true
@@ -49,6 +49,7 @@ callouts:
     color: red
 google_site_verification: "TumEYHq6xpSNuebLNUkEWUMOUm3w7a6mdrQ33DQPEwA"
 plugins:
+    - jekyll-remote-theme
     - jekyll-sitemap
     - jekyll-feed
 # aux_links:
