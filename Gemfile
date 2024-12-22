@@ -13,3 +13,5 @@ gem "jekyll-feed"
 gem "jekyll-remote-theme"
 
 gem "github-pages", group: :jekyll_plugins
+
+gem "jekyll-default-layout"

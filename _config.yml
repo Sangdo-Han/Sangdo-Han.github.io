@@ -49,6 +49,7 @@ callouts:
     color: red
 google_site_verification: "TumEYHq6xpSNuebLNUkEWUMOUm3w7a6mdrQ33DQPEwA"
 plugins:
+    - jekyll-default-layout
     - jekyll-remote-theme
     - jekyll-sitemap
     - jekyll-feed
