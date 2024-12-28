@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Computer Vision
-nav_order: 2
+nav_order: 1
 has_children: true
 parent: Research
 permalink: /docs/research/computer-vision

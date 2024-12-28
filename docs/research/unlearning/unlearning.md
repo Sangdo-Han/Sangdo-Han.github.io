@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Machine Unlearning
-nav_order: 1
+nav_order: 3
 has_children: false
 parent: Research
 permalink: /docs/research/unlearning
