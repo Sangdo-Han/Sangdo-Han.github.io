@@ -16,5 +16,4 @@ With a significant acheivement in Deep Learning Architectures ( CNN, RNN, transf
      
 
 However, there are still unsolved questions, efficiency, reliability, robustness, linkage to other modalities, temporal evolution of scene in computer vision and understanding the gap between computer vision and human visionary behavior.   
-
-As I startd my AI career with computer vision, I will cautiously post the contents and fix the contents regularily.   
+  
