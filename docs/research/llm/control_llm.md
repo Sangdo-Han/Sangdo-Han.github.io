@@ -2,7 +2,7 @@
 layout: default
 title: Control theory of LLM
 parent: LLM
-grand_parent: AI Research
+grand_parent: Research
 math: katex
 nav_order: 2
 ---

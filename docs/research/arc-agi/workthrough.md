@@ -2,7 +2,7 @@
 layout: default
 title: Workthrough
 parent: ARC-AGI Challenge
-grand_parent: AI Research
+grand_parent: Research
 math: katex
 nav_order: 1
 ---

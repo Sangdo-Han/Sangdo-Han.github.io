@@ -2,7 +2,7 @@
 layout: default
 title: 3D Image Reconstruction - Introduction
 parent: Computer Vision
-grand_parent: AI Research
+grand_parent: Research
 math: katex
 nav_order: 1
 ---

@@ -2,7 +2,7 @@
 layout: default
 title: RAG
 parent: LLM
-grand_parent: AI Research
+grand_parent: Research
 math: katex
 nav_order: 1
 ---

@@ -1,9 +1,19 @@
 title: sanhan research
 description: Lesson 5
 # theme: just-the-docs
-theme: just-the-docs
+# theme: just-the-docs
 remote_theme: just-the-docs/just-the-docs
 url: https://Sangdo-Han.github.io/
+favicon_ico: "/assets/images/favicon.ico"
+
+math: mathjax
+defaults:
+  - scope:
+      path: "docs" # an empty string here means all files in the project
+      type: "pages"
+    values:
+      layout: "default"
+
 # favicon_icon: "https://Sangdo-Han.github.io/assets/images/favicon.ico"
 search_enable: true
 search:
@@ -20,13 +30,16 @@ heading_anchors: true
 
 aux_links_new_tab: false
 
-nav_sort: case_sensitive
+nav_enabled: true
+# nav_sort: case_sensitive
 nav_external_links:
     - title: GitHub
       url : https://github.com/Sangdo-Han
+heading_anchors: true
 
 back_to_top : true
 back_to_top_text: "Back to top"
+show_last_edit_time: true
 last_edit_timestamp: true 
 last_edit_time_format: "%b %e %Y at %I:%M %p"
 

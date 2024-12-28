@@ -3,7 +3,7 @@ layout: default
 title: Computer Vision
 nav_order: 2
 has_children: true
-parent: AI Research
+parent: Research
 permalink: /docs/research/computer-vision
 ---
 
