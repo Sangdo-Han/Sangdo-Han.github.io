@@ -9,17 +9,17 @@ permalink: /docs/research/unlearning
 
 # Machine Unlearning  
 
-&nbsp;This code is based on my works based on NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `machine unlearning`.
+&nbsp;&nbsp;&nbsp;&nbsp;This code is based on my works of NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the `machine unlearning`.
 
 ## sRFL - Ideation
 
-&nbsp; The code contains a novel way of unlearning, it achieved decoupling in forget/retain accuracy : forget goes low, while that of retain-set goes high.
+&nbsp;&nbsp;&nbsp;&nbsp; The code contains a novel way of unlearning, it achieved decoupling in forget/retain accuracy : forget goes low, while that of retain-set goes high.
 I focused on the decoupling in the logit spaces, using teacher-student framework.
 
 - sRFL (simple Rolling in Forget Logits) 
 
 ## sRFL - conclusion   
-&nbsp; simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. 
+&nbsp;&nbsp;&nbsp;&nbsp; simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. 
 
 The following is about train accuracy about `CIFAR-10`
 
@@ -66,5 +66,5 @@ for data in datasets (retain + forget dataset):
 End of Loop.  
 
 ## Conclusion   
-&nbsp; While it achieved high decoupling, there's a huge claim about their metrics and evaluation. Even though the competition is completed with some argues, 
+&nbsp;&nbsp;&nbsp;&nbsp; While it achieved high decoupling, there's a huge claim about their metrics and evaluation. Even though the competition is completed with some argues, 
 the main idea of machine unlearning is quite crucial in privacy and robustness of the ml-based services. In the future, I will progress my works.

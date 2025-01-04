@@ -9,7 +9,7 @@ permalink: /docs/mathematics
 
 # **Mathematics**
 
-will cover graduate-level mathematics to understand modern AI, Graphics and Robotics.
+Graduate-level mathematics to understand modern AI, Graphics and Robotics.
 
  - Linear algebra (linear control system)
  - Probability and Random process

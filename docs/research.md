@@ -7,5 +7,5 @@ permalink: /docs/research
 ---
 
 # Research
-records including paper reviews.
+AI, Software researches. 
 <!-- {: .fs-5 .fw-400 } -->

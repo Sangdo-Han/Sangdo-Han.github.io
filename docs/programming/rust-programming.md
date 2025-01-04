@@ -10,7 +10,7 @@ tags:
 # Rust Programming Language
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;About rust programming. I hope everyone to read [the official documentation](https://www.rust-lang.org), especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice.
+&nbsp;&nbsp;&nbsp;&nbsp;About rust programming, I hope everyone to read [the official documentation](https://www.rust-lang.org), especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice.
 
 
 <details open markdown="block">
