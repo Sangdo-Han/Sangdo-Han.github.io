@@ -60,6 +60,43 @@ The understanding of those aspects also helpful for understanding how processes 
 
 A thread is the smallest sequence of instructions that can be executed not depending on the others. Each thread has its own stack and registers, however, it shares the same memory with others in the same process. (This is because a single CPU contains only a single physical thread and the other threads are simply software based threads : physically, we do not separate the memory) It means that threads can access the same data, but they cannot modify each other's register data without synchronization.
 
+### Thread in C++
+In progress
+{: .label .label-yellow}
+
+#### Simple Example
+
+```cpp
+#include <chrono>
+#include <iostream>
+#include <thread>
+
+// set a static bool variable as a flag
+static bool sbFinished = false;
+
+void DoWork()
+{
+    using namespace std::literals::chrono_literals;
+ 
+    std::cout << "Worker Thread ID : " << std::this_thread::get_id() << std::endl;
+    while(!sbFinished)
+    {
+        std::cout << "Working ... " << "\n";
+        std::this_thread::sleep_for(1s); // s stands for `second`
+    }
+}
+int main()
+{
+    std::cout << "Main Thread ID: " << std::this_thread::get_id() << "\n";
+    std::thread worker(DoWork);
+    sbFinished = true;
+    worker.join();
+    std::cout << "Finished" << "\n";
+    std::cout << "Thread ID :" << std::this_thread::get_id() << "\n";
+}
+
+```
+
 ## Sync / Async
 
 ### Synchronizations (Mutex, Semaphore, Barrier)
