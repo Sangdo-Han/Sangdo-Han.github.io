@@ -1,14 +1,13 @@
 ---
 layout: default
-title: C++
+title: C / C++
 parent: Programming
-nav_order: 1
+nav_order: 3
 tags: 
   - C++
   - C
-  - OpenGL
 ---
 
-# C++   
+# Tips for C/C++   
 
-&nbsp;&nbsp;&nbsp;&nbsp;C++ is the #1 horrifying but most powerful language in programming language.    
+Figure out powerful and safe approach.

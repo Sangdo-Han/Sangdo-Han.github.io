@@ -8,4 +8,4 @@ permalink: /docs/research/llm
 ---
 
 # LLM
-&nbsp;&nbsp;&nbsp;&nbsp; Large Language Model studies and utilizations
+Large Language Model studies and utilizations
