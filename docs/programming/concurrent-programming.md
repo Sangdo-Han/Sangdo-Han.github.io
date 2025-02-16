@@ -6,8 +6,8 @@ has_children: true
 nav_order: 2
 tags: 
   - concurrent programming
-  - multi-threading
-  - multi-processing
+  - multithreading
+  - multiprocessing
   - asynchronous programming
   - C++
   - C
