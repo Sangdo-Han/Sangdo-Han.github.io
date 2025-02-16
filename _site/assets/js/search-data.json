@@ -15,360 +15,360 @@
   },"2": {
     "doc": "01. Introduction",
     "title": "Introduction",
-    "content": "Multi-threading, parallel computing, concurrent programming are powerful but quite difficult. Eventhough a top-level programmer designs a program, it is always expected that his/her first approach is a single threaded program. In this sense, we need to study this subject precisely and thoroughly with low-level approach, then capsulize this as possible for not thinking much with high-level approaches. | Introduction . | Race condition | Basic Terminology | . | . ",
+    "content": "Multi-threading, parallel computing, concurrent programming are powerful but quite difficult. Eventhough a top-level programmer designs a program, it is always expected that his/her first approach is a single threaded program. In this sense, we need to study this subject precisely and thoroughly with low-level approach, then capsulize this as possible for not thinking much with high-level approaches. ",
     "url": "/docs/programming/concurrent-programming/01.%20Introduction.html#introduction",
     
     "relUrl": "/docs/programming/concurrent-programming/01.%20Introduction.html#introduction"
   },"3": {
-    "doc": "01. Introduction",
-    "title": "Race condition",
-    "content": " ",
-    "url": "/docs/programming/concurrent-programming/01.%20Introduction.html#race-condition",
-    
-    "relUrl": "/docs/programming/concurrent-programming/01.%20Introduction.html#race-condition"
-  },"4": {
-    "doc": "01. Introduction",
-    "title": "Basic Terminology",
-    "content": "| Term | Description | . | Process | A program in execution. It is an instance of a program that is running on a computer. | . | Thread | A lightweight process. It is a sequence of instructions that can be executed independently of other threads. | . | Process ID (PID) | A unique identifier that is assigned to each process. It is used to identify the process and to distinguish it from other processes. | . | Thread ID (TID) | A unique identifier that is assigned to each thread. It is used to identify the thread and to distinguish it from other threads. | . | Parent process | A process that creates another process. The created process is called the child process. | . | Child process | A process that is created by another process. The creating process is called the parent process. | . | Kernel | The core of the operating system. It is responsible for managing processes and other resources. | . | Scheduler | The scheduler is responsible for scheduling processes to run on the CPU. | . | Context switching | The process of switching from one process to another. | . | Inter-process communication (IPC) | IPC is the process of communication between processes. | . | register | A small, fast memory that is used to store data that is being used by the CPU (for frequent uses) | . | Program counter | A register that stores the address of the next instruction that the CPU will execute | . ",
-    "url": "/docs/programming/concurrent-programming/01.%20Introduction.html#basic-terminology",
-    
-    "relUrl": "/docs/programming/concurrent-programming/01.%20Introduction.html#basic-terminology"
-  },"5": {
     "doc": "01. Introduction",
     "title": "01. Introduction",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/01.%20Introduction.html",
     
     "relUrl": "/docs/programming/concurrent-programming/01.%20Introduction.html"
-  },"6": {
+  },"4": {
     "doc": "01. Typing",
     "title": "Typing in Python",
     "content": "Although python is a dynamic typed language, typing (at least type-hinting) is widely used for co-operation, and is occasionally mandatory for the production-level codes. There are roughly two options: Type Hinting and Mandatory Typing . | Typing in Python . | Type Hinting | Mandatory Typing | . | . ",
     "url": "/docs/programming/python/01.%20Typing.html#typing-in-python",
     
     "relUrl": "/docs/programming/python/01.%20Typing.html#typing-in-python"
-  },"7": {
+  },"5": {
     "doc": "01. Typing",
     "title": "Type Hinting",
     "content": "Type hinting is a way of adding type information to python code. It does not guarantee the exact types in runtime but it helps co-working because of readability and maintainability. This type hinting is widely used in open source python communities (especially in deep learning communities), because it is easy to communicate and less burdensome compare to mandatory typing. And also, if you’re using modern IDEs and static analysis tools, you can code easily and less error-prone because IDE’s automation functionalities and static analysis tools read the type hinting. import typing as T # Type alias Members = T.List[str] class Party: def __init__(self, name: str, party_members: Members) -&gt; None: self._name: str = name self._party_members: Members = party_members # More concise type hint def join(self, new_members: Members) -&gt; None: self._party_members.extend(new_members) # Use extend for in-place modification def __str__(self) -&gt; str: #add __str__ method for printing return f\"Party Name: {self._name}\\nMembers: {', '.join(self._party_members)}\" def main(): lunch_party = Party(\"Lunch Bunch\", [\"san\", \"han\"]) newcomers: Members = [\"gyro\", \"jonathan\"] lunch_party.join(newcomers) print(lunch_party) if \"__main__\" == __name__: main() . ",
     "url": "/docs/programming/python/01.%20Typing.html#type-hinting",
     
     "relUrl": "/docs/programming/python/01.%20Typing.html#type-hinting"
-  },"8": {
+  },"6": {
     "doc": "01. Typing",
     "title": "Mandatory Typing",
     "content": "By using pydantic-like library (recommended for production level), we can acheive mandatory typing. Once pydantic models are defined, it works as structs in C/C++. Just like C/C++ structs, pydantic models provide a clear and structured way to represent data. The fields (members in C/C++) and their types makes the data layout explicit and easy to understand. But unlike C/C++, pydantic does this through runtime validation based on the type hints. from typing import List from pydantic import BaseModel class Party(BaseModel): name: str members: List[str] = [] # Initialize to an empty list def join(self, new_members: List[str]) -&gt; None: self.members.extend(new_members) def __str__(self) -&gt; str: return f\"Party Name: {self.name}\\nMembers: {', '.join(self.members)}\" def main(): lunch_party = Party(name=\"Lunch Bunch\", members=[\"san\", \"han\"]) newcomers = [\"gyro\", \"jonathan\"] lunch_party.join(newcomers) print(lunch_party) # Example of pydantic validation try: invalid_party = Party(name=\"Invalid\", members=[1, 2, 3]) # Type error for members except ValueError as e: print(f\"Pydantic Validation Error: {e}\") try: lunch_party.join(\"not a list\") #Type Error for new_members except ValueError as e: print(f\"Pydantic Validation Error: {e}\") if \"__main__\" == __name__: main() . ",
     "url": "/docs/programming/python/01.%20Typing.html#mandatory-typing",
     
     "relUrl": "/docs/programming/python/01.%20Typing.html#mandatory-typing"
-  },"9": {
+  },"7": {
     "doc": "01. Typing",
     "title": "01. Typing",
     "content": " ",
     "url": "/docs/programming/python/01.%20Typing.html",
     
     "relUrl": "/docs/programming/python/01.%20Typing.html"
-  },"10": {
+  },"8": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2. Basic Synthax",
     "content": "One of the reason why we use Rust is for a memory-safe efficient programming. It is because that rust compiler strictly yells the programmer to follow their memory-safe instructions. | 2. Basic Synthax . | 2.1. Immutables and mutables . | 2.1.1. mutable vs immutable | 2.1.2. constant | 2.1.3. shadowing | . | 2.2. Rust is a statically-typed language. | 2.2.1. Basic Scalar Types | 2.2.2. Custom Types | 2.2.3. Common collections | . | 2.3. Control Flow . | 2.3.1. if expression | 2.3.2. pattern matching | 2.3.3. loop, while, for | . | 2.4. functions | 2.5. Method . | 2.6. Generics / Traits | . | . | . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#2-basic-synthax",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#2-basic-synthax"
-  },"11": {
+  },"9": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.1. Immutables and mutables",
     "content": "In rust, let is used for declaration of a variable, without mut keyword, rust generally declare the variables be immutable by default. Basically, rust supports three ways to assign a value as follows : . | Variable Type | Advantages | Disadvantages | Syntax | . | Mutable | Flexibility, efficiency | Thread safety, complexity | let x = 3; | . | Immutable | Thread safety, predictability, simplicity | Memory usage, performance | let mut x = 3; | . | Constant | Readability, predictability, optimization | Limited flexibility, potential for code duplication | const x = 3; | . The following code snippet is from the book but with my commentary . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#21-immutables-and-mutables",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#21-immutables-and-mutables"
-  },"12": {
+  },"10": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.1.1. mutable vs immutable",
     "content": "// the following code occurs compile error, this example is from `the book` of rust-lang.org fn main(){ let x = 5; // rust sets value be immutable by default. (1) println!(\"the value of x is {x}\"); x = 6; // here the mutation occurs however as we did not set x be mutable, this occurs compile error in rust. println!(\"the value of x is {x}\"); //compiler cannot reach here. } . | To avoid the error, we need to write (1) as let mut x = 5; | . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#211-mutable-vs-immutable",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#211-mutable-vs-immutable"
-  },"13": {
+  },"11": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.1.2. constant",
     "content": "fn main(){ const mut X = 5; // compile error occurs here, unlike `let` expression which initializes variables, `const` does not allow `mut` expression. } . | Compiler might tell you change const to static. However, even if you change it, the expression of static mut is unsafe, so you get compiler error again with : error[E0133]: use of mutable static is unsafe and requires unsafe function or block . | This error ([E0133]) can be avoided with unsafe block (which allows memory-unsafe coding) like the following, however, you might not need this usages right now. (not recommended) . | . fn main() { unsafe{ static mut A:i32 = 1024; // static needs the concrete type like i32 here. println!(\"Hello, world!\"); println!(\"{A}\"); } } . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#212-constant",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#212-constant"
-  },"14": {
+  },"12": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.1.3. shadowing",
     "content": "Shadowing means that a variable is declared with the same name of previous variable. I posted the usage because it is in the book of rust-lang, however, shadowing is not recommended in general cases. fn main(){ let x = 5; let x = x + 1; // shadow variable x to be x (prev) + 1 : 6 { let x = x * 2; // inner shadow of x : } // shadowing scope ends here. so the value of the variable x is now 6, } . | Unlike mutable variable, we can change the value of variable in compile-time. | Unlike mutable variable, shadowing allows to use the same name when we change the data type. This sounds like powerful. However, type-changing situation sometimes leads a serious dynamic errors that compiler cannot discern. Therefore, shadowing should be avoided in general cases. | . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#213-shadowing",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#213-shadowing"
-  },"15": {
+  },"13": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.2. Rust is a statically-typed language.",
     "content": "Like modern programming languages like python or javascript, Rust supports type inference. However, rust generally requires concrete (static) types during compilation for memory-safe efficient programming. We call this type compliance as statically-typed language, which means the types of variables and expressions are checked at compile-time rather than at runtime. ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#22-rust-is-a-statically-typed-language",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#22-rust-is-a-statically-typed-language"
-  },"16": {
+  },"14": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.2.1. Basic Scalar Types",
     "content": "Here are the table for Rust’s basic types . | Type | Description | Literal | . | i8 ~ i128 | 8 ~ 128 bit integer |   | . | u8 ~ i128 | 8 ~ 128 bit unsigned integer |   | . | isize | integer depends on the architecture |   | . | usize | unsigned integer depends on the architecture |   | . | f32 ~ f64 | 32 ~ 64 bit floating points | 3.1415 | . | bool | boolean type | true / false | . | char | letter type | ‘a’ | . | (type, type, … ) | tuple | (true, 5) | . | [type; integer value ] | array | [3; 10] | . Here the following codes are about declaration of types: . fn main(){ let five = 5 ; // Rust basically infers integer value as i32. let five_i32 : i32 = 5; // i32 let pi = 3.14; // Rust baically infers float value as f64 let pi_f32 : f32 = 3.14; // f32 let t = true; // bool let f : bool = false; // bool let ch = 'c'; let ch_char : char = 'c'; // char is 32 bit length // about tuple let compound_tup : (i32, f64, u16) = (400, 6.28, 2); let four_hundred = compound_tup.0; let tau = compound_tup.1; let two = compound_tup.2; // about array let arr_1 = [1,2,3,4,5]; let arr_2 : [i32; 5] = [1,2,3,4,5]; // let arr_3 = [3; 5]; // [3,3,3,3,3] let arr_first = arr_1[0]; let arr_second = arr_1[1]; } . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#221-basic-scalar-types",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#221-basic-scalar-types"
-  },"17": {
+  },"15": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.2.2. Custom Types",
     "content": "Rust also supports algebraic types. struct can be used as a multiple type, enum can be used as a sum type. Struct . Like C programming language, Rust has a struct type that user can define a custom data. While rust’s struct is more expansive than C struct, it enables users to use flexible and memory-safe custom data. struct Person{ name: String, age: u8, } fn main(){ let person = Person{ name:\"Sangdo Han\".to_string(), age:33, }; } . Enums . Enums, which stands for enumerations, is one of the powerful custom type that enables to make custom types in modern programming language. Briefly speaking, enums gives user to selecting a value of a possible set of values. With this concept, users can write more safe and expressive codes. enum OrderStatus{ Pending, Approved, Processing, Shipped, Delievered, Canceled, } struct Order{ id: u32, customer_name: String, items: Vec&lt;String&gt;, status: OrderStatus, } fn main(){ let mut order = Order{ id:1, customer_name: \"Sangdo Han\".to_string(), items: vec![\"TV\".to_string(), \"Laptop\".to_string()], status:OrderStatus::Pending, }; order.status = OrderStatus::Processing; } . Like the example above, programmer can set the Order’s status using enum OrderStatus with the follwing valid variables : Pending, Approved, Procesing, Shipped, Delivered and Canceled. These options might have different types and amounts of associated data. Enums with inline-struct can make more properous types as followings: . use chrono::{DateTime, Local, TimeZone, Utc}; #[derive(Debug)] enum OrderStatus{ Pending, Approved{start_date:DateTime&lt;Utc&gt;, approver:String}, Processing{start_date:DateTime&lt;Utc&gt;, provider:String}, Shipped{start_date:DateTime&lt;Utc&gt;, ship_no:u32}, Delievered{start_date:DateTime&lt;Utc&gt;, expected_date:DateTime&lt;Utc&gt;}, Canceled } #[derive(Debug)] struct Order{ id: u32, customer_name: String, items: Vec&lt;String&gt;, status: OrderStatus, } fn main(){ let mut order = Order{ id:1, customer_name: \"Sangdo Han\".to_string(), items: vec![\"TV\".to_string(), \"Laptop\".to_string()], status:OrderStatus::Pending, }; order.status = OrderStatus::Processing{start_date:Utc::now(), provider:\"sangdo\".to_string()}; println!(\"{:?}\", order) } . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#222-custom-types",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#222-custom-types"
-  },"18": {
+  },"16": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.2.3. Common collections",
     "content": "Rust’s standard library supports useful data structures called collections. It supports Vec (vector), VecDeque (queue), HashMap and so on. see the details in the official documentation of std::collections . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#223-common-collections",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#223-common-collections"
-  },"19": {
+  },"17": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.3. Control Flow",
     "content": "In any programming language, if you know if-else and loop, you can write any program even if it is too hard to read or too slow. ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#23-control-flow",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#23-control-flow"
-  },"20": {
+  },"18": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.3.1. if expression",
     "content": "Rust’s if is an expression, so it returns value. If there is no explicit return statement, it automatically returns Unit Type (()), which represents an empty tuple. As if is an expression, we can assign value as the following: . let result = if condition { value_1 ; } else if condition_2 { value_2 ; } else { value_3 ; } . about the conditions, rust only supports boolean type. ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#231-if-expression",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#231-if-expression"
-  },"21": {
+  },"19": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.3.2. pattern matching",
     "content": "Rust has a powerful control flow construct keyword : match expression. Basically, match works as the following: . match expression { pattern1 =&gt; { code_block1 }, pattern2 =&gt; { code_block2 }, // .. } . For a simple example, you can register patterns with literals and wildcard (_) as the following: . let dice_roll = 3; match dice_roll { 3 =&gt; println!(\"you got the prize : candies !\"), 5 =&gt; println!(\"you got the prize : chocolate !\"), _ =&gt; println!(\"try again\") } . Generally, enum is widely used for pattern constraints. the following example is originated from the book. enum Coin { Penny, Nickel, Dime, Quarter, } fn value_in_cents(coin: Coin) -&gt; u8 { match coin { Coin::Penny =&gt; 1, Coin::Nickel =&gt; 5, Coin::Dime =&gt; 10, Coin::Quarter =&gt; 25, } } . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#232-pattern-matching",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#232-pattern-matching"
-  },"22": {
+  },"20": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.3.3. loop, while, for",
     "content": ". | loop loop is basically means while true in rust, unlike while or for, however, it can be used as expression with break. In addition, rust can assign a label to a loop as followings: 'outer_loop: loop { 'inner_loop: loop { // ... if some_condition { break 'outer_loop; // with label, loop can exit directly to outer loop } } } . | while while is a repitition keyword as widely used in other programming language. With a condition phrase beside while, we can control the repetition. while needs discrimitive condition to break the repetition. while some_condition { // ... if other_condition { break; } } . | for for could be the best option that handling the repetition with fixed range. let mut factorial = 1; for idx in 1..10 { // starts 1 to 9, if you want to include 10, use 1..=10 factorial *= idx; println!(\"{idx}! = {factorial}\"); } . | . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#233-loop-while-for",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#233-loop-while-for"
-  },"23": {
+  },"21": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.4. functions",
     "content": "We’ve already used a function : main. As you might know already, to make a function, the keyword fn is needed. Also, the function named main is a crucial function, that rust compiler identifies the project. So far, we don’t put the parameters for the function. To give a parameters to a function, we have some rules as follows: . fn make_2d_circle(x:f64, y:f64, r:f64){ assert!( r&gt;0.0 , \"r needs to be larger than 0 but you put : {}\",r); println!(\"circle created at ({x}, {y}) with radius {r}\"); } fn main(){ let inputs : (f64, f64, f64) = (2.0, 3.0, 2.0); make_2d_circle(inputs.0, inputs.1, inputs.2); } . with the outputs, we should declare return type. fn calculate_polar_coordinates(original_x: f64, original_y: f64) -&gt; (f64, f64) { // Calculate radius using the Pythagorean theorem let polar_radius = (original_x.powf(2.0) + original_y.powf(2.0)).sqrt(); // Calculate theta using atan2 (handles 0/0 case) let polar_theta = original_y.atan2(original_x); (polar_radius, polar_theta) // return (polar_radius, polar_theta); } fn main() { let original_x = 2.0; let original_y = 3.0; let (polar_radius, polar_theta) = calculate_polar_coordinates(original_x, original_y); println!(\"Original x: {}, y: {}\", original_x, original_y); println!(\"Converted to Polar Coordinates:\"); println!(\"Radius: {}, Theta: {}\", polar_radius, polar_theta); } . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#24-functions",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#24-functions"
-  },"24": {
+  },"22": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.5. Method",
     "content": "In rust, there is no class keyword, however, we can use enum and struct for OOP. If you are not familiar with reference (&amp;) or dereference(*), I hope you to visit chapter 3 first then come back to this chapter. For instance, we can assign method with impl keyword as follows: . // based on an example from `the book` struct Rectangle { width : u32, height: u32, } impl Rectangle { fn area(&amp;self) -&gt; u32 { self.width * self.height } fn radius_inscribe(&amp;self) -&gt; f64{ let _width:f64 = self.width as f64; let _height:f64 = self.height as f64; f64::sqrt(_width.powf(2.0) + _height.powf(2.0)) } fn has_larger_width_than(&amp;self, other:&amp;Rectangle) -&gt; bool { // this function can get another argument : rectangle instance. self.width &gt; other.width } // associated functions, we can instantiate with other way fn square(size:u32) -&gt; Self { Self { width:size, height:size, } } } fn main(){ let rect1 = Rectangle{ width:30, height:40, }; println!(\"the area of rectangle 1 is {}\", rect1.area()); println!(\"the radius of outer circle of rectangle {}\", rect1.radius_inscribe()); let rect2 = Rectangle{ width: 10, height: 100, }; println!(\"rect1 has larger width than rect2? : {}\", rect1.has_larger_width_than(&amp;rect2)); let square1 = Rectangle::square(30); println!(\"the area of square1 is {}\", square1.area()); } . enum also can have methods, the following example is generated by copilot, which is also a good example that shows pattern matching. enum Direction { Up, Down, Left, Right, } impl Direction { fn is_vertical(&amp;self) -&gt; bool { match *self { // *self means dereference Direction, that gives a value. Direction::Up | Direction::Down =&gt; true, _ =&gt; false, } } fn is_horizontal(&amp;self) -&gt; bool { !self.is_vertical() } } fn main() { let up = Direction::Up; let left = Direction::Left; println!(\"Is 'up' vertical? {}\", up.is_vertical()); // Prints: Is 'up' vertical? true println!(\"Is 'left' horizontal? {}\", left.is_horizontal()); // Prints: Is 'left' horizontal? true } . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#25-method",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#25-method"
-  },"25": {
+  },"23": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.6. Generics / Traits",
     "content": "So far, we construct functions, enums and structs with strong type signatures or members. However, sometimes these strict way may induce duplications. For instance, let us define a function that give result of addtion of two numbers. fn add(a:f64, b:f64)-&gt;f64{ a+b } fn main(){ let a32:f32 = 3.0; let b32:f32 = 5.0; println!(\"{}\", add(a32,b32)); // we have error cuz we defined function `add` only with `f64`, not `f32` } . The above code causes compiler error. This is because the function can only takes f64. Even if we know that addition works with the same way with i32 or f32, as we only defined add function only works for f64, the code has issues. To solve this problem we might need more add functions respect to each type. However this approach could result in redundancies in your code and it makes hard for you (or your team) to maintain the code. One of the idea to solve these redundant-prone coding is using generics. With generics, we can set a generic defintion of a function that can handles multiple types as followings: . fn add&lt;T: std::ops::Add&lt;Output= T&gt;&gt; (a :T, b : T ) -&gt; T { a + b } fn main(){ let a32:f32 = 3.0; let b32:f32 = 5.0; println!(\"{}\", add(a32,b32)); let a64:f64 = 4.0; let b64:f64 = 53.0; println!(\"{}\", add(a64, b64)); } . Here, we set T as a abstract type, by putting angle bracket &lt; &gt; right next to the name of function. In this example, since we use standard add operator + we need to say that T has a special trait (or a constraint or characteristic) that this generic type T uses standard add operator’s output. However, if we don’t have those constraints (in this case, use of add-operator), The code snippet would be compiled. The trait std::ops::Add&lt;Output=T&gt; is a powerful concept in Rust. Traits define functionality that types can implement. In this case, std::ops::Add&lt;Output=T&gt; constraint guarantees type T can be properly added within the function. One of the interesting thing is that rust’s generics don’t impact performance. The compiler generates specific code for each type at compile time, ensuring efficiency, resulting in performance equivalent to writing separate functions for each type. Sometimes, we assume that the generalized members / signatures would not always be the same types. In this case, the generic type placeholder needs to be distinguished as followings: . struct Point &lt;T,U&gt;{ x:T, y:U } fn main(){ let x: i32 = 5; let y: f64 = 3.0; let pointxy = Point{x,y}; } . ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#26-generics--traits",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html#26-generics--traits"
-  },"26": {
+  },"24": {
     "doc": "02. Basic Syntax in Rust",
     "title": "02. Basic Syntax in Rust",
     "content": " ",
     "url": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html",
     
     "relUrl": "/docs/programming/rust/02.%20Basic%20Syntax%20in%20Rust.html"
+  },"25": {
+    "doc": "02. Processes",
+    "title": "Processes",
+    "content": "A process is a program in execution. A process is not just a program (space aspect) but also an instance of execution (time aspect). | Processes . | More on Processes | What is in a Process | States of a Process | How Multiple Processes Work? | Examples of Multi-Processing . | Multi-Processing in python | Multi-Processing in C++ | . | Conclusion | . | . ",
+    "url": "/docs/programming/concurrent-programming/02.%20Process.html#processes",
+    
+    "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#processes"
+  },"26": {
+    "doc": "02. Processes",
+    "title": "More on Processes",
+    "content": "A process’s space is the allocated memory. This memory includes the code of the program, the data using for the program, and the stack. Here, the stack is used to store the state of the process, such as the values of the registers and the program counter . In terms of time aspect, the time includes the process waiting time for its running, process running time, and its waiting I/O time. These aspects of a process are closely related. The allocated memory of a process influences its execution time, and vice versa. ",
+    "url": "/docs/programming/concurrent-programming/02.%20Process.html#more-on-processes",
+    
+    "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#more-on-processes"
   },"27": {
-    "doc": "02. Process",
-    "title": "Process",
-    "content": "A process is a program in execution. A process is not just a program (space aspect) but also an instance of execution (time aspect). | Process . | More specifically | What are in a Process | States of a Process | Multiple Processes | Examples of Multi-Processing . | Multi-Processing in python | Multi-Processing in C++ | . | . | . ",
-    "url": "/docs/programming/concurrent-programming/02.%20Process.html#process",
-    
-    "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#process"
-  },"28": {
-    "doc": "02. Process",
-    "title": "More specifically",
-    "content": "A process’s space is the allocated memory. This memory includes the code of the program, the data using for the program, and the stack. Here, the stack is used to store the state of the process, such as the values of the registers and the program counter . In terms of time aspect, the time includes the process waiting time for its running, process running time, and its waiting I/O time. These aspects of a process are closely related. the allocated memory of a process determines how long the process can run. vice versa. ",
-    "url": "/docs/programming/concurrent-programming/02.%20Process.html#more-specifically",
-    
-    "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#more-specifically"
-  },"29": {
-    "doc": "02. Process",
-    "title": "What are in a Process",
+    "doc": "02. Processes",
+    "title": "What is in a Process",
     "content": ". | Process ID (PID) | Process State | Executable (Binary) | Files | Address space | Registers | Stack | Heap | Data Segment | Process Control Block (PCB) | . PCB PCB is a data structure maintained by the OS that stores all the information about a process (including all the items listed above). The PCB is how the OS manages and keeps track of processes. ",
-    "url": "/docs/programming/concurrent-programming/02.%20Process.html#what-are-in-a-process",
+    "url": "/docs/programming/concurrent-programming/02.%20Process.html#what-is-in-a-process",
     
-    "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#what-are-in-a-process"
-  },"30": {
-    "doc": "02. Process",
+    "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#what-is-in-a-process"
+  },"28": {
+    "doc": "02. Processes",
     "title": "States of a Process",
     "content": "A process is generally created and controlled by the OS. graph LR New --&gt; Ready; Ready --&gt; Running; Running --&gt; Ready; Running --&gt; Blocked; Blocked --&gt; Ready; Running --&gt; Terminated; . ",
     "url": "/docs/programming/concurrent-programming/02.%20Process.html#states-of-a-process",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#states-of-a-process"
-  },"31": {
-    "doc": "02. Process",
-    "title": "Multiple Processes",
-    "content": "A process can create its child processes through OS system call. This creating is called spawning. | fork() (Unix-like): Creates a new process that is a copy of the parent process. The child process gets its own copy of the parent’s address space (initially). | spawn() (Windows): Creates a new process, but the way it’s done is different from fork(). It’s generally more efficient than fork() on Windows, but the child process doesn’t inherit the parent’s memory in the same way. | . Child processes are independent forks of the main process. Each child process isolated in terms of memory address space. As operating system controls this isolation, a direct access of instructions and data among the processes is not allowed. ",
-    "url": "/docs/programming/concurrent-programming/02.%20Process.html#multiple-processes",
+  },"29": {
+    "doc": "02. Processes",
+    "title": "How Multiple Processes Work?",
+    "content": "A process can create child processes through OS system calls, this is known as spawning. | fork() (Unix-like): Creates a new process that is a copy of the parent process. The child process gets its own copy of the parent’s address space (initially). | spawn() (Windows): Creates a new process, but the way it’s done is different from fork(). It’s generally more efficient than fork() on Windows, but the child process doesn’t inherit the parent’s memory in the same way. | . Child processes are independent forks of the main process. Each child process isolated in terms of memory address space. As operating system controls this isolation, a direct access of instructions and data among the processes is not allowed. ",
+    "url": "/docs/programming/concurrent-programming/02.%20Process.html#how-multiple-processes-work",
     
-    "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#multiple-processes"
-  },"32": {
-    "doc": "02. Process",
+    "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#how-multiple-processes-work"
+  },"30": {
+    "doc": "02. Processes",
     "title": "Examples of Multi-Processing",
     "content": "Here are naive examples in Python and C++. ",
     "url": "/docs/programming/concurrent-programming/02.%20Process.html#examples-of-multi-processing",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#examples-of-multi-processing"
-  },"33": {
-    "doc": "02. Process",
+  },"31": {
+    "doc": "02. Processes",
     "title": "Multi-Processing in python",
     "content": "In Python, by using multiprocessing library, we can achieve the multiprocessing. import os import time from multiprocessing import Process def run_child(cpu_waste_seconds:int) -&gt; None: time.sleep(cpu_waste_seconds) curr_pid = os.getpid() print(f\"child ({curr_pid}) : finished job\") def run_parent(num_children:int=3, cpu_waste_seconds:int=2) -&gt; None: curr_pid = os.getpid() child_processes = [ Process(target=run_child, args=(cpu_waste_seconds,)) for _ in range(num_children) ] for child_process in child_processes: child_process.start() for child_process in child_processes: child_process.join() print(f\"parent's ({curr_pid}) : finished job\") if __name__ == \"__main__\": num_children : int = 3 child_process_time : int = 2 run_parent(num_children=num_children, cpu_waste_seconds=child_process_time) . ",
     "url": "/docs/programming/concurrent-programming/02.%20Process.html#multi-processing-in-python",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#multi-processing-in-python"
-  },"34": {
-    "doc": "02. Process",
+  },"32": {
+    "doc": "02. Processes",
     "title": "Multi-Processing in C++",
-    "content": "In C++, unlike multi-threading, there is no standard library that interfaces multi-processing, in other words, you should write multiprocessing calls that depend on the target OS. Here’s an example of naive multi-processing in UNIX-like OS environment. #include &lt;iostream&gt; #include &lt;chrono&gt; //UNIX dependency (POSIX). Not compatible with Windows. #include &lt;unistd.h&gt; #include &lt;sys/types.h&gt; #include &lt;sys/wait.h&gt; #include &lt;thread&gt; // to use thread - sleep void SleepFor(int sleepSeconds) { auto sleepLiteral = std::chrono::seconds(sleepSeconds); std::this_thread::sleep_for(sleepLiteral); } void RunChild(int sleepSeconds) { pid_t currPID = getpid(); SleepFor(sleepSeconds); std::cout &lt;&lt; \"Child process PID: \" &lt;&lt; currPID &lt;&lt; std::endl; } void RunParent(int numChildren = 3, int sleepSeconds = 2) { pid_t currPID = getpid(); std::cout &lt;&lt; \"Parent process PID: \" &lt;&lt; currPID &lt;&lt; std::endl; for (int i = 0; i &lt; numChildren; ++i) { pid_t PID = fork(); if (PID &lt; 0) { std::cerr &lt;&lt; \"Fork failed\" &lt;&lt; std::endl; } else if (PID == 0) { RunChild(sleepSeconds); _exit(0); // Terminate child process } } // Parent waits for all children to finish for (int i = 0; i &lt; numChildren; ++i) { waitpid(-1, nullptr, 0); } } int main() { const int numChildren = 3; const int sleepSeconds = 2; RunParent(numChildren, sleepSeconds); return 0; } . ",
+    "content": "In C++, unlike multi-threading, there is no standard library that interfaces multi-processing, in other words, you should write multiprocessing calls that depend on the target OS. Here’s an example of naive multi-processing in UNIX-like OS environment. #include &lt;iostream&gt; #include &lt;chrono&gt; //UNIX dependency (POSIX). Not compatible with Windows. #include &lt;unistd.h&gt; #include &lt;sys/types.h&gt; #include &lt;sys/wait.h&gt; #include &lt;thread&gt; // to use thread - sleep void SleepFor(int sleepSeconds) { auto sleepLiteral = std::chrono::seconds(sleepSeconds); std::this_thread::sleep_for(sleepLiteral); } void RunChild(int sleepSeconds) { pid_t currPID = getpid(); SleepFor(sleepSeconds); std::cout &lt;&lt; \"Child process PID: \" &lt;&lt; currPID &lt;&lt; std::endl; } void RunParent(int numChildren = 3, int sleepSeconds = 2) { pid_t currPID = getpid(); std::cout &lt;&lt; \"Parent process PID: \" &lt;&lt; currPID &lt;&lt; std::endl; for (int i = 0; i &lt; numChildren; ++i) { pid_t PID = fork(); if (PID &lt; 0) { std::cerr &lt;&lt; \"Fork failed\" &lt;&lt; std::endl; } else if (PID == 0) { RunChild(sleepSeconds); _exit(0); // Terminate child process } } // Parent waits for all children to finish for (int i = 0; i &lt; numChildren; ++i) { waitpid(-1, nullptr, 0); } } int main() { const int NUM_CHILDREN = 3; const int SLEEP_SECONDS = 2; RunParent(NUM_CHILDREN, SLEEP_SECONDS); return 0; } . ",
     "url": "/docs/programming/concurrent-programming/02.%20Process.html#multi-processing-in-c",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#multi-processing-in-c"
-  },"35": {
-    "doc": "02. Process",
-    "title": "02. Process",
+  },"33": {
+    "doc": "02. Processes",
+    "title": "Conclusion",
+    "content": "Processes are fundamental to concurrent programming, providing independent execution environments that enable efficient multitasking. Processes do not share memory directly, ensuring greater isolation and stability but at the cost of increased communication overhead. Multi-processing allows programs to leverage multiple CPU cores, making it ideal for CPU-bound tasks. However, inter-process communication (IPC, which will be discussed in the future) mechanisms such as pipes, shared memory, and message queues are required for data exchange between processes. While Python’s multiprocessing module provides a high-level abstraction for spawning and managing processes, C++ requires explicit system calls like fork() (Unix) or spawn() (Windows). Each approach comes with its own trade-offs in terms of portability, efficiency, and complexity. ",
+    "url": "/docs/programming/concurrent-programming/02.%20Process.html#conclusion",
+    
+    "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html#conclusion"
+  },"34": {
+    "doc": "02. Processes",
+    "title": "02. Processes",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/02.%20Process.html",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Process.html"
-  },"36": {
+  },"35": {
     "doc": "03. Pointers in Rust",
     "title": "3. Pointer / memory related features",
     "content": "As rust has no garbage collector, programmer needs to allocate memory manually. | 3. Pointer / memory related features . | 3.1 Memory in Computer | 3.2. Owenership | 3.3. Pointers . | 3.3.1. Reference | 3.3.2. Raw Pointer | 3.3.3. Smart Pointer | . | 3.4. Lifetimes | . | . ",
     "url": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#3-pointer--memory-related-features",
     
     "relUrl": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#3-pointer--memory-related-features"
-  },"37": {
+  },"36": {
     "doc": "03. Pointers in Rust",
     "title": "3.1 Memory in Computer",
     "content": "In operating system, memory (RAM) is divided into 5 parts (regions, segments): Text (code), bss, data, heap and stack. Those manage memory in runtime. ref: data segment image from wikipedia . | Text (code) Text stores executable code, generally fixed size. | Data Data stores initialized global variables and static variables. | BSS (Block Started by Symbol) BSS generally depends on Programming language, however, like C programming language, manages unintialized static variable. | Stack Stack is a LIFO (last-in first-out) data structure, using a mechanism like a piling up pancakes on a plate. Stack manages function calls, local variables, function parameters, and return addresses. Stack pointer is a special register in the CPU keeps track of the top of the stack, pointing the current memory address where new data can be added(malloc), also deleting(free) the topmost data easily. | When a function is called, a new stack frame is created on the stack to hold its local variables, parameters and return address. | For a memory allocation, compiler analyzes the code to determine the size of each function’s stack frame. Next, compiler generates instructions to adjust the stack pointer, allocating and dellocating space as needed. | function calls and returns automatically add (push) and remove (pop) stack frames, ensuring efficient memory usage. | . | Heap Heap is a kind of less organized region of memory, which can be manually directed by user. In the sense of automatic managing, many languages support garbage collection in these days. Rust does not have a traditional garbage collector. Instead, it relies on ownership and borrowing. Rust also supports pointers like in C or C++ for user’s memory manipulation. | . ",
     "url": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#31-memory-in-computer",
     
     "relUrl": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#31-memory-in-computer"
-  },"38": {
+  },"37": {
     "doc": "03. Pointers in Rust",
     "title": "3.2. Owenership",
     "content": "Ownership is one of the unique features in rust for handling memory not only within a code block (scope) but also between code blocks. the book suggests three ownership rules as follows: . | Each value in Rust has an owner. | There can only be one owner at a time. | When the owner goes out of scope, the value will be dropped. | . Because of axiom #2 and #3, programmers who are familiar with other languages could have in trouble. For instance, in the case of python, the following would work. # python if __name__ == \"__main__\": x = \"hello\" y = x print((id(x) == id(y))) # you can see True, they indicates the same memory address print(y) # you can get 'hello' print(x) # you can get 'hello' . with checking ids of x and y are equal, we can see x and y indicates the same address. however, in rust programming, the following rust code which is similar to the above code won’t be compiled. fn main(){ let x = String::from(\"hello\"); let y = x; println!(\"{}\", y); println!(\"{}\", x); // compile error because x has no ownership of value } . It seems that y and x “shares” the same address, however, it is not. As I mentioned first, in dealing with heap memory, rust basically moves the ownership from x to y. As y has got ownership of the string value “hello”, x cannot access the value until it retrieved ownership back or get new value assigned. ",
     "url": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#32-owenership",
     
     "relUrl": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#32-owenership"
-  },"39": {
+  },"38": {
     "doc": "03. Pointers in Rust",
     "title": "3.3. Pointers",
     "content": "To solve the above ownership problem, we can also use other options : use memory address! . ",
     "url": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#33-pointers",
     
     "relUrl": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#33-pointers"
-  },"40": {
+  },"39": {
     "doc": "03. Pointers in Rust",
     "title": "3.3.1. Reference",
     "content": "The foremost option is that borrow x’s value with reference. Here is an example of borrowing that y borrows the value from x, and return back automatically when y is called. fn main(){ let x = String::from(\"hello\"); let y = &amp;x; // y borrows (refers) the value of x; println!(\"{}\", y); println!(\"{}\", x); // no error: Still, x is owner of \"hello\" } . This &amp; operator is for referring to x, or borrowing x address. It seems that reference is the same as the pointer in C, however references are always valid and automatically managed by Rust’s borrow checker. They cannot outlive the data they brought and cannot be null. You can see that those exmaples are based on string type because string in rust works allocating the memory based on move, not copy or clone. If you use the same examples but int allocation, there is no error since the basic trait of allocation in int is value shallow copying. The following code which seems like simply adding a dereference operator * could make you a little bit crazy. fn main() { let x = String::from(\"hello\"); // we know, x is a string value \"hello\"; String let y = &amp;x; // y borrows (refers) the value of x; &amp;String let z = &amp;*x; // (*x) is dereference of x, which is inner string (or string slice) : str // and then we refer &amp;(*x), which is reference of string slice : &amp;str println!(\"{}\", y); println!(\"{}\", x); println!(\"{}\", z); } . I added the explanation of x, y and z in the code above with inline comment. ",
     "url": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#331-reference",
     
     "relUrl": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#331-reference"
-  },"41": {
+  },"40": {
     "doc": "03. Pointers in Rust",
     "title": "3.3.2. Raw Pointer",
     "content": "Still, C-like pointer is also supported in Rust, named as raw pointer. Raw pointers in Rust are necessary for certain tasks where you need to interact with low-level code, such as interfacing with C libraries, implementing low-level data structures, or performing certain operations that can’t be expressed safely within Rust’s safe abstraction. Here are some scenarios where raw pointers are useful: . | Interfacing with C Code: Rust often needs to interact with C libraries, which typically use raw pointers extensively. Rust’s FFI (Foreign Function Interface) allows you to call functions from C libraries and vice versa, and raw pointers are often used to pass data between Rust and C code. | Unsafe Operations: Some operations inherently require unsafe behavior, such as dereferencing a pointer to arbitrary memory or performing low-level memory manipulation. While these operations should be avoided whenever possible, there are situations where they’re necessary for performance reasons or to implement certain algorithms. | Unsafe Abstractions: Sometimes, you may need to implement your own safe abstractions that rely on unsafe operations internally. While the interface exposed to the user remains safe, the implementation may use raw pointers or other unsafe constructs to achieve certain behaviors efficiently. | Low-Level Data Structures: Implementing low-level data structures like linked lists, trees, or graphs may require direct manipulation of memory addresses, which is facilitated by raw pointers. While Rust’s standard library provides safe abstractions for common data structures, there are cases where custom implementations are necessary or desirable. | Embedded Systems and Systems Programming: In systems programming and embedded systems development, you often need precise control over memory layout and low-level hardware interactions. Raw pointers allow you to express such operations safely within the context of an unsafe block. | . It’s important to note that while raw pointers are a powerful tool, they come with significant responsibility. Rust’s safety guarantees are designed to prevent common programming errors and security vulnerabilities, and bypassing these guarantees with raw pointers can introduce bugs, crashes, or security vulnerabilities if used incorrectly. fn main() { let x = 42; // Reference to x let reference = &amp;x; println!(\"Reference: {}\", reference); // Raw pointer to x let raw_ptr: *const i32 = &amp;x as *const i32; unsafe { println!(\"Raw pointer: {}\", *raw_ptr); } } . ",
     "url": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#332-raw-pointer",
     
     "relUrl": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#332-raw-pointer"
-  },"42": {
+  },"41": {
     "doc": "03. Pointers in Rust",
     "title": "3.3.3. Smart Pointer",
     "content": "Smart pointers in Rust are data structures that not only hold a value but also contain metadata and provide additional functionality beyond what regular pointers offer. They enforce various safety guarantees at compile time, ensuring memory safety and preventing common programming errors. One of the most commonly used smart pointers in Rust is Box&lt;T&gt;. It allows you to allocate values on the heap rather than the stack and provides ownership semantics like any other value in Rust. Here’s a brief overview of Box&lt;T&gt;: . | Box&lt;T&gt;: Box is a smart pointer that owns the data it points to and is stored on the heap (if you’re C++ programmer it resembles unique_ptr but not nullable.). It’s used when you need to have a value with a known size at compile time but don’t know the precise size until runtime, or when you want to transfer ownership of a value across scopes or threads. | . Here’s a simple example of Box&lt;T&gt;: . fn main() { let x = Box::new(42); // Allocate an integer on the heap println!(\"Value: {}\", x); // Print the value stored in the Box } . In addition to Box&lt;T&gt;, Rust provides other smart pointers like Rc&lt;T&gt; and Arc&lt;T&gt; for shared ownership (shared_ptr in C++), Cell&lt;T&gt; and RefCell&lt;T&gt; for interior mutability, and Mutex&lt;T&gt; and RwLock&lt;T&gt; for synchronization, among others. Each smart pointer type has its own characteristics and use cases, allowing you to choose the appropriate one based on your requirements. Smart pointers enable you to write safer, more expressive code by encapsulating complex memory management logic and providing clear ownership semantics. ",
     "url": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#333-smart-pointer",
     
     "relUrl": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#333-smart-pointer"
-  },"43": {
+  },"42": {
     "doc": "03. Pointers in Rust",
     "title": "3.4. Lifetimes",
     "content": "The following’s a code from the book. fn longest(x: &amp;str, y:&amp;str) -&gt; &amp;str { if x.len() &gt;= y.len() { return x; } else { return y; } } fn main() { let string1 = String::from(\"abcd\"); let string2 = \"xyz\"; let result = longest(string1.as_str(), string2); println!(\"The longest string is {}\", result); } . If you compile the code above, you will get an error . error[E0106]: missing lifetime specifier --&gt; src/main.rs:1:32 | 1 | fn longest(x: &amp;str, y:&amp;str) -&gt; &amp;str { | ---- ---- ^ expected named lifetime parameter | = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `x` or `y` help: consider introducing a named lifetime parameter | 1 | fn longest&lt;'a&gt;(x: &amp;'a str, y:&amp;'a str) -&gt; &amp;'a str { | ++++ ++ ++ ++ For more information about this error, try `rustc --explain E0106`. what is a lifetime? . As we mentioned in 3.1.3. reference, rust compiler prevent the reference outlive the data by using borrow checker : so to speak, try to prevent dangling pointer. With this function of references signatures, rust compiler worry about the rest of reference. If x is returned, what about y? y could become a dangling pointer. vice versa. Therefore, we need to notify to compiler (actually for ourselves) that the rest reference will be terminated in the same lifetime of the picked (returned) one. In function longest, returning a reference to x would invalidate y (become a dangling reference) if x was longer. Lifetimes prevent this by making the references’ validity explicit. The fixed version is as follows: . fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str { if x.len() &gt;= y.len() { return x; } else { return y; } } . ",
     "url": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#34-lifetimes",
     
     "relUrl": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html#34-lifetimes"
-  },"44": {
+  },"43": {
     "doc": "03. Pointers in Rust",
     "title": "03. Pointers in Rust",
     "content": " ",
     "url": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html",
     
     "relUrl": "/docs/programming/rust/03.%20Pointers%20in%20Rust.html"
+  },"44": {
+    "doc": "03. Threads",
+    "title": "Threads",
+    "content": "A thread is an independent sequence of instructions within a process. It is the smallest unit of execution that the operating system (OS) can schedule. Multiple threads within a process share the same memory space but execute independently. | Threads . | More on Threads | Advantages and Disadvantages . | Pros - memory / communication overhead | Cons - developer’s burden on synchronization. | . | Example of Multi-Threading . | Multi-Threading in Python | Multi-Threading in C++ | . | Conclusion | . | . ",
+    "url": "/docs/programming/concurrent-programming/03.%20Threads.html#threads",
+    
+    "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#threads"
   },"45": {
     "doc": "03. Threads",
-    "title": "Thread",
-    "content": "A thread is indeed an independent sequence of instructions within a process. It’s the smallest unit of execution that can be scheduled by the OS. | Thread . | More specifically | Advantages and Disadvantages . | Pros - memory / communication overhead | Cons - developer’s burden on synchronization. | . | Example of Multi-Threading . | Multi-Threading in Python | Multi-Threading in C++ | . | . | . ",
-    "url": "/docs/programming/concurrent-programming/03.%20Threads.html#thread",
-    
-    "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#thread"
-  },"46": {
-    "doc": "03. Threads",
-    "title": "More specifically",
+    "title": "More on Threads",
     "content": "A thread is the smallest sequence of instructions that can be executed independently. Each thread has its own stack and registers, but it shares the same memory with other threads in the same process. This means threads in a process can access the same data, but they cannot modify each other’s register value without proper synchronization. In short, each thread operates independently, unaware of the others unless explicitly designed to interact. ",
-    "url": "/docs/programming/concurrent-programming/03.%20Threads.html#more-specifically",
+    "url": "/docs/programming/concurrent-programming/03.%20Threads.html#more-on-threads",
     
-    "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#more-specifically"
-  },"47": {
+    "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#more-on-threads"
+  },"46": {
     "doc": "03. Threads",
     "title": "Advantages and Disadvantages",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/03.%20Threads.html#advantages-and-disadvantages",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#advantages-and-disadvantages"
-  },"48": {
+  },"47": {
     "doc": "03. Threads",
     "title": "Pros - memory / communication overhead",
-    "content": "Threads have much less memory overhead than the standard fork() function as the parent thread is not copied - threads use the same process. Also, by accessing the shared address space of their parent process, all the threads in a process can communicate with the same data: any changes by a single thread is immediately available to the others. In tasks like graphics programming (e.g., shader programming), threads are often more convenient than processes. ",
+    "content": ". | Efficient Memory Usage: Threads require significantly less memory overhead compared to creating new processes with fork(), as threads share the same memory space. | Fast Communication: Since threads within the same process share memory, they can exchange data efficiently without requiring inter-process communication mechanisms. | Use Case: Multi-threading is particularly useful in high-performance applications such as graphics rendering (e.g., shader programming) and parallel computations. | . ",
     "url": "/docs/programming/concurrent-programming/03.%20Threads.html#pros---memory--communication-overhead",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#pros---memory--communication-overhead"
-  },"49": {
+  },"48": {
     "doc": "03. Threads",
     "title": "Cons - developer’s burden on synchronization.",
-    "content": "Unlike processes, the OS does not provide complete isolation for threads. This is because all threads in a process use the same shared resources, if one crashes or corrupted, the others will be affected. Therefore, developers must implement synchronization techniques. ",
+    "content": ". | Lack of Isolation: Unlike processes, threads do not have full isolation. If one thread crashes or corrupts shared data, it can affect all threads within the process. | Developer’s Responsibility: Ensuring data consistency requires explicit synchronization mechanisms (e.g., mutexes, semaphores, or atomic operations). Improper synchronization can lead to race conditions, deadlocks, and performance bottlenecks. | . ",
     "url": "/docs/programming/concurrent-programming/03.%20Threads.html#cons---developers-burden-on-synchronization",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#cons---developers-burden-on-synchronization"
-  },"50": {
+  },"49": {
     "doc": "03. Threads",
     "title": "Example of Multi-Threading",
-    "content": "Here are naive examples in Python and C++. ",
+    "content": "Below are basic implementations of multi-threading in Python and C++. ",
     "url": "/docs/programming/concurrent-programming/03.%20Threads.html#example-of-multi-threading",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#example-of-multi-threading"
-  },"51": {
+  },"50": {
     "doc": "03. Threads",
     "title": "Multi-Threading in Python",
-    "content": "When you use multi-threading in Python, you need to know about Global Interpret Lock (GIL) . Note - GIL In CPython, the Global Interpreter Lock (GIL) is a mutex that ensures only one thread executes Python bytecode at a time. This design simplifies memory management and prevents race conditions, but it also means that multi-threaded Python programs may not fully utilize multi-core processors for CPU-bound tasks. However, for I/O-bound operations, threading can still be effective. (ref: realpython.com) . import os import time import threading from threading import Thread def run_sub_thread(idx: int, sleep_time:int=2) -&gt; None: sub_thread_name = threading.current_thread().name print( f\"{sub_thread_name} in PID({os.getpid()}) \" f\"is doing {idx} work\" ) time.sleep(sleep_time) def display_threads() -&gt; None: print(\"================\") print(f\"Active threads : {threading.active_count()}\") for thread_ in threading.enumerate(): print(thread_) def main( num_threads : int = 5, sleep_time : int = 2 ) -&gt; None: display_threads() threads = [ Thread( target=run_sub_thread, args=(idx, sleep_time) ) for idx in range(num_threads) ] for thread_ in threads: thread_.start() display_threads() for thread_ in threads: thread_.join() display_threads() # to check only one thread is available now if \"__main__\" == __name__: num_threads : int = 5 main(num_threads) . ",
+    "content": "Python’s Global Interpreter Lock (GIL) prevents true parallel execution for CPU-bound tasks but still allows efficient multi-threading for I/O-bound operations. Note - GIL In CPython, the Global Interpreter Lock (GIL) is a mutex that ensures only one thread executes Python bytecode at a time. This design simplifies memory management and prevents race conditions, but it also means that multi-threaded Python programs may not fully utilize multi-core processors for CPU-bound tasks. However, for I/O-bound operations, threading can still be effective. (ref: realpython.com) . Python Multi-Threading Example . import os import time import threading from threading import Thread def run_sub_thread(idx: int, sleep_time:int=2) -&gt; None: sub_thread_name = threading.current_thread().name print( f\"{sub_thread_name} in PID({os.getpid()}) \" f\"is doing {idx} work\" ) time.sleep(sleep_time) def display_threads() -&gt; None: print(\"================\") print(f\"Active threads : {threading.active_count()}\") for thread_ in threading.enumerate(): print(thread_) def main( num_threads : int = 5, sleep_time : int = 2 ) -&gt; None: display_threads() threads = [ Thread( target=run_sub_thread, args=(idx, sleep_time) ) for idx in range(num_threads) ] for thread_ in threads: thread_.start() display_threads() for thread_ in threads: thread_.join() display_threads() # to check only one thread is available now if \"__main__\" == __name__: num_threads : int = 5 main(num_threads) . ",
     "url": "/docs/programming/concurrent-programming/03.%20Threads.html#multi-threading-in-python",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#multi-threading-in-python"
-  },"52": {
+  },"51": {
     "doc": "03. Threads",
     "title": "Multi-Threading in C++",
-    "content": "Here’s a naive implementation of threading in C++. #include &lt;iostream&gt; #include &lt;chrono&gt; #include &lt;thread&gt; #include &lt;unistd.h&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; // #include &lt;mutex&gt; // Uncomment to synchronize output void threadJob(int idx, int sleepSeconds) { pid_t threadPID = getpid(); std::thread::id threadID = std::this_thread::get_id(); std::cout &lt;&lt; threadID &lt;&lt; \" in PID (\" &lt;&lt; threadPID &lt;&lt; \")\" &lt;&lt; \"\\n\"; std::this_thread::sleep_for(std::chrono::seconds(sleepSeconds)); } int main() { const int NUM_THREAD = 5; const int SLEEP_SECONDS = 2; std::thread threads[NUM_THREAD]; for (int i=0; i &lt; NUM_THREAD; i++) { threads[i] = std::thread(threadJob, i, SLEEP_SECONDS); } for ( int i=0; i &lt; NUM_THREAD; i++) { threads[i].join(); } } . The above C++ code, system print call won’t work properly because of absence of locks - Race condition . About this C++ issue and GIL of Python, we will cover later post. ",
+    "content": "C++ provides robust multi-threading support, we must take care of managing synchronization effectively. Basic C++ Multi-Threading Example . #include &lt;iostream&gt; #include &lt;chrono&gt; #include &lt;thread&gt; #include &lt;unistd.h&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include \"Timer.h\" void ExecuteThread(int idx, int sleepSeconds) { pid_t threadPID = getpid(); std::thread::id threadID = std::this_thread::get_id(); std::cout &lt;&lt; \"Thread - \"&lt;&lt; idx &lt;&lt; \" (\"&lt;&lt; threadID &lt;&lt; \") in PID (\" &lt;&lt; threadPID &lt;&lt; \")\" &lt;&lt; \"\\n\"; std::this_thread::sleep_for(std::chrono::seconds(sleepSeconds)); } int main() { Timer timer; const int NUM_THREAD = 5; const int SLEEP_SECONDS = 2; std::thread threads[NUM_THREAD]; for (int i=0; i &lt; NUM_THREAD; i++) { threads[i] = std::thread(ExecuteThread, i, SLEEP_SECONDS); } for ( int i=0; i &lt; NUM_THREAD; i++) { threads[i].join(); } } . Then the output would be: . Thread - 0 (Thread - 0x16d2a7000) in PID (91237) Thread - Thread - 4 (0x16d4d7000) in PID (91237) 3 (0x16d44b000) in PID (91237) 1 (0x16d333000) in PID (91237) Thread - 2 (0x16d3bf000) in PID (91237) Process Ended in 2.00527 [s]. The output of the above code might be scrambled, demonstrating a race condition. Because std::cout is a shared resource, multiple threads trying to write to it simultaneously can interleave their output. This is a classic example of why proper synchronization is essential. To solve this, I put the following print class represented as ThreadSafePrinter class using the concept of mutex (mutual exclusion, we will discuss in the future). Thread-Safe Printing Utility . // ThreadSafeUtils.h #pragma once #include &lt;mutex&gt; #include &lt;string&gt; class ThreadSafePrinter { public: void Print(const std::string&amp; str); private: std::mutex m_Mutex; }; . // ThreadSafeUtils.cpp #include &lt;iostream&gt; #include \"ThreadSafeUtils.h\" void ThreadSafePrinter::Print(const std::string&amp; str) { std::lock_guard&lt;std::mutex&gt; lock(m_Mutex); std::cout &lt;&lt; str ; } . Updated Multi-Threading Code with Thread-Safe Printing . #include &lt;chrono&gt; #include &lt;iostream&gt; #include &lt;mutex&gt; #include &lt;string&gt; #include &lt;sstream&gt; #include &lt;thread&gt; #include &lt;unistd.h&gt; #include &lt;sys/types.h&gt; #include \"Timer.h\" #include \"ThreadSafeUtils.h\" void ExecuteThread(int idx, int sleepSeconds, ThreadSafePrinter&amp; printer) { pid_t threadPID = getpid(); std::thread::id threadID = std::this_thread::get_id(); std::ostringstream ss; ss &lt;&lt; \"Thread - \"&lt;&lt; idx &lt;&lt; \" (\"&lt;&lt; threadID &lt;&lt; \") in PID (\" &lt;&lt; threadPID &lt;&lt; \")\" &lt;&lt; \"\\n\"; printer.Print(ss.str()); std::this_thread::sleep_for(std::chrono::seconds(sleepSeconds)); } int main() { Timer timer; ThreadSafePrinter safePrinter; const int NUM_THREAD = 5; const int SLEEP_SECONDS = 2; std::thread threads[NUM_THREAD]; for (int i=0; i &lt; NUM_THREAD; i++) { threads[i] = std::thread(ExecuteThread, i, SLEEP_SECONDS, std::ref(safePrinter)); } for ( int i=0; i &lt; NUM_THREAD; i++) { threads[i].join(); } } . Then the expected output will be looked like as follows: . Thread - 0 (0x16bb77000) in PID (92800) Thread - 3 (0x16bd1b000) in PID (92800) Thread - 4 (0x16bda7000) in PID (92800) Thread - 1 (0x16bc03000) in PID (92800) Thread - 2 (0x16bc8f000) in PID (92800) Process Ended in 2.00515 [s]. This updated version ensures synchronized output using a mutex, preventing race conditions in multi-threaded environments. ",
     "url": "/docs/programming/concurrent-programming/03.%20Threads.html#multi-threading-in-c",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#multi-threading-in-c"
+  },"52": {
+    "doc": "03. Threads",
+    "title": "Conclusion",
+    "content": "Multi-threading is powerful, but it comes with challenges like synchronization. Python and C++ handle threads differently, but both require careful management to avoid race conditions and performance issues. ",
+    "url": "/docs/programming/concurrent-programming/03.%20Threads.html#conclusion",
+    
+    "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html#conclusion"
   },"53": {
     "doc": "03. Threads",
     "title": "03. Threads",
@@ -377,8 +377,8 @@
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Threads.html"
   },"54": {
-    "doc": "04. Race Conditions",
-    "title": "04. Race Conditions",
+    "doc": "04. Race Condition",
+    "title": "04. Race Condition",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/04.%20Race%20condition.html",
     
