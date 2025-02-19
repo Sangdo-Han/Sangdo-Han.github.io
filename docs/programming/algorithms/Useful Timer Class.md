@@ -60,16 +60,19 @@ When we use this timer, it is only to instantiate the struct as the following `M
 int main()
 {
     Timer timer;
-
+    {
+        Timer timer2; // it counts only this code block. 
+        // do inner job 
+    }// inner code block ends, timer2 shows how much time passed in this block.
     // ... do something
-} // code block ends 
+} // code block ends, timer shows the time passed of main()
 ```
 At the end of code block, timer's destructor `Timer::~Timer()` would be called, printing the duration of the code block.
 
 
 ## Python version Timer  
 
-In python, it is recommended using `__enter__` and `__exit__` methods with `with` statement because of robustness, however, I prefer the C++ way (cosntructor / destructor) because of contextmanager with `with` statement makes additional indentation.
+In python, we can establish the Timer class similar to C++ version (it works), however, it is recommended using `__enter__` and `__exit__` methods with `with` statement because of robustness (Timer2) and clarifying the target code block (as we cannot use curly brackets).
 
 `utils.py`
 ```python
@@ -105,11 +108,16 @@ from utils import Timer, Timer2
 
 def main1():
     timer = Timer()
-    # do something ...
+    # do something ... 
 
 def main2():
     with Timer2() as timer2:
-        #do something ... 
+        #do something ...
+
+        with Timer2() as timer3:
+            # do something
+        
+        ## get final job when it ends
+    ## final job
+    ## get the timer2 output 
 ```
-
-
