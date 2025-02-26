@@ -302,7 +302,7 @@
   },"43": {
     "doc": "03. Multiprocessing",
     "title": "States of a Process",
-    "content": "A process is generally created and controlled by the OS. graph LR New --&gt; Ready; Ready --&gt; Running; Running --&gt; Ready; Running --&gt; Blocked; Blocked --&gt; Ready; Running --&gt; Terminated; . ",
+    "content": "A process is generally created and controlled by the OS. %%{ init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#b19cd9', 'primaryTextColor': '#4b0082', 'primaryBorderColor': '#800080', 'edgeLabelBackground': '#ffffff', 'tertiaryColor': '#e6e6fa', 'nodeBorder': '#6a0dad' }, 'curve': 'basis' } }%% graph LR %% Define process states new[\"New Process\"] ready[\"Ready\"] running[\"Running\"] wait[\"Waiting\"] zombie[\"Zombie\"] terminated[\"Terminated\"] %% Define transitions new --&gt;|Admitted to execution| ready ready --&gt;|Gets CPU execution| running running --&gt;|Loses CPU execution| ready running --&gt;|Waits for event| wait wait --&gt;|Event occurs| ready running --&gt;|Process completes| zombie zombie --&gt;|Parent process ends| terminated %% Group active states subgraph Active States ready running wait end . ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#states-of-a-process",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#states-of-a-process"
@@ -575,7 +575,7 @@
   },"82": {
     "doc": "06. IPC - Message Passing",
     "title": "Conclusion",
-    "content": "Inter-Process Communication (IPC) is fundamental to concurrent programming, allowing processes and threads to coordinate efficiently. Choosing the right IPC mechanism depends on factors such as performance requirements, data-sharing needs, and synchronization complexity. While shared memory offers high-speed access, message-passing techniques provide better isolation and modularity, making them suitable for different use cases in multi-threaded and multiprocessing environments. ",
+    "content": "Inter-Process Communication (IPC) is fundamental to concurrent programming, allowing processes and threads to coordinate efficiently. Message-passing IPC techniques provide better isolation and modularity at the cost of high-performance compared to shared-memory IPC. ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#conclusion",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#conclusion"
@@ -589,557 +589,613 @@
   },"84": {
     "doc": "07. IPC - Shared Memory",
     "title": "Shared-Memory IPC",
-    "content": "Shared-memory IPC allows multiple tasks to access a common memory segment. This technique is fast because there is no need to copy data between tasks, but it requires proper synchronization mechanisms like semaphores or mutexes to ensure data consistency. | Shared-Memory IPC . | Shared Memory | Thread Pool Pattern | . | . ",
+    "content": "Shared-memory IPC allows multiple tasks to access a common memory segment. This technique is fast because there is no need to copy data between tasks, but it requires proper synchronization mechanisms like semaphores or mutexes to ensure data consistency. | Shared-Memory IPC . | Mutex (Lock) | Condition Variable | Shared Memory . | Characteristics of Shared Memory | Python Example | C++ Example | . | Thread Pool Pattern . | Thread Pool in Python | Thread Pool in C++ | . | Conclusion | . | . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory-ipc",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory-ipc"
   },"85": {
+    "doc": "07. IPC - Shared Memory",
+    "title": "Mutex (Lock)",
+    "content": "Unlike message-passing IPC, shared memory is not managed by the OS. Therefore, developers must use a mutex (refers to mutual exclusion, often referred to as a lock) to prevent simultaneous access to shared resources by multiple threads. ",
+    "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#mutex-lock",
+    
+    "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#mutex-lock"
+  },"86": {
+    "doc": "07. IPC - Shared Memory",
+    "title": "Condition Variable",
+    "content": "Condition variables are a synchronization primitive that allows threads to wait until a specific condition is matched. They are essential for coordinating actions between threads, especially in scenarios where threads need to communicate about the state of shared data. In short, mutexes protect shared data while condition variables allow threads to wait efficiently for changes in that shared data. ",
+    "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#condition-variable",
+    
+    "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#condition-variable"
+  },"87": {
     "doc": "07. IPC - Shared Memory",
     "title": "Shared Memory",
     "content": "Shared memory is a region of memory that can be accessed by multiple processes. It enables high-speed data exchange but requires explicit synchronization to prevent data corruption or race conditions. ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory"
-  },"86": {
+  },"88": {
+    "doc": "07. IPC - Shared Memory",
+    "title": "Characteristics of Shared Memory",
+    "content": ". | Direct Access Shared memory involves creating a region of memory in userland that multiple processes or threads can directly access. | Speed Shared memory is generally faster than message passing because it avoids the overhead of copying data. | Developer Responsibility The OS provides the mechanism to create the shared memory region, but it does not manage concurrent access. | . ",
+    "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#characteristics-of-shared-memory",
+    
+    "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#characteristics-of-shared-memory"
+  },"89": {
+    "doc": "07. IPC - Shared Memory",
+    "title": "Python Example",
+    "content": "import time import threading SHARED_ARR_SIZE = 5 SHARED_ARR = [-1] * SHARED_ARR_SIZE lock = threading.Lock() def producer(writing_time: float = 1): thread_name = threading.current_thread().name for i in range(SHARED_ARR_SIZE): time.sleep(writing_time) with lock: SHARED_ARR[i] = i print(f\"{thread_name} writes index {i}: {i}\") def consumer(penalty=1): thread_name = threading.current_thread().name for i in range(SHARED_ARR_SIZE): while True: with lock: data = SHARED_ARR[i] if data == -1: print(f\"{thread_name}: No data at index {i}, waiting {penalty} sec\") time.sleep(penalty) else: print(f\"{thread_name} consumes index {i}, data: {data}\") break if __name__ == \"__main__\": consumer_thread = threading.Thread(name=\"Consumer\", target=consumer, args=(1,)) producer_thread = threading.Thread(name=\"Producer\", target=producer, args=(0.5,)) producer_thread.start() consumer_thread.start() producer_thread.join() consumer_thread.join() . ",
+    "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#python-example",
+    
+    "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#python-example"
+  },"90": {
+    "doc": "07. IPC - Shared Memory",
+    "title": "C++ Example",
+    "content": "#include &lt;iostream&gt; #include &lt;thread&gt; #include &lt;string&gt; #include &lt;chrono&gt; #include &lt;mutex&gt; static const int s_NumData =5; static int s_SharedArr[s_NumData]; std::mutex mutex; void ProduceJob(unsigned int producingSeconds) { std::cout &lt;&lt; std::this_thread::get_id() &lt;&lt; \"\\n\"; auto producingTime = std::chrono::seconds(producingSeconds); std::this_thread::sleep_for(producingTime); for (int idx=0; idx&lt;s_NumData; ++idx) { std::lock_guard&lt;std::mutex&gt; lk(mutex); std::cout &lt;&lt; \"Writing [\" &lt;&lt; idx &lt;&lt; \"] data \\n\"; s_SharedArr[idx] = idx; } } void ConsumeJob(unsigned int penaltySeconds) { for (int idx = 0; idx &lt; s_NumData; ++idx) { while (true) { { std::lock_guard&lt;std::mutex&gt; lk(mutex); if (s_SharedArr[idx] != -1) { std::cout &lt;&lt; \"Consumer read [\" &lt;&lt; idx &lt;&lt; \"] data: \" &lt;&lt; s_SharedArr[idx] &lt;&lt; \"\\n\"; break; } } std::cout &lt;&lt; \"Consumer: No data at index \" &lt;&lt; idx &lt;&lt; \", waiting \" &lt;&lt; penaltySeconds &lt;&lt; \" sec\\n\"; std::this_thread::sleep_for(std::chrono::seconds(penaltySeconds)); } } } int main() { for (int idx=0; idx&lt;s_NumData; ++idx) { s_SharedArr[idx] = -1; } const int numThread = 2; std::thread threads[numThread]; threads[0] = std::thread(ProduceJob,1); threads[1] = std::thread(ConsumeJob,2); for (int idx=0; idx &lt; numThread; ++idx) { threads[idx].join(); } } . ",
+    "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#c-example",
+    
+    "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#c-example"
+  },"91": {
     "doc": "07. IPC - Shared Memory",
     "title": "Thread Pool Pattern",
     "content": "A thread pool consists of multiple worker threads that execute tasks concurrently. These threads share resources, reducing the overhead of creating and destroying threads frequently. Synchronization techniques, such as mutexes and condition variables, help manage access to shared resources efficiently. ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-pattern",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-pattern"
-  },"87": {
+  },"92": {
+    "doc": "07. IPC - Shared Memory",
+    "title": "Thread Pool in Python",
+    "content": "import time from queue import Queue import threading from threading import Thread from typing import Callable, Any, Tuple from utils import Timer # typedef Callback = Callable[..., None] Task = Tuple[Callback, Any, Any] class Worker(Thread): def __init__(self, tasks:Queue[Task]): super().__init__() self.tasks : Queue = tasks def run(self): while True: if not self.tasks.empty(): func, args, kwargs = self.tasks.get() func(*args, **kwargs) self.tasks.task_done() class ThreadPool: def __init__(self, num_threads:int): self.tasks = Queue(num_threads) self.num_threads = num_threads for _ in range(self.num_threads): worker = Worker(self.tasks) worker.setDaemon(True) worker.start() def submit(self, func:Callback, *args, **kwargs): self.tasks.put((func, args, kwargs)) def wait(self): self.tasks.join() def cpu_waster(idx: int) -&gt; None: name = threading.current_thread().getName() print(f\"{name} : doing {idx} work\") time.sleep(3) def main(): num_jobs : int = 20 num_threads : int = 5 timer : Timer = Timer() pool = ThreadPool(num_threads = num_threads) for idx in range(num_jobs): pool.submit(cpu_waster, idx) pool.wait() if \"__main__\" == __name__: main() . ",
+    "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-in-python",
+    
+    "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-in-python"
+  },"93": {
+    "doc": "07. IPC - Shared Memory",
+    "title": "Thread Pool in C++",
+    "content": "#include &lt;iostream&gt; #include &lt;thread&gt; #include &lt;vector&gt; #include &lt;queue&gt; #include &lt;functional&gt; #include &lt;mutex&gt; #include &lt;condition_variable&gt; #include &lt;chrono&gt; #include &lt;atomic&gt; std::mutex coutMtx; using Task = std::function&lt;void()&gt;; class ThreadPool { public: ThreadPool(size_t numThreads) : mb_Stop(false) { for (size_t i = 0; i &lt; numThreads; ++i) { m_Workers.emplace_back([this] { workerThread(); }); } } ~ThreadPool() { { std::unique_lock&lt;std::mutex&gt; lock(m_queueMtx); mb_Stop = true; } m_CV.notify_all(); for (auto&amp; worker : m_Workers) { worker.join(); } } template &lt;typename Func, typename... Args&gt; void Submit(Func&amp;&amp; func, Args&amp;&amp;... args) { { std::unique_lock&lt;std::mutex&gt; lk(m_queueMtx); m_Tasks.emplace(std::bind(std::forward&lt;Func&gt;(func), std::forward&lt;Args&gt;(args)...)); } m_CV.notify_one(); } void Wait() { std::unique_lock&lt;std::mutex&gt; lk(m_WaitMtx); m_CVWait.wait(lk, [this] { return m_Tasks.empty(); }); } private: void workerThread() { while (true) { Task task; { std::unique_lock&lt;std::mutex&gt; lock(m_queueMtx); m_CV.wait(lock, [this] { return mb_Stop || !m_Tasks.empty(); }); if (mb_Stop &amp;&amp; m_Tasks.empty()) { return; } task = std::move(m_Tasks.front()); m_Tasks.pop(); if(m_Tasks.empty()){ m_CVWait.notify_one(); } } task(); } } std::vector&lt;std::thread&gt; m_Workers; std::queue&lt;Task&gt; m_Tasks; std::mutex m_queueMtx; std::condition_variable m_CV; std::mutex m_WaitMtx; std::condition_variable m_CVWait; std::atomic&lt;bool&gt; mb_Stop; }; void cpu_waster(int idx) { std::this_thread::sleep_for(std::chrono::seconds(3)); { std::lock_guard&lt;std::mutex&gt; lk(coutMtx); std::cout &lt;&lt; std::this_thread::get_id() &lt;&lt; \" : doing \" &lt;&lt; idx &lt;&lt; \" work\" &lt;&lt; std::endl; } } int main() { int numJobs = 20; int numThreads = 5; ThreadPool pool(numThreads); for (int idx = 0; idx &lt; numJobs; ++idx) { pool.Submit(cpu_waster, idx); } pool.Wait(); return 0; } . ",
+    "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-in-c",
+    
+    "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-in-c"
+  },"94": {
+    "doc": "07. IPC - Shared Memory",
+    "title": "Conclusion",
+    "content": "Inter-Process Communication (IPC) is fundamental to concurrent programming, allowing processes and threads to coordinate efficiently. Shared-memory IPC techniques provide high performance but require great caution from developers to ensure safe code because OS merely manages the shared memory control in userland. ",
+    "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#conclusion",
+    
+    "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#conclusion"
+  },"95": {
     "doc": "07. IPC - Shared Memory",
     "title": "07. IPC - Shared Memory",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html"
-  },"88": {
-    "doc": "08. Decomposition",
-    "title": "08. Decomposition",
+  },"96": {
+    "doc": "08. Decomposition (In progress)",
+    "title": "08. Decomposition (In progress)",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/08.%20Decomposition.html",
     
     "relUrl": "/docs/programming/concurrent-programming/08.%20Decomposition.html"
-  },"89": {
+  },"97": {
     "doc": "09. Decomposition - Task Parallelism",
     "title": "09. Decomposition - Task Parallelism",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html",
     
     "relUrl": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html"
-  },"90": {
+  },"98": {
     "doc": "10. Decomposition - Data Parallelism",
     "title": "10. Decomposition - Data Parallelism",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/10.%20Decomposition%20-%20Data.html",
     
     "relUrl": "/docs/programming/concurrent-programming/10.%20Decomposition%20-%20Data.html"
-  },"91": {
+  },"99": {
     "doc": "11. Synchronization",
     "title": "11. Synchronization",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/11.%20Synchronization.html",
     
     "relUrl": "/docs/programming/concurrent-programming/11.%20Synchronization.html"
-  },"92": {
+  },"100": {
     "doc": "12. Synchronization - Mutexes and Semaphores",
     "title": "12. Synchronization - Mutexes and Semaphores",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/12.%20Synchronization%20-%20Mutexes%20and%20Semaphores.html",
     
     "relUrl": "/docs/programming/concurrent-programming/12.%20Synchronization%20-%20Mutexes%20and%20Semaphores.html"
-  },"93": {
+  },"101": {
     "doc": "13. Synchronization - Deadlock",
     "title": "13. Synchronization - Deadlock",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/13.%20Synchronization%20-%20Deadlocks.html",
     
     "relUrl": "/docs/programming/concurrent-programming/13.%20Synchronization%20-%20Deadlocks.html"
-  },"94": {
+  },"102": {
     "doc": "14. Synchronization - Starvation",
     "title": "14. Synchronization - Starvation",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/14.%20Synchronization%20-%20Starvation.html",
     
     "relUrl": "/docs/programming/concurrent-programming/14.%20Synchronization%20-%20Starvation.html"
-  },"95": {
+  },"103": {
     "doc": "15. Synchronization - RWLock, Spin Lock",
     "title": "15. Synchronization - RWLock, Spin Lock",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/15.%20Synchronization%20-%20RWLocks%20and%20Spin%20Locks.html",
     
     "relUrl": "/docs/programming/concurrent-programming/15.%20Synchronization%20-%20RWLocks%20and%20Spin%20Locks.html"
-  },"96": {
+  },"104": {
     "doc": "3D Image Reconstruction - Introduction",
     "title": "3D Reconstruction - Introduction",
     "content": " Introductions to 3D Reconstruction : Backgrounds, Metrics and Representations . ",
     "url": "/docs/research/computer-vision/3d-image-reconstruction.html#3d-reconstruction---introduction",
     
     "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#3d-reconstruction---introduction"
-  },"97": {
+  },"105": {
     "doc": "3D Image Reconstruction - Introduction",
     "title": "Backgrounds",
     "content": "3D reconstruction, which is 3-Dimensional representation of objects, can be used for many applications such as video games, animation, navigation and so on. There are many traditional methods in 3D reconstruction like SfM(Structure from Motion), Dense Reconstruction and MVS(Multi-View Stereo). Those traditional methods are based on photogrammetry. It is true that understanding the basics of photogrammetry is very important to understand deep-learning based 3D reconstruction because deep-learning based methods are built on top of these photogrammetry techniques. In this post, however, it is assumed that the readers have knowledge about deep learning models rather than 3D reconstructions. Hence, the discussion will focus on deep-learning based 3D reconstructions while traditional techniques will be mentioned only as needed for readers to comprehend the deep-learning models. ",
     "url": "/docs/research/computer-vision/3d-image-reconstruction.html#backgrounds",
     
     "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#backgrounds"
-  },"98": {
+  },"106": {
     "doc": "3D Image Reconstruction - Introduction",
     "title": "Datasets, Metrics and Representations",
     "content": "Based on 3D reconstruction using deep learning : a survey [1] . Starting with a good review paper helps to understand the field and the potential research directions. In deep learning based 3D reconstruction, luckily we can access a good review paper [1] for free. ",
     "url": "/docs/research/computer-vision/3d-image-reconstruction.html#datasets-metrics-and-representations",
     
     "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#datasets-metrics-and-representations"
-  },"99": {
+  },"107": {
     "doc": "3D Image Reconstruction - Introduction",
     "title": "Datasets",
     "content": "The paper[1] show us several useful dataset for 3D reconstructions: . | ShapeNet It is a very large scale dataset for CAD models developed by Chang et al.[2] from Stanford University, Princeton University and the Toyota Technological Institute at Chicago, USA. | Pascal3D+ It is a multi-view datasets, if you are familiar with Object Detection Task, you might be heard of PASCAL VOC dataset. Pascal3D+ has 12 categories of rigid object from PASCAL VOC 2012. This dataset is developed by Yu Xiang et al[3] from Computational Vision and Geometry Lab at Stanford University. | ObjectNet3D It is a large scale database for 3D objects. Like as Pascal3D+, this dataset is developed by Yu Xiang et al[4] from Computational Vision and Geometry Lab at Stanford University. | KITTI If you are familiar with Computer Vision in automous driving and mobile robotics, I am sure that you heard of this dataset. This was introduced by Andres Geiger et al[5]. | . ",
     "url": "/docs/research/computer-vision/3d-image-reconstruction.html#datasets",
     
     "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#datasets"
-  },"100": {
+  },"108": {
     "doc": "3D Image Reconstruction - Introduction",
     "title": "Metrics",
     "content": "The paper[1] briefly explains 3 commonly used metric used: MSE, Voxel IoU and cross-entropy. I think the reader might familiar with MSE and cross-entropy. Therefore, I will skip their details. Voxel IoU . In many cases in Computer Vision, IoU represents an abbreviation of Intersection over Union. As you might guess. Voxel IoU is mere volumetric extension of 2D-pixel-IoU. which is: . \\[{IoU={G \\cap P \\over G \\cup P}}\\] Here, G stands for a set of voxels in a ground truth, while P stands for a set of voxels in prediction/reconstruction. This metric is also widely used for 3D object detection or segmentation. Also, for point cloud and mesh representation, sevaral distance metrics between groundtruth and reconstruction can be used as metric. I beleive that readers are familiar with Euclidean Distance, I will post about Chamfer Distance and EMD instead. Chamfer Distance . Chamfer Distance is average of the summation of closest point pairs. \\[Chamfer(G,P) = {1\\over{n}}(\\sum_i \\min_j(||g_i - p_j||) + \\sum_j \\min_i(||g_i - p_j||))\\] More precisely, The formula represents average of distance from each point in one point cloud to its closest point in the other point cloud. and vice versa. EMD . Earth mover’s distance (EMD), also known as the Wasserstein distance, stands for the distance between probability distributions over a region in statistics. \\[EMD(P, \\hat{P})=\\min_{\\phi:P\\rightarrow\\hat{P}} \\sum_{p_i\\in P}||p_i - \\phi(p_i)||\\] This can be computed using the Hungarian Algorithm or Sinkhorn-Knopp algorithm. ",
     "url": "/docs/research/computer-vision/3d-image-reconstruction.html#metrics",
     
     "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#metrics"
-  },"101": {
+  },"109": {
     "doc": "3D Image Reconstruction - Introduction",
     "title": "3D Computer Vision Representation",
     "content": "The original survey [1] divides the reconstruction techniques into two main categories by the number of sources. (Reconstruction based on single image or multiple images.) After that, it lists up middle categories with way of representations or how outcome look like with a short descriptions. These could be very helpful for the researchers who are familiar with 3D Computer Vision. However, for the newcomers (I assume that most of readers of survey papers are newcomers), I think that it would be more effective writing if it explains the ways of representing 3D object first, and then explains the models and results. Voxel Representation . Voxel is a volumetric representation which can be comparing to pixel representation in 2D images. Actually, by adding depth (D) into pixel, Voxel achieves representation of 3D. \\(pixel : H \\times W \\times C\\) \\(voxel : H \\times W \\times D \\times C\\) \\(, where \\ H : height , \\ W : width, \\ D : depth, \\ C : channel \\ (color)\\) . Point Cloud Representation . Point Cloud is another way to represent 3D object. A single point cloud is a collection of 3D points (mostly a collection of Cartesian coordinate positions) : . point_cloud = [ [x1, y1, z1], [x2, y2, z2], ... [xN, yN, zN] ] . Mesh Representation . Mesh representation could be another option. Mesh is a collection of base geometry to represent surface. Since the least number of points to construct a surface is 3 (triangle), triangle is widely used for mesh representations: . mesh_representation = [ [point_1, point_2, point_3], [point_4, point_5, point_6], ... [point_a, point_b, point_c] ] . Each point (vertex) represents 3d point (x,y,z) . Other Representation . Implicit Surface . Implicit Surface is a model based surface representation. Models can be a continuous decision boundary of deeplearning network classifiers, suggested in OccNet6, or multi-layer network architecture to extract geometry features and represents 3D shapes in an Euclidean preserving latent space as in UCLID-Net7 This concept is novel but thinking of the mathematics, we can easily see the concepts: . \\[f_{model}(x,y,z) = 0\\] which resembles our well-known implicit surface: . \\[f(x,y,z) = x^2+y^2+z^2 -1 =0\\] a sphere! . depth . About generating depths based on a 2D images, 3D representation also be achieved. ",
     "url": "/docs/research/computer-vision/3d-image-reconstruction.html#3d-computer-vision-representation",
     
     "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#3d-computer-vision-representation"
-  },"102": {
+  },"110": {
     "doc": "3D Image Reconstruction - Introduction",
     "title": "References",
     "content": "[1] Jin, Y., Jiang, D., &amp; Cai, M. (2020). 3d reconstruction using deep learning: a survey. Communications in Information and Systems, 20(4), 389-413. [2] Chang, A. X., Funkhouser, T., Guibas, L., Hanrahan, P., Huang, Q., Li, Z., … &amp; Yu, F. (2015). Shapenet: An information-rich 3d model repository. arXiv preprint arXiv:1512.03012. [3] Y. Xiang, R. Mottaghi and S. Savarese, “Beyond PASCAL: A benchmark for 3D object detection in the wild,” IEEE Winter Conference on Applications of Computer Vision, Steamboat Springs, CO, USA, 2014, pp. 75-82, doi: 10.1109/WACV.2014.6836101. [4] Xiang, Y., Kim, W., Chen, W., Ji, J., Choy, C., Su, H., … &amp; Savarese, S. (2016). Objectnet3d: A large scale database for 3d object recognition. In Computer Vision–ECCV 2016: 14th European Conference, Amsterdam, The Netherlands, October 11-14, 2016, Proceedings, Part VIII 14 (pp. 160-176). Springer International Publishing. [5] A. Geiger, P. Lenz and R. Urtasun, “Are we ready for autonomous driving? The KITTI vision benchmark suite,” 2012 IEEE Conference on Computer Vision and Pattern Recognition, Providence, RI, USA, 2012, pp. 3354-3361, doi: 10.1109/CVPR.2012.6248074. [6] L. Mescheder, M. Oechsle, M. Niemeyer, S. Nowozin, and A. Geiger, “Occupancy networks: Learning 3d reconstruction in function space,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019, pp. 4460–4470. [7] L. Mescheder, M. Oechsle, M. Niemeyer, S. Nowozin, and A. Geiger, “Occupancy networks: Learning 3d reconstruction in function space,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019, pp. 4460–4470. ",
     "url": "/docs/research/computer-vision/3d-image-reconstruction.html#references",
     
     "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html#references"
-  },"103": {
+  },"111": {
     "doc": "3D Image Reconstruction - Introduction",
     "title": "3D Image Reconstruction - Introduction",
     "content": " ",
     "url": "/docs/research/computer-vision/3d-image-reconstruction.html",
     
     "relUrl": "/docs/research/computer-vision/3d-image-reconstruction.html"
-  },"104": {
+  },"112": {
     "doc": "Useful Timer Class",
     "title": "Timer class",
     "content": "When we compare the algorithms, we use Big-O notation for the time-space efficiency. However, making a timer is often more practical. For the algorithm section, we will use a simple Timer class both in python and C++. ",
     "url": "/docs/programming/algorithms/Useful%20Timer%20Class.html#timer-class",
     
     "relUrl": "/docs/programming/algorithms/Useful%20Timer%20Class.html#timer-class"
-  },"105": {
+  },"113": {
     "doc": "Useful Timer Class",
     "title": "C++ version Timer",
-    "content": "By using constructor and destructor, we can make a simple Timer as followings: . Timer.h . // Timer.h #pragma once #include &lt;chrono&gt; struct Timer { std::chrono::time_point&lt;std::chrono::steady_clock&gt; m_Start; Timer(); ~Timer(); }; . Timer.cpp . // Timer.cpp #include &lt;iostream&gt; #include \"Timer.h\" Timer::Timer() : m_Start(std::chrono::high_resolution_clock::now()) { } Timer::~Timer() { auto end = std::chrono::high_resolution_clock::now(); std::chrono::duration&lt;float&gt; duration = end - m_Start; std::cout &lt;&lt; \"Process Ended in \" &lt;&lt; duration.count() &lt;&lt; \" [s].\\n\"; } . When we use this timer, it is only to instantiate the struct as the following Main.cpp. Main.cpp . #include &lt;iostream&gt; #include \"Timer.h\" int main() { Timer timer; // ... do something } // code block ends . At the end of code block, timer’s destructor Timer::~Timer() would be called, printing the duration of the code block. ",
+    "content": "By using constructor and destructor, we can make a simple Timer as followings: . Timer.h . // Timer.h #pragma once #include &lt;chrono&gt; struct Timer { std::chrono::time_point&lt;std::chrono::steady_clock&gt; m_Start; Timer(); ~Timer(); }; . Timer.cpp . // Timer.cpp #include &lt;iostream&gt; #include \"Timer.h\" Timer::Timer() : m_Start(std::chrono::high_resolution_clock::now()) { } Timer::~Timer() { auto end = std::chrono::high_resolution_clock::now(); std::chrono::duration&lt;float&gt; duration = end - m_Start; std::cout &lt;&lt; \"Process Ended in \" &lt;&lt; duration.count() &lt;&lt; \" [s].\\n\"; } . When we use this timer, it is only to instantiate the struct as the following Main.cpp. Main.cpp . #include &lt;iostream&gt; #include \"Timer.h\" int main() { Timer timer; { Timer timer2; // it counts only this code block. // do inner job }// inner code block ends, timer2 shows how much time passed in this block. // ... do something } // code block ends, timer shows the time passed of main() . At the end of code block, timer’s destructor Timer::~Timer() would be called, printing the duration of the code block. ",
     "url": "/docs/programming/algorithms/Useful%20Timer%20Class.html#c-version-timer",
     
     "relUrl": "/docs/programming/algorithms/Useful%20Timer%20Class.html#c-version-timer"
-  },"106": {
+  },"114": {
     "doc": "Useful Timer Class",
     "title": "Python version Timer",
-    "content": "In python, it is recommended using __enter__ and __exit__ methods with with statement because of robustness, however, I prefer the C++ way (cosntructor / destructor) because of contextmanager with with statement makes additional indentation. utils.py . import time class Timer(object): def __init__(self): self._start_time = time.perf_counter() def __del__(self): print( \"Process Ended in \" f\"{time.perf_counter()-self._start_time} [s]\" ) class Timer2(object): def __init__(self): self._start_time = None def __enter__(self): self._start_time = time.perf_counter() return self def __exit__(self, *exc_info): print( \"Process Ended in \" f\"{time.perf_counter()-self._start_time} [s]\" ) . main.py . from utils import Timer, Timer2 def main1(): timer = Timer() # do something ... def main2(): with Timer2() as timer2: #do something ... ",
+    "content": "In python, we can establish the Timer class similar to C++ version (it works), however, it is recommended using __enter__ and __exit__ methods with with statement because of robustness (Timer2) and clarifying the target code block (as we cannot use curly brackets). utils.py . import time class Timer(object): def __init__(self): self._start_time = time.perf_counter() def __del__(self): print( \"Process Ended in \" f\"{time.perf_counter()-self._start_time} [s]\" ) class Timer2(object): def __init__(self): self._start_time = None def __enter__(self): self._start_time = time.perf_counter() return self def __exit__(self, *exc_info): print( \"Process Ended in \" f\"{time.perf_counter()-self._start_time} [s]\" ) . main.py . from utils import Timer, Timer2 def main1(): timer = Timer() # do something ... def main2(): with Timer2() as timer2: #do something ... with Timer2() as timer3: # do something ## get final job when it ends ## final job ## get the timer2 output . ",
     "url": "/docs/programming/algorithms/Useful%20Timer%20Class.html#python-version-timer",
     
     "relUrl": "/docs/programming/algorithms/Useful%20Timer%20Class.html#python-version-timer"
-  },"107": {
+  },"115": {
     "doc": "Useful Timer Class",
     "title": "Useful Timer Class",
     "content": " ",
     "url": "/docs/programming/algorithms/Useful%20Timer%20Class.html",
     
     "relUrl": "/docs/programming/algorithms/Useful%20Timer%20Class.html"
-  },"108": {
+  },"116": {
     "doc": "About",
     "title": "Sanhan",
     "content": ". Work as a software researcher. ",
     "url": "/docs/about.html#sanhan",
     
     "relUrl": "/docs/about.html#sanhan"
-  },"109": {
+  },"117": {
     "doc": "About",
     "title": "Careers",
     "content": " ",
     "url": "/docs/about.html#careers",
     
     "relUrl": "/docs/about.html#careers"
-  },"110": {
+  },"118": {
     "doc": "About",
     "title": "Software Engineer / Researcher at LG Electronics, Seoul",
     "content": ". | DX Center in CTO division (Jan.2025~) | AI Bigdata department in CDO division (Aug.2022~Jan.2025) | Smartdata department in CTO division (Aug.2020~Aug.2022) | . ",
     "url": "/docs/about.html#software-engineer--researcher-at-lg-electronics-seoul",
     
     "relUrl": "/docs/about.html#software-engineer--researcher-at-lg-electronics-seoul"
-  },"111": {
+  },"119": {
     "doc": "About",
     "title": "Education",
     "content": " ",
     "url": "/docs/about.html#education",
     
     "relUrl": "/docs/about.html#education"
-  },"112": {
+  },"120": {
     "doc": "About",
     "title": "Master of Science in Engineering at University of Michigan, Ann Arbor",
     "content": ". | Mechanical Engineering specialized on mechatronics and controls (May.2020) | . ",
     "url": "/docs/about.html#master-of-science-in-engineering-at-university-of-michigan-ann-arbor",
     
     "relUrl": "/docs/about.html#master-of-science-in-engineering-at-university-of-michigan-ann-arbor"
-  },"113": {
+  },"121": {
     "doc": "About",
     "title": "Bachelor of Science in Engineering at Yonsei University, Seoul",
     "content": ". | Mechanical Engineering (Aug.2018) | . ",
     "url": "/docs/about.html#bachelor-of-science-in-engineering-at-yonsei-university-seoul",
     
     "relUrl": "/docs/about.html#bachelor-of-science-in-engineering-at-yonsei-university-seoul"
-  },"114": {
+  },"122": {
     "doc": "About",
     "title": "About",
     "content": " ",
     "url": "/docs/about.html",
     
     "relUrl": "/docs/about.html"
-  },"115": {
+  },"123": {
     "doc": "Algorithms and Data structures",
     "title": "Algorithms and Data structures",
     "content": "python / C++ based approaches. ",
     "url": "/docs/programming/algorithms.html",
     
     "relUrl": "/docs/programming/algorithms.html"
-  },"116": {
+  },"124": {
     "doc": "Computer Vision",
     "title": "Computer Vision",
     "content": "simple definition : Computer Vision is a visionary understanding of computer. With a significant acheivement in Deep Learning Architectures ( CNN, RNN, transformers, GAN, leveraging LLM, Diffusion Models, and so on) with large datasets like ImageNet, there are a significant progress in computer vision. However, there are still unsolved questions, efficiency, reliability, robustness, linkage to other modalities, temporal evolution of scene in computer vision and understanding the gap between computer vision and human visionary behavior. ",
     "url": "/docs/research/computer-vision",
     
     "relUrl": "/docs/research/computer-vision"
-  },"117": {
+  },"125": {
     "doc": "Concurrent Programming",
     "title": "Concurrent Programming",
     "content": "Explanation of concurrent / parallel programming (with C++ and python codes). ",
     "url": "/docs/programming/concurrent-programming.html",
     
     "relUrl": "/docs/programming/concurrent-programming.html"
-  },"118": {
+  },"126": {
     "doc": "Control theory of LLM",
     "title": "A Control Theory of LLM prompting",
     "content": " ",
     "url": "/docs/research/llm/control_llm.html#a-control-theory-of-llm-prompting",
     
     "relUrl": "/docs/research/llm/control_llm.html#a-control-theory-of-llm-prompting"
-  },"119": {
+  },"127": {
     "doc": "Control theory of LLM",
     "title": "Introduction",
     "content": "  In this post, I will review a very interesting recenet paper about LLM : What's the Magic Word? A Control Theory of LLM prompting.[1]. The reason why I review this paper is that it gives us a new perspective on LLM, with the glasses of control theory. The main concept of the paper is that analogy on LLM system to control system : LLM be as a plant and the prompt be as a control input. Unlike other ML/DL framework, most of studies on LLM prompting were emperical, without mathematical evidence. This is because that LLM is too huge to understand. The paper, however, tries to understand LLM itself but treat it as a plant to control and give us a concrete understanding. ",
     "url": "/docs/research/llm/control_llm.html#introduction",
     
     "relUrl": "/docs/research/llm/control_llm.html#introduction"
-  },"120": {
+  },"128": {
     "doc": "Control theory of LLM",
     "title": "Basic Control Theory: System",
     "content": "  To understand this paper, we need to know basic concepts of state space representation and control theory. The authors put the Appendix on the paper [1], however, it is better to read Chapter 1-3 of [2]. It is online free.   Briefly speaking, control theory depicts a system whether it is reachable (observable, controllable) and find out how to observe the system’s state and control the system with external inputs (force, current and so on.) .   In mathematically, system is the set of state of plant, time, control input. and transition of state. If we have output space (observable output), we could add output and readout map to the original system. In addition to the appendix [1], .   A system (\\(\\Sigma\\)) consists of: . | State (\\(X\\)): The state of a plant refers to the minimal set of variables that completely define its behavior at any given time. These variables capture the internal condition of the plant. | Control Input (\\(U\\)): Control inputs are the external influences applied to the plant to manipulate its behavior. | Time (\\(T\\)): Time set, the ordered set of positive values. | Transition map (\\(\\phi: X \\times U \\times T^{2} \\rightarrow X\\)): Transition map takes a current state (X(t)) at time t and a control input (u(t)) at time t, and returns the next state (X(t+1)) at the next time step (t+1). Note: \\(T\\) or \\(T^2\\)? If the control varies in time like as in feedback control or time-varying control strategy, we could add additional time space to describe the transition map. In the paper, however, as the transitted time t’ differs from the original t, it seems that author put the additional time space into the collection. I suppose that the authors want to describe t’ and t are nomially different. | Output (\\(Y\\)): Observed output space. | Readout map (\\(h: X \\times U \\times T \\rightarrow Y\\)): Readout map takes a current state (X(t)) at time t and a control input (u(t)) at the time t, and returns the observed(read out) value (Y(t)). | . ",
     "url": "/docs/research/llm/control_llm.html#basic-control-theory-system",
     
     "relUrl": "/docs/research/llm/control_llm.html#basic-control-theory-system"
-  },"121": {
+  },"129": {
     "doc": "Control theory of LLM",
     "title": "Basic Control Theory: Reachability, Observability and Controllability",
     "content": "  In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a system. Let us say that the state be the top face of dice, control input be the human random force of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the transition map be the state transition between trials. However, even we designed this rolling a dice to be a system with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be controllable? . ref: dices image from wikipedia ",
     "url": "/docs/research/llm/control_llm.html#basic-control-theory-reachability-observability-and-controllability",
     
     "relUrl": "/docs/research/llm/control_llm.html#basic-control-theory-reachability-observability-and-controllability"
-  },"122": {
+  },"130": {
     "doc": "Control theory of LLM",
     "title": "Reachability, Observable and Controllability",
     "content": "  Back to the rolling a dice system, we can say that this system is reachable because we could potentially role any number, and always be observable. However, we cannot say that this system is controllable because we cannot make intended input. Mathematically, we can define the reachability as in [2]. ",
     "url": "/docs/research/llm/control_llm.html#reachability-observable-and-controllability",
     
     "relUrl": "/docs/research/llm/control_llm.html#reachability-observable-and-controllability"
-  },"123": {
+  },"131": {
     "doc": "Control theory of LLM",
     "title": "Event",
     "content": "  As we defined before, an arbitary system \\(\\Sigma\\) can be defined as \\(\\Sigma = (T, X, U, \\phi)\\) . An event is a state at a time, a pair of state and time \\((x, t) \\in X \\times T\\). ",
     "url": "/docs/research/llm/control_llm.html#event",
     
     "relUrl": "/docs/research/llm/control_llm.html#event"
-  },"124": {
+  },"132": {
     "doc": "Control theory of LLM",
     "title": "Reacability and Controllability",
     "content": "The event \\((z, \\tau)\\) can be reached from a state \\((x,\\sigma)\\), if and only if there is a path of \\(\\Sigma\\) on \\([\\sigma, \\tau]\\) and if there exists an \\(\\omega \\in U^{[\\sigma, \\tau)}\\) such that \\(\\phi(\\tau, \\sigma, x, \\omega) = z\\), we can say we can control the state x to state z.   Again with the rolling a dice system, now we can see the problem, we put the human random force be the input, but it is not controllable. ",
     "url": "/docs/research/llm/control_llm.html#reacability-and-controllability",
     
     "relUrl": "/docs/research/llm/control_llm.html#reacability-and-controllability"
-  },"125": {
+  },"133": {
     "doc": "Control theory of LLM",
     "title": "Control Theory of LLM",
     "content": "  Now we can discuss control of LLM with the paper [1]. All the following concepts and logics are originated from the paper. ",
     "url": "/docs/research/llm/control_llm.html#control-theory-of-llm",
     
     "relUrl": "/docs/research/llm/control_llm.html#control-theory-of-llm"
-  },"126": {
+  },"134": {
     "doc": "Control theory of LLM",
     "title": "Notations",
     "content": "  In the paper, they denoted \\(P_{LM}\\) be a causal language model, \\(V\\) be a vocabulary set, \\(V^*\\) be the set of all possible sequences of any length composed of tokens from \\(V\\). The bold lowercase stands for sequence (vector) \\(\\bm{x}\\), while the unbolded lowercase letter \\(x\\) be an individual token. ",
     "url": "/docs/research/llm/control_llm.html#notations",
     
     "relUrl": "/docs/research/llm/control_llm.html#notations"
-  },"127": {
+  },"135": {
     "doc": "Control theory of LLM",
     "title": "Assumptions",
     "content": "  Here are some assumptions before stating the definitions: . | The LLM system is discrete time: It is quite natural if we come across LLM chatbots, we get output token from LLM when we put query input. | The LLM system follows Shift-and-Grow State dynamics: Whereas the system state in an ODE-based system has a fixed size over time, the system state x(t) for LLM systems grows as tokens are added to the state sequence. | It is assumed that the LLM system follows a Markov Transition (In paper it is said in more gently as Mutual exclusion on control input token vs. generated token): The newest token is either drawn from the control input \\(u(t)\\) or is generated by the LLM by sampling \\(x{'} \\sim P_{LM} (x' | x(t))\\). This differs from traditional discrete stochastic systems, where the control sequence and internal dynamics generally affect the state synchronously. | .   From the basic control theory and the followed assumptions, the authors defined the LLM systems and Control Input as follows: . ",
     "url": "/docs/research/llm/control_llm.html#assumptions",
     
     "relUrl": "/docs/research/llm/control_llm.html#assumptions"
-  },"128": {
+  },"136": {
     "doc": "Control theory of LLM",
     "title": "Definitions",
     "content": " ",
     "url": "/docs/research/llm/control_llm.html#definitions",
     
     "relUrl": "/docs/research/llm/control_llm.html#definitions"
-  },"129": {
+  },"137": {
     "doc": "Control theory of LLM",
     "title": "Definition 1. Autoregressive LLM system",
     "content": "  An autoregressive LLM system \\(\\Sigma = (V, P_{LM})\\) with control input consists of time set (\\(T\\)), state space (\\(X\\)), input (\\(U\\)), transition map (\\(\\phi\\)) and readout map \\(h\\). | Time set \\(T\\) is a set of sequence number (natural number): \\(T = N\\). | The state space \\(X\\) is the set of all possible sequences of any length formed from the vocabulary set \\(V\\): \\(X = V^{*}\\) | The input space is the set of sequences but also allows the no inputs \\(\\empty\\): \\(U = V \\bigcup {\\{ \\empty \\}}\\) | The transition map \\(\\phi\\) is sum of current state and input: \\(\\phi : X \\times U \\times T^{2}\\) such that \\(\\phi(x(t), u(t), t, t+1) = \\begin{cases} x(t) + u(t) &amp; \\text{if $u(t) \\neq \\empty$}\\\\ x(t) + x' &amp; \\text{otherwise} \\end{cases}\\) where \\(x' \\sim P_{LM}(x' | x(t))\\). Sadly because they use the plus sign as a operator wihtout the definition, we need to assume that this is an operator that represent concatenation of state because we assume that it is autoregressive. More than that, as it is autoregressive, the output is deterministic. | The readout map returns the most recent r tokens from the state x: \\(h(x(t);r) = [x^{t-r}(t), ... , x^{t}(t)]\\) | . ",
     "url": "/docs/research/llm/control_llm.html#definition-1-autoregressive-llm-system",
     
     "relUrl": "/docs/research/llm/control_llm.html#definition-1-autoregressive-llm-system"
-  },"130": {
+  },"138": {
     "doc": "Control theory of LLM",
     "title": "Definition 2. LLM Output Reachability",
     "content": "  \\(y \\in V^r\\) is reachable from the initial state \\(x_0 \\in V^*\\) if and only if there exists some time \\(T\\) and input sequences \\(u^* \\in U^k\\) for some \\(k + |x_0| \\leq T\\) that makes the initial state \\(x_0\\) move to output \\(y = h(x(T), r)\\) at time \\(T\\) . ",
     "url": "/docs/research/llm/control_llm.html#definition-2-llm-output-reachability",
     
     "relUrl": "/docs/research/llm/control_llm.html#definition-2-llm-output-reachability"
-  },"131": {
+  },"139": {
     "doc": "Control theory of LLM",
     "title": "Definition 3. Output Reachablility Set",
     "content": "  The reachable output set from the initial state \\(x_0 \\in V^*\\) is denoted \\(R_y(x_0)\\). ",
     "url": "/docs/research/llm/control_llm.html#definition-3-output-reachablility-set",
     
     "relUrl": "/docs/research/llm/control_llm.html#definition-3-output-reachablility-set"
-  },"132": {
+  },"140": {
     "doc": "Control theory of LLM",
     "title": "Definition 4. Output Controllabilty (Revised from the paper.)",
     "content": "  An LLM system is output controllable if and only if, \\(\\forall x_0 \\in V^*\\) and \\(\\forall y \\in V^r\\), there exists a time \\(T \\geq |x_0|\\) and the input sequence \\(u^* \\in U^k\\), where \\(k\\leq T - |x_0|\\) such that the probability \\(P(h(x(T),r) = y | x_0, u^*) &gt; 0\\). ",
     "url": "/docs/research/llm/control_llm.html#definition-4-output-controllabilty-revised-from-the-paper",
     
     "relUrl": "/docs/research/llm/control_llm.html#definition-4-output-controllabilty-revised-from-the-paper"
-  },"133": {
+  },"141": {
     "doc": "Control theory of LLM",
     "title": "Definition 5. \\(k-\\epsilon\\) Controllability",
     "content": "  If a datset of state-output pairs \\(D = \\{(x^{i}_{0}, y^{i})\\}_{i\\in [N]}\\), an LLM system \\(\\Sigma = (V, P_{LM})\\) is \\(k-\\epsilon\\) controllable with respect to D, if and only if \\(P\\{y \\notin R^{k}_{y}(x_0)\\} &lt; \\epsilon\\) for \\((x_0, y) \\sim D\\), where \\(R^k_y(x^i_0)\\) is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length \\(|u| \\leq k\\). ",
     "url": "/docs/research/llm/control_llm.html#definition-5-k-epsilon-controllability",
     
     "relUrl": "/docs/research/llm/control_llm.html#definition-5-k-epsilon-controllability"
-  },"134": {
+  },"142": {
     "doc": "Control theory of LLM",
     "title": "Apply to the Self-Attention Mechanism. - Preliminaries",
     "content": "  Above the definition on LLM controllability could be nice for generalization, we need to prove it with actual models and calculations. The paper choose the self-attention which dominates in LLMs. ",
     "url": "/docs/research/llm/control_llm.html#apply-to-the-self-attention-mechanism---preliminaries",
     
     "relUrl": "/docs/research/llm/control_llm.html#apply-to-the-self-attention-mechanism---preliminaries"
-  },"135": {
+  },"143": {
     "doc": "Control theory of LLM",
     "title": "Definition 6. Self-attention.",
     "content": "  Self-attention \\(\\Xi\\) is parameterized by weight metrics \\(\\theta = (W_q, W_{key}, W_v)\\) (query, key, value). \\(\\Xi\\) is a mapping from the input token (\\(R^{N \\times d_{in}}\\)) to output token (\\(R^{N \\times d_{out}}\\)), . \\[\\Xi(X;\\theta) = D^{-1} exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right)\\] where exp() denotes element-wise exponential of matrix entries, \\(W_q, W_{key} \\in R^{d_{in} \\times d_{key}}\\), \\(W_v \\in R^{d_{in} \\times d_{out}}\\), \\(Q = XW_q\\), \\(K=XW_{key}\\), \\(V=XW_{v}\\) and D is a diagonal positive definite matrix, \\(D:= diag \\left( exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right) \\bm{1}_{N \\times 1 } \\right)\\) .   In this paper, the reachability of output token representations \\(\\Xi (X; \\theta)\\), they partitioned the input \\(X \\in R^{(k+m)\\times d_{in}}\\) into a \\(k \\times d_{in}\\) block of control input representations \\(U\\) and an \\(m\\times d_{in}\\) block of imposed state representations \\(X_0\\) where \\(k + m = N\\). With this partitioning, the definition of self-attention can be re-written as followings: . \\[\\begin{align}\\Xi (X; \\theta) = \\Xi \\left( \\left[{U \\atop X_0} \\right] ; \\theta \\right) = \\Xi ([U; X_0]; \\theta) = \\left[{U' \\atop Y} \\right] = [U' ; Y] \\end{align}\\] Also, the output \\(X' = \\Xi (X; \\theta) \\in R^{(k+m) \\times d_{in}}\\) into a corresponding \\(k \\times d_{out}\\) matrix \\(U'\\) and an \\(m \\times d_{out}\\) matrix Y. ",
     "url": "/docs/research/llm/control_llm.html#definition-6-self-attention",
     
     "relUrl": "/docs/research/llm/control_llm.html#definition-6-self-attention"
-  },"136": {
+  },"144": {
     "doc": "Control theory of LLM",
     "title": "definition 7. Reachability of self-attention",
     "content": "  Following the definition 2, let \\(Y^* \\in R^{m \\times d_{out}}\\) be the desired output, reachability for Self-attention can be defined as followings:   \\(Y^*\\) is reachable from initial state \\(X_0\\) if and only if there exists some U that steers the output of \\(\\Xi (\\left[U; X_0 \\right] ; \\theta ]\\) to output \\(\\left[ U' ; Y \\right]\\) such that \\(Y = Y^*\\) . ",
     "url": "/docs/research/llm/control_llm.html#definition-7-reachability-of-self-attention",
     
     "relUrl": "/docs/research/llm/control_llm.html#definition-7-reachability-of-self-attention"
-  },"137": {
+  },"145": {
     "doc": "Control theory of LLM",
     "title": "Apply to the Self-Attention mechanism - Theorem",
     "content": "  The key of defining the reachability begins with partitioning the output: \\(Y = Y_u + Y_x\\), assuming that the output can be partitioned by output from control input and that from imposed state. \\(Y_x\\) can be bounded as a function of \\(X\\), \\(k\\), and \\(theta\\). While \\(Y_u\\) is the remaining component from U. \\[\\begin{align} &amp; Y = Y_u + Y_x \\\\ &amp; = (Y_{u,\\|} + Y_{u, \\perp}) + (Y_{x, \\|} + Y_{x, \\perp}) \\\\ &amp; = (Y_{u,\\|} + Y_{x, \\|}) + (Y_{u, \\perp} + Y_{x, \\perp}) \\in span(Y^*) \\oplus span(Y^*)^\\perp \\\\ \\end{align}\\] Here, the parallel to and orthogonal to is in respect to the desired output \\(Y^*\\). Remember that Y is partitioned output . \\[\\Xi ([U; X_0]; \\theta) = \\left[ {U' \\atop Y} \\right]\\] Before the theorem and its proof, let us define matrix \\(A\\). \\[A := exp\\left(\\frac{QK^T}{\\sqrt{d_{key}}}\\right) = exp \\left( \\left[ \\begin{matrix} Q_u K_u^T &amp; Q_u K_x^T\\\\ Q_x K_u^T &amp; Q_x K_x^T \\end{matrix} \\right] \\frac{1} {\\sqrt{d_{key}}} \\right) = \\left[ \\begin{matrix} A_{uu} &amp; A_{ux}\\\\ A_{xu} &amp; A_{xx} \\end{matrix} \\right]\\] where, \\(Q.\\) and \\(K.\\) are partitioned components of \\(Q\\) and \\(K\\): . \\[Q = \\left[ Q_u \\atop Q_x \\right]= \\left[U \\atop X_0 \\right] W_q\\\\\\] \\[K=\\left[K_u \\atop K_x \\right]=\\left[U \\atop X_0 \\right] W_{key}\\] Similarly, \\(D\\) is also be partitioned as followigs: . \\[D = diag \\left(exp \\left(\\frac{Q K^T}{\\sqrt{d_{key}}}\\right) \\bm{1}_{N \\times 1}\\right) = \\left[\\begin{matrix} D_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D_x \\end{matrix} \\right]\\] With the definitions and notions above, \\(Y\\) can be defined as follows: . \\[\\begin{align} &amp; \\Xi(X; \\theta) = D^{-1} A V \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D^{-1}_{x} \\end{matrix} \\right] \\left[ \\begin{matrix} A_{uu} &amp; A_{xu}\\\\ A_{ux} &amp; A_{xx} \\end{matrix} \\right] \\left[ \\begin{matrix} V_{u} \\\\ V_{x} \\end{matrix} \\right] \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u A_{uu} V_u + D^{-1}_u A_{ux} V_x\\\\ D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x \\end{matrix} \\right] \\\\ &amp; = \\left[ U' \\atop Y \\right] \\end{align}\\] \\[\\begin{align} \\therefore Y = D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x = Y_u + Y_x \\end{align}\\] ",
     "url": "/docs/research/llm/control_llm.html#apply-to-the-self-attention-mechanism---theorem",
     
     "relUrl": "/docs/research/llm/control_llm.html#apply-to-the-self-attention-mechanism---theorem"
-  },"138": {
+  },"146": {
     "doc": "Control theory of LLM",
     "title": "Theorem: reachability in the Self-attention mechanism",
     "content": "  Let \\(Y^{max}_x = \\Xi (X_0 ; \\theta)\\) be the output of the self-attention layer given only the imposed state (initial state) \\(X_0\\), and i-th row of the orthogonal component of \\(Y^{max}_x\\) to the desired output \\(Y^*\\) be \\(Y^{max, i}_{x, \\perp}\\).   \\({Y^*}\\) is unreachable for any control input \\({U}\\) if, for any \\({i \\in \\{1, ... , m\\} }\\), . \\[\\begin{align} \\|Y^{max, i}_{x, \\perp}\\| &gt; k \\gamma_{i} (X_0, \\theta) \\\\ \\end{align}\\] where, . \\[\\begin{align} \\gamma_{i}(X_0 , \\theta) := \\frac{e^\\alpha}{g_i}\\sigma_v M_u, \\quad \\alpha = \\sigma_q \\sigma_{key} M_u M_x / \\sqrt{d_{key}} \\end{align}\\] \\[\\begin{align} g_i (X_0, \\theta) := \\Sigma^{m}_{j=1} exp ((X_0)^i W_q W^T_{key} (X_0)^{jT} / \\sqrt{d_{key}}) \\end{align}\\] \\(\\sigma_v\\), \\(\\sigma_q\\) and \\(\\sigma_{key}\\) being the maximum singular values of the value, query, and key projection matrices, respectively. and with \\(M_u := \\max_j \\|(X_0)^j \\|\\) being the maximum norms of the control and imposed token embeddings, respectively. I will not repeat the proof of the paper because after partitioning, the rest of the proof is only about how to set some-what contrived constant and use basic row-wise summation and applying rudimentary inequity (Cauchy-Schwarz). ",
     "url": "/docs/research/llm/control_llm.html#theorem-reachability-in-the-self-attention-mechanism",
     
     "relUrl": "/docs/research/llm/control_llm.html#theorem-reachability-in-the-self-attention-mechanism"
-  },"139": {
+  },"147": {
     "doc": "Control theory of LLM",
     "title": "References",
     "content": "[1] Bhargava, A., Witkowski, C., Shah, M., &amp; Thomson, M. (2023). What’s the Magic Word? A Control Theory of LLM Prompting. arXiv preprint arXiv:2310.04444. [2] Sontag, E. D. (2013). Mathematical control theory: deterministic finite dimensional systems (Vol. 6). Springer Science &amp; Business Media. ",
     "url": "/docs/research/llm/control_llm.html#references",
     
     "relUrl": "/docs/research/llm/control_llm.html#references"
-  },"140": {
+  },"148": {
     "doc": "Control theory of LLM",
     "title": "Control theory of LLM",
     "content": " ",
     "url": "/docs/research/llm/control_llm.html",
     
     "relUrl": "/docs/research/llm/control_llm.html"
-  },"141": {
+  },"149": {
     "doc": "Controls & Robotics",
     "title": "Controls and Robotics",
     "content": "Based on the books Sontag’s mathematical control theory, Thrun’s probabilistic robotics and lecture notes which I’ve took in University of Michigan. ",
     "url": "/docs/research/controls#controls-and-robotics",
     
     "relUrl": "/docs/research/controls#controls-and-robotics"
-  },"142": {
+  },"150": {
     "doc": "Controls & Robotics",
     "title": "Controls & Robotics",
     "content": " ",
     "url": "/docs/research/controls",
     
     "relUrl": "/docs/research/controls"
-  },"143": {
+  },"151": {
     "doc": "C / C++",
     "title": "Tips for C/C++",
     "content": "Figure out powerful and safe approach. ",
     "url": "/docs/programming/cpp.html#tips-for-cc",
     
     "relUrl": "/docs/programming/cpp.html#tips-for-cc"
-  },"144": {
+  },"152": {
     "doc": "C / C++",
     "title": "C / C++",
     "content": " ",
     "url": "/docs/programming/cpp.html",
     
     "relUrl": "/docs/programming/cpp.html"
-  },"145": {
+  },"153": {
     "doc": "Home",
     "title": "Home",
     "content": "The one and only. ",
     "url": "/",
     
     "relUrl": "/"
-  },"146": {
+  },"154": {
     "doc": "LLM",
     "title": "LLM",
     "content": "Large Language Model studies and utilizations . ",
     "url": "/docs/research/llm",
     
     "relUrl": "/docs/research/llm"
-  },"147": {
+  },"155": {
     "doc": "Mathematics",
     "title": "Mathematics",
     "content": "Graduate-level mathematics to understand modern AI, Graphics and Robotics. | Linear algebra (linear control system) | Probability and Random process | Set theory and Topology | Graph theory | Mathematical Analysis, Differential Equations | Mathematical Manifolds and Categorical Theorem | . ",
     "url": "/docs/mathematics",
     
     "relUrl": "/docs/mathematics"
-  },"148": {
+  },"156": {
     "doc": "Minimal layout test",
     "title": "Minimal layout test",
     "content": "Return to main website. This page demonstrates the packaged minimal layout, which does not render the sidebar or header. It can be used for standalone pages. It is also an example of using the new modular site components to define custom layouts; see “Custom layouts and includes” in the customization docs for more information. ",
     "url": "/docs/minimal-test.html",
     
     "relUrl": "/docs/minimal-test.html"
-  },"149": {
+  },"157": {
     "doc": "Programming",
     "title": "Programming",
     "content": " ",
     "url": "/docs/programming",
     
     "relUrl": "/docs/programming"
-  },"150": {
+  },"158": {
     "doc": "Python",
     "title": "Tips for Python",
     "content": "Tips for fast-processing but accurate python programming. Thinking of python, I feel somewhat sad because eventhough it is one of the most useful programming language, looking the low-levels of python, python projects are mostly used as an interface language or glue language to use compiled (C / C++ compiled) libraries. ",
     "url": "/docs/programming/python.html#tips-for-python",
     
     "relUrl": "/docs/programming/python.html#tips-for-python"
-  },"151": {
+  },"159": {
     "doc": "Python",
     "title": "Python",
     "content": " ",
     "url": "/docs/programming/python.html",
     
     "relUrl": "/docs/programming/python.html"
-  },"152": {
+  },"160": {
     "doc": "RAG",
     "title": "RAG",
     "content": "In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [1]. The concept of RAG is quite simple but powerful. The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[1]. In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user’s query to LLM, we can get generated output with our intended contexts. ",
     "url": "/docs/research/llm/rag.html",
     
     "relUrl": "/docs/research/llm/rag.html"
-  },"153": {
+  },"161": {
     "doc": "RAG",
     "title": "Basic Implementation",
     "content": ". ├── lib │ ├── llm │ └── OpenBLAS ├── scripts │ └── add_document.py ├── src │ ├── core.py │ ├── embedding.py │ └── utils.py ├── vector_store │ └── .gitkeep ├── download_model.sh ├── easy_rag.py ├── vector_index.py └── README.md . For detailed installation and usage, please visit my git repository. visit : easy_rag . ",
     "url": "/docs/research/llm/rag.html#basic-implementation",
     
     "relUrl": "/docs/research/llm/rag.html#basic-implementation"
-  },"154": {
+  },"162": {
     "doc": "RAG",
     "title": "Output",
     "content": ". In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations. Focus on the answer (The concept of RAG is simple but powerful), which is derived in the first paragraph of this post (The concept of RAG is quite simple but powerful). ",
     "url": "/docs/research/llm/rag.html#output",
     
     "relUrl": "/docs/research/llm/rag.html#output"
-  },"155": {
+  },"163": {
     "doc": "RAG",
     "title": "References",
     "content": "[1] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., … &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474. ",
     "url": "/docs/research/llm/rag.html#references",
     
     "relUrl": "/docs/research/llm/rag.html#references"
-  },"156": {
+  },"164": {
     "doc": "Research",
     "title": "Research",
     "content": "AI, Software researches. ",
     "url": "/docs/research",
     
     "relUrl": "/docs/research"
-  },"157": {
+  },"165": {
     "doc": "Rust",
     "title": "Let’s Learn Rust Programming Language, together.",
     "content": "About rust programming, I hope everyone to read the official documentation, especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice. ",
     "url": "/docs/programming/rust-programming.html#lets-learn-rust-programming-language-together",
     
     "relUrl": "/docs/programming/rust-programming.html#lets-learn-rust-programming-language-together"
-  },"158": {
+  },"166": {
     "doc": "Rust",
     "title": "Rust",
     "content": " ",
     "url": "/docs/programming/rust-programming.html",
     
     "relUrl": "/docs/programming/rust-programming.html"
-  },"159": {
+  },"167": {
     "doc": "Machine Unlearning",
     "title": "Machine Unlearning",
     "content": "This code is based on my works of NeurIPS 2023 Machine Unlearning Challenge, It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the machine unlearning. ",
     "url": "/docs/research/unlearning",
     
     "relUrl": "/docs/research/unlearning"
-  },"160": {
+  },"168": {
     "doc": "Machine Unlearning",
     "title": "sRFL - Ideation",
     "content": "The code contains a novel way of unlearning, it achieved decoupling in forget/retain accuracy : forget goes low, while that of retain-set goes high. I focused on the decoupling in the logit spaces, using teacher-student framework. | sRFL (simple Rolling in Forget Logits) | . ",
     "url": "/docs/research/unlearning#srfl---ideation",
     
     "relUrl": "/docs/research/unlearning#srfl---ideation"
-  },"161": {
+  },"169": {
     "doc": "Machine Unlearning",
     "title": "sRFL - conclusion",
     "content": "simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. The following is about train accuracy about CIFAR-10 . In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset. ",
     "url": "/docs/research/unlearning#srfl---conclusion",
     
     "relUrl": "/docs/research/unlearning#srfl---conclusion"
-  },"162": {
+  },"170": {
     "doc": "Machine Unlearning",
     "title": "sRFL - pseudo code",
     "content": "1. Copy a model from original trained model . teacher_model &lt;- copy.deepcopy(model) teacher_model.eval() // teacher model will not be trained . 2. Freeze layers of model except for first two backbones (feature extracting) . 3-1. Loop : Generate logits by teacher model . for data in datasets (retain + forget dataset): retain_data, forget_data &lt;- data pseudo_forget_logits &lt;- teacher_model(forget_data) pseudo_retain_logits &lt;- teacher_model(retain_data) . 3-2. Roll only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1] ) . rolled_pseudo_logits &lt;- roll(pseudo_forget_logits) . 3-3. Minimize KL-divergence between rolled_pseudo_logits and model’s output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset) . forget_outputs &lt;- model(forget_data) retain_outputs &lt;- model(retain_data) forget_loss &lt;- KLDiv(rolled_pseudo_logits, forget_outputs) \\ - cosine_similarity(rolled_pseudo_logits, forget_outputs)\\ + KLDiv(pseudo_retain_logits, retain_outputs) . 3-4. backward propagation by forget_loss . forget_loss.backward() . End of Loop. ",
     "url": "/docs/research/unlearning#srfl---pseudo-code",
     
     "relUrl": "/docs/research/unlearning#srfl---pseudo-code"
-  },"163": {
+  },"171": {
     "doc": "Machine Unlearning",
     "title": "Conclusion",
     "content": "While it achieved high decoupling, there’s a huge claim about their metrics and evaluation. Even though the competition is completed with some argues, the main idea of machine unlearning is quite crucial in privacy and robustness of the ml-based services. In the future, I will progress my works. ",
