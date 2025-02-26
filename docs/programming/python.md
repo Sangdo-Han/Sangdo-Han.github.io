@@ -9,6 +9,8 @@ tags:
 
 # Tips for Python
 
-Tips for fast-processing but accurate python programming.
+When I think of Python, I feel a sense of irony. Although it's one of the most versatile programming languages, at its core, Python is often used as an "interface language" or a "glue language" to connect to compiled libraries (written in C or C++).
 
-Thinking of python, I feel somewhat sad because eventhough it is one of the most useful programming language, looking the low-levels of python, python projects are mostly used as an `interface language` or `glue language` to use compiled (C / C++ compiled) libraries.
+Ironically, it's precisely this "glue" characteristic that has driven Python's popularity across numerous fields, including automation, web backends, and especially machine learning and deep learning.
+
+This section provides useful tips for achieving fast processing and well-designed programming with Python.
