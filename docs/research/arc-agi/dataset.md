@@ -65,7 +65,7 @@ hex_colors = ['#000000', '#0074D9','#FF4136','#2ECC40','#FFDC00',
 ```
 
 <p align="center">
-  <img src="https://sangdo-han.github.io/docs/ai-research/arc-agi/images/hex_colors.png">
+  <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/hex_colors.png">
 </p>
 
 ### Visualization
@@ -75,7 +75,7 @@ Basically, we visaulize the data in 2d-grid with colors, however, we could treat
 
  &nbsp; | f35d900a | fcb5c309
 |----|----|----|
-Basic | <img src="https://sangdo-han.github.io/docs/ai-research/arc-agi/images/f35d900a.png">| <img src="https://sangdo-han.github.io/docs/ai-research/arc-agi/images/fcb5c309.png">
-3d scatter| <img src="https://sangdo-han.github.io/docs/ai-research/arc-agi/images/f35d900a_pointcloud.png"> | <img src="https://sangdo-han.github.io/docs/ai-research/arc-agi/images/fcb5c309_pointcloud.png">
-3d scatter (colored)| <img src="https://sangdo-han.github.io/docs/ai-research/arc-agi/images/f35d900a_pointcloud_colored.png"> | <img src="https://sangdo-han.github.io/docs/ai-research/arc-agi/images/fcb5c309_pointcloud_colored.png">
+Basic | <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/f35d900a.png">| <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/fcb5c309.png">
+3d scatter| <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/f35d900a_pointcloud.png"> | <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/fcb5c309_pointcloud.png">
+3d scatter (colored)| <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/f35d900a_pointcloud_colored.png"> | <img src="https://sangdo-han.github.io/docs/research/arc-agi/images/fcb5c309_pointcloud_colored.png">
 
