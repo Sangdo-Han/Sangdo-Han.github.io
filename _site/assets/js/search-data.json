@@ -762,61 +762,61 @@
     
     "relUrl": "/docs/programming/concurrent-programming/15.%20Synchronization%20-%20RWLocks%20and%20Spin%20Locks.html"
   },"109": {
-    "doc": "3D Image Reconstruction - Introduction",
+    "doc": "3D Image Reconstruction",
+    "title": "3D Image Reconstruction",
+    "content": ". | 3D Image Reconstruction . | 3D Reconstruction - Introduction . | Backgrounds | Datasets, Metrics and Representations . | Datasets | Metrics | 3D Computer Vision Representation | . | . | References | . | . ",
+    "url": "/docs/ai-research/computer-vision/3d-reconstruction",
+    
+    "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction"
+  },"110": {
+    "doc": "3D Image Reconstruction",
     "title": "3D Reconstruction - Introduction",
     "content": " Introductions to 3D Reconstruction : Backgrounds, Metrics and Representations . ",
-    "url": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#3d-reconstruction---introduction",
+    "url": "/docs/ai-research/computer-vision/3d-reconstruction#3d-reconstruction---introduction",
     
-    "relUrl": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#3d-reconstruction---introduction"
-  },"110": {
-    "doc": "3D Image Reconstruction - Introduction",
+    "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#3d-reconstruction---introduction"
+  },"111": {
+    "doc": "3D Image Reconstruction",
     "title": "Backgrounds",
     "content": "3D reconstruction, which is 3-Dimensional representation of objects, can be used for many applications such as video games, animation, navigation and so on. There are many traditional methods in 3D reconstruction like SfM(Structure from Motion), Dense Reconstruction and MVS(Multi-View Stereo). Those traditional methods are based on photogrammetry. It is true that understanding the basics of photogrammetry is very important to understand deep-learning based 3D reconstruction because deep-learning based methods are built on top of these photogrammetry techniques. In this post, however, it is assumed that the readers have knowledge about deep learning models rather than 3D reconstructions. Hence, the discussion will focus on deep-learning based 3D reconstructions while traditional techniques will be mentioned only as needed for readers to comprehend the deep-learning models. ",
-    "url": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#backgrounds",
+    "url": "/docs/ai-research/computer-vision/3d-reconstruction#backgrounds",
     
-    "relUrl": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#backgrounds"
-  },"111": {
-    "doc": "3D Image Reconstruction - Introduction",
+    "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#backgrounds"
+  },"112": {
+    "doc": "3D Image Reconstruction",
     "title": "Datasets, Metrics and Representations",
     "content": "Based on 3D reconstruction using deep learning : a survey [1] . Starting with a good review paper helps to understand the field and the potential research directions. In deep learning based 3D reconstruction, luckily we can access a good review paper [1] for free. ",
-    "url": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#datasets-metrics-and-representations",
+    "url": "/docs/ai-research/computer-vision/3d-reconstruction#datasets-metrics-and-representations",
     
-    "relUrl": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#datasets-metrics-and-representations"
-  },"112": {
-    "doc": "3D Image Reconstruction - Introduction",
+    "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#datasets-metrics-and-representations"
+  },"113": {
+    "doc": "3D Image Reconstruction",
     "title": "Datasets",
     "content": "The paper[1] show us several useful dataset for 3D reconstructions: . | ShapeNet It is a very large scale dataset for CAD models developed by Chang et al.[2] from Stanford University, Princeton University and the Toyota Technological Institute at Chicago, USA. | Pascal3D+ It is a multi-view datasets, if you are familiar with Object Detection Task, you might be heard of PASCAL VOC dataset. Pascal3D+ has 12 categories of rigid object from PASCAL VOC 2012. This dataset is developed by Yu Xiang et al[3] from Computational Vision and Geometry Lab at Stanford University. | ObjectNet3D It is a large scale database for 3D objects. Like as Pascal3D+, this dataset is developed by Yu Xiang et al[4] from Computational Vision and Geometry Lab at Stanford University. | KITTI If you are familiar with Computer Vision in automous driving and mobile robotics, I am sure that you heard of this dataset. This was introduced by Andres Geiger et al[5]. | . ",
-    "url": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#datasets",
+    "url": "/docs/ai-research/computer-vision/3d-reconstruction#datasets",
     
-    "relUrl": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#datasets"
-  },"113": {
-    "doc": "3D Image Reconstruction - Introduction",
+    "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#datasets"
+  },"114": {
+    "doc": "3D Image Reconstruction",
     "title": "Metrics",
     "content": "The paper[1] briefly explains 3 commonly used metric used: MSE, Voxel IoU and cross-entropy. I think the reader might familiar with MSE and cross-entropy. Therefore, I will skip their details. Voxel IoU . In many cases in Computer Vision, IoU represents an abbreviation of Intersection over Union. As you might guess. Voxel IoU is mere volumetric extension of 2D-pixel-IoU. which is: . \\[{IoU={G \\cap P \\over G \\cup P}}\\] Here, G stands for a set of voxels in a ground truth, while P stands for a set of voxels in prediction/reconstruction. This metric is also widely used for 3D object detection or segmentation. Also, for point cloud and mesh representation, sevaral distance metrics between groundtruth and reconstruction can be used as metric. I beleive that readers are familiar with Euclidean Distance, I will post about Chamfer Distance and EMD instead. Chamfer Distance . Chamfer Distance is average of the summation of closest point pairs. \\[Chamfer(G,P) = {1\\over{n}}(\\sum_i \\min_j(||g_i - p_j||) + \\sum_j \\min_i(||g_i - p_j||))\\] More precisely, The formula represents average of distance from each point in one point cloud to its closest point in the other point cloud. and vice versa. EMD . Earth mover’s distance (EMD), also known as the Wasserstein distance, stands for the distance between probability distributions over a region in statistics. \\[EMD(P, \\hat{P})=\\min_{\\phi:P\\rightarrow\\hat{P}} \\sum_{p_i\\in P}||p_i - \\phi(p_i)||\\] This can be computed using the Hungarian Algorithm or Sinkhorn-Knopp algorithm. ",
-    "url": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#metrics",
+    "url": "/docs/ai-research/computer-vision/3d-reconstruction#metrics",
     
-    "relUrl": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#metrics"
-  },"114": {
-    "doc": "3D Image Reconstruction - Introduction",
+    "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#metrics"
+  },"115": {
+    "doc": "3D Image Reconstruction",
     "title": "3D Computer Vision Representation",
     "content": "The original survey [1] divides the reconstruction techniques into two main categories by the number of sources. (Reconstruction based on single image or multiple images.) After that, it lists up middle categories with way of representations or how outcome look like with a short descriptions. These could be very helpful for the researchers who are familiar with 3D Computer Vision. However, for the newcomers (I assume that most of readers of survey papers are newcomers), I think that it would be more effective writing if it explains the ways of representing 3D object first, and then explains the models and results. Voxel Representation . Voxel is a volumetric representation which can be comparing to pixel representation in 2D images. Actually, by adding depth (D) into pixel, Voxel achieves representation of 3D. \\(pixel : H \\times W \\times C\\) \\(voxel : H \\times W \\times D \\times C\\) \\(, where \\ H : height , \\ W : width, \\ D : depth, \\ C : channel \\ (color)\\) . Point Cloud Representation . Point Cloud is another way to represent 3D object. A single point cloud is a collection of 3D points (mostly a collection of Cartesian coordinate positions) : . point_cloud = [ [x1, y1, z1], [x2, y2, z2], ... [xN, yN, zN] ] . Mesh Representation . Mesh representation could be another option. Mesh is a collection of base geometry to represent surface. Since the least number of points to construct a surface is 3 (triangle), triangle is widely used for mesh representations: . mesh_representation = [ [point_1, point_2, point_3], [point_4, point_5, point_6], ... [point_a, point_b, point_c] ] . Each point (vertex) represents 3d point (x,y,z) . Other Representation . Implicit Surface . Implicit Surface is a model based surface representation. Models can be a continuous decision boundary of deeplearning network classifiers, suggested in OccNet6, or multi-layer network architecture to extract geometry features and represents 3D shapes in an Euclidean preserving latent space as in UCLID-Net7 This concept is novel but thinking of the mathematics, we can easily see the concepts: . \\[f_{model}(x,y,z) = 0\\] which resembles our well-known implicit surface: . \\[f(x,y,z) = x^2+y^2+z^2 -1 =0\\] a sphere! . depth . About generating depths based on a 2D images, 3D representation also be achieved. ",
-    "url": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#3d-computer-vision-representation",
+    "url": "/docs/ai-research/computer-vision/3d-reconstruction#3d-computer-vision-representation",
     
-    "relUrl": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#3d-computer-vision-representation"
-  },"115": {
-    "doc": "3D Image Reconstruction - Introduction",
+    "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#3d-computer-vision-representation"
+  },"116": {
+    "doc": "3D Image Reconstruction",
     "title": "References",
     "content": "[1] Jin, Y., Jiang, D., &amp; Cai, M. (2020). 3d reconstruction using deep learning: a survey. Communications in Information and Systems, 20(4), 389-413. [2] Chang, A. X., Funkhouser, T., Guibas, L., Hanrahan, P., Huang, Q., Li, Z., … &amp; Yu, F. (2015). Shapenet: An information-rich 3d model repository. arXiv preprint arXiv:1512.03012. [3] Y. Xiang, R. Mottaghi and S. Savarese, “Beyond PASCAL: A benchmark for 3D object detection in the wild,” IEEE Winter Conference on Applications of Computer Vision, Steamboat Springs, CO, USA, 2014, pp. 75-82, doi: 10.1109/WACV.2014.6836101. [4] Xiang, Y., Kim, W., Chen, W., Ji, J., Choy, C., Su, H., … &amp; Savarese, S. (2016). Objectnet3d: A large scale database for 3d object recognition. In Computer Vision–ECCV 2016: 14th European Conference, Amsterdam, The Netherlands, October 11-14, 2016, Proceedings, Part VIII 14 (pp. 160-176). Springer International Publishing. [5] A. Geiger, P. Lenz and R. Urtasun, “Are we ready for autonomous driving? The KITTI vision benchmark suite,” 2012 IEEE Conference on Computer Vision and Pattern Recognition, Providence, RI, USA, 2012, pp. 3354-3361, doi: 10.1109/CVPR.2012.6248074. [6] L. Mescheder, M. Oechsle, M. Niemeyer, S. Nowozin, and A. Geiger, “Occupancy networks: Learning 3d reconstruction in function space,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019, pp. 4460–4470. [7] L. Mescheder, M. Oechsle, M. Niemeyer, S. Nowozin, and A. Geiger, “Occupancy networks: Learning 3d reconstruction in function space,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019, pp. 4460–4470. ",
-    "url": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#references",
+    "url": "/docs/ai-research/computer-vision/3d-reconstruction#references",
     
-    "relUrl": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction#references"
-  },"116": {
-    "doc": "3D Image Reconstruction - Introduction",
-    "title": "3D Image Reconstruction - Introduction",
-    "content": " ",
-    "url": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction",
-    
-    "relUrl": "/docs/ai-research/computer-vision/paper-review-3d-reconstruction"
+    "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#references"
   },"117": {
     "doc": "Useful Timer Class",
     "title": "Timer class",
@@ -902,438 +902,459 @@
     
     "relUrl": "/docs/programming/algorithms"
   },"129": {
-    "doc": "LLM Applications",
-    "title": "RAG",
-    "content": "In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [1]. The concept of RAG is quite simple but powerful. The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[1]. flowchart LR %% Document Indexing Phase subgraph Indexing Phase A[Document Collection] --&gt; B[Shared Encoder] B --&gt; C[Document Embeddings] C --&gt; D[Document Index] end %% Query Processing &amp; Generation Phase subgraph Query &amp; Generation Phase E[User Query] --&gt; F[Shared Encoder] F --&gt; G[Query Embedding] G --&gt; H[Similarity Search in Index] H --&gt; I[Top-K Relevant Documents] I --&gt; J[Augmented Query] J --&gt; K[Large Language Model] K --&gt; L[Generated Response] end %% Connect the index from the indexing phase to the search D -.-&gt; H . In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user’s query to LLM, we can get generated output with our intended contexts. ",
-    "url": "/docs/ai-research/llm/paper-review-rag#rag",
-    
-    "relUrl": "/docs/ai-research/llm/paper-review-rag#rag"
-  },"130": {
-    "doc": "LLM Applications",
-    "title": "Basic Implementation",
-    "content": ". ├── lib │ ├── llm │ └── OpenBLAS ├── scripts │ └── add_document.py ├── src │ ├── core.py │ ├── embedding.py │ └── utils.py ├── vector_store │ └── .gitkeep ├── download_model.sh ├── easy_rag.py ├── vector_index.py └── README.md . For detailed installation and usage, please visit my git repository. visit : easy_rag . ",
-    "url": "/docs/ai-research/llm/paper-review-rag#basic-implementation",
-    
-    "relUrl": "/docs/ai-research/llm/paper-review-rag#basic-implementation"
-  },"131": {
-    "doc": "LLM Applications",
-    "title": "Output",
-    "content": ". In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations. Focus on the answer (The concept of RAG is simple but powerful), which is derived in the first paragraph of this post (The concept of RAG is quite simple but powerful). ",
-    "url": "/docs/ai-research/llm/paper-review-rag#output",
-    
-    "relUrl": "/docs/ai-research/llm/paper-review-rag#output"
-  },"132": {
-    "doc": "LLM Applications",
-    "title": "References",
-    "content": "[1] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., … &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474. ",
-    "url": "/docs/ai-research/llm/paper-review-rag#references",
-    
-    "relUrl": "/docs/ai-research/llm/paper-review-rag#references"
-  },"133": {
-    "doc": "LLM Applications",
-    "title": "LLM Applications",
-    "content": " ",
-    "url": "/docs/ai-research/llm/paper-review-rag",
-    
-    "relUrl": "/docs/ai-research/llm/paper-review-rag"
-  },"134": {
     "doc": "ARC-AGI",
     "title": "ARC-AGI",
     "content": "https://arcprize.org/arc . In 2019, François Chollet - creator of Keras, an open-source deep learning library adopted by over 2.5M developers - published the influential paper “On the Measure of Intelligence” where he introduced the “Abstract and Reasoning Corpus for Artificial General Intelligence” (ARC-AGI) benchmark to measure the efficiency of AI skill-acquisition on unknown tasks. ",
     "url": "/docs/ai-research/arc-agi",
     
     "relUrl": "/docs/ai-research/arc-agi"
-  },"135": {
+  },"130": {
     "doc": "Computer Vision",
     "title": "Computer Vision",
     "content": "simple definition : Computer Vision is a visionary understanding of computer. With a significant acheivement in Deep Learning Architectures ( CNN, RNN, transformers, GAN, leveraging LLM, Diffusion Models, and so on) with large datasets like ImageNet, there are a significant progress in computer vision. However, there are still unsolved questions, efficiency, reliability, robustness, linkage to other modalities, temporal evolution of scene in computer vision and understanding the gap between computer vision and human visionary behavior. ",
     "url": "/docs/ai-research/computer-vision",
     
     "relUrl": "/docs/ai-research/computer-vision"
-  },"136": {
+  },"131": {
     "doc": "Concurrent Programming",
     "title": "Concurrent Programming",
     "content": "Explanation of concurrent / parallel programming (with C++ and python codes). ",
     "url": "/docs/programming/concurrent-programming",
     
     "relUrl": "/docs/programming/concurrent-programming"
-  },"137": {
+  },"132": {
     "doc": "Control theory of LLM",
     "title": "A Control Theory of LLM prompting",
-    "content": " ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#a-control-theory-of-llm-prompting",
+    "content": ". | A Control Theory of LLM prompting . | Paper Review - What's the Magic Word? A Control Theory of LLM prompting . | Introduction | Basic Control Theory: System | Basic Control Theory: Reachability, Observability and Controllability . | Reachability, Observable and Controllability . | Event | Reacability and Controllability | . | . | Control Theory of LLM . | Notations | Assumptions | Definitions . | Definition 1. Autoregressive LLM system | Definition 2. LLM Output Reachability | Definition 3. Output Reachablility Set | Definition 4. Output Controllabilty (Revised from the paper.) | Definition 5. \\(k-\\epsilon\\) Controllability | . | Apply to the Self-Attention Mechanism. - Preliminaries . | Definition 6. Self-attention. | definition 7. Reachability of self-attention | . | Apply to the Self-Attention mechanism - Theorem . | Theorem: reachability in the Self-attention mechanism | . | . | . | References | . | . ",
+    "url": "/docs/ai-research/llm/control-theory#a-control-theory-of-llm-prompting",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#a-control-theory-of-llm-prompting"
-  },"138": {
+    "relUrl": "/docs/ai-research/llm/control-theory#a-control-theory-of-llm-prompting"
+  },"133": {
+    "doc": "Control theory of LLM",
+    "title": "Paper Review - What's the Magic Word? A Control Theory of LLM prompting",
+    "content": " ",
+    "url": "/docs/ai-research/llm/control-theory#paper-review---whats-the-magic-word-a-control-theory-of-llm-prompting",
+    
+    "relUrl": "/docs/ai-research/llm/control-theory#paper-review---whats-the-magic-word-a-control-theory-of-llm-prompting"
+  },"134": {
     "doc": "Control theory of LLM",
     "title": "Introduction",
     "content": "In this post, I will review a very interesting recenet paper about LLM : What's the Magic Word? A Control Theory of LLM prompting.[1]. The reason why I review this paper is that it gives us a new perspective on LLM, with the glasses of control theory. The main concept of the paper is that analogy on LLM system to control system : LLM be as a plant and the prompt be as a control input. Unlike other ML/DL framework, most of studies on LLM prompting were emperical, without mathematical evidence. This is because that LLM is too huge to understand. The paper, however, tries to understand LLM itself but treat it as a plant to control and give us a concrete understanding. ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#introduction",
+    "url": "/docs/ai-research/llm/control-theory#introduction",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#introduction"
-  },"139": {
+    "relUrl": "/docs/ai-research/llm/control-theory#introduction"
+  },"135": {
     "doc": "Control theory of LLM",
     "title": "Basic Control Theory: System",
     "content": "To understand this paper, we need to know basic concepts of state space representation and control theory. The authors put the Appendix on the paper [1], however, it is better to read Chapter 1-3 of [2]. It is online free. Briefly speaking, control theory depicts a system whether it is reachable (observable, controllable) and find out how to observe the system’s state and control the system with external inputs (force, current and so on.) . In mathematically, system is the set of state of plant, time, control input. and transition of state. If we have output space (observable output), we could add output and readout map to the original system. In addition to the appendix [1], . A system (\\(\\Sigma\\)) consists of: . | State (\\(X\\)): The state of a plant refers to the minimal set of variables that completely define its behavior at any given time. These variables capture the internal condition of the plant. | Control Input (\\(U\\)): Control inputs are the external influences applied to the plant to manipulate its behavior. | Time (\\(T\\)): Time set, the ordered set of positive values. | Transition map (\\(\\phi: X \\times U \\times T^{2} \\rightarrow X\\)): Transition map takes a current state (X(t)) at time t and a control input (u(t)) at time t, and returns the next state (X(t+1)) at the next time step (t+1). Note: \\(T\\) or \\(T^2\\)? If the control varies in time like as in feedback control or time-varying control strategy, we could add additional time space to describe the transition map. In the paper, however, as the transitted time t’ differs from the original t, it seems that author put the additional time space into the collection. I suppose that the authors want to describe t’ and t are nomially different. | Output (\\(Y\\)): Observed output space. | Readout map (\\(h: X \\times U \\times T \\rightarrow Y\\)): Readout map takes a current state (X(t)) at time t and a control input (u(t)) at the time t, and returns the observed(read out) value (Y(t)). | . ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#basic-control-theory-system",
+    "url": "/docs/ai-research/llm/control-theory#basic-control-theory-system",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#basic-control-theory-system"
-  },"140": {
+    "relUrl": "/docs/ai-research/llm/control-theory#basic-control-theory-system"
+  },"136": {
     "doc": "Control theory of LLM",
     "title": "Basic Control Theory: Reachability, Observability and Controllability",
     "content": "In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a system. Let us say that the state be the top face of dice, control input be the human random force of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the transition map be the state transition between trials. However, even we designed this rolling a dice to be a system with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be controllable? . ref: dices image from wikipedia ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#basic-control-theory-reachability-observability-and-controllability",
+    "url": "/docs/ai-research/llm/control-theory#basic-control-theory-reachability-observability-and-controllability",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#basic-control-theory-reachability-observability-and-controllability"
-  },"141": {
+    "relUrl": "/docs/ai-research/llm/control-theory#basic-control-theory-reachability-observability-and-controllability"
+  },"137": {
     "doc": "Control theory of LLM",
     "title": "Reachability, Observable and Controllability",
     "content": "Back to the rolling a dice system, we can say that this system is reachable because we could potentially role any number, and always be observable. However, we cannot say that this system is controllable because we cannot make intended input. Mathematically, we can define the reachability as in [2]. ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#reachability-observable-and-controllability",
+    "url": "/docs/ai-research/llm/control-theory#reachability-observable-and-controllability",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#reachability-observable-and-controllability"
-  },"142": {
+    "relUrl": "/docs/ai-research/llm/control-theory#reachability-observable-and-controllability"
+  },"138": {
     "doc": "Control theory of LLM",
     "title": "Event",
     "content": "As we defined before, an arbitary system \\(\\Sigma\\) can be defined as \\(\\Sigma = (T, X, U, \\phi)\\) . An event is a state at a time, a pair of state and time \\((x, t) \\in X \\times T\\). ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#event",
+    "url": "/docs/ai-research/llm/control-theory#event",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#event"
-  },"143": {
+    "relUrl": "/docs/ai-research/llm/control-theory#event"
+  },"139": {
     "doc": "Control theory of LLM",
     "title": "Reacability and Controllability",
     "content": "The event \\((z, \\tau)\\) can be reached from a state \\((x,\\sigma)\\), if and only if there is a path of \\(\\Sigma\\) on \\([\\sigma, \\tau]\\) and if there exists an \\(\\omega \\in U^{[\\sigma, \\tau)}\\) such that \\(\\phi(\\tau, \\sigma, x, \\omega) = z\\), we can say we can control the state x to state z. Again with the rolling a dice system, now we can see the problem, we put the human random force be the input, but it is not controllable. ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#reacability-and-controllability",
+    "url": "/docs/ai-research/llm/control-theory#reacability-and-controllability",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#reacability-and-controllability"
-  },"144": {
+    "relUrl": "/docs/ai-research/llm/control-theory#reacability-and-controllability"
+  },"140": {
     "doc": "Control theory of LLM",
     "title": "Control Theory of LLM",
     "content": "Now we can discuss control of LLM with the paper [1]. All the following concepts and logics are originated from the paper. ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#control-theory-of-llm",
+    "url": "/docs/ai-research/llm/control-theory#control-theory-of-llm",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#control-theory-of-llm"
-  },"145": {
+    "relUrl": "/docs/ai-research/llm/control-theory#control-theory-of-llm"
+  },"141": {
     "doc": "Control theory of LLM",
     "title": "Notations",
     "content": "In the paper, they denoted \\(P_{LM}\\) be a causal language model, \\(V\\) be a vocabulary set, \\(V^*\\) be the set of all possible sequences of any length composed of tokens from \\(V\\). The bold lowercase stands for sequence (vector) \\(\\bm{x}\\), while the unbolded lowercase letter \\(x\\) be an individual token. ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#notations",
+    "url": "/docs/ai-research/llm/control-theory#notations",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#notations"
-  },"146": {
+    "relUrl": "/docs/ai-research/llm/control-theory#notations"
+  },"142": {
     "doc": "Control theory of LLM",
     "title": "Assumptions",
     "content": "Here are some assumptions before stating the definitions: . | The LLM system is discrete time: It is quite natural if we come across LLM chatbots, we get output token from LLM when we put query input. | The LLM system follows Shift-and-Grow State dynamics: Whereas the system state in an ODE-based system has a fixed size over time, the system state x(t) for LLM systems grows as tokens are added to the state sequence. | It is assumed that the LLM system follows a Markov Transition (In paper it is said in more gently as Mutual exclusion on control input token vs. generated token): The newest token is either drawn from the control input \\(u(t)\\) or is generated by the LLM by sampling \\(x{'} \\sim P_{LM} (x' | x(t))\\). This differs from traditional discrete stochastic systems, where the control sequence and internal dynamics generally affect the state synchronously. | . From the basic control theory and the followed assumptions, the authors defined the LLM systems and Control Input as follows: . ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#assumptions",
+    "url": "/docs/ai-research/llm/control-theory#assumptions",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#assumptions"
-  },"147": {
+    "relUrl": "/docs/ai-research/llm/control-theory#assumptions"
+  },"143": {
     "doc": "Control theory of LLM",
     "title": "Definitions",
     "content": " ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definitions",
+    "url": "/docs/ai-research/llm/control-theory#definitions",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definitions"
-  },"148": {
+    "relUrl": "/docs/ai-research/llm/control-theory#definitions"
+  },"144": {
     "doc": "Control theory of LLM",
     "title": "Definition 1. Autoregressive LLM system",
     "content": "An autoregressive LLM system \\(\\Sigma = (V, P_{LM})\\) with control input consists of time set (\\(T\\)), state space (\\(X\\)), input (\\(U\\)), transition map (\\(\\phi\\)) and readout map \\(h\\). | Time set \\(T\\) is a set of sequence number (natural number): \\(T = N\\). | The state space \\(X\\) is the set of all possible sequences of any length formed from the vocabulary set \\(V\\): \\(X = V^{*}\\) | The input space is the set of sequences but also allows the no inputs \\(\\empty\\): \\(U = V \\bigcup {\\{ \\empty \\}}\\) | The transition map \\(\\phi\\) is sum of current state and input: \\(\\phi : X \\times U \\times T^{2}\\) such that \\(\\phi(x(t), u(t), t, t+1) = \\begin{cases} x(t) + u(t) &amp; \\text{if $u(t) \\neq \\empty$}\\\\ x(t) + x' &amp; \\text{otherwise} \\end{cases}\\) where \\(x' \\sim P_{LM}(x' | x(t))\\). Sadly because they use the plus sign as a operator wihtout the definition, we need to assume that this is an operator that represent concatenation of state because we assume that it is autoregressive. More than that, as it is autoregressive, the output is deterministic. | The readout map returns the most recent r tokens from the state x: \\(h(x(t);r) = [x^{t-r}(t), ... , x^{t}(t)]\\) | . ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-1-autoregressive-llm-system",
+    "url": "/docs/ai-research/llm/control-theory#definition-1-autoregressive-llm-system",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-1-autoregressive-llm-system"
-  },"149": {
+    "relUrl": "/docs/ai-research/llm/control-theory#definition-1-autoregressive-llm-system"
+  },"145": {
     "doc": "Control theory of LLM",
     "title": "Definition 2. LLM Output Reachability",
     "content": "\\(y \\in V^r\\) is reachable from the initial state \\(x_0 \\in V^*\\) if and only if there exists some time \\(T\\) and input sequences \\(u^* \\in U^k\\) for some \\(k + |x_0| \\leq T\\) that makes the initial state \\(x_0\\) move to output \\(y = h(x(T), r)\\) at time \\(T\\) . ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-2-llm-output-reachability",
+    "url": "/docs/ai-research/llm/control-theory#definition-2-llm-output-reachability",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-2-llm-output-reachability"
-  },"150": {
+    "relUrl": "/docs/ai-research/llm/control-theory#definition-2-llm-output-reachability"
+  },"146": {
     "doc": "Control theory of LLM",
     "title": "Definition 3. Output Reachablility Set",
     "content": "The reachable output set from the initial state \\(x_0 \\in V^*\\) is denoted \\(R_y(x_0)\\). ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-3-output-reachablility-set",
+    "url": "/docs/ai-research/llm/control-theory#definition-3-output-reachablility-set",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-3-output-reachablility-set"
-  },"151": {
+    "relUrl": "/docs/ai-research/llm/control-theory#definition-3-output-reachablility-set"
+  },"147": {
     "doc": "Control theory of LLM",
     "title": "Definition 4. Output Controllabilty (Revised from the paper.)",
     "content": "An LLM system is output controllable if and only if, \\(\\forall x_0 \\in V^*\\) and \\(\\forall y \\in V^r\\), there exists a time \\(T \\geq |x_0|\\) and the input sequence \\(u^* \\in U^k\\), where \\(k\\leq T - |x_0|\\) such that the probability \\(P(h(x(T),r) = y | x_0, u^*) &gt; 0\\). ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-4-output-controllabilty-revised-from-the-paper",
+    "url": "/docs/ai-research/llm/control-theory#definition-4-output-controllabilty-revised-from-the-paper",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-4-output-controllabilty-revised-from-the-paper"
-  },"152": {
+    "relUrl": "/docs/ai-research/llm/control-theory#definition-4-output-controllabilty-revised-from-the-paper"
+  },"148": {
     "doc": "Control theory of LLM",
     "title": "Definition 5. \\(k-\\epsilon\\) Controllability",
     "content": "If a datset of state-output pairs \\(D = \\{(x^{i}_{0}, y^{i})\\}_{i\\in [N]}\\), an LLM system \\(\\Sigma = (V, P_{LM})\\) is \\(k-\\epsilon\\) controllable with respect to D, if and only if \\(P\\{y \\notin R^{k}_{y}(x_0)\\} &lt; \\epsilon\\) for \\((x_0, y) \\sim D\\), where \\(R^k_y(x^i_0)\\) is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length \\(|u| \\leq k\\). ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-5-k-epsilon-controllability",
+    "url": "/docs/ai-research/llm/control-theory#definition-5-k-epsilon-controllability",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-5-k-epsilon-controllability"
-  },"153": {
+    "relUrl": "/docs/ai-research/llm/control-theory#definition-5-k-epsilon-controllability"
+  },"149": {
     "doc": "Control theory of LLM",
     "title": "Apply to the Self-Attention Mechanism. - Preliminaries",
     "content": "Above the definition on LLM controllability could be nice for generalization, we need to prove it with actual models and calculations. The paper choose the self-attention which dominates in LLMs. ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#apply-to-the-self-attention-mechanism---preliminaries",
+    "url": "/docs/ai-research/llm/control-theory#apply-to-the-self-attention-mechanism---preliminaries",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#apply-to-the-self-attention-mechanism---preliminaries"
-  },"154": {
+    "relUrl": "/docs/ai-research/llm/control-theory#apply-to-the-self-attention-mechanism---preliminaries"
+  },"150": {
     "doc": "Control theory of LLM",
     "title": "Definition 6. Self-attention.",
     "content": "Self-attention \\(\\Xi\\) is parameterized by weight metrics \\(\\theta = (W_q, W_{key}, W_v)\\) (query, key, value). \\(\\Xi\\) is a mapping from the input token (\\(R^{N \\times d_{in}}\\)) to output token (\\(R^{N \\times d_{out}}\\)), . \\[\\Xi(X;\\theta) = D^{-1} exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right)\\] where exp() denotes element-wise exponential of matrix entries, \\(W_q, W_{key} \\in R^{d_{in} \\times d_{key}}\\), \\(W_v \\in R^{d_{in} \\times d_{out}}\\), \\(Q = XW_q\\), \\(K=XW_{key}\\), \\(V=XW_{v}\\) and D is a diagonal positive definite matrix, \\(D:= diag \\left( exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right) \\bm{1}_{N \\times 1 } \\right)\\) . In this paper, the reachability of output token representations \\(\\Xi (X; \\theta)\\), they partitioned the input \\(X \\in R^{(k+m)\\times d_{in}}\\) into a \\(k \\times d_{in}\\) block of control input representations \\(U\\) and an \\(m\\times d_{in}\\) block of imposed state representations \\(X_0\\) where \\(k + m = N\\). With this partitioning, the definition of self-attention can be re-written as followings: . \\[\\begin{align}\\Xi (X; \\theta) = \\Xi \\left( \\left[{U \\atop X_0} \\right] ; \\theta \\right) = \\Xi ([U; X_0]; \\theta) = \\left[{U' \\atop Y} \\right] = [U' ; Y] \\end{align}\\] Also, the output \\(X' = \\Xi (X; \\theta) \\in R^{(k+m) \\times d_{in}}\\) into a corresponding \\(k \\times d_{out}\\) matrix \\(U'\\) and an \\(m \\times d_{out}\\) matrix Y. ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-6-self-attention",
+    "url": "/docs/ai-research/llm/control-theory#definition-6-self-attention",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-6-self-attention"
-  },"155": {
+    "relUrl": "/docs/ai-research/llm/control-theory#definition-6-self-attention"
+  },"151": {
     "doc": "Control theory of LLM",
     "title": "definition 7. Reachability of self-attention",
     "content": "Following the definition 2, let \\(Y^* \\in R^{m \\times d_{out}}\\) be the desired output, reachability for Self-attention can be defined as followings: \\(Y^*\\) is reachable from initial state \\(X_0\\) if and only if there exists some U that steers the output of \\(\\Xi (\\left[U; X_0 \\right] ; \\theta ]\\) to output \\(\\left[ U' ; Y \\right]\\) such that \\(Y = Y^*\\) . ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-7-reachability-of-self-attention",
+    "url": "/docs/ai-research/llm/control-theory#definition-7-reachability-of-self-attention",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-7-reachability-of-self-attention"
-  },"156": {
+    "relUrl": "/docs/ai-research/llm/control-theory#definition-7-reachability-of-self-attention"
+  },"152": {
     "doc": "Control theory of LLM",
     "title": "Apply to the Self-Attention mechanism - Theorem",
     "content": "The key of defining the reachability begins with partitioning the output: \\(Y = Y_u + Y_x\\), assuming that the output can be partitioned by output from control input and that from imposed state. \\(Y_x\\) can be bounded as a function of \\(X\\), \\(k\\), and \\(theta\\). While \\(Y_u\\) is the remaining component from U. \\[\\begin{align} &amp; Y = Y_u + Y_x \\\\ &amp; = (Y_{u,\\|} + Y_{u, \\perp}) + (Y_{x, \\|} + Y_{x, \\perp}) \\\\ &amp; = (Y_{u,\\|} + Y_{x, \\|}) + (Y_{u, \\perp} + Y_{x, \\perp}) \\in span(Y^*) \\oplus span(Y^*)^\\perp \\\\ \\end{align}\\] Here, the parallel to and orthogonal to is in respect to the desired output \\(Y^*\\). Remember that Y is partitioned output . \\[\\Xi ([U; X_0]; \\theta) = \\left[ {U' \\atop Y} \\right]\\] Before the theorem and its proof, let us define matrix \\(A\\). \\[A := exp\\left(\\frac{QK^T}{\\sqrt{d_{key}}}\\right) = exp \\left( \\left[ \\begin{matrix} Q_u K_u^T &amp; Q_u K_x^T\\\\ Q_x K_u^T &amp; Q_x K_x^T \\end{matrix} \\right] \\frac{1} {\\sqrt{d_{key}}} \\right) = \\left[ \\begin{matrix} A_{uu} &amp; A_{ux}\\\\ A_{xu} &amp; A_{xx} \\end{matrix} \\right]\\] where, \\(Q.\\) and \\(K.\\) are partitioned components of \\(Q\\) and \\(K\\): . \\[Q = \\left[ Q_u \\atop Q_x \\right]= \\left[U \\atop X_0 \\right] W_q\\\\\\] \\[K=\\left[K_u \\atop K_x \\right]=\\left[U \\atop X_0 \\right] W_{key}\\] Similarly, \\(D\\) is also be partitioned as followigs: . \\[D = diag \\left(exp \\left(\\frac{Q K^T}{\\sqrt{d_{key}}}\\right) \\bm{1}_{N \\times 1}\\right) = \\left[\\begin{matrix} D_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D_x \\end{matrix} \\right]\\] With the definitions and notions above, \\(Y\\) can be defined as follows: . \\[\\begin{align} &amp; \\Xi(X; \\theta) = D^{-1} A V \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D^{-1}_{x} \\end{matrix} \\right] \\left[ \\begin{matrix} A_{uu} &amp; A_{xu}\\\\ A_{ux} &amp; A_{xx} \\end{matrix} \\right] \\left[ \\begin{matrix} V_{u} \\\\ V_{x} \\end{matrix} \\right] \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u A_{uu} V_u + D^{-1}_u A_{ux} V_x\\\\ D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x \\end{matrix} \\right] \\\\ &amp; = \\left[ U' \\atop Y \\right] \\end{align}\\] \\[\\begin{align} \\therefore Y = D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x = Y_u + Y_x \\end{align}\\] ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#apply-to-the-self-attention-mechanism---theorem",
+    "url": "/docs/ai-research/llm/control-theory#apply-to-the-self-attention-mechanism---theorem",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#apply-to-the-self-attention-mechanism---theorem"
-  },"157": {
+    "relUrl": "/docs/ai-research/llm/control-theory#apply-to-the-self-attention-mechanism---theorem"
+  },"153": {
     "doc": "Control theory of LLM",
     "title": "Theorem: reachability in the Self-attention mechanism",
     "content": "Let \\(Y^{max}_x = \\Xi (X_0 ; \\theta)\\) be the output of the self-attention layer given only the imposed state (initial state) \\(X_0\\), and i-th row of the orthogonal component of \\(Y^{max}_x\\) to the desired output \\(Y^*\\) be \\(Y^{max, i}_{x, \\perp}\\). \\({Y^*}\\) is unreachable for any control input \\({U}\\) if, for any \\({i \\in \\{1, ... , m\\} }\\), . \\[\\begin{align} \\|Y^{max, i}_{x, \\perp}\\| &gt; k \\gamma_{i} (X_0, \\theta) \\\\ \\end{align}\\] where, . \\[\\begin{align} \\gamma_{i}(X_0 , \\theta) := \\frac{e^\\alpha}{g_i}\\sigma_v M_u, \\quad \\alpha = \\sigma_q \\sigma_{key} M_u M_x / \\sqrt{d_{key}} \\end{align}\\] \\[\\begin{align} g_i (X_0, \\theta) := \\Sigma^{m}_{j=1} exp ((X_0)^i W_q W^T_{key} (X_0)^{jT} / \\sqrt{d_{key}}) \\end{align}\\] \\(\\sigma_v\\), \\(\\sigma_q\\) and \\(\\sigma_{key}\\) being the maximum singular values of the value, query, and key projection matrices, respectively. and with \\(M_u := \\max_j \\|(X_0)^j \\|\\) being the maximum norms of the control and imposed token embeddings, respectively. I will not repeat the proof of the paper because after partitioning, the rest of the proof is only about how to set some-what contrived constant and use basic row-wise summation and applying rudimentary inequity (Cauchy-Schwarz). ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#theorem-reachability-in-the-self-attention-mechanism",
+    "url": "/docs/ai-research/llm/control-theory#theorem-reachability-in-the-self-attention-mechanism",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#theorem-reachability-in-the-self-attention-mechanism"
-  },"158": {
+    "relUrl": "/docs/ai-research/llm/control-theory#theorem-reachability-in-the-self-attention-mechanism"
+  },"154": {
     "doc": "Control theory of LLM",
     "title": "References",
     "content": "[1] Bhargava, A., Witkowski, C., Shah, M., &amp; Thomson, M. (2023). What’s the Magic Word? A Control Theory of LLM Prompting. arXiv preprint arXiv:2310.04444. [2] Sontag, E. D. (2013). Mathematical control theory: deterministic finite dimensional systems (Vol. 6). Springer Science &amp; Business Media. ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#references",
+    "url": "/docs/ai-research/llm/control-theory#references",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#references"
-  },"159": {
+    "relUrl": "/docs/ai-research/llm/control-theory#references"
+  },"155": {
     "doc": "Control theory of LLM",
     "title": "Control theory of LLM",
     "content": " ",
-    "url": "/docs/ai-research/llm/paper-review-llm-control-prompting",
+    "url": "/docs/ai-research/llm/control-theory",
     
-    "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting"
-  },"160": {
+    "relUrl": "/docs/ai-research/llm/control-theory"
+  },"156": {
     "doc": "C / C++",
     "title": "Tips for C/C++",
     "content": "Figure out powerful and safe approach. ",
     "url": "/docs/programming/c-cpp#tips-for-cc",
     
     "relUrl": "/docs/programming/c-cpp#tips-for-cc"
-  },"161": {
+  },"157": {
     "doc": "C / C++",
     "title": "C / C++",
     "content": " ",
     "url": "/docs/programming/c-cpp",
     
     "relUrl": "/docs/programming/c-cpp"
-  },"162": {
+  },"158": {
     "doc": "ARC-AGI dataset",
-    "title": "ARC-AGI Dataset (2024)",
-    "content": "Let us begin with understanding the data. ",
-    "url": "/docs/ai-research/arc-agi/dataset#arc-agi-dataset-2024",
+    "title": "ARC-AGI Dataset",
+    "content": ". | ARC-AGI Dataset . | 2024 ARC-AGI Dataset . | Data format | Visualization | . | . | . ",
+    "url": "/docs/ai-research/arc-agi/dataset#arc-agi-dataset",
     
-    "relUrl": "/docs/ai-research/arc-agi/dataset#arc-agi-dataset-2024"
-  },"163": {
+    "relUrl": "/docs/ai-research/arc-agi/dataset#arc-agi-dataset"
+  },"159": {
+    "doc": "ARC-AGI dataset",
+    "title": "2024 ARC-AGI Dataset",
+    "content": "Let us begin with understanding the data. ",
+    "url": "/docs/ai-research/arc-agi/dataset#2024-arc-agi-dataset",
+    
+    "relUrl": "/docs/ai-research/arc-agi/dataset#2024-arc-agi-dataset"
+  },"160": {
     "doc": "ARC-AGI dataset",
     "title": "Data format",
     "content": "All the data is JSON encoded, the structures of JSON are as followings (* stands for training , evaluation and test) : . | *_challenges { \"task_id\": { \"test\": [ { \"input\": [[...], ..., [...]] } ], \"train\": [ { \"input\": [[...], ..., [...]], \"output\": [[...], ..., [...]] }, ... ] }, ... } . | *_solutions { \"task_id\": [[...], ..., [...]], ... } . | submission format { \"task_id\": [ { \"attempt_1\": [[...], ..., [...]], \"attempt_2\": [[...], ..., [...]] }, ], ... } . | . All the arrays have integer digits in range 0 to 9, and each element stands index of some hex_colors, . hex_colors = ['#000000', '#0074D9','#FF4136','#2ECC40','#FFDC00', '#AAAAAA', '#F012BE', '#FF851B', '#7FDBFF', '#870C25'] . ",
     "url": "/docs/ai-research/arc-agi/dataset#data-format",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset#data-format"
-  },"164": {
+  },"161": {
     "doc": "ARC-AGI dataset",
     "title": "Visualization",
     "content": "Let’s visualize the data (I choose f35d900a and fcb5c309) Basically, we visaulize the data in 2d-grid with colors, however, we could treat the color values not as color channel but as positional values in z-axis, thinking that we applied one-hot encoding. The third one is colored 3-d scatter, just for highlights the z-level. |   | f35d900a | fcb5c309 | . | Basic | | | . | 3d scatter | | | . | 3d scatter (colored) | | | . ",
     "url": "/docs/ai-research/arc-agi/dataset#visualization",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset#visualization"
-  },"165": {
+  },"162": {
     "doc": "ARC-AGI dataset",
     "title": "ARC-AGI dataset",
     "content": " ",
     "url": "/docs/ai-research/arc-agi/dataset",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset"
-  },"166": {
+  },"163": {
     "doc": "Devlog",
     "title": "Devlog",
     "content": "Snippets of my works. ",
     "url": "/docs/devlog",
     
     "relUrl": "/docs/devlog"
-  },"167": {
+  },"164": {
     "doc": "Home",
     "title": "Home",
     "content": "The one and only. ",
     "url": "/",
     
     "relUrl": "/"
-  },"168": {
+  },"165": {
     "doc": "LLM",
     "title": "LLM",
     "content": "Large Language Model studies and utilizations . ",
     "url": "/docs/ai-research/llm",
     
     "relUrl": "/docs/ai-research/llm"
-  },"169": {
+  },"166": {
     "doc": "LLM",
     "title": "Paradigm Shifts in Language Models",
     "content": "From beginning of Markov based approach that predicting next n-words, Language Model (LM) evolved drastically with the Transformers and GPT-2 / BERT - approaches. LLM stands for concurrent (2025) LM, mostly served by big tech companies and startups, most of them are now closed source but several LLM architectures and their way of training are officially open (LLama, Deepseek, and so on.) . (ref. https://arxiv.org/pdf/2303.18223.pdf ) . | Type | Backbone Architecture | Description | Example | . | LLM (Large Language Model, early 2020s ~ present) | Transformers (primarily) | Scaled up PLMs, dataset size, and computational resources. Trained with Human interactions (RLHF - Reinforcement Learning from Human Feedback) or other Reinforcement Learning techniques | GPT-3, GPT-4, PaLM-2, Gemini-1.5, LLama-3.1, DeepSeek-V3 | . | PLM (Pre-trained Language Model, late 2010s) | Transformers, RNNs (earlier models) | Massive data induced deep learning model when pre-training, followed by fine-tuning for specific (downstream) tasks. Self-supervised learning with masked language model (MLM - ELMo, BERT, RoBERTa) and causal language model (GPT) applied for training. | ELMo (RNNs), BERT, RoBERTa, GPT-2 (Transformers) | . | NLM (Neural Language Model, early-mid 2010s) | RNNs, Feedforward Neural Networks | Introduces neural networks to model language, enabling distributed representations (word vectors) and overcoming some limitations of SLMs. | word2vec (Feedforward), GloVe (Matrix Factorization), Recurrent Neural Networks | . | SLM (Statistical Language Model, Pre 2010s) | N/A (Statistical methods) | Traditional probabilistic models (Markov assumption). Predicts next words / context(n-words). | n-gram language model | . In brief, there are no huge differences between LLMs and PLMs in model base architecture. However, as a LLM has much larger size in terms of model parameters and it requires much more data, AI scientists tried various training techniques to train / fine-tuning the models. ",
     "url": "/docs/ai-research/llm#paradigm-shifts-in-language-models",
     
     "relUrl": "/docs/ai-research/llm#paradigm-shifts-in-language-models"
-  },"170": {
+  },"167": {
     "doc": "Mathematics",
     "title": "Mathematics",
     "content": "Graduate-level mathematics to understand modern AI, Graphics and Robotics. | Linear algebra (linear control system) | Probability and Random process | Set theory and Topology | Graph theory | Mathematical Analysis, Differential Equations | Mathematical Manifolds and Categorical Theorem | . ",
     "url": "/docs/mathematics",
     
     "relUrl": "/docs/mathematics"
-  },"171": {
+  },"168": {
     "doc": "Minimal layout test",
     "title": "Minimal layout test",
     "content": "Return to main website. This page demonstrates the packaged minimal layout, which does not render the sidebar or header. It can be used for standalone pages. It is also an example of using the new modular site components to define custom layouts; see “Custom layouts and includes” in the customization docs for more information. ",
     "url": "/docs/minimal-test.html",
     
     "relUrl": "/docs/minimal-test.html"
-  },"172": {
+  },"169": {
     "doc": "Programming",
     "title": "Programming",
     "content": " ",
     "url": "/docs/programming",
     
     "relUrl": "/docs/programming"
-  },"173": {
+  },"170": {
     "doc": "Python",
     "title": "Tips for Python",
     "content": "When I think of Python, I feel a sense of irony. Although it’s one of the most versatile programming languages, at its core, Python is often used as an “interface language” or a “glue language” to connect to compiled libraries (written in C or C++). Ironically, it’s precisely this “glue” characteristic that has driven Python’s popularity across numerous fields, including automation, web backends, and especially machine learning and deep learning. This section provides useful tips for achieving fast processing and well-designed programming with Python. ",
     "url": "/docs/programming/python#tips-for-python",
     
     "relUrl": "/docs/programming/python#tips-for-python"
-  },"174": {
+  },"171": {
     "doc": "Python",
     "title": "Python",
     "content": " ",
     "url": "/docs/programming/python",
     
     "relUrl": "/docs/programming/python"
-  },"175": {
-    "doc": "Research on Machine Unlearning",
+  },"172": {
+    "doc": "Research on ARC-AGI",
     "title": "Research Note",
-    "content": " ",
-    "url": "/docs/ai-research/unlearning/resarch-note#research-note",
+    "content": ". | Research Note . | Feb. 2025. | Problem definition | Approach - Baseline | . | . | . ",
+    "url": "/docs/ai-research/arc-agi/resarch-note#research-note",
     
-    "relUrl": "/docs/ai-research/unlearning/resarch-note#research-note"
-  },"176": {
-    "doc": "Research on Machine Unlearning",
-    "title": "Tries to findout fundamental ways (2024)",
-    "content": " ",
-    "url": "/docs/ai-research/unlearning/resarch-note#tries-to-findout-fundamental-ways-2024",
-    
-    "relUrl": "/docs/ai-research/unlearning/resarch-note#tries-to-findout-fundamental-ways-2024"
-  },"177": {
-    "doc": "Research on Machine Unlearning",
-    "title": "change the ways",
-    "content": ". | Redefine the assessment | universal framework needed for CV, LM, and so on | need more mathematical approach | . might we need to interact the data manifold. (2024. 12.) . ",
-    "url": "/docs/ai-research/unlearning/resarch-note#change-the-ways",
-    
-    "relUrl": "/docs/ai-research/unlearning/resarch-note#change-the-ways"
-  },"178": {
-    "doc": "Research on Machine Unlearning",
-    "title": "sRFL (Dec. 2023)",
-    "content": " ",
-    "url": "/docs/ai-research/unlearning/resarch-note#srfl-dec-2023",
-    
-    "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl-dec-2023"
-  },"179": {
-    "doc": "Research on Machine Unlearning",
-    "title": "sRFL - Introduction",
-    "content": "sRFL is my works based on NeurIPS 2023 Machine Unlearning Challenge’s dataset (celebrities face dataset), It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the machine unlearning. I focused on the decoupling in the logit spaces, using teacher-student framework. | sRFL (simple Rolling in Forget Logits) | . ",
-    "url": "/docs/ai-research/unlearning/resarch-note#srfl---introduction",
-    
-    "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---introduction"
-  },"180": {
-    "doc": "Research on Machine Unlearning",
-    "title": "sRFL - pseudo code",
-    "content": "1. Copy a model from original trained model . teacher_model &lt;- copy.deepcopy(model) teacher_model.eval() // teacher model will not be trained . 2. Freeze layers of model except for first two backbones (feature extracting) . 3-1. Loop : Generate logits by teacher model . for data in datasets (retain + forget dataset): retain_data, forget_data &lt;- data pseudo_forget_logits &lt;- teacher_model(forget_data) pseudo_retain_logits &lt;- teacher_model(retain_data) . 3-2. Roll only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1]) . rolled_pseudo_logits &lt;- roll(pseudo_forget_logits) . 3-3. Minimize KL-divergence between rolled_pseudo_logits and model’s output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset) . forget_outputs &lt;- model(forget_data) retain_outputs &lt;- model(retain_data) forget_loss &lt;- KLDiv(rolled_pseudo_logits, forget_outputs) \\ - cosine_similarity(rolled_pseudo_logits, forget_outputs)\\ + KLDiv(pseudo_retain_logits, retain_outputs) . 3-4. backward propagation by forget_loss . forget_loss.backward() . End of Loop. ",
-    "url": "/docs/ai-research/unlearning/resarch-note#srfl---pseudo-code",
-    
-    "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---pseudo-code"
-  },"181": {
-    "doc": "Research on Machine Unlearning",
-    "title": "sRFL - conclusion",
-    "content": "simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. The following is about train accuracy about CIFAR-10 . In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset. While it achieved high decoupling, there’s a huge claim about their metrics and evaluation. Even though the competition is completed with some argues, the main idea of machine unlearning is quite crucial in privacy and robustness of the ml-based services. In the future, I will progress my works. ",
-    "url": "/docs/ai-research/unlearning/resarch-note#srfl---conclusion",
-    
-    "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---conclusion"
-  },"182": {
-    "doc": "Research on Machine Unlearning",
-    "title": "Research on Machine Unlearning",
-    "content": " ",
-    "url": "/docs/ai-research/unlearning/resarch-note",
-    
-    "relUrl": "/docs/ai-research/unlearning/resarch-note"
-  },"183": {
+    "relUrl": "/docs/ai-research/arc-agi/resarch-note#research-note"
+  },"173": {
     "doc": "Research on ARC-AGI",
     "title": "Feb. 2025.",
     "content": " ",
     "url": "/docs/ai-research/arc-agi/resarch-note#feb-2025",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#feb-2025"
-  },"184": {
+  },"174": {
     "doc": "Research on ARC-AGI",
     "title": "Problem definition",
     "content": "Suppose that we’re designing a single model that solves the ARC-AGI problem. There are several conditions which the model needs to deal with. | The dimensionality of input/output is not pre-determined. | Though all the tasks can be grouped as a IQ test, all the detailed tasks have less in common. | The tasks in evaluation steps are totally different from those in the train steps. | The model has only 2~9 examples (mostly 3) to solve each task. –&gt; | . ",
     "url": "/docs/ai-research/arc-agi/resarch-note#problem-definition",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#problem-definition"
-  },"185": {
+  },"175": {
     "doc": "Research on ARC-AGI",
     "title": "Approach - Baseline",
     "content": "Instead of seeking a direct transformation that converts the input \\(X_{in}\\) into the output \\(X_{out}\\), we leverage generative models (such as VAE, flow-based model and diffusion models) to create a latent representation \\(X_{latent}\\) from both input and output. To achieve this, we introduce two projections: . \\[\\begin{align} f: X^{*} \\rightarrow X_{in}\\\\ g: X^{*} \\rightarrow X_{out} \\end{align}\\] Here, \\(X^*\\) represents a higher-dimensional latent space designed to capture complex relationships and interactions between \\(X_{in}\\) and \\(X_{out}\\). By utilizing dual parameterized projections \\(f\\) and \\(g\\), we enable a more controlled and nuanced learning process, allowing the model to optimize representations that are tailored for both input reconstruction and output generation. ",
     "url": "/docs/ai-research/arc-agi/resarch-note#approach---baseline",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#approach---baseline"
-  },"186": {
+  },"176": {
     "doc": "Research on ARC-AGI",
     "title": "Research on ARC-AGI",
     "content": " ",
     "url": "/docs/ai-research/arc-agi/resarch-note",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note"
-  },"187": {
+  },"177": {
+    "doc": "Research on Machine Unlearning",
+    "title": "Research Note",
+    "content": ". | Research Note . | Tries to findout fundamental ways (2024) . | change the ways | . | sRFL (Dec. 2023) . | sRFL - Introduction | sRFL - pseudo code | sRFL - conclusion | . | . | . ",
+    "url": "/docs/ai-research/unlearning/resarch-note#research-note",
+    
+    "relUrl": "/docs/ai-research/unlearning/resarch-note#research-note"
+  },"178": {
+    "doc": "Research on Machine Unlearning",
+    "title": "Tries to findout fundamental ways (2024)",
+    "content": " ",
+    "url": "/docs/ai-research/unlearning/resarch-note#tries-to-findout-fundamental-ways-2024",
+    
+    "relUrl": "/docs/ai-research/unlearning/resarch-note#tries-to-findout-fundamental-ways-2024"
+  },"179": {
+    "doc": "Research on Machine Unlearning",
+    "title": "change the ways",
+    "content": ". | Redefine the assessment | universal framework needed for CV, LM, and so on | need more mathematical approach | . might we need to interact the data manifold. (2024. 12.) . ",
+    "url": "/docs/ai-research/unlearning/resarch-note#change-the-ways",
+    
+    "relUrl": "/docs/ai-research/unlearning/resarch-note#change-the-ways"
+  },"180": {
+    "doc": "Research on Machine Unlearning",
+    "title": "sRFL (Dec. 2023)",
+    "content": " ",
+    "url": "/docs/ai-research/unlearning/resarch-note#srfl-dec-2023",
+    
+    "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl-dec-2023"
+  },"181": {
+    "doc": "Research on Machine Unlearning",
+    "title": "sRFL - Introduction",
+    "content": "sRFL is my works based on NeurIPS 2023 Machine Unlearning Challenge’s dataset (celebrities face dataset), It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the machine unlearning. I focused on the decoupling in the logit spaces, using teacher-student framework. | sRFL (simple Rolling in Forget Logits) | . ",
+    "url": "/docs/ai-research/unlearning/resarch-note#srfl---introduction",
+    
+    "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---introduction"
+  },"182": {
+    "doc": "Research on Machine Unlearning",
+    "title": "sRFL - pseudo code",
+    "content": "1. Copy a model from original trained model . teacher_model &lt;- copy.deepcopy(model) teacher_model.eval() // teacher model will not be trained . 2. Freeze layers of model except for first two backbones (feature extracting) . 3-1. Loop : Generate logits by teacher model . for data in datasets (retain + forget dataset): retain_data, forget_data &lt;- data pseudo_forget_logits &lt;- teacher_model(forget_data) pseudo_retain_logits &lt;- teacher_model(retain_data) . 3-2. Roll only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1]) . rolled_pseudo_logits &lt;- roll(pseudo_forget_logits) . 3-3. Minimize KL-divergence between rolled_pseudo_logits and model’s output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset) . forget_outputs &lt;- model(forget_data) retain_outputs &lt;- model(retain_data) forget_loss &lt;- KLDiv(rolled_pseudo_logits, forget_outputs) \\ - cosine_similarity(rolled_pseudo_logits, forget_outputs)\\ + KLDiv(pseudo_retain_logits, retain_outputs) . 3-4. backward propagation by forget_loss . forget_loss.backward() . End of Loop. ",
+    "url": "/docs/ai-research/unlearning/resarch-note#srfl---pseudo-code",
+    
+    "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---pseudo-code"
+  },"183": {
+    "doc": "Research on Machine Unlearning",
+    "title": "sRFL - conclusion",
+    "content": "simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. The following is about train accuracy about CIFAR-10 . In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset. While it achieved high decoupling, there’s a huge claim about their metrics and evaluation. Even though the competition is completed with some argues, the main idea of machine unlearning is quite crucial in privacy and robustness of the ml-based services. In the future, I will progress my works. ",
+    "url": "/docs/ai-research/unlearning/resarch-note#srfl---conclusion",
+    
+    "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---conclusion"
+  },"184": {
+    "doc": "Research on Machine Unlearning",
+    "title": "Research on Machine Unlearning",
+    "content": " ",
+    "url": "/docs/ai-research/unlearning/resarch-note",
+    
+    "relUrl": "/docs/ai-research/unlearning/resarch-note"
+  },"185": {
     "doc": "AI Research",
     "title": "AI Research",
     "content": "AI researches. ",
     "url": "/docs/ai-research",
     
     "relUrl": "/docs/ai-research"
-  },"188": {
+  },"186": {
     "doc": "Rust",
     "title": "Let’s Learn Rust Programming Language, together.",
     "content": "About rust programming, I hope everyone to read the official documentation, especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice. ",
     "url": "/docs/programming/rust#lets-learn-rust-programming-language-together",
     
     "relUrl": "/docs/programming/rust#lets-learn-rust-programming-language-together"
-  },"189": {
+  },"187": {
     "doc": "Rust",
     "title": "Rust",
     "content": " ",
     "url": "/docs/programming/rust",
     
     "relUrl": "/docs/programming/rust"
-  },"190": {
+  },"188": {
     "doc": "Machine Unlearning",
     "title": "Machine Unlearning",
     "content": "Machine unlearing is a quite adacious study compare to major AI researches. It tries to make a model forget some data while the rest of data kept learnt. ",
     "url": "/docs/ai-research/unlearning",
     
     "relUrl": "/docs/ai-research/unlearning"
+  },"189": {
+    "doc": "LLM Utilizations",
+    "title": "LLM Utilizations",
+    "content": "Utilization that ensures robustness in LLM predictions. | LLM Utilizations . | RAG . | Basic Implementation | Output | . | References | . | . ",
+    "url": "/docs/ai-research/llm/utilizations",
+    
+    "relUrl": "/docs/ai-research/llm/utilizations"
+  },"190": {
+    "doc": "LLM Utilizations",
+    "title": "RAG",
+    "content": "In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [1]. The concept of RAG is quite simple but powerful. The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[1]. flowchart LR %% Document Indexing Phase subgraph Indexing Phase A[Document Collection] --&gt; B[Shared Encoder] B --&gt; C[Document Embeddings] C --&gt; D[Document Index] end %% Query Processing &amp; Generation Phase subgraph Query &amp; Generation Phase E[User Query] --&gt; F[Shared Encoder] F --&gt; G[Query Embedding] G --&gt; H[Similarity Search in Index] H --&gt; I[Top-K Relevant Documents] I --&gt; J[Augmented Query] J --&gt; K[Large Language Model] K --&gt; L[Generated Response] end %% Connect the index from the indexing phase to the search D -.-&gt; H . In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user’s query to LLM, we can get generated output with our intended contexts. ",
+    "url": "/docs/ai-research/llm/utilizations#rag",
+    
+    "relUrl": "/docs/ai-research/llm/utilizations#rag"
+  },"191": {
+    "doc": "LLM Utilizations",
+    "title": "Basic Implementation",
+    "content": ". ├── lib │ ├── llm │ └── OpenBLAS ├── scripts │ └── add_document.py ├── src │ ├── core.py │ ├── embedding.py │ └── utils.py ├── vector_store │ └── .gitkeep ├── download_model.sh ├── easy_rag.py ├── vector_index.py └── README.md . For detailed installation and usage, please visit my git repository. visit : easy_rag . ",
+    "url": "/docs/ai-research/llm/utilizations#basic-implementation",
+    
+    "relUrl": "/docs/ai-research/llm/utilizations#basic-implementation"
+  },"192": {
+    "doc": "LLM Utilizations",
+    "title": "Output",
+    "content": ". In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations. Focus on the answer (The concept of RAG is simple but powerful), which is derived in the first paragraph of this post (The concept of RAG is quite simple but powerful). ",
+    "url": "/docs/ai-research/llm/utilizations#output",
+    
+    "relUrl": "/docs/ai-research/llm/utilizations#output"
+  },"193": {
+    "doc": "LLM Utilizations",
+    "title": "References",
+    "content": "[1] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., … &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474. ",
+    "url": "/docs/ai-research/llm/utilizations#references",
+    
+    "relUrl": "/docs/ai-research/llm/utilizations#references"
   }
 }

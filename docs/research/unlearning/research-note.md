@@ -9,6 +9,15 @@ permalink: /docs/ai-research/unlearning/resarch-note
 ---
 # Research Note
 
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+- . TOC
+{:toc}
+</details>
+
 ## Tries to findout fundamental ways (2024)   
 
 ### change the ways

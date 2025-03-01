@@ -4,17 +4,28 @@ title: Control theory of LLM
 parent: LLM
 grand_parent: AI Research
 math: katex
-nav_order: 2
-permalink: /docs/ai-research/llm/paper-review-llm-control-prompting
+nav_order: 3
+permalink: /docs/ai-research/llm/control-theory
 ---
 
 # A Control Theory of LLM prompting
 
-## Introduction
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+- . TOC
+{:toc}
+</details>
+
+## Paper Review - `What's the Magic Word? A Control Theory of LLM prompting`
+
+### Introduction
 
 In this post, I will review a very interesting recenet paper about LLM : `What's the Magic Word? A Control Theory of LLM prompting`.[[1](#Bhargava-Aman-et-al)]. The reason why I review this paper is that it gives us a new perspective on LLM, with the glasses of control theory. The main concept of the paper is that analogy on LLM system to control system : LLM be as a `plant` and the prompt be as a `control input`. Unlike other ML/DL framework, most of studies on LLM prompting were emperical, without mathematical evidence. This is because that LLM is too huge to understand. The paper, however, tries to understand LLM itself but treat it as a plant to control and give us a concrete understanding. 
 
-## Basic Control Theory: System
+### Basic Control Theory: System
 
 To understand this paper, we need to know basic concepts of state space representation and control theory. The authors put the Appendix on the paper [[1](#Bhargava-Aman-et-al)], however, it is better to read Chapter 1-3 of [[2](#sontag-E-D)]. It is online free.
 
@@ -34,7 +45,7 @@ A system ($$\Sigma$$) consists of:
  - Output ($$Y$$): Observed output space.  
  - Readout map ($$h: X \times U \times T \rightarrow Y$$): Readout map takes a current state (X(t)) at time t and a control input (u(t)) at the time t, and returns the observed(read out) value (Y(t)).  
 
-## Basic Control Theory: Reachability, Observability and Controllability
+### Basic Control Theory: Reachability, Observability and Controllability
 
 In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a `system`. Let us say that the `state` be `the top face of dice`, `control input` be the `human random force` of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the `transition map` be the state transition between `trials`. However, even we designed `this rolling a dice` to be a `system` with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be `controllable`?
 
@@ -45,24 +56,24 @@ In the above definition, we can set almost everything to be a system. For exampl
    ref: dices image from wikipedia 
 </div>
 
-### Reachability, Observable and Controllability   
+#### Reachability, Observable and Controllability   
 
 Back to the `rolling a dice system`, we can say that this system is reachable because we could potentially role any number, and always be observable. However, we cannot say that this system is controllable because we cannot make intended input. Mathematically, we can define the reachability as in [[2](#sontag-E-D)].
 
-#### Event
+##### Event
 As we defined before, an arbitary system $$\Sigma$$ can be defined as $$\Sigma = (T, X, U, \phi)$$ . An `event` is a state at a time, a pair of state and time $$(x, t) \in X \times T$$.
 
-#### Reacability and Controllability
+##### Reacability and Controllability
 The event $$(z, \tau)$$ `can be reached` from a state $$(x,\sigma)$$, if and only if there is a `path` of $$\Sigma$$ on $$[\sigma, \tau]$$ and if there exists an $$\omega \in U^{[\sigma, \tau)}$$ such that $$\phi(\tau, \sigma, x, \omega) = z$$, we can say we `can control` the state x to state z.
 
 Again with `the rolling a dice system`, now we can see the problem, we put the `human random force` be the input, but it is not controllable.
 
-## Control Theory of LLM
+### Control Theory of LLM
 Now we can discuss control of LLM with the paper [[1](#Bhargava-Aman-et-al)]. All the following concepts and logics are originated from the paper.    
-### Notations
+#### Notations
 In the paper, they denoted $$P_{LM}$$ be a causal language model, $$V$$ be a vocabulary set, $$V^*$$ be the set of all possible sequences of any length composed of tokens from $$V$$. The bold lowercase stands for sequence (vector) $$\bm{x}$$, while the unbolded lowercase letter $$x$$ be an individual token.
 
-### Assumptions
+#### Assumptions
 Here are some assumptions before stating the definitions: 
 
 1. The LLM system is discrete time: It is quite natural if we come across LLM chatbots, we get output token from LLM when we put query input.
@@ -74,8 +85,8 @@ $$x{'} \sim  P_{LM} (x' | x(t)) $$. This differs from traditional discrete stoch
 
 From the basic control theory and the followed assumptions, the authors defined the LLM systems and Control Input as follows:
 
-### Definitions
-#### Definition 1. Autoregressive LLM system
+#### Definitions
+##### Definition 1. Autoregressive LLM system
 
 An autoregressive LLM system $$\Sigma = (V, P_{LM})$$ with control input consists of 
 time set ($$T$$), state space ($$X$$), input ($$U$$), transition map ($$\phi$$) and readout map $$h$$.
@@ -95,23 +106,23 @@ where
 $$x' \sim P_{LM}(x' | x(t)) $$. Sadly because they use the plus sign as a operator wihtout the definition, we need to assume that this is an operator that represent concatenation of state because we assume that it is autoregressive. More than that, as it is autoregressive, the output is deterministic.
 5. The readout map returns the most recent r tokens from the state x: $$h(x(t);r) = [x^{t-r}(t), ... , x^{t}(t)]$$
 
-#### Definition 2. LLM Output Reachability
+##### Definition 2. LLM Output Reachability
 $$y \in V^r$$ is reachable from the initial state $$x_0 \in V^*$$ if and only if there exists some time $$T$$ and input sequences $$u^* \in U^k$$ for some $$k + |x_0| \leq  T $$ that makes the initial state $$x_0$$ move to output $$y = h(x(T), r)$$ at time $$T$$
 
-#### Definition 3. Output Reachablility Set
+##### Definition 3. Output Reachablility Set
 The reachable output set from the initial state $$x_0 \in V^*$$ is denoted $$R_y(x_0)$$.
 
-#### Definition 4. Output Controllabilty (Revised from the paper.)
+##### Definition 4. Output Controllabilty (Revised from the paper.)
 An LLM system is output controllable if and only if, $$\forall x_0 \in V^*$$ and $$\forall y \in V^r$$, there exists a time $$T \geq |x_0|$$ and the input sequence $$u^* \in U^k$$, where $$k\leq T - |x_0|$$ such that the probability $$P(h(x(T),r) = y | x_0, u^*) > 0$$.
 
-#### Definition 5. $$k-\epsilon$$ Controllability
+##### Definition 5. $$k-\epsilon$$ Controllability
 If a datset of state-output pairs $$D = \{(x^{i}_{0}, y^{i})\}_{i\in [N]}$$, an LLM system $$\Sigma = (V, P_{LM})$$ is $$k-\epsilon$$ controllable with respect to D, if and only if $$P\{y \notin R^{k}_{y}(x_0)\} < \epsilon$$ for $$(x_0, y) \sim D$$, where $$R^k_y(x^i_0)$$ is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length $$|u| \leq k$$.
 
-### Apply to the Self-Attention Mechanism. - Preliminaries
+#### Apply to the Self-Attention Mechanism. - Preliminaries
 
 Above the definition on LLM controllability could be nice for generalization, we need to prove it with actual models and calculations. The paper choose the self-attention which dominates in LLMs.
 
-#### Definition 6. Self-attention.
+##### Definition 6. Self-attention.
 
 Self-attention $$\Xi$$ is parameterized by weight metrics $$\theta = (W_q, W_{key}, W_v)$$ (query, key, value). $$\Xi$$ is a mapping from the input token ($$R^{N \times d_{in}}$$) to output token ($$R^{N \times d_{out}}$$),
 
@@ -126,11 +137,11 @@ $$\begin{align}\Xi (X; \theta) = \Xi \left( \left[{U \atop X_0} \right] ; \theta
 
 Also, the output $$X' = \Xi (X; \theta) \in R^{(k+m) \times d_{in}}$$ into a corresponding $$k \times d_{out}$$ matrix $$U'$$ and an $$m \times d_{out}$$ matrix Y.
 
-#### definition 7. Reachability of self-attention
+##### definition 7. Reachability of self-attention
 Following the definition 2, let $$Y^* \in R^{m \times d_{out}}$$ be the desired output, reachability for Self-attention can be defined as followings:   
 $$Y^*$$ is reachable from initial state $$X_0$$ if and only if there exists some U that steers the output of $$\Xi (\left[U; X_0 \right] ; \theta ]$$ to output $$\left[ U' ; Y \right] $$ such that $$Y = Y^*$$
 
-### Apply to the Self-Attention mechanism - Theorem
+#### Apply to the Self-Attention mechanism - Theorem
 
 The key of defining the reachability begins with partitioning the output: $$Y = Y_u + Y_x$$, assuming that the output can be partitioned by output from control input and that from imposed state. $$Y_x$$ can be bounded as a function of $$X$$, $$k$$, and $$theta$$. While $$Y_u$$ is the remaining component from U. 
 
@@ -225,7 +236,7 @@ $$\begin{align}
 \end{align}$$
 
 
-#### **Theorem: reachability in the Self-attention mechanism**
+##### **Theorem: reachability in the Self-attention mechanism**
 Let $$Y^{max}_x = \Xi (X_0 ; \theta) $$ be the output of the self-attention layer given only the imposed state (initial state) $$X_0$$, and _i_-th row of the orthogonal component of $$Y^{max}_x$$ to the desired output $$Y^*$$ be $$Y^{max, i}_{x, \perp}$$.  
 $${Y^*}$$ is unreachable for any control input $${U}$$ if, for any $${i \in \{1, ... , m\}  }$$,  
 

@@ -1,18 +1,29 @@
 ---
 layout: default
-title: 3D Image Reconstruction - Introduction
+title: 3D Image Reconstruction
 parent: Computer Vision
 grand_parent: AI Research
 math: katex
 nav_order: 1
-permalink: /docs/ai-research/computer-vision/paper-review-3d-reconstruction
+permalink: /docs/ai-research/computer-vision/3d-reconstruction
 ---
 
-# 3D Reconstruction - Introduction
+# 3D Image Reconstruction
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+- . TOC
+{:toc}
+</details>
+
+## 3D Reconstruction - Introduction
 
 &nbsp;Introductions to 3D Reconstruction : Backgrounds, Metrics and Representations
 
-## Backgrounds
+### Backgrounds
 
 3D reconstruction, which is 3-Dimensional representation of objects,  can be used for many applications such as video games, animation, navigation and so on.    
 
@@ -22,12 +33,12 @@ It is true that understanding the basics of photogrammetry is very important to 
 
  In this post, however, it is assumed that the readers have knowledge about deep learning models rather than 3D reconstructions. Hence, the discussion will focus on deep-learning based 3D reconstructions while traditional techniques will be mentioned only as needed for readers to comprehend the deep-learning models.
 
-## Datasets, Metrics and Representations 
+### Datasets, Metrics and Representations 
 **Based on 3D reconstruction using deep learning : a survey [[1](#jin-et-al)]**
 
 Starting with a good review paper helps to understand the field and the potential research directions. In deep learning based 3D reconstruction, luckily we can access a good review paper [[1](#jin-et-al)] for free.    
 
-### Datasets
+#### Datasets
 The paper[[1](#jin-et-al)] show us several useful dataset for 3D reconstructions:
 
 1. [ShapeNet](https://shapenet.org/)    
@@ -42,7 +53,7 @@ It is a large scale database for 3D objects. Like as Pascal3D+, this dataset is 
 4. [KITTI](https://www.cvlibs.net/datasets/kitti/)  
 If you are familiar with Computer Vision in automous driving and mobile robotics, I am sure that you heard of this dataset. This was introduced by Andres Geiger et al[[5](#kitti-dataset)].    
 
-### Metrics
+#### Metrics
 The paper[[1](#jin-et-ßal)] briefly explains 3 commonly used metric used: MSE, Voxel IoU and cross-entropy. I think the reader might familiar with MSE and cross-entropy. Therefore, I will skip their details.
 
 ***Voxel IoU***
@@ -74,7 +85,7 @@ This can be computed using the Hungarian Algorithm or Sinkhorn-Knopp algorithm.
 ---------    
   
 
-### 3D Computer Vision Representation     
+#### 3D Computer Vision Representation     
         
 The original survey [[1](#jin-et-al)] divides the reconstruction techniques into two main categories by the number of sources. (Reconstruction based on single image or multiple images.) After that, it lists up middle categories with way of representations or how outcome look like with a short descriptions.     
 
@@ -141,7 +152,13 @@ About generating depths based on a 2D images, 3D representation also be achieved
 
 
 
-# References
+
+
+
+
+
+
+## References
 <span id="jin-et-al">[1]</span> Jin, Y., Jiang, D., & Cai, M. (2020). 3d reconstruction using deep learning: a survey. Communications in Information and Systems, 20(4), 389-413.
 
 <span id="shapenet">[2]</span> Chang, A. X., Funkhouser, T., Guibas, L., Hanrahan, P., Huang, Q., Li, Z., ... & Yu, F. (2015). Shapenet: An information-rich 3d model repository. arXiv preprint arXiv:1512.03012.  

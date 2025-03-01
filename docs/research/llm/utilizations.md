@@ -1,14 +1,28 @@
 ---
 layout: default
-title: LLM Applications
+title: LLM Utilizations
 parent: LLM
 grand_parent: AI Research
 math: katex
-nav_order: 1
-permalink: /docs/ai-research/llm/paper-review-rag
+nav_order: 2
+permalink: /docs/ai-research/llm/utilizations
 ---
 
-# RAG
+# LLM Utilizations
+
+Utilization that ensures robustness in LLM predictions.
+
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+- . TOC
+{:toc}
+</details>
+
+## RAG
 
 
 In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. 
@@ -44,7 +58,7 @@ flowchart LR
 
 In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user's query to LLM, we can get generated output with our intended contexts. 
 
-## Basic Implementation
+### Basic Implementation
 
 
 ```bash
@@ -70,7 +84,7 @@ For detailed installation and usage, please visit my git repository.
 
  > visit : [easy_rag](https://github.com/Sangdo-Han/public-studies/tree/master/llm/rag)
 
-## Output
+### Output
 <p align="center">
   <img src="https://sangdo-han.github.io/docs/research/llm/rag_chat_example.png">
 </p>
@@ -79,5 +93,5 @@ In this example, I put this blog-post into the vector-store. Therefore, as you m
 > Focus on the answer (`The concept of RAG is simple but powerful`), which is derived in the first paragraph of this post (`The concept of RAG is quite simple but powerful`).   
 
 
-# References
+## References
 <span id="lewis-et-al">[1]</span> Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., ... & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474.

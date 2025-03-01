@@ -6,12 +6,22 @@ has_children: false
 parent: ARC-AGI
 permalink: /docs/ai-research/arc-agi/dataset
 ---
+# ARC-AGI Dataset
 
-# ARC-AGI Dataset (2024)
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+- . TOC
+{:toc}
+</details>
+
+## 2024 ARC-AGI Dataset
 
 Let us begin with understanding the data.
 
-## Data format
+### Data format
 
 All the data is JSON encoded, the structures of JSON are as followings (* stands for training , evaluation and test) :
 

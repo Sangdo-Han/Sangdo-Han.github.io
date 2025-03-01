@@ -7,11 +7,20 @@ parent: ARC-AGI
 permalink: /docs/ai-research/arc-agi/resarch-note
 
 ---
+# Research Note
 
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+- . TOC
+{:toc}
+</details>
 
-# Feb. 2025.
+## Feb. 2025.
 
-## Problem definition
+### Problem definition
 
 Suppose that we're designing a `single model` that solves the ARC-AGI problem. There are several conditions which the model needs to deal with.
 
