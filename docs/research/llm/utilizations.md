@@ -10,7 +10,7 @@ permalink: /docs/ai-research/llm/utilizations
 
 # LLM Utilizations
 
-Utilization that ensures robustness in LLM predictions.
+Utilizations that ensure robustness in LLM predictions while merely deforming base model architecture.
 
 
 <details open markdown="block">
@@ -91,6 +91,8 @@ For detailed installation and usage, please visit my git repository.
 
 In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations.
 > Focus on the answer (`The concept of RAG is simple but powerful`), which is derived in the first paragraph of this post (`The concept of RAG is quite simple but powerful`).   
+
+
 
 
 ## References

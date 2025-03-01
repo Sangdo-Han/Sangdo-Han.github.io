@@ -1324,7 +1324,7 @@
   },"189": {
     "doc": "LLM Utilizations",
     "title": "LLM Utilizations",
-    "content": "Utilization that ensures robustness in LLM predictions. | LLM Utilizations . | RAG . | Basic Implementation | Output | . | References | . | . ",
+    "content": "Utilizations that ensure robustness in LLM predictions while merely deforming model architecture. | LLM Utilizations . | RAG . | Basic Implementation | Output | . | References | . | . ",
     "url": "/docs/ai-research/llm/utilizations",
     
     "relUrl": "/docs/ai-research/llm/utilizations"
