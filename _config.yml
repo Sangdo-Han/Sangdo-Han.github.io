@@ -1,7 +1,6 @@
 title: sanhan research
 description: Lesson 5
-# theme: just-the-docs
-# theme: just-the-docs
+
 remote_theme: just-the-docs/just-the-docs
 url: https://Sangdo-Han.github.io/
 favicon_ico: "/assets/images/favicon.ico"
@@ -14,7 +13,6 @@ defaults:
     values:
       layout: "default"
 
-# favicon_icon: "https://Sangdo-Han.github.io/assets/images/favicon.ico"
 search_enable: true
 search:
     heading_level: 5
@@ -67,5 +65,3 @@ plugins:
     - jekyll-remote-theme
     - jekyll-sitemap
     - jekyll-feed
-# aux_links:
-#   Template Repository: https://github.com/just-the-docs/just-the-docs-template
