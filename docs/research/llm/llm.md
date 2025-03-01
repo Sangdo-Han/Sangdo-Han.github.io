@@ -17,7 +17,9 @@ From beginning of Markov based approach that predicting next n-words, Language M
 
 
 (ref. https://arxiv.org/pdf/2303.18223.pdf
-)
+)      
+
+
 | Type | Backbone Architecture | Description | Example |
 |---|---|---|---|
 | LLM (Large Language Model, early 2020s ~ present) | Transformers (primarily) | Scaled up PLMs, dataset size, and computational resources. Trained with Human interactions (RLHF - Reinforcement Learning from Human Feedback) or other Reinforcement Learning techniques | GPT-3, GPT-4, PaLM-2, Gemini-1.5, LLama-3.1, DeepSeek-V3 |
