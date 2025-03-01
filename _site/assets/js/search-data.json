@@ -337,7 +337,7 @@
   },"48": {
     "doc": "03. Multiprocessing",
     "title": "States of a Process",
-    "content": "A process is generally created and controlled by the OS. %%{ init: { 'theme': 'base', 'layout': 'elk', 'themeVariables': { 'primaryColor': '#b19cd9', 'primaryTextColor': '#4b0082', 'primaryBorderColor': '#800080', 'edgeLabelBackground': '#ffffff', 'tertiaryColor': '#e6e6fa', 'nodeBorder': '#6a0dad' }, 'curve': 'basis' } }%% graph LR %% Define process states new[\"New Process\"] ready[\"Ready\"] running[\"Running\"] wait[\"Waiting\"] zombie[\"Zombie\"] terminated[\"Terminated\"] %% Define transitions new --&gt;|Admitted to execution| ready ready --&gt;|Gets CPU execution| running running --&gt;|Loses CPU execution| ready running --&gt;|Waits for event| wait wait --&gt;|Event occurs| ready running --&gt;|Process completes| zombie zombie --&gt;|Parent process ends| terminated %% Group active states subgraph Active States ready running wait end . ",
+    "content": "A process is generally created and controlled by the OS. graph LR %% Define process states new[\"New Process\"] ready[\"Ready\"] running[\"Running\"] wait[\"Waiting\"] zombie[\"Zombie\"] terminated[\"Terminated\"] %% Define transitions new --&gt;|Admitted to execution| ready ready --&gt;|Gets CPU execution| running running --&gt;|Loses CPU execution| ready running --&gt;|Waits for event| wait wait --&gt;|Event occurs| ready running --&gt;|Process completes| zombie zombie --&gt;|Parent process ends| terminated %% Group active states subgraph Active States ready running wait end . ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#states-of-a-process",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#states-of-a-process"
@@ -547,7 +547,7 @@
   },"78": {
     "doc": "06. IPC - Message Passing",
     "title": "Pipe",
-    "content": "Pipes provide a unidirectional communication channel between two processes (one-to-one, one way, write then read). They are commonly used for parent-child process communication and allow data transfer in a sequential manner. %%{ init: { 'theme': 'base', 'layout': 'elk', 'themeVariables': { 'primaryColor': '#b19cd9', 'primaryTextColor': '#4b0082', 'primaryBorderColor': '#800080', 'edgeLabelBackground': '#ffffff', 'tertiaryColor': '#e6e6fa', 'nodeBorder': '#6a0dad' }, 'curve': 'basis' } }%% sequenceDiagram participant Process A participant Pipe participant Process B Process A-&gt;&gt;Pipe: Write Data Pipe--&gt;&gt;Process B: Read Data Process B-&gt;&gt;Process B: Process Data . ",
+    "content": "Pipes provide a unidirectional communication channel between two processes (one-to-one, one way, write then read). They are commonly used for parent-child process communication and allow data transfer in a sequential manner. sequenceDiagram participant Process A participant Pipe participant Process B Process A-&gt;&gt;Pipe: Write Data Pipe--&gt;&gt;Process B: Read Data Process B-&gt;&gt;Process B: Process Data . ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#pipe",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#pipe"
@@ -568,7 +568,7 @@
   },"81": {
     "doc": "06. IPC - Message Passing",
     "title": "Message Queue",
-    "content": "Message queues allow multiple processes to exchange discrete messages asynchronously. This mechanism ensures structured communication and enables better decoupling of process execution. %%{ init: { 'theme': 'base', 'layout': 'elk', 'themeVariables': { 'primaryColor': '#b19cd9', 'primaryTextColor': '#4b0082', 'primaryBorderColor': '#800080', 'edgeLabelBackground': '#ffffff', 'tertiaryColor': '#e6e6fa', 'nodeBorder': '#6a0dad' }, 'curve': 'basis' } }%% sequenceDiagram participant Process A participant Process B participant Process C participant Message Queue participant Process D participant Process E Process A-&gt;&gt;Message Queue: Send Message 1 Process B-&gt;&gt;Message Queue: Send Message 2 Process C-&gt;&gt;Message Queue: Send Message 3 Message Queue--&gt;&gt;Process D: Deliver Message 1 Message Queue--&gt;&gt;Process E: Deliver Message 2 Message Queue--&gt;&gt;Process D: Deliver Message 3 Process D-&gt;&gt;Process D: Process Message 1 &amp; 3 Process E-&gt;&gt;Process E: Process Message 2 . ",
+    "content": "Message queues allow multiple processes to exchange discrete messages asynchronously. This mechanism ensures structured communication and enables better decoupling of process execution. sequenceDiagram participant Process A participant Process B participant Process C participant Message Queue participant Process D participant Process E Process A-&gt;&gt;Message Queue: Send Message 1 Process B-&gt;&gt;Message Queue: Send Message 2 Process C-&gt;&gt;Message Queue: Send Message 3 Message Queue--&gt;&gt;Process D: Deliver Message 1 Message Queue--&gt;&gt;Process E: Deliver Message 2 Message Queue--&gt;&gt;Process D: Deliver Message 3 Process D-&gt;&gt;Process D: Process Message 1 &amp; 3 Process E-&gt;&gt;Process E: Process Message 2 . ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#message-queue",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#message-queue"
@@ -589,7 +589,7 @@
   },"84": {
     "doc": "06. IPC - Message Passing",
     "title": "Socket",
-    "content": "Sockets provide communication between processes over a network or within the same machine. They support both connection-oriented (TCP) and connectionless (UDP) communication models, making them suitable for distributed systems. In this case, we use local socket by using AF_UNIX to communicate between threads. %%{ init: { 'theme': 'base', 'layout': 'elk', 'themeVariables': { 'primaryColor': '#b19cd9', 'primaryTextColor': '#4b0082', 'primaryBorderColor': '#800080', 'edgeLabelBackground': '#ffffff', 'tertiaryColor': '#e6e6fa', 'nodeBorder': '#6a0dad' }, 'curve': 'basis' } }%% sequenceDiagram participant Process A participant Socket participant Process B Process A-&gt;&gt;Socket: Connect to Process B Process B--&gt;&gt;Socket: Accept Connection Process A-&gt;&gt;Socket: Send Data (Message 1) Socket--&gt;&gt;Process B: Receive Data (Message 1) Process B-&gt;&gt;Socket: Send Response (Message 2) Socket--&gt;&gt;Process A: Receive Response (Message 2) . Using multiple sockets, we can provide typical web server architecture, which will be discussed in the future. ",
+    "content": "Sockets provide communication between processes over a network or within the same machine. They support both connection-oriented (TCP) and connectionless (UDP) communication models, making them suitable for distributed systems. In this case, we use local socket by using AF_UNIX to communicate between threads. sequenceDiagram participant Process A participant Socket participant Process B Process A-&gt;&gt;Socket: Connect to Process B Process B--&gt;&gt;Socket: Accept Connection Process A-&gt;&gt;Socket: Send Data (Message 1) Socket--&gt;&gt;Process B: Receive Data (Message 1) Process B-&gt;&gt;Socket: Send Response (Message 2) Socket--&gt;&gt;Process A: Receive Response (Message 2) . Using multiple sockets, we can provide typical web server architecture, which will be discussed in the future. ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#socket",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#socket"
@@ -645,7 +645,7 @@
   },"92": {
     "doc": "07. IPC - Shared Memory",
     "title": "Shared Memory",
-    "content": "Shared memory is a region of memory that can be accessed by multiple processes. It enables high-speed data exchange but requires explicit synchronization to prevent data corruption or race conditions. %%{ init: { 'theme': 'base', 'layout': 'elk', 'themeVariables': { 'primaryColor': '#b19cd9', 'primaryTextColor': '#4b0082', 'primaryBorderColor': '#800080', 'edgeLabelBackground': '#ffffff', 'tertiaryColor': '#e6e6fa', 'nodeBorder': '#6a0dad' }, 'curve': 'basis' } }%% sequenceDiagram participant Process A participant Mutex participant Shared Memory participant Process B Process A-&gt;&gt;Mutex: Lock Mutex (Access Shared Memory) Process A-&gt;&gt;Shared Memory: Write Data (Critical Section) Process A-&gt;&gt;Mutex: Unlock Mutex Process B-&gt;&gt;Mutex: Lock Mutex (Wait for Process A) Process B-&gt;&gt;Shared Memory: Read Data (Critical Section) Process B-&gt;&gt;Mutex: Unlock Mutex . ",
+    "content": "Shared memory is a region of memory that can be accessed by multiple processes. It enables high-speed data exchange but requires explicit synchronization to prevent data corruption or race conditions. sequenceDiagram participant Process A participant Mutex participant Shared Memory participant Process B Process A-&gt;&gt;Mutex: Lock Mutex (Access Shared Memory) Process A-&gt;&gt;Shared Memory: Write Data (Critical Section) Process A-&gt;&gt;Mutex: Unlock Mutex Process B-&gt;&gt;Mutex: Lock Mutex (Wait for Process A) Process B-&gt;&gt;Shared Memory: Read Data (Critical Section) Process B-&gt;&gt;Mutex: Unlock Mutex . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory"
@@ -673,7 +673,7 @@
   },"96": {
     "doc": "07. IPC - Shared Memory",
     "title": "Thread Pool Pattern",
-    "content": "A thread pool consists of multiple worker threads that execute tasks concurrently. These threads share resources, reducing the overhead of creating and destroying threads frequently. Synchronization techniques, such as mutexes and condition variables, help manage access to shared resources efficiently. %%{ init: { 'theme': 'base', 'layout': 'elk', 'themeVariables': { 'primaryColor': '#b19cd9', 'primaryTextColor': '#4b0082', 'primaryBorderColor': '#800080', 'edgeLabelBackground': '#ffffff', 'tertiaryColor': '#e6e6fa', 'nodeBorder': '#6a0dad' }, 'curve': 'basis' } }%% sequenceDiagram participant Client 1 participant Client 2 participant Task Queue participant Mutex participant Condition Variable participant Thread 1 participant Thread 2 participant Atomic Boolean (Stop Flag) Client 1-&gt;&gt;Task Queue: Submit Task A (Lock Mutex) Client 2-&gt;&gt;Task Queue: Submit Task B (Lock Mutex) Task Queue--&gt;&gt;Mutex: Unlock After Insertion Task Queue--&gt;&gt;Condition Variable: Notify Worker Threads Condition Variable--&gt;&gt;Thread 1: Wake Up Thread 1-&gt;&gt;Task Queue: Fetch Task A (Lock Mutex) Task Queue--&gt;&gt;Mutex: Unlock After Fetch Thread 1-&gt;&gt;Thread 1: Process Task A Condition Variable--&gt;&gt;Thread 2: Wake Up Thread 2-&gt;&gt;Task Queue: Fetch Task B (Lock Mutex) Task Queue--&gt;&gt;Mutex: Unlock After Fetch Thread 2-&gt;&gt;Thread 2: Process Task B Atomic Boolean (Stop Flag)-&gt;&gt;Thread 1: Check Termination Condition Atomic Boolean (Stop Flag)-&gt;&gt;Thread 2: Check Termination Condition . ",
+    "content": "A thread pool consists of multiple worker threads that execute tasks concurrently. These threads share resources, reducing the overhead of creating and destroying threads frequently. Synchronization techniques, such as mutexes and condition variables, help manage access to shared resources efficiently. sequenceDiagram participant Client1 participant Client2 participant TaskQueue participant ThreadPool participant Worker1 participant Worker2 Client1-&gt;&gt;TaskQueue: Submit Task A Client2-&gt;&gt;TaskQueue: Submit Task B TaskQueue--&gt;&gt;ThreadPool: Notify New Tasks ThreadPool-&gt;&gt;Worker1: Assign Task A Worker1-&gt;&gt;Worker1: Process Task A ThreadPool-&gt;&gt;Worker2: Assign Task B Worker2-&gt;&gt;Worker2: Process Task B . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-pattern",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-pattern"
@@ -902,426 +902,433 @@
     
     "relUrl": "/docs/programming/algorithms"
   },"129": {
+    "doc": "LLM Applications",
+    "title": "RAG",
+    "content": "In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [1]. The concept of RAG is quite simple but powerful. The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[1]. flowchart LR %% Document Indexing Phase subgraph Indexing Phase A[Document Collection] --&gt; B[Shared Encoder] B --&gt; C[Document Embeddings] C --&gt; D[Document Index] end %% Query Processing &amp; Generation Phase subgraph Query &amp; Generation Phase E[User Query] --&gt; F[Shared Encoder] F --&gt; G[Query Embedding] G --&gt; H[Similarity Search in Index] H --&gt; I[Top-K Relevant Documents] I --&gt; J[Augmented Query] J --&gt; K[Large Language Model] K --&gt; L[Generated Response] end %% Connect the index from the indexing phase to the search D -.-&gt; H . In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user’s query to LLM, we can get generated output with our intended contexts. ",
+    "url": "/docs/ai-research/llm/paper-review-rag#rag",
+    
+    "relUrl": "/docs/ai-research/llm/paper-review-rag#rag"
+  },"130": {
+    "doc": "LLM Applications",
+    "title": "Basic Implementation",
+    "content": ". ├── lib │ ├── llm │ └── OpenBLAS ├── scripts │ └── add_document.py ├── src │ ├── core.py │ ├── embedding.py │ └── utils.py ├── vector_store │ └── .gitkeep ├── download_model.sh ├── easy_rag.py ├── vector_index.py └── README.md . For detailed installation and usage, please visit my git repository. visit : easy_rag . ",
+    "url": "/docs/ai-research/llm/paper-review-rag#basic-implementation",
+    
+    "relUrl": "/docs/ai-research/llm/paper-review-rag#basic-implementation"
+  },"131": {
+    "doc": "LLM Applications",
+    "title": "Output",
+    "content": ". In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations. Focus on the answer (The concept of RAG is simple but powerful), which is derived in the first paragraph of this post (The concept of RAG is quite simple but powerful). ",
+    "url": "/docs/ai-research/llm/paper-review-rag#output",
+    
+    "relUrl": "/docs/ai-research/llm/paper-review-rag#output"
+  },"132": {
+    "doc": "LLM Applications",
+    "title": "References",
+    "content": "[1] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., … &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474. ",
+    "url": "/docs/ai-research/llm/paper-review-rag#references",
+    
+    "relUrl": "/docs/ai-research/llm/paper-review-rag#references"
+  },"133": {
+    "doc": "LLM Applications",
+    "title": "LLM Applications",
+    "content": " ",
+    "url": "/docs/ai-research/llm/paper-review-rag",
+    
+    "relUrl": "/docs/ai-research/llm/paper-review-rag"
+  },"134": {
     "doc": "ARC-AGI",
     "title": "ARC-AGI",
     "content": "https://arcprize.org/arc . In 2019, François Chollet - creator of Keras, an open-source deep learning library adopted by over 2.5M developers - published the influential paper “On the Measure of Intelligence” where he introduced the “Abstract and Reasoning Corpus for Artificial General Intelligence” (ARC-AGI) benchmark to measure the efficiency of AI skill-acquisition on unknown tasks. ",
     "url": "/docs/ai-research/arc-agi",
     
     "relUrl": "/docs/ai-research/arc-agi"
-  },"130": {
+  },"135": {
     "doc": "Computer Vision",
     "title": "Computer Vision",
     "content": "simple definition : Computer Vision is a visionary understanding of computer. With a significant acheivement in Deep Learning Architectures ( CNN, RNN, transformers, GAN, leveraging LLM, Diffusion Models, and so on) with large datasets like ImageNet, there are a significant progress in computer vision. However, there are still unsolved questions, efficiency, reliability, robustness, linkage to other modalities, temporal evolution of scene in computer vision and understanding the gap between computer vision and human visionary behavior. ",
     "url": "/docs/ai-research/computer-vision",
     
     "relUrl": "/docs/ai-research/computer-vision"
-  },"131": {
+  },"136": {
     "doc": "Concurrent Programming",
     "title": "Concurrent Programming",
     "content": "Explanation of concurrent / parallel programming (with C++ and python codes). ",
     "url": "/docs/programming/concurrent-programming",
     
     "relUrl": "/docs/programming/concurrent-programming"
-  },"132": {
+  },"137": {
     "doc": "Control theory of LLM",
     "title": "A Control Theory of LLM prompting",
     "content": " ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#a-control-theory-of-llm-prompting",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#a-control-theory-of-llm-prompting"
-  },"133": {
+  },"138": {
     "doc": "Control theory of LLM",
     "title": "Introduction",
-    "content": "  In this post, I will review a very interesting recenet paper about LLM : What's the Magic Word? A Control Theory of LLM prompting.[1]. The reason why I review this paper is that it gives us a new perspective on LLM, with the glasses of control theory. The main concept of the paper is that analogy on LLM system to control system : LLM be as a plant and the prompt be as a control input. Unlike other ML/DL framework, most of studies on LLM prompting were emperical, without mathematical evidence. This is because that LLM is too huge to understand. The paper, however, tries to understand LLM itself but treat it as a plant to control and give us a concrete understanding. ",
+    "content": "In this post, I will review a very interesting recenet paper about LLM : What's the Magic Word? A Control Theory of LLM prompting.[1]. The reason why I review this paper is that it gives us a new perspective on LLM, with the glasses of control theory. The main concept of the paper is that analogy on LLM system to control system : LLM be as a plant and the prompt be as a control input. Unlike other ML/DL framework, most of studies on LLM prompting were emperical, without mathematical evidence. This is because that LLM is too huge to understand. The paper, however, tries to understand LLM itself but treat it as a plant to control and give us a concrete understanding. ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#introduction",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#introduction"
-  },"134": {
+  },"139": {
     "doc": "Control theory of LLM",
     "title": "Basic Control Theory: System",
-    "content": "  To understand this paper, we need to know basic concepts of state space representation and control theory. The authors put the Appendix on the paper [1], however, it is better to read Chapter 1-3 of [2]. It is online free.   Briefly speaking, control theory depicts a system whether it is reachable (observable, controllable) and find out how to observe the system’s state and control the system with external inputs (force, current and so on.) .   In mathematically, system is the set of state of plant, time, control input. and transition of state. If we have output space (observable output), we could add output and readout map to the original system. In addition to the appendix [1], .   A system (\\(\\Sigma\\)) consists of: . | State (\\(X\\)): The state of a plant refers to the minimal set of variables that completely define its behavior at any given time. These variables capture the internal condition of the plant. | Control Input (\\(U\\)): Control inputs are the external influences applied to the plant to manipulate its behavior. | Time (\\(T\\)): Time set, the ordered set of positive values. | Transition map (\\(\\phi: X \\times U \\times T^{2} \\rightarrow X\\)): Transition map takes a current state (X(t)) at time t and a control input (u(t)) at time t, and returns the next state (X(t+1)) at the next time step (t+1). Note: \\(T\\) or \\(T^2\\)? If the control varies in time like as in feedback control or time-varying control strategy, we could add additional time space to describe the transition map. In the paper, however, as the transitted time t’ differs from the original t, it seems that author put the additional time space into the collection. I suppose that the authors want to describe t’ and t are nomially different. | Output (\\(Y\\)): Observed output space. | Readout map (\\(h: X \\times U \\times T \\rightarrow Y\\)): Readout map takes a current state (X(t)) at time t and a control input (u(t)) at the time t, and returns the observed(read out) value (Y(t)). | . ",
+    "content": "To understand this paper, we need to know basic concepts of state space representation and control theory. The authors put the Appendix on the paper [1], however, it is better to read Chapter 1-3 of [2]. It is online free. Briefly speaking, control theory depicts a system whether it is reachable (observable, controllable) and find out how to observe the system’s state and control the system with external inputs (force, current and so on.) . In mathematically, system is the set of state of plant, time, control input. and transition of state. If we have output space (observable output), we could add output and readout map to the original system. In addition to the appendix [1], . A system (\\(\\Sigma\\)) consists of: . | State (\\(X\\)): The state of a plant refers to the minimal set of variables that completely define its behavior at any given time. These variables capture the internal condition of the plant. | Control Input (\\(U\\)): Control inputs are the external influences applied to the plant to manipulate its behavior. | Time (\\(T\\)): Time set, the ordered set of positive values. | Transition map (\\(\\phi: X \\times U \\times T^{2} \\rightarrow X\\)): Transition map takes a current state (X(t)) at time t and a control input (u(t)) at time t, and returns the next state (X(t+1)) at the next time step (t+1). Note: \\(T\\) or \\(T^2\\)? If the control varies in time like as in feedback control or time-varying control strategy, we could add additional time space to describe the transition map. In the paper, however, as the transitted time t’ differs from the original t, it seems that author put the additional time space into the collection. I suppose that the authors want to describe t’ and t are nomially different. | Output (\\(Y\\)): Observed output space. | Readout map (\\(h: X \\times U \\times T \\rightarrow Y\\)): Readout map takes a current state (X(t)) at time t and a control input (u(t)) at the time t, and returns the observed(read out) value (Y(t)). | . ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#basic-control-theory-system",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#basic-control-theory-system"
-  },"135": {
+  },"140": {
     "doc": "Control theory of LLM",
     "title": "Basic Control Theory: Reachability, Observability and Controllability",
-    "content": "  In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a system. Let us say that the state be the top face of dice, control input be the human random force of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the transition map be the state transition between trials. However, even we designed this rolling a dice to be a system with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be controllable? . ref: dices image from wikipedia ",
+    "content": "In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a system. Let us say that the state be the top face of dice, control input be the human random force of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the transition map be the state transition between trials. However, even we designed this rolling a dice to be a system with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be controllable? . ref: dices image from wikipedia ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#basic-control-theory-reachability-observability-and-controllability",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#basic-control-theory-reachability-observability-and-controllability"
-  },"136": {
+  },"141": {
     "doc": "Control theory of LLM",
     "title": "Reachability, Observable and Controllability",
-    "content": "  Back to the rolling a dice system, we can say that this system is reachable because we could potentially role any number, and always be observable. However, we cannot say that this system is controllable because we cannot make intended input. Mathematically, we can define the reachability as in [2]. ",
+    "content": "Back to the rolling a dice system, we can say that this system is reachable because we could potentially role any number, and always be observable. However, we cannot say that this system is controllable because we cannot make intended input. Mathematically, we can define the reachability as in [2]. ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#reachability-observable-and-controllability",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#reachability-observable-and-controllability"
-  },"137": {
+  },"142": {
     "doc": "Control theory of LLM",
     "title": "Event",
-    "content": "  As we defined before, an arbitary system \\(\\Sigma\\) can be defined as \\(\\Sigma = (T, X, U, \\phi)\\) . An event is a state at a time, a pair of state and time \\((x, t) \\in X \\times T\\). ",
+    "content": "As we defined before, an arbitary system \\(\\Sigma\\) can be defined as \\(\\Sigma = (T, X, U, \\phi)\\) . An event is a state at a time, a pair of state and time \\((x, t) \\in X \\times T\\). ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#event",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#event"
-  },"138": {
+  },"143": {
     "doc": "Control theory of LLM",
     "title": "Reacability and Controllability",
-    "content": "The event \\((z, \\tau)\\) can be reached from a state \\((x,\\sigma)\\), if and only if there is a path of \\(\\Sigma\\) on \\([\\sigma, \\tau]\\) and if there exists an \\(\\omega \\in U^{[\\sigma, \\tau)}\\) such that \\(\\phi(\\tau, \\sigma, x, \\omega) = z\\), we can say we can control the state x to state z.   Again with the rolling a dice system, now we can see the problem, we put the human random force be the input, but it is not controllable. ",
+    "content": "The event \\((z, \\tau)\\) can be reached from a state \\((x,\\sigma)\\), if and only if there is a path of \\(\\Sigma\\) on \\([\\sigma, \\tau]\\) and if there exists an \\(\\omega \\in U^{[\\sigma, \\tau)}\\) such that \\(\\phi(\\tau, \\sigma, x, \\omega) = z\\), we can say we can control the state x to state z. Again with the rolling a dice system, now we can see the problem, we put the human random force be the input, but it is not controllable. ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#reacability-and-controllability",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#reacability-and-controllability"
-  },"139": {
+  },"144": {
     "doc": "Control theory of LLM",
     "title": "Control Theory of LLM",
-    "content": "  Now we can discuss control of LLM with the paper [1]. All the following concepts and logics are originated from the paper. ",
+    "content": "Now we can discuss control of LLM with the paper [1]. All the following concepts and logics are originated from the paper. ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#control-theory-of-llm",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#control-theory-of-llm"
-  },"140": {
+  },"145": {
     "doc": "Control theory of LLM",
     "title": "Notations",
-    "content": "  In the paper, they denoted \\(P_{LM}\\) be a causal language model, \\(V\\) be a vocabulary set, \\(V^*\\) be the set of all possible sequences of any length composed of tokens from \\(V\\). The bold lowercase stands for sequence (vector) \\(\\bm{x}\\), while the unbolded lowercase letter \\(x\\) be an individual token. ",
+    "content": "In the paper, they denoted \\(P_{LM}\\) be a causal language model, \\(V\\) be a vocabulary set, \\(V^*\\) be the set of all possible sequences of any length composed of tokens from \\(V\\). The bold lowercase stands for sequence (vector) \\(\\bm{x}\\), while the unbolded lowercase letter \\(x\\) be an individual token. ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#notations",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#notations"
-  },"141": {
+  },"146": {
     "doc": "Control theory of LLM",
     "title": "Assumptions",
-    "content": "  Here are some assumptions before stating the definitions: . | The LLM system is discrete time: It is quite natural if we come across LLM chatbots, we get output token from LLM when we put query input. | The LLM system follows Shift-and-Grow State dynamics: Whereas the system state in an ODE-based system has a fixed size over time, the system state x(t) for LLM systems grows as tokens are added to the state sequence. | It is assumed that the LLM system follows a Markov Transition (In paper it is said in more gently as Mutual exclusion on control input token vs. generated token): The newest token is either drawn from the control input \\(u(t)\\) or is generated by the LLM by sampling \\(x{'} \\sim P_{LM} (x' | x(t))\\). This differs from traditional discrete stochastic systems, where the control sequence and internal dynamics generally affect the state synchronously. | .   From the basic control theory and the followed assumptions, the authors defined the LLM systems and Control Input as follows: . ",
+    "content": "Here are some assumptions before stating the definitions: . | The LLM system is discrete time: It is quite natural if we come across LLM chatbots, we get output token from LLM when we put query input. | The LLM system follows Shift-and-Grow State dynamics: Whereas the system state in an ODE-based system has a fixed size over time, the system state x(t) for LLM systems grows as tokens are added to the state sequence. | It is assumed that the LLM system follows a Markov Transition (In paper it is said in more gently as Mutual exclusion on control input token vs. generated token): The newest token is either drawn from the control input \\(u(t)\\) or is generated by the LLM by sampling \\(x{'} \\sim P_{LM} (x' | x(t))\\). This differs from traditional discrete stochastic systems, where the control sequence and internal dynamics generally affect the state synchronously. | . From the basic control theory and the followed assumptions, the authors defined the LLM systems and Control Input as follows: . ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#assumptions",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#assumptions"
-  },"142": {
+  },"147": {
     "doc": "Control theory of LLM",
     "title": "Definitions",
     "content": " ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definitions",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definitions"
-  },"143": {
+  },"148": {
     "doc": "Control theory of LLM",
     "title": "Definition 1. Autoregressive LLM system",
-    "content": "  An autoregressive LLM system \\(\\Sigma = (V, P_{LM})\\) with control input consists of time set (\\(T\\)), state space (\\(X\\)), input (\\(U\\)), transition map (\\(\\phi\\)) and readout map \\(h\\). | Time set \\(T\\) is a set of sequence number (natural number): \\(T = N\\). | The state space \\(X\\) is the set of all possible sequences of any length formed from the vocabulary set \\(V\\): \\(X = V^{*}\\) | The input space is the set of sequences but also allows the no inputs \\(\\empty\\): \\(U = V \\bigcup {\\{ \\empty \\}}\\) | The transition map \\(\\phi\\) is sum of current state and input: \\(\\phi : X \\times U \\times T^{2}\\) such that \\(\\phi(x(t), u(t), t, t+1) = \\begin{cases} x(t) + u(t) &amp; \\text{if $u(t) \\neq \\empty$}\\\\ x(t) + x' &amp; \\text{otherwise} \\end{cases}\\) where \\(x' \\sim P_{LM}(x' | x(t))\\). Sadly because they use the plus sign as a operator wihtout the definition, we need to assume that this is an operator that represent concatenation of state because we assume that it is autoregressive. More than that, as it is autoregressive, the output is deterministic. | The readout map returns the most recent r tokens from the state x: \\(h(x(t);r) = [x^{t-r}(t), ... , x^{t}(t)]\\) | . ",
+    "content": "An autoregressive LLM system \\(\\Sigma = (V, P_{LM})\\) with control input consists of time set (\\(T\\)), state space (\\(X\\)), input (\\(U\\)), transition map (\\(\\phi\\)) and readout map \\(h\\). | Time set \\(T\\) is a set of sequence number (natural number): \\(T = N\\). | The state space \\(X\\) is the set of all possible sequences of any length formed from the vocabulary set \\(V\\): \\(X = V^{*}\\) | The input space is the set of sequences but also allows the no inputs \\(\\empty\\): \\(U = V \\bigcup {\\{ \\empty \\}}\\) | The transition map \\(\\phi\\) is sum of current state and input: \\(\\phi : X \\times U \\times T^{2}\\) such that \\(\\phi(x(t), u(t), t, t+1) = \\begin{cases} x(t) + u(t) &amp; \\text{if $u(t) \\neq \\empty$}\\\\ x(t) + x' &amp; \\text{otherwise} \\end{cases}\\) where \\(x' \\sim P_{LM}(x' | x(t))\\). Sadly because they use the plus sign as a operator wihtout the definition, we need to assume that this is an operator that represent concatenation of state because we assume that it is autoregressive. More than that, as it is autoregressive, the output is deterministic. | The readout map returns the most recent r tokens from the state x: \\(h(x(t);r) = [x^{t-r}(t), ... , x^{t}(t)]\\) | . ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-1-autoregressive-llm-system",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-1-autoregressive-llm-system"
-  },"144": {
+  },"149": {
     "doc": "Control theory of LLM",
     "title": "Definition 2. LLM Output Reachability",
-    "content": "  \\(y \\in V^r\\) is reachable from the initial state \\(x_0 \\in V^*\\) if and only if there exists some time \\(T\\) and input sequences \\(u^* \\in U^k\\) for some \\(k + |x_0| \\leq T\\) that makes the initial state \\(x_0\\) move to output \\(y = h(x(T), r)\\) at time \\(T\\) . ",
+    "content": "\\(y \\in V^r\\) is reachable from the initial state \\(x_0 \\in V^*\\) if and only if there exists some time \\(T\\) and input sequences \\(u^* \\in U^k\\) for some \\(k + |x_0| \\leq T\\) that makes the initial state \\(x_0\\) move to output \\(y = h(x(T), r)\\) at time \\(T\\) . ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-2-llm-output-reachability",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-2-llm-output-reachability"
-  },"145": {
+  },"150": {
     "doc": "Control theory of LLM",
     "title": "Definition 3. Output Reachablility Set",
-    "content": "  The reachable output set from the initial state \\(x_0 \\in V^*\\) is denoted \\(R_y(x_0)\\). ",
+    "content": "The reachable output set from the initial state \\(x_0 \\in V^*\\) is denoted \\(R_y(x_0)\\). ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-3-output-reachablility-set",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-3-output-reachablility-set"
-  },"146": {
+  },"151": {
     "doc": "Control theory of LLM",
     "title": "Definition 4. Output Controllabilty (Revised from the paper.)",
-    "content": "  An LLM system is output controllable if and only if, \\(\\forall x_0 \\in V^*\\) and \\(\\forall y \\in V^r\\), there exists a time \\(T \\geq |x_0|\\) and the input sequence \\(u^* \\in U^k\\), where \\(k\\leq T - |x_0|\\) such that the probability \\(P(h(x(T),r) = y | x_0, u^*) &gt; 0\\). ",
+    "content": "An LLM system is output controllable if and only if, \\(\\forall x_0 \\in V^*\\) and \\(\\forall y \\in V^r\\), there exists a time \\(T \\geq |x_0|\\) and the input sequence \\(u^* \\in U^k\\), where \\(k\\leq T - |x_0|\\) such that the probability \\(P(h(x(T),r) = y | x_0, u^*) &gt; 0\\). ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-4-output-controllabilty-revised-from-the-paper",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-4-output-controllabilty-revised-from-the-paper"
-  },"147": {
+  },"152": {
     "doc": "Control theory of LLM",
     "title": "Definition 5. \\(k-\\epsilon\\) Controllability",
-    "content": "  If a datset of state-output pairs \\(D = \\{(x^{i}_{0}, y^{i})\\}_{i\\in [N]}\\), an LLM system \\(\\Sigma = (V, P_{LM})\\) is \\(k-\\epsilon\\) controllable with respect to D, if and only if \\(P\\{y \\notin R^{k}_{y}(x_0)\\} &lt; \\epsilon\\) for \\((x_0, y) \\sim D\\), where \\(R^k_y(x^i_0)\\) is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length \\(|u| \\leq k\\). ",
+    "content": "If a datset of state-output pairs \\(D = \\{(x^{i}_{0}, y^{i})\\}_{i\\in [N]}\\), an LLM system \\(\\Sigma = (V, P_{LM})\\) is \\(k-\\epsilon\\) controllable with respect to D, if and only if \\(P\\{y \\notin R^{k}_{y}(x_0)\\} &lt; \\epsilon\\) for \\((x_0, y) \\sim D\\), where \\(R^k_y(x^i_0)\\) is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length \\(|u| \\leq k\\). ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-5-k-epsilon-controllability",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-5-k-epsilon-controllability"
-  },"148": {
+  },"153": {
     "doc": "Control theory of LLM",
     "title": "Apply to the Self-Attention Mechanism. - Preliminaries",
-    "content": "  Above the definition on LLM controllability could be nice for generalization, we need to prove it with actual models and calculations. The paper choose the self-attention which dominates in LLMs. ",
+    "content": "Above the definition on LLM controllability could be nice for generalization, we need to prove it with actual models and calculations. The paper choose the self-attention which dominates in LLMs. ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#apply-to-the-self-attention-mechanism---preliminaries",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#apply-to-the-self-attention-mechanism---preliminaries"
-  },"149": {
+  },"154": {
     "doc": "Control theory of LLM",
     "title": "Definition 6. Self-attention.",
-    "content": "  Self-attention \\(\\Xi\\) is parameterized by weight metrics \\(\\theta = (W_q, W_{key}, W_v)\\) (query, key, value). \\(\\Xi\\) is a mapping from the input token (\\(R^{N \\times d_{in}}\\)) to output token (\\(R^{N \\times d_{out}}\\)), . \\[\\Xi(X;\\theta) = D^{-1} exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right)\\] where exp() denotes element-wise exponential of matrix entries, \\(W_q, W_{key} \\in R^{d_{in} \\times d_{key}}\\), \\(W_v \\in R^{d_{in} \\times d_{out}}\\), \\(Q = XW_q\\), \\(K=XW_{key}\\), \\(V=XW_{v}\\) and D is a diagonal positive definite matrix, \\(D:= diag \\left( exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right) \\bm{1}_{N \\times 1 } \\right)\\) .   In this paper, the reachability of output token representations \\(\\Xi (X; \\theta)\\), they partitioned the input \\(X \\in R^{(k+m)\\times d_{in}}\\) into a \\(k \\times d_{in}\\) block of control input representations \\(U\\) and an \\(m\\times d_{in}\\) block of imposed state representations \\(X_0\\) where \\(k + m = N\\). With this partitioning, the definition of self-attention can be re-written as followings: . \\[\\begin{align}\\Xi (X; \\theta) = \\Xi \\left( \\left[{U \\atop X_0} \\right] ; \\theta \\right) = \\Xi ([U; X_0]; \\theta) = \\left[{U' \\atop Y} \\right] = [U' ; Y] \\end{align}\\] Also, the output \\(X' = \\Xi (X; \\theta) \\in R^{(k+m) \\times d_{in}}\\) into a corresponding \\(k \\times d_{out}\\) matrix \\(U'\\) and an \\(m \\times d_{out}\\) matrix Y. ",
+    "content": "Self-attention \\(\\Xi\\) is parameterized by weight metrics \\(\\theta = (W_q, W_{key}, W_v)\\) (query, key, value). \\(\\Xi\\) is a mapping from the input token (\\(R^{N \\times d_{in}}\\)) to output token (\\(R^{N \\times d_{out}}\\)), . \\[\\Xi(X;\\theta) = D^{-1} exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right)\\] where exp() denotes element-wise exponential of matrix entries, \\(W_q, W_{key} \\in R^{d_{in} \\times d_{key}}\\), \\(W_v \\in R^{d_{in} \\times d_{out}}\\), \\(Q = XW_q\\), \\(K=XW_{key}\\), \\(V=XW_{v}\\) and D is a diagonal positive definite matrix, \\(D:= diag \\left( exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right) \\bm{1}_{N \\times 1 } \\right)\\) . In this paper, the reachability of output token representations \\(\\Xi (X; \\theta)\\), they partitioned the input \\(X \\in R^{(k+m)\\times d_{in}}\\) into a \\(k \\times d_{in}\\) block of control input representations \\(U\\) and an \\(m\\times d_{in}\\) block of imposed state representations \\(X_0\\) where \\(k + m = N\\). With this partitioning, the definition of self-attention can be re-written as followings: . \\[\\begin{align}\\Xi (X; \\theta) = \\Xi \\left( \\left[{U \\atop X_0} \\right] ; \\theta \\right) = \\Xi ([U; X_0]; \\theta) = \\left[{U' \\atop Y} \\right] = [U' ; Y] \\end{align}\\] Also, the output \\(X' = \\Xi (X; \\theta) \\in R^{(k+m) \\times d_{in}}\\) into a corresponding \\(k \\times d_{out}\\) matrix \\(U'\\) and an \\(m \\times d_{out}\\) matrix Y. ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-6-self-attention",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-6-self-attention"
-  },"150": {
+  },"155": {
     "doc": "Control theory of LLM",
     "title": "definition 7. Reachability of self-attention",
-    "content": "  Following the definition 2, let \\(Y^* \\in R^{m \\times d_{out}}\\) be the desired output, reachability for Self-attention can be defined as followings:   \\(Y^*\\) is reachable from initial state \\(X_0\\) if and only if there exists some U that steers the output of \\(\\Xi (\\left[U; X_0 \\right] ; \\theta ]\\) to output \\(\\left[ U' ; Y \\right]\\) such that \\(Y = Y^*\\) . ",
+    "content": "Following the definition 2, let \\(Y^* \\in R^{m \\times d_{out}}\\) be the desired output, reachability for Self-attention can be defined as followings: \\(Y^*\\) is reachable from initial state \\(X_0\\) if and only if there exists some U that steers the output of \\(\\Xi (\\left[U; X_0 \\right] ; \\theta ]\\) to output \\(\\left[ U' ; Y \\right]\\) such that \\(Y = Y^*\\) . ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-7-reachability-of-self-attention",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#definition-7-reachability-of-self-attention"
-  },"151": {
+  },"156": {
     "doc": "Control theory of LLM",
     "title": "Apply to the Self-Attention mechanism - Theorem",
-    "content": "  The key of defining the reachability begins with partitioning the output: \\(Y = Y_u + Y_x\\), assuming that the output can be partitioned by output from control input and that from imposed state. \\(Y_x\\) can be bounded as a function of \\(X\\), \\(k\\), and \\(theta\\). While \\(Y_u\\) is the remaining component from U. \\[\\begin{align} &amp; Y = Y_u + Y_x \\\\ &amp; = (Y_{u,\\|} + Y_{u, \\perp}) + (Y_{x, \\|} + Y_{x, \\perp}) \\\\ &amp; = (Y_{u,\\|} + Y_{x, \\|}) + (Y_{u, \\perp} + Y_{x, \\perp}) \\in span(Y^*) \\oplus span(Y^*)^\\perp \\\\ \\end{align}\\] Here, the parallel to and orthogonal to is in respect to the desired output \\(Y^*\\). Remember that Y is partitioned output . \\[\\Xi ([U; X_0]; \\theta) = \\left[ {U' \\atop Y} \\right]\\] Before the theorem and its proof, let us define matrix \\(A\\). \\[A := exp\\left(\\frac{QK^T}{\\sqrt{d_{key}}}\\right) = exp \\left( \\left[ \\begin{matrix} Q_u K_u^T &amp; Q_u K_x^T\\\\ Q_x K_u^T &amp; Q_x K_x^T \\end{matrix} \\right] \\frac{1} {\\sqrt{d_{key}}} \\right) = \\left[ \\begin{matrix} A_{uu} &amp; A_{ux}\\\\ A_{xu} &amp; A_{xx} \\end{matrix} \\right]\\] where, \\(Q.\\) and \\(K.\\) are partitioned components of \\(Q\\) and \\(K\\): . \\[Q = \\left[ Q_u \\atop Q_x \\right]= \\left[U \\atop X_0 \\right] W_q\\\\\\] \\[K=\\left[K_u \\atop K_x \\right]=\\left[U \\atop X_0 \\right] W_{key}\\] Similarly, \\(D\\) is also be partitioned as followigs: . \\[D = diag \\left(exp \\left(\\frac{Q K^T}{\\sqrt{d_{key}}}\\right) \\bm{1}_{N \\times 1}\\right) = \\left[\\begin{matrix} D_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D_x \\end{matrix} \\right]\\] With the definitions and notions above, \\(Y\\) can be defined as follows: . \\[\\begin{align} &amp; \\Xi(X; \\theta) = D^{-1} A V \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D^{-1}_{x} \\end{matrix} \\right] \\left[ \\begin{matrix} A_{uu} &amp; A_{xu}\\\\ A_{ux} &amp; A_{xx} \\end{matrix} \\right] \\left[ \\begin{matrix} V_{u} \\\\ V_{x} \\end{matrix} \\right] \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u A_{uu} V_u + D^{-1}_u A_{ux} V_x\\\\ D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x \\end{matrix} \\right] \\\\ &amp; = \\left[ U' \\atop Y \\right] \\end{align}\\] \\[\\begin{align} \\therefore Y = D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x = Y_u + Y_x \\end{align}\\] ",
+    "content": "The key of defining the reachability begins with partitioning the output: \\(Y = Y_u + Y_x\\), assuming that the output can be partitioned by output from control input and that from imposed state. \\(Y_x\\) can be bounded as a function of \\(X\\), \\(k\\), and \\(theta\\). While \\(Y_u\\) is the remaining component from U. \\[\\begin{align} &amp; Y = Y_u + Y_x \\\\ &amp; = (Y_{u,\\|} + Y_{u, \\perp}) + (Y_{x, \\|} + Y_{x, \\perp}) \\\\ &amp; = (Y_{u,\\|} + Y_{x, \\|}) + (Y_{u, \\perp} + Y_{x, \\perp}) \\in span(Y^*) \\oplus span(Y^*)^\\perp \\\\ \\end{align}\\] Here, the parallel to and orthogonal to is in respect to the desired output \\(Y^*\\). Remember that Y is partitioned output . \\[\\Xi ([U; X_0]; \\theta) = \\left[ {U' \\atop Y} \\right]\\] Before the theorem and its proof, let us define matrix \\(A\\). \\[A := exp\\left(\\frac{QK^T}{\\sqrt{d_{key}}}\\right) = exp \\left( \\left[ \\begin{matrix} Q_u K_u^T &amp; Q_u K_x^T\\\\ Q_x K_u^T &amp; Q_x K_x^T \\end{matrix} \\right] \\frac{1} {\\sqrt{d_{key}}} \\right) = \\left[ \\begin{matrix} A_{uu} &amp; A_{ux}\\\\ A_{xu} &amp; A_{xx} \\end{matrix} \\right]\\] where, \\(Q.\\) and \\(K.\\) are partitioned components of \\(Q\\) and \\(K\\): . \\[Q = \\left[ Q_u \\atop Q_x \\right]= \\left[U \\atop X_0 \\right] W_q\\\\\\] \\[K=\\left[K_u \\atop K_x \\right]=\\left[U \\atop X_0 \\right] W_{key}\\] Similarly, \\(D\\) is also be partitioned as followigs: . \\[D = diag \\left(exp \\left(\\frac{Q K^T}{\\sqrt{d_{key}}}\\right) \\bm{1}_{N \\times 1}\\right) = \\left[\\begin{matrix} D_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D_x \\end{matrix} \\right]\\] With the definitions and notions above, \\(Y\\) can be defined as follows: . \\[\\begin{align} &amp; \\Xi(X; \\theta) = D^{-1} A V \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D^{-1}_{x} \\end{matrix} \\right] \\left[ \\begin{matrix} A_{uu} &amp; A_{xu}\\\\ A_{ux} &amp; A_{xx} \\end{matrix} \\right] \\left[ \\begin{matrix} V_{u} \\\\ V_{x} \\end{matrix} \\right] \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u A_{uu} V_u + D^{-1}_u A_{ux} V_x\\\\ D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x \\end{matrix} \\right] \\\\ &amp; = \\left[ U' \\atop Y \\right] \\end{align}\\] \\[\\begin{align} \\therefore Y = D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x = Y_u + Y_x \\end{align}\\] ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#apply-to-the-self-attention-mechanism---theorem",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#apply-to-the-self-attention-mechanism---theorem"
-  },"152": {
+  },"157": {
     "doc": "Control theory of LLM",
     "title": "Theorem: reachability in the Self-attention mechanism",
-    "content": "  Let \\(Y^{max}_x = \\Xi (X_0 ; \\theta)\\) be the output of the self-attention layer given only the imposed state (initial state) \\(X_0\\), and i-th row of the orthogonal component of \\(Y^{max}_x\\) to the desired output \\(Y^*\\) be \\(Y^{max, i}_{x, \\perp}\\).   \\({Y^*}\\) is unreachable for any control input \\({U}\\) if, for any \\({i \\in \\{1, ... , m\\} }\\), . \\[\\begin{align} \\|Y^{max, i}_{x, \\perp}\\| &gt; k \\gamma_{i} (X_0, \\theta) \\\\ \\end{align}\\] where, . \\[\\begin{align} \\gamma_{i}(X_0 , \\theta) := \\frac{e^\\alpha}{g_i}\\sigma_v M_u, \\quad \\alpha = \\sigma_q \\sigma_{key} M_u M_x / \\sqrt{d_{key}} \\end{align}\\] \\[\\begin{align} g_i (X_0, \\theta) := \\Sigma^{m}_{j=1} exp ((X_0)^i W_q W^T_{key} (X_0)^{jT} / \\sqrt{d_{key}}) \\end{align}\\] \\(\\sigma_v\\), \\(\\sigma_q\\) and \\(\\sigma_{key}\\) being the maximum singular values of the value, query, and key projection matrices, respectively. and with \\(M_u := \\max_j \\|(X_0)^j \\|\\) being the maximum norms of the control and imposed token embeddings, respectively. I will not repeat the proof of the paper because after partitioning, the rest of the proof is only about how to set some-what contrived constant and use basic row-wise summation and applying rudimentary inequity (Cauchy-Schwarz). ",
+    "content": "Let \\(Y^{max}_x = \\Xi (X_0 ; \\theta)\\) be the output of the self-attention layer given only the imposed state (initial state) \\(X_0\\), and i-th row of the orthogonal component of \\(Y^{max}_x\\) to the desired output \\(Y^*\\) be \\(Y^{max, i}_{x, \\perp}\\). \\({Y^*}\\) is unreachable for any control input \\({U}\\) if, for any \\({i \\in \\{1, ... , m\\} }\\), . \\[\\begin{align} \\|Y^{max, i}_{x, \\perp}\\| &gt; k \\gamma_{i} (X_0, \\theta) \\\\ \\end{align}\\] where, . \\[\\begin{align} \\gamma_{i}(X_0 , \\theta) := \\frac{e^\\alpha}{g_i}\\sigma_v M_u, \\quad \\alpha = \\sigma_q \\sigma_{key} M_u M_x / \\sqrt{d_{key}} \\end{align}\\] \\[\\begin{align} g_i (X_0, \\theta) := \\Sigma^{m}_{j=1} exp ((X_0)^i W_q W^T_{key} (X_0)^{jT} / \\sqrt{d_{key}}) \\end{align}\\] \\(\\sigma_v\\), \\(\\sigma_q\\) and \\(\\sigma_{key}\\) being the maximum singular values of the value, query, and key projection matrices, respectively. and with \\(M_u := \\max_j \\|(X_0)^j \\|\\) being the maximum norms of the control and imposed token embeddings, respectively. I will not repeat the proof of the paper because after partitioning, the rest of the proof is only about how to set some-what contrived constant and use basic row-wise summation and applying rudimentary inequity (Cauchy-Schwarz). ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#theorem-reachability-in-the-self-attention-mechanism",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#theorem-reachability-in-the-self-attention-mechanism"
-  },"153": {
+  },"158": {
     "doc": "Control theory of LLM",
     "title": "References",
     "content": "[1] Bhargava, A., Witkowski, C., Shah, M., &amp; Thomson, M. (2023). What’s the Magic Word? A Control Theory of LLM Prompting. arXiv preprint arXiv:2310.04444. [2] Sontag, E. D. (2013). Mathematical control theory: deterministic finite dimensional systems (Vol. 6). Springer Science &amp; Business Media. ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting#references",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting#references"
-  },"154": {
+  },"159": {
     "doc": "Control theory of LLM",
     "title": "Control theory of LLM",
     "content": " ",
     "url": "/docs/ai-research/llm/paper-review-llm-control-prompting",
     
     "relUrl": "/docs/ai-research/llm/paper-review-llm-control-prompting"
-  },"155": {
+  },"160": {
     "doc": "C / C++",
     "title": "Tips for C/C++",
     "content": "Figure out powerful and safe approach. ",
     "url": "/docs/programming/c-cpp#tips-for-cc",
     
     "relUrl": "/docs/programming/c-cpp#tips-for-cc"
-  },"156": {
+  },"161": {
     "doc": "C / C++",
     "title": "C / C++",
     "content": " ",
     "url": "/docs/programming/c-cpp",
     
     "relUrl": "/docs/programming/c-cpp"
-  },"157": {
+  },"162": {
     "doc": "ARC-AGI dataset",
     "title": "ARC-AGI Dataset (2024)",
     "content": "Let us begin with understanding the data. ",
     "url": "/docs/ai-research/arc-agi/dataset#arc-agi-dataset-2024",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset#arc-agi-dataset-2024"
-  },"158": {
+  },"163": {
     "doc": "ARC-AGI dataset",
     "title": "Data format",
     "content": "All the data is JSON encoded, the structures of JSON are as followings (* stands for training , evaluation and test) : . | *_challenges { \"task_id\": { \"test\": [ { \"input\": [[...], ..., [...]] } ], \"train\": [ { \"input\": [[...], ..., [...]], \"output\": [[...], ..., [...]] }, ... ] }, ... } . | *_solutions { \"task_id\": [[...], ..., [...]], ... } . | submission format { \"task_id\": [ { \"attempt_1\": [[...], ..., [...]], \"attempt_2\": [[...], ..., [...]] }, ], ... } . | . All the arrays have integer digits in range 0 to 9, and each element stands index of some hex_colors, . hex_colors = ['#000000', '#0074D9','#FF4136','#2ECC40','#FFDC00', '#AAAAAA', '#F012BE', '#FF851B', '#7FDBFF', '#870C25'] . ",
     "url": "/docs/ai-research/arc-agi/dataset#data-format",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset#data-format"
-  },"159": {
+  },"164": {
     "doc": "ARC-AGI dataset",
     "title": "Visualization",
     "content": "Let’s visualize the data (I choose f35d900a and fcb5c309) Basically, we visaulize the data in 2d-grid with colors, however, we could treat the color values not as color channel but as positional values in z-axis, thinking that we applied one-hot encoding. The third one is colored 3-d scatter, just for highlights the z-level. |   | f35d900a | fcb5c309 | . | Basic | | | . | 3d scatter | | | . | 3d scatter (colored) | | | . ",
     "url": "/docs/ai-research/arc-agi/dataset#visualization",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset#visualization"
-  },"160": {
+  },"165": {
     "doc": "ARC-AGI dataset",
     "title": "ARC-AGI dataset",
     "content": " ",
     "url": "/docs/ai-research/arc-agi/dataset",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset"
-  },"161": {
+  },"166": {
     "doc": "Devlog",
     "title": "Devlog",
     "content": "Snippets of my works. ",
     "url": "/docs/devlog",
     
     "relUrl": "/docs/devlog"
-  },"162": {
+  },"167": {
     "doc": "Home",
     "title": "Home",
     "content": "The one and only. ",
     "url": "/",
     
     "relUrl": "/"
-  },"163": {
+  },"168": {
     "doc": "LLM",
     "title": "LLM",
     "content": "Large Language Model studies and utilizations . ",
     "url": "/docs/ai-research/llm",
     
     "relUrl": "/docs/ai-research/llm"
-  },"164": {
+  },"169": {
     "doc": "LLM",
     "title": "Paradigm Shifts in Language Models",
     "content": "From beginning of Markov based approach that predicting next n-words, Language Model (LM) evolved drastically with the Transformers and GPT-2 / BERT - approaches. LLM stands for concurrent (2025) LM, mostly served by big tech companies and startups, most of them are now closed source but several LLM architectures and their way of training are officially open (LLama, Deepseek, and so on.) . (ref. https://arxiv.org/pdf/2303.18223.pdf ) . | Type | Backbone Architecture | Description | Example | . | LLM (Large Language Model, early 2020s ~ present) | Transformers (primarily) | Scaled up PLMs, dataset size, and computational resources. Trained with Human interactions (RLHF - Reinforcement Learning from Human Feedback) or other Reinforcement Learning techniques | GPT-3, GPT-4, PaLM-2, Gemini-1.5, LLama-3.1, DeepSeek-V3 | . | PLM (Pre-trained Language Model, late 2010s) | Transformers, RNNs (earlier models) | Massive data induced deep learning model when pre-training, followed by fine-tuning for specific (downstream) tasks. Self-supervised learning with masked language model (MLM - ELMo, BERT, RoBERTa) and causal language model (GPT) applied for training. | ELMo (RNNs), BERT, RoBERTa, GPT-2 (Transformers) | . | NLM (Neural Language Model, early-mid 2010s) | RNNs, Feedforward Neural Networks | Introduces neural networks to model language, enabling distributed representations (word vectors) and overcoming some limitations of SLMs. | word2vec (Feedforward), GloVe (Matrix Factorization), Recurrent Neural Networks | . | SLM (Statistical Language Model, Pre 2010s) | N/A (Statistical methods) | Traditional probabilistic models (Markov assumption). Predicts next words / context(n-words). | n-gram language model | . In brief, there are no huge differences between LLMs and PLMs in model base architecture. However, as a LLM has much larger size in terms of model parameters and it requires much more data, AI scientists tried various training techniques to train / fine-tuning the models. ",
     "url": "/docs/ai-research/llm#paradigm-shifts-in-language-models",
     
     "relUrl": "/docs/ai-research/llm#paradigm-shifts-in-language-models"
-  },"165": {
+  },"170": {
     "doc": "Mathematics",
     "title": "Mathematics",
     "content": "Graduate-level mathematics to understand modern AI, Graphics and Robotics. | Linear algebra (linear control system) | Probability and Random process | Set theory and Topology | Graph theory | Mathematical Analysis, Differential Equations | Mathematical Manifolds and Categorical Theorem | . ",
     "url": "/docs/mathematics",
     
     "relUrl": "/docs/mathematics"
-  },"166": {
+  },"171": {
     "doc": "Minimal layout test",
     "title": "Minimal layout test",
     "content": "Return to main website. This page demonstrates the packaged minimal layout, which does not render the sidebar or header. It can be used for standalone pages. It is also an example of using the new modular site components to define custom layouts; see “Custom layouts and includes” in the customization docs for more information. ",
     "url": "/docs/minimal-test.html",
     
     "relUrl": "/docs/minimal-test.html"
-  },"167": {
+  },"172": {
     "doc": "Programming",
     "title": "Programming",
     "content": " ",
     "url": "/docs/programming",
     
     "relUrl": "/docs/programming"
-  },"168": {
+  },"173": {
     "doc": "Python",
     "title": "Tips for Python",
     "content": "When I think of Python, I feel a sense of irony. Although it’s one of the most versatile programming languages, at its core, Python is often used as an “interface language” or a “glue language” to connect to compiled libraries (written in C or C++). Ironically, it’s precisely this “glue” characteristic that has driven Python’s popularity across numerous fields, including automation, web backends, and especially machine learning and deep learning. This section provides useful tips for achieving fast processing and well-designed programming with Python. ",
     "url": "/docs/programming/python#tips-for-python",
     
     "relUrl": "/docs/programming/python#tips-for-python"
-  },"169": {
+  },"174": {
     "doc": "Python",
     "title": "Python",
     "content": " ",
     "url": "/docs/programming/python",
     
     "relUrl": "/docs/programming/python"
-  },"170": {
-    "doc": "RAG",
-    "title": "RAG",
-    "content": "In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [1]. The concept of RAG is quite simple but powerful. The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[1]. In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user’s query to LLM, we can get generated output with our intended contexts. ",
-    "url": "/docs/ai-research/llm/paper-review-rag",
-    
-    "relUrl": "/docs/ai-research/llm/paper-review-rag"
-  },"171": {
-    "doc": "RAG",
-    "title": "Basic Implementation",
-    "content": ". ├── lib │ ├── llm │ └── OpenBLAS ├── scripts │ └── add_document.py ├── src │ ├── core.py │ ├── embedding.py │ └── utils.py ├── vector_store │ └── .gitkeep ├── download_model.sh ├── easy_rag.py ├── vector_index.py └── README.md . For detailed installation and usage, please visit my git repository. visit : easy_rag . ",
-    "url": "/docs/ai-research/llm/paper-review-rag#basic-implementation",
-    
-    "relUrl": "/docs/ai-research/llm/paper-review-rag#basic-implementation"
-  },"172": {
-    "doc": "RAG",
-    "title": "Output",
-    "content": ". In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations. Focus on the answer (The concept of RAG is simple but powerful), which is derived in the first paragraph of this post (The concept of RAG is quite simple but powerful). ",
-    "url": "/docs/ai-research/llm/paper-review-rag#output",
-    
-    "relUrl": "/docs/ai-research/llm/paper-review-rag#output"
-  },"173": {
-    "doc": "RAG",
-    "title": "References",
-    "content": "[1] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., … &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474. ",
-    "url": "/docs/ai-research/llm/paper-review-rag#references",
-    
-    "relUrl": "/docs/ai-research/llm/paper-review-rag#references"
-  },"174": {
+  },"175": {
     "doc": "Research on Machine Unlearning",
     "title": "Research Note",
     "content": " ",
     "url": "/docs/ai-research/unlearning/resarch-note#research-note",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#research-note"
-  },"175": {
+  },"176": {
     "doc": "Research on Machine Unlearning",
     "title": "Tries to findout fundamental ways (2024)",
     "content": " ",
     "url": "/docs/ai-research/unlearning/resarch-note#tries-to-findout-fundamental-ways-2024",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#tries-to-findout-fundamental-ways-2024"
-  },"176": {
+  },"177": {
     "doc": "Research on Machine Unlearning",
     "title": "change the ways",
     "content": ". | Redefine the assessment | universal framework needed for CV, LM, and so on | need more mathematical approach | . might we need to interact the data manifold. (2024. 12.) . ",
     "url": "/docs/ai-research/unlearning/resarch-note#change-the-ways",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#change-the-ways"
-  },"177": {
+  },"178": {
     "doc": "Research on Machine Unlearning",
     "title": "sRFL (Dec. 2023)",
     "content": " ",
     "url": "/docs/ai-research/unlearning/resarch-note#srfl-dec-2023",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl-dec-2023"
-  },"178": {
+  },"179": {
     "doc": "Research on Machine Unlearning",
     "title": "sRFL - Introduction",
     "content": "sRFL is my works based on NeurIPS 2023 Machine Unlearning Challenge’s dataset (celebrities face dataset), It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the machine unlearning. I focused on the decoupling in the logit spaces, using teacher-student framework. | sRFL (simple Rolling in Forget Logits) | . ",
     "url": "/docs/ai-research/unlearning/resarch-note#srfl---introduction",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---introduction"
-  },"179": {
+  },"180": {
     "doc": "Research on Machine Unlearning",
     "title": "sRFL - pseudo code",
     "content": "1. Copy a model from original trained model . teacher_model &lt;- copy.deepcopy(model) teacher_model.eval() // teacher model will not be trained . 2. Freeze layers of model except for first two backbones (feature extracting) . 3-1. Loop : Generate logits by teacher model . for data in datasets (retain + forget dataset): retain_data, forget_data &lt;- data pseudo_forget_logits &lt;- teacher_model(forget_data) pseudo_retain_logits &lt;- teacher_model(retain_data) . 3-2. Roll only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1]) . rolled_pseudo_logits &lt;- roll(pseudo_forget_logits) . 3-3. Minimize KL-divergence between rolled_pseudo_logits and model’s output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset) . forget_outputs &lt;- model(forget_data) retain_outputs &lt;- model(retain_data) forget_loss &lt;- KLDiv(rolled_pseudo_logits, forget_outputs) \\ - cosine_similarity(rolled_pseudo_logits, forget_outputs)\\ + KLDiv(pseudo_retain_logits, retain_outputs) . 3-4. backward propagation by forget_loss . forget_loss.backward() . End of Loop. ",
     "url": "/docs/ai-research/unlearning/resarch-note#srfl---pseudo-code",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---pseudo-code"
-  },"180": {
+  },"181": {
     "doc": "Research on Machine Unlearning",
     "title": "sRFL - conclusion",
     "content": "simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. The following is about train accuracy about CIFAR-10 . In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset. While it achieved high decoupling, there’s a huge claim about their metrics and evaluation. Even though the competition is completed with some argues, the main idea of machine unlearning is quite crucial in privacy and robustness of the ml-based services. In the future, I will progress my works. ",
     "url": "/docs/ai-research/unlearning/resarch-note#srfl---conclusion",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---conclusion"
-  },"181": {
+  },"182": {
     "doc": "Research on Machine Unlearning",
     "title": "Research on Machine Unlearning",
     "content": " ",
     "url": "/docs/ai-research/unlearning/resarch-note",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note"
-  },"182": {
+  },"183": {
     "doc": "Research on ARC-AGI",
     "title": "Feb. 2025.",
     "content": " ",
     "url": "/docs/ai-research/arc-agi/resarch-note#feb-2025",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#feb-2025"
-  },"183": {
+  },"184": {
     "doc": "Research on ARC-AGI",
     "title": "Problem definition",
     "content": "Suppose that we’re designing a single model that solves the ARC-AGI problem. There are several conditions which the model needs to deal with. | The dimensionality of input/output is not pre-determined. | Though all the tasks can be grouped as a IQ test, all the detailed tasks have less in common. | The tasks in evaluation steps are totally different from those in the train steps. | The model has only 2~9 examples (mostly 3) to solve each task. –&gt; | . ",
     "url": "/docs/ai-research/arc-agi/resarch-note#problem-definition",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#problem-definition"
-  },"184": {
+  },"185": {
     "doc": "Research on ARC-AGI",
     "title": "Approach - Baseline",
     "content": "Instead of seeking a direct transformation that converts the input \\(X_{in}\\) into the output \\(X_{out}\\), we leverage generative models (such as VAE, flow-based model and diffusion models) to create a latent representation \\(X_{latent}\\) from both input and output. To achieve this, we introduce two projections: . \\[\\begin{align} f: X^{*} \\rightarrow X_{in}\\\\ g: X^{*} \\rightarrow X_{out} \\end{align}\\] Here, \\(X^*\\) represents a higher-dimensional latent space designed to capture complex relationships and interactions between \\(X_{in}\\) and \\(X_{out}\\). By utilizing dual parameterized projections \\(f\\) and \\(g\\), we enable a more controlled and nuanced learning process, allowing the model to optimize representations that are tailored for both input reconstruction and output generation. ",
     "url": "/docs/ai-research/arc-agi/resarch-note#approach---baseline",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#approach---baseline"
-  },"185": {
+  },"186": {
     "doc": "Research on ARC-AGI",
     "title": "Research on ARC-AGI",
     "content": " ",
     "url": "/docs/ai-research/arc-agi/resarch-note",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note"
-  },"186": {
+  },"187": {
     "doc": "AI Research",
     "title": "AI Research",
     "content": "AI researches. ",
     "url": "/docs/ai-research",
     
     "relUrl": "/docs/ai-research"
-  },"187": {
+  },"188": {
     "doc": "Rust",
     "title": "Let’s Learn Rust Programming Language, together.",
     "content": "About rust programming, I hope everyone to read the official documentation, especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice. ",
     "url": "/docs/programming/rust#lets-learn-rust-programming-language-together",
     
     "relUrl": "/docs/programming/rust#lets-learn-rust-programming-language-together"
-  },"188": {
+  },"189": {
     "doc": "Rust",
     "title": "Rust",
     "content": " ",
     "url": "/docs/programming/rust",
     
     "relUrl": "/docs/programming/rust"
-  },"189": {
+  },"190": {
     "doc": "Machine Unlearning",
     "title": "Machine Unlearning",
     "content": "Machine unlearing is a quite adacious study compare to major AI researches. It tries to make a model forget some data while the rest of data kept learnt. ",

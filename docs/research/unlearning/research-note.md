@@ -73,7 +73,7 @@ simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget 
 The following is about train accuracy about `CIFAR-10`
 
 <p align="center">
- <img src="https://sangdo-han.github.io/docs/ai-research/unlearning/cifar10_accuracy.png">
+ <img src="https://sangdo-han.github.io/docs/research/unlearning/cifar10_accuracy.png">
 </p>
 
 In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset.

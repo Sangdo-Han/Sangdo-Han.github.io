@@ -76,6 +76,9 @@
 <loc>http://localhost:4000/docs/programming/algorithms</loc>
 </url>
 <url>
+<loc>http://localhost:4000/docs/ai-research/llm/paper-review-rag</loc>
+</url>
+<url>
 <loc>http://localhost:4000/docs/ai-research/arc-agi</loc>
 </url>
 <url>
@@ -116,9 +119,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/docs/programming/python</loc>
-</url>
-<url>
-<loc>http://localhost:4000/docs/ai-research/llm/paper-review-rag</loc>
 </url>
 <url>
 <loc>http://localhost:4000/docs/ai-research/unlearning/resarch-note</loc>

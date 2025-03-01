@@ -1,6 +1,6 @@
 ---
 layout: default
-title: RAG
+title: LLM Applications
 parent: LLM
 grand_parent: AI Research
 math: katex
@@ -15,9 +15,32 @@ In the adevent of LLM, many AI researchers try to engage pretrained LLM with the
 In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [[1](#lewis-et-al)]. The concept of RAG is quite simple but powerful.   
 The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[[1](#lewis-et-al)].
 
-<p align="center">
- <img src="https://sangdo-han.github.io/docs/research/llm/rag_architecture.png">
-</p>
+```mermaid
+
+flowchart LR
+    %% Document Indexing Phase
+    subgraph Indexing Phase
+        A[Document Collection] --> B[Shared Encoder]
+        B --> C[Document Embeddings]
+        C --> D[Document Index]
+    end
+
+    %% Query Processing & Generation Phase
+    subgraph Query & Generation Phase
+        E[User Query] --> F[Shared Encoder]
+        F --> G[Query Embedding]
+        G --> H[Similarity Search in Index]
+        H --> I[Top-K Relevant Documents]
+        I --> J[Augmented Query]
+        J --> K[Large Language Model]
+        K --> L[Generated Response]
+    end
+
+
+    %% Connect the index from the indexing phase to the search
+    D -.-> H
+
+```
 
 In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user's query to LLM, we can get generated output with our intended contexts. 
 
@@ -45,7 +68,7 @@ In batch process, we can save our constarints (contexts, documents or policies) 
 
 For detailed installation and usage, please visit my git repository.
 
- > visit : [easy_rag](https://github.com/Sangdo-Han/ai-research/tree/master/llm/rag)
+ > visit : [easy_rag](https://github.com/Sangdo-Han/public-studies/tree/master/llm/rag)
 
 ## Output
 <p align="center">
