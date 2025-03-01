@@ -1,7 +1,7 @@
 ---
 title: About
 layout: default
-nav_order: 7
+nav_order: 99
 has_toc: false
 ---
 # Sanhan
@@ -16,7 +16,7 @@ Work as a software researcher.
 
 ### Careers    
 #### Software Engineer / Researcher at LG Electronics, Seoul   
-> - DX Center in CTO division (Jan.2025~)
+> - DX Center in CSO division (Jan.2025~)
  - AI Bigdata department in CDO division (Aug.2022~Jan.2025)   
  - Smartdata department in CTO division (Aug.2020~Aug.2022)   
 

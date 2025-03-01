@@ -8,6 +8,8 @@ tags:
   - single-process
   - C++
   - python
+
+permalink: /docs/programming/algorithms
 ---
 
 # Algorithms and Data structures

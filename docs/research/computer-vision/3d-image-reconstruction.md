@@ -2,9 +2,10 @@
 layout: default
 title: 3D Image Reconstruction - Introduction
 parent: Computer Vision
-grand_parent: Research
+grand_parent: AI Research
 math: katex
 nav_order: 1
+permalink: /docs/ai-research/computer-vision/paper-review-3d-reconstruction
 ---
 
 # 3D Reconstruction - Introduction

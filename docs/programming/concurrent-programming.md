@@ -12,6 +12,8 @@ tags:
   - C++
   - C
   - python
+permalink: /docs/programming/concurrent-programming
+
 ---
 
 # Concurrent Programming  

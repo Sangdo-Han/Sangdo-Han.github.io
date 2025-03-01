@@ -2,9 +2,10 @@
 layout: default
 title: Control theory of LLM
 parent: LLM
-grand_parent: Research
+grand_parent: AI Research
 math: katex
 nav_order: 2
+permalink: /docs/ai-research/llm/paper-review-llm-control-prompting
 ---
 
 # A Control Theory of LLM prompting

@@ -2,9 +2,10 @@
 layout: default
 title: RAG
 parent: LLM
-grand_parent: Research
+grand_parent: AI Research
 math: katex
 nav_order: 1
+permalink: /docs/ai-research/llm/paper-review-rag
 ---
 
 # RAG
@@ -15,7 +16,7 @@ In this background, one of the powerful engaging method is RAG (Retrieval-augmen
 The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[[1](#lewis-et-al)].
 
 <p align="center">
- <img src="https://sangdo-han.github.io/docs/research/llm/rag_architecture.png">
+ <img src="https://sangdo-han.github.io/docs/ai-research/llm/rag_architecture.png">
 </p>
 
 In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user's query to LLM, we can get generated output with our intended contexts. 
@@ -44,11 +45,11 @@ In batch process, we can save our constarints (contexts, documents or policies) 
 
 For detailed installation and usage, please visit my git repository.
 
- > visit : [easy_rag](https://github.com/Sangdo-Han/research/tree/master/llm/rag)
+ > visit : [easy_rag](https://github.com/Sangdo-Han/ai-research/tree/master/llm/rag)
 
 ## Output
 <p align="center">
-  <img src="https://sangdo-han.github.io/docs/research/llm/rag_chat_example.png">
+  <img src="https://sangdo-han.github.io/docs/ai-research/llm/rag_chat_example.png">
 </p>
 
 In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations.

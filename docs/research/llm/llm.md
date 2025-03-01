@@ -1,10 +1,10 @@
 ---
 layout: default
 title: LLM
-nav_order: 2
+nav_order: 1
 has_children: true
-parent: Research
-permalink: /docs/research/llm
+parent: AI Research
+permalink: /docs/ai-research/llm
 ---
 
 # LLM

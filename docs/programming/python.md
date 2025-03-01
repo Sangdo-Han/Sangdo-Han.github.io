@@ -5,6 +5,7 @@ parent: Programming
 nav_order: 4
 tags: 
   - python
+permalink: /docs/programming/python
 ---
 
 # Tips for Python

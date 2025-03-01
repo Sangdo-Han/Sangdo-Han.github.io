@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Research
+title: AI Research
 nav_order: 1
 has_children: true
-permalink: /docs/research
+permalink: /docs/ai-research
 ---
 
-# Research
-AI, Software researches. 
+# AI Research
+AI researches. 
 <!-- {: .fs-5 .fw-400 } -->

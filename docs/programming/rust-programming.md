@@ -5,6 +5,7 @@ parent: Programming
 nav_order: 5
 tags: 
   - rust
+permalink: /docs/programming/rust
 ---
 
 # Let's Learn Rust Programming Language, together.
