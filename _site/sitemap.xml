@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://localhost:4000/docs/programming/cpp/01.%20Coding%20Conventions.html</loc>
+</url>
+<url>
 <loc>http://localhost:4000/docs/programming/rust/introduction</loc>
 </url>
 <url>
@@ -17,6 +20,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/docs/programming/concurrent-programming/02.%20Multitasking.html</loc>
+</url>
+<url>
+<loc>http://localhost:4000/docs/programming/cpp/02.%20Pointers.html</loc>
 </url>
 <url>
 <loc>http://localhost:4000/docs/programming/concurrent-programming/03.%20Multiprocessing.html</loc>
@@ -145,16 +151,13 @@
 <loc>http://localhost:4000/docs/mathematics/random-process.html</loc>
 </url>
 <url>
-<loc>http://localhost:4000/docs/programming/cpp/01.%20Pointers.html</loc>
-</url>
-<url>
-<loc>http://localhost:4000/docs/programming/cpp/02.%20Type%20Casting.html</loc>
-</url>
-<url>
 <loc>http://localhost:4000/docs/programming/cpp/03.%20lvalue%20&amp;%20rvalue.html</loc>
 </url>
 <url>
 <loc>http://localhost:4000/docs/programming/cpp/04.%20Move.html</loc>
+</url>
+<url>
+<loc>http://localhost:4000/docs/programming/cpp/05.%20Type%20Casting.html</loc>
 </url>
 <url>
 <loc>http://localhost:4000/docs/research/computer-vision/diffusion.html</loc>

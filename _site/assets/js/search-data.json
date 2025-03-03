@@ -1,1411 +1,1467 @@
 {"0": {
+    "doc": "01. Coding Conventions - In Progress",
+    "title": "Coding Convention in C/C++",
+    "content": ". | variables, private class methods (private member function) be camelCase | classes, structs, public functions and public class methods (public member function) be PascalCase | namespace be a brief abbreviation of lowercase | private member variable starts with m_ (i.e. m_Mutex) | static variable starts with s_ (i.e. s_Config) | . ",
+    "url": "/docs/programming/cpp/01.%20Coding%20Conventions.html#coding-convention-in-cc",
+    
+    "relUrl": "/docs/programming/cpp/01.%20Coding%20Conventions.html#coding-convention-in-cc"
+  },"1": {
+    "doc": "01. Coding Conventions - In Progress",
+    "title": "01. Coding Conventions - In Progress",
+    "content": " ",
+    "url": "/docs/programming/cpp/01.%20Coding%20Conventions.html",
+    
+    "relUrl": "/docs/programming/cpp/01.%20Coding%20Conventions.html"
+  },"2": {
     "doc": "01. Hello, World!",
     "title": "1. Hello, world!",
     "content": "First of all, printing hello world! in rust is as simple as in python: . fn main(){ println!(\"Hello, world!\"); } . But there are important things even in this simple code: . | RUST always needs main function named main(). | We can define function with fn | println! is not a function, is a macro: macro is a piece of code that generates another piece of code. | . Note : Macro Macros are expanded at compile time, so that the actual generated codes will replace the macro before the program is executed. When you want to use macro to generate code in compile level, you need to put ! right after the name of macro. You can also make your codes be a macro. However, there is no free lunch. Macro makes you comfortable in writing a program or save execution time (by avoiding function call) but your compile time might also increase as much you use macro. And before talking about data structures and syntaxes of Rust, I will put the general naming rules. | Item | Convention | . | Modules | snake_case | . | Types / Traits / Enum / Struct | PascalCase | . | Macros / Functions / Methods | snake_case | . | Local variables | snake_case | . | Static variables / Constants | SCREAMING_SNAKE_CASE | . | Type parameters | usually single uppercase letter: T or consice PascalCase | . | Lifetimes | usually a single letter: ‘a or short lowercase : ‘de, ‘src | . ",
     "url": "/docs/programming/rust/introduction#1-hello-world",
     
     "relUrl": "/docs/programming/rust/introduction#1-hello-world"
-  },"1": {
+  },"3": {
     "doc": "01. Hello, World!",
     "title": "01. Hello, World!",
     "content": " ",
     "url": "/docs/programming/rust/introduction",
     
     "relUrl": "/docs/programming/rust/introduction"
-  },"2": {
+  },"4": {
     "doc": "01. Introduction",
     "title": "Introduction",
     "content": "Multi-threading, parallel computing, concurrent programming are powerful but quite difficult. Eventhough a top-level programmer designs a program, it is always expected that his/her first approach is a single threaded or sequential program. In this sense, we need to study this subject precisely and thoroughly with low-level approach, then capsulize this as possible for not thinking much with high-level approaches. ",
     "url": "/docs/programming/concurrent-programming/01.%20Introduction.html#introduction",
     
     "relUrl": "/docs/programming/concurrent-programming/01.%20Introduction.html#introduction"
-  },"3": {
+  },"5": {
     "doc": "01. Introduction",
     "title": "Citation",
     "content": "Some of explanations and the python examples are originated (but somewhat modified by myself) from famous concurrent programming book - Grokking Concurrency (Bhargava, Aditya, and Aditya Y. Bhargava. Grokking algorithms. Simon and Schuster, 2024.) . But most of explanations and all the C++ codes are originated from myself. ",
     "url": "/docs/programming/concurrent-programming/01.%20Introduction.html#citation",
     
     "relUrl": "/docs/programming/concurrent-programming/01.%20Introduction.html#citation"
-  },"4": {
+  },"6": {
     "doc": "01. Introduction",
     "title": "01. Introduction",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/01.%20Introduction.html",
     
     "relUrl": "/docs/programming/concurrent-programming/01.%20Introduction.html"
-  },"5": {
+  },"7": {
     "doc": "01. Typing",
     "title": "Typing in Python",
     "content": "Although python is a dynamic typed language, typing (at least type-hinting) is widely used for co-operation, and is occasionally mandatory for the production-level codes. There are roughly two options: Type Hinting and Mandatory Typing . | Typing in Python . | Type Hinting | Mandatory Typing | . | . ",
     "url": "/docs/programming/python/01.%20Typing.html#typing-in-python",
     
     "relUrl": "/docs/programming/python/01.%20Typing.html#typing-in-python"
-  },"6": {
+  },"8": {
     "doc": "01. Typing",
     "title": "Type Hinting",
     "content": "Type hinting is a way of adding type information to python code. It does not guarantee the exact types in runtime but it helps co-working because of readability and maintainability. This type hinting is widely used in open source python communities (especially in deep learning communities), because it is easy to communicate and less burdensome compare to mandatory typing. And also, if you’re using modern IDEs and static analysis tools, you can code easily and less error-prone because IDE’s automation functionalities and static analysis tools read the type hinting. import typing as T # Type alias Members = T.List[str] class Party: def __init__(self, name: str, party_members: Members) -&gt; None: self._name: str = name self._party_members = party_members def join(self, new_members: Members) -&gt; None: self._party_members.extend(new_members) def __str__(self) -&gt; str: return f\"Party Name: {self._name}\\nMembers: {', '.join(self._party_members)}\" def main(): lunch_party = Party(\"Lunch Bunch\", [\"san\", \"han\"]) newcomers: Members = [\"gyro\", \"jonathan\"] lunch_party.join(newcomers) print(lunch_party) if \"__main__\" == __name__: main() . ",
     "url": "/docs/programming/python/01.%20Typing.html#type-hinting",
     
     "relUrl": "/docs/programming/python/01.%20Typing.html#type-hinting"
-  },"7": {
+  },"9": {
     "doc": "01. Typing",
     "title": "Mandatory Typing",
     "content": "By using pydantic-like library (recommended for production level), we can acheive mandatory typing. Once pydantic models are defined, it works as structs in C/C++. Just like C/C++ structs, pydantic models provide a clear and structured way to represent data. The fields (members in C/C++) and their types makes the data layout explicit and easy to understand. But unlike C/C++, pydantic does this through runtime validation based on the type hints. from typing import List from pydantic import BaseModel class Party(BaseModel): name: str members: List[str] = [] def join(self, new_members: List[str]) -&gt; None: self.members.extend(new_members) def __str__(self) -&gt; str: return f\"Party Name: {self.name}\\nMembers: {', '.join(self.members)}\" def main(): lunch_party = Party(name=\"Lunch Bunch\", members=[\"san\", \"han\"]) newcomers = [\"gyro\", \"jonathan\"] lunch_party.join(newcomers) print(lunch_party) # Example of pydantic validation try: invalid_party = Party(name=\"Invalid\", members=[1, 2, 3]) except ValueError as e: print(f\"Pydantic Validation Error: {e}\") try: lunch_party.join(\"not a list\") except ValueError as e: print(f\"Pydantic Validation Error: {e}\") if \"__main__\" == __name__: main() . ",
     "url": "/docs/programming/python/01.%20Typing.html#mandatory-typing",
     
     "relUrl": "/docs/programming/python/01.%20Typing.html#mandatory-typing"
-  },"8": {
+  },"10": {
     "doc": "01. Typing",
     "title": "01. Typing",
     "content": " ",
     "url": "/docs/programming/python/01.%20Typing.html",
     
     "relUrl": "/docs/programming/python/01.%20Typing.html"
-  },"9": {
+  },"11": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2. Basic Synthax",
     "content": "One of the reason why we use Rust is for a memory-safe efficient programming. It is because that rust compiler strictly yells the programmer to follow their memory-safe instructions. | 2. Basic Synthax . | 2.1. Immutables and mutables . | 2.1.1. mutable vs immutable | 2.1.2. constant | 2.1.3. shadowing | . | 2.2. Rust is a statically-typed language. | 2.2.1. Basic Scalar Types | 2.2.2. Custom Types | 2.2.3. Common collections | . | 2.3. Control Flow . | 2.3.1. if expression | 2.3.2. pattern matching | 2.3.3. loop, while, for | . | 2.4. functions | 2.5. Method . | 2.6. Generics / Traits | . | . | . ",
     "url": "/docs/programming/rust/basic-syntax#2-basic-synthax",
     
     "relUrl": "/docs/programming/rust/basic-syntax#2-basic-synthax"
-  },"10": {
+  },"12": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.1. Immutables and mutables",
     "content": "In rust, let is used for declaration of a variable, without mut keyword, rust generally declare the variables be immutable by default. Basically, rust supports three ways to assign a value as follows : . | Variable Type | Advantages | Disadvantages | Syntax | . | Mutable | Flexibility, efficiency | Thread safety, complexity | let x = 3; | . | Immutable | Thread safety, predictability, simplicity | Memory usage, performance | let mut x = 3; | . | Constant | Readability, predictability, optimization | Limited flexibility, potential for code duplication | const x = 3; | . The following code snippet is from the book but with my commentary . ",
     "url": "/docs/programming/rust/basic-syntax#21-immutables-and-mutables",
     
     "relUrl": "/docs/programming/rust/basic-syntax#21-immutables-and-mutables"
-  },"11": {
+  },"13": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.1.1. mutable vs immutable",
     "content": "// the following code occurs compile error, this example is from `the book` of rust-lang.org fn main(){ let x = 5; // rust sets value be immutable by default. (1) println!(\"the value of x is {x}\"); x = 6; // here the mutation occurs however as we did not set x be mutable, this occurs compile error in rust. println!(\"the value of x is {x}\"); //compiler cannot reach here. } . | To avoid the error, we need to write (1) as let mut x = 5; | . ",
     "url": "/docs/programming/rust/basic-syntax#211-mutable-vs-immutable",
     
     "relUrl": "/docs/programming/rust/basic-syntax#211-mutable-vs-immutable"
-  },"12": {
+  },"14": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.1.2. constant",
     "content": "fn main(){ const mut X = 5; // compile error occurs here, unlike `let` expression which initializes variables, `const` does not allow `mut` expression. } . | Compiler might tell you change const to static. However, even if you change it, the expression of static mut is unsafe, so you get compiler error again with : error[E0133]: use of mutable static is unsafe and requires unsafe function or block . | This error ([E0133]) can be avoided with unsafe block (which allows memory-unsafe coding) like the following, however, you might not need this usages right now. (not recommended) . | . fn main() { unsafe{ static mut A:i32 = 1024; // static needs the concrete type like i32 here. println!(\"Hello, world!\"); println!(\"{A}\"); } } . ",
     "url": "/docs/programming/rust/basic-syntax#212-constant",
     
     "relUrl": "/docs/programming/rust/basic-syntax#212-constant"
-  },"13": {
+  },"15": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.1.3. shadowing",
     "content": "Shadowing means that a variable is declared with the same name of previous variable. I posted the usage because it is in the book of rust-lang, however, shadowing is not recommended in general cases. fn main(){ let x = 5; let x = x + 1; // shadow variable x to be x (prev) + 1 : 6 { let x = x * 2; // inner shadow of x : } // shadowing scope ends here. so the value of the variable x is now 6, } . | Unlike mutable variable, we can change the value of variable in compile-time. | Unlike mutable variable, shadowing allows to use the same name when we change the data type. This sounds like powerful. However, type-changing situation sometimes leads a serious dynamic errors that compiler cannot discern. Therefore, shadowing should be avoided in general cases. | . ",
     "url": "/docs/programming/rust/basic-syntax#213-shadowing",
     
     "relUrl": "/docs/programming/rust/basic-syntax#213-shadowing"
-  },"14": {
+  },"16": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.2. Rust is a statically-typed language.",
     "content": "Like modern programming languages like python or javascript, Rust supports type inference. However, rust generally requires concrete (static) types during compilation for memory-safe efficient programming. We call this type compliance as statically-typed language, which means the types of variables and expressions are checked at compile-time rather than at runtime. ",
     "url": "/docs/programming/rust/basic-syntax#22-rust-is-a-statically-typed-language",
     
     "relUrl": "/docs/programming/rust/basic-syntax#22-rust-is-a-statically-typed-language"
-  },"15": {
+  },"17": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.2.1. Basic Scalar Types",
     "content": "Here are the table for Rust’s basic types . | Type | Description | Literal | . | i8 ~ i128 | 8 ~ 128 bit integer |   | . | u8 ~ i128 | 8 ~ 128 bit unsigned integer |   | . | isize | integer depends on the architecture |   | . | usize | unsigned integer depends on the architecture |   | . | f32 ~ f64 | 32 ~ 64 bit floating points | 3.1415 | . | bool | boolean type | true / false | . | char | letter type | ‘a’ | . | (type, type, … ) | tuple | (true, 5) | . | [type; integer value ] | array | [3; 10] | . Here the following codes are about declaration of types: . fn main(){ let five = 5 ; // Rust basically infers integer value as i32. let five_i32 : i32 = 5; // i32 let pi = 3.14; // Rust baically infers float value as f64 let pi_f32 : f32 = 3.14; // f32 let t = true; // bool let f : bool = false; // bool let ch = 'c'; let ch_char : char = 'c'; // char is 32 bit length // about tuple let compound_tup : (i32, f64, u16) = (400, 6.28, 2); let four_hundred = compound_tup.0; let tau = compound_tup.1; let two = compound_tup.2; // about array let arr_1 = [1,2,3,4,5]; let arr_2 : [i32; 5] = [1,2,3,4,5]; // let arr_3 = [3; 5]; // [3,3,3,3,3] let arr_first = arr_1[0]; let arr_second = arr_1[1]; } . ",
     "url": "/docs/programming/rust/basic-syntax#221-basic-scalar-types",
     
     "relUrl": "/docs/programming/rust/basic-syntax#221-basic-scalar-types"
-  },"16": {
+  },"18": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.2.2. Custom Types",
     "content": "Rust also supports algebraic types. struct can be used as a multiple type, enum can be used as a sum type. Struct . Like C programming language, Rust has a struct type that user can define a custom data. While rust’s struct is more expansive than C struct, it enables users to use flexible and memory-safe custom data. struct Person{ name: String, age: u8, } fn main(){ let person = Person{ name:\"Sangdo Han\".to_string(), age:33, }; } . Enums . Enums, which stands for enumerations, is one of the powerful custom type that enables to make custom types in modern programming language. Briefly speaking, enums gives user to selecting a value of a possible set of values. With this concept, users can write more safe and expressive codes. enum OrderStatus{ Pending, Approved, Processing, Shipped, Delievered, Canceled, } struct Order{ id: u32, customer_name: String, items: Vec&lt;String&gt;, status: OrderStatus, } fn main(){ let mut order = Order{ id:1, customer_name: \"Sangdo Han\".to_string(), items: vec![\"TV\".to_string(), \"Laptop\".to_string()], status:OrderStatus::Pending, }; order.status = OrderStatus::Processing; } . Like the example above, programmer can set the Order’s status using enum OrderStatus with the follwing valid variables : Pending, Approved, Procesing, Shipped, Delivered and Canceled. These options might have different types and amounts of associated data. Enums with inline-struct can make more properous types as followings: . use chrono::{DateTime, Local, TimeZone, Utc}; #[derive(Debug)] enum OrderStatus{ Pending, Approved{start_date:DateTime&lt;Utc&gt;, approver:String}, Processing{start_date:DateTime&lt;Utc&gt;, provider:String}, Shipped{start_date:DateTime&lt;Utc&gt;, ship_no:u32}, Delievered{start_date:DateTime&lt;Utc&gt;, expected_date:DateTime&lt;Utc&gt;}, Canceled } #[derive(Debug)] struct Order{ id: u32, customer_name: String, items: Vec&lt;String&gt;, status: OrderStatus, } fn main(){ let mut order = Order{ id:1, customer_name: \"Sangdo Han\".to_string(), items: vec![\"TV\".to_string(), \"Laptop\".to_string()], status:OrderStatus::Pending, }; order.status = OrderStatus::Processing{start_date:Utc::now(), provider:\"sangdo\".to_string()}; println!(\"{:?}\", order) } . ",
     "url": "/docs/programming/rust/basic-syntax#222-custom-types",
     
     "relUrl": "/docs/programming/rust/basic-syntax#222-custom-types"
-  },"17": {
+  },"19": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.2.3. Common collections",
     "content": "Rust’s standard library supports useful data structures called collections. It supports Vec (vector), VecDeque (queue), HashMap and so on. see the details in the official documentation of std::collections . ",
     "url": "/docs/programming/rust/basic-syntax#223-common-collections",
     
     "relUrl": "/docs/programming/rust/basic-syntax#223-common-collections"
-  },"18": {
+  },"20": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.3. Control Flow",
     "content": "In any programming language, if you know if-else and loop, you can write any program even if it is too hard to read or too slow. ",
     "url": "/docs/programming/rust/basic-syntax#23-control-flow",
     
     "relUrl": "/docs/programming/rust/basic-syntax#23-control-flow"
-  },"19": {
+  },"21": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.3.1. if expression",
     "content": "Rust’s if is an expression, so it returns value. If there is no explicit return statement, it automatically returns Unit Type (()), which represents an empty tuple. As if is an expression, we can assign value as the following: . let result = if condition { value_1 ; } else if condition_2 { value_2 ; } else { value_3 ; } . about the conditions, rust only supports boolean type. ",
     "url": "/docs/programming/rust/basic-syntax#231-if-expression",
     
     "relUrl": "/docs/programming/rust/basic-syntax#231-if-expression"
-  },"20": {
+  },"22": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.3.2. pattern matching",
     "content": "Rust has a powerful control flow construct keyword : match expression. Basically, match works as the following: . match expression { pattern1 =&gt; { code_block1 }, pattern2 =&gt; { code_block2 }, // .. } . For a simple example, you can register patterns with literals and wildcard (_) as the following: . let dice_roll = 3; match dice_roll { 3 =&gt; println!(\"you got the prize : candies !\"), 5 =&gt; println!(\"you got the prize : chocolate !\"), _ =&gt; println!(\"try again\") } . Generally, enum is widely used for pattern constraints. the following example is originated from the book. enum Coin { Penny, Nickel, Dime, Quarter, } fn value_in_cents(coin: Coin) -&gt; u8 { match coin { Coin::Penny =&gt; 1, Coin::Nickel =&gt; 5, Coin::Dime =&gt; 10, Coin::Quarter =&gt; 25, } } . ",
     "url": "/docs/programming/rust/basic-syntax#232-pattern-matching",
     
     "relUrl": "/docs/programming/rust/basic-syntax#232-pattern-matching"
-  },"21": {
+  },"23": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.3.3. loop, while, for",
     "content": ". | loop loop is basically means while true in rust, unlike while or for, however, it can be used as expression with break. In addition, rust can assign a label to a loop as followings: 'outer_loop: loop { 'inner_loop: loop { // ... if some_condition { break 'outer_loop; // with label, loop can exit directly to outer loop } } } . | while while is a repitition keyword as widely used in other programming language. With a condition phrase beside while, we can control the repetition. while needs discrimitive condition to break the repetition. while some_condition { // ... if other_condition { break; } } . | for for could be the best option that handling the repetition with fixed range. let mut factorial = 1; for idx in 1..10 { // starts 1 to 9, if you want to include 10, use 1..=10 factorial *= idx; println!(\"{idx}! = {factorial}\"); } . | . ",
     "url": "/docs/programming/rust/basic-syntax#233-loop-while-for",
     
     "relUrl": "/docs/programming/rust/basic-syntax#233-loop-while-for"
-  },"22": {
+  },"24": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.4. functions",
     "content": "We’ve already used a function : main. As you might know already, to make a function, the keyword fn is needed. Also, the function named main is a crucial function, that rust compiler identifies the project. So far, we don’t put the parameters for the function. To give a parameters to a function, we have some rules as follows: . fn make_2d_circle(x:f64, y:f64, r:f64){ assert!( r&gt;0.0 , \"r needs to be larger than 0 but you put : {}\",r); println!(\"circle created at ({x}, {y}) with radius {r}\"); } fn main(){ let inputs : (f64, f64, f64) = (2.0, 3.0, 2.0); make_2d_circle(inputs.0, inputs.1, inputs.2); } . with the outputs, we should declare return type. fn calculate_polar_coordinates(original_x: f64, original_y: f64) -&gt; (f64, f64) { // Calculate radius using the Pythagorean theorem let polar_radius = (original_x.powf(2.0) + original_y.powf(2.0)).sqrt(); // Calculate theta using atan2 (handles 0/0 case) let polar_theta = original_y.atan2(original_x); (polar_radius, polar_theta) // return (polar_radius, polar_theta); } fn main() { let original_x = 2.0; let original_y = 3.0; let (polar_radius, polar_theta) = calculate_polar_coordinates(original_x, original_y); println!(\"Original x: {}, y: {}\", original_x, original_y); println!(\"Converted to Polar Coordinates:\"); println!(\"Radius: {}, Theta: {}\", polar_radius, polar_theta); } . ",
     "url": "/docs/programming/rust/basic-syntax#24-functions",
     
     "relUrl": "/docs/programming/rust/basic-syntax#24-functions"
-  },"23": {
+  },"25": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.5. Method",
     "content": "In rust, there is no class keyword, however, we can use enum and struct for OOP. If you are not familiar with reference (&amp;) or dereference(*), I hope you to visit chapter 3 first then come back to this chapter. For instance, we can assign method with impl keyword as follows: . // based on an example from `the book` struct Rectangle { width : u32, height: u32, } impl Rectangle { fn area(&amp;self) -&gt; u32 { self.width * self.height } fn radius_inscribe(&amp;self) -&gt; f64{ let _width:f64 = self.width as f64; let _height:f64 = self.height as f64; f64::sqrt(_width.powf(2.0) + _height.powf(2.0)) } fn has_larger_width_than(&amp;self, other:&amp;Rectangle) -&gt; bool { // this function can get another argument : rectangle instance. self.width &gt; other.width } // associated functions, we can instantiate with other way fn square(size:u32) -&gt; Self { Self { width:size, height:size, } } } fn main(){ let rect1 = Rectangle{ width:30, height:40, }; println!(\"the area of rectangle 1 is {}\", rect1.area()); println!(\"the radius of outer circle of rectangle {}\", rect1.radius_inscribe()); let rect2 = Rectangle{ width: 10, height: 100, }; println!(\"rect1 has larger width than rect2? : {}\", rect1.has_larger_width_than(&amp;rect2)); let square1 = Rectangle::square(30); println!(\"the area of square1 is {}\", square1.area()); } . enum also can have methods, the following example is generated by copilot, which is also a good example that shows pattern matching. enum Direction { Up, Down, Left, Right, } impl Direction { fn is_vertical(&amp;self) -&gt; bool { match *self { // *self means dereference Direction, that gives a value. Direction::Up | Direction::Down =&gt; true, _ =&gt; false, } } fn is_horizontal(&amp;self) -&gt; bool { !self.is_vertical() } } fn main() { let up = Direction::Up; let left = Direction::Left; println!(\"Is 'up' vertical? {}\", up.is_vertical()); // Prints: Is 'up' vertical? true println!(\"Is 'left' horizontal? {}\", left.is_horizontal()); // Prints: Is 'left' horizontal? true } . ",
     "url": "/docs/programming/rust/basic-syntax#25-method",
     
     "relUrl": "/docs/programming/rust/basic-syntax#25-method"
-  },"24": {
+  },"26": {
     "doc": "02. Basic Syntax in Rust",
     "title": "2.6. Generics / Traits",
     "content": "So far, we construct functions, enums and structs with strong type signatures or members. However, sometimes these strict way may induce duplications. For instance, let us define a function that give result of addtion of two numbers. fn add(a:f64, b:f64)-&gt;f64{ a+b } fn main(){ let a32:f32 = 3.0; let b32:f32 = 5.0; println!(\"{}\", add(a32,b32)); // we have error cuz we defined function `add` only with `f64`, not `f32` } . The above code causes compiler error. This is because the function can only takes f64. Even if we know that addition works with the same way with i32 or f32, as we only defined add function only works for f64, the code has issues. To solve this problem we might need more add functions respect to each type. However this approach could result in redundancies in your code and it makes hard for you (or your team) to maintain the code. One of the idea to solve these redundant-prone coding is using generics. With generics, we can set a generic defintion of a function that can handles multiple types as followings: . fn add&lt;T: std::ops::Add&lt;Output= T&gt;&gt; (a :T, b : T ) -&gt; T { a + b } fn main(){ let a32:f32 = 3.0; let b32:f32 = 5.0; println!(\"{}\", add(a32,b32)); let a64:f64 = 4.0; let b64:f64 = 53.0; println!(\"{}\", add(a64, b64)); } . Here, we set T as a abstract type, by putting angle bracket &lt; &gt; right next to the name of function. In this example, since we use standard add operator + we need to say that T has a special trait (or a constraint or characteristic) that this generic type T uses standard add operator’s output. However, if we don’t have those constraints (in this case, use of add-operator), The code snippet would be compiled. The trait std::ops::Add&lt;Output=T&gt; is a powerful concept in Rust. Traits define functionality that types can implement. In this case, std::ops::Add&lt;Output=T&gt; constraint guarantees type T can be properly added within the function. One of the interesting thing is that rust’s generics don’t impact performance. The compiler generates specific code for each type at compile time, ensuring efficiency, resulting in performance equivalent to writing separate functions for each type. Sometimes, we assume that the generalized members / signatures would not always be the same types. In this case, the generic type placeholder needs to be distinguished as followings: . struct Point &lt;T,U&gt;{ x:T, y:U } fn main(){ let x: i32 = 5; let y: f64 = 3.0; let pointxy = Point{x,y}; } . ",
     "url": "/docs/programming/rust/basic-syntax#26-generics--traits",
     
     "relUrl": "/docs/programming/rust/basic-syntax#26-generics--traits"
-  },"25": {
+  },"27": {
     "doc": "02. Basic Syntax in Rust",
     "title": "02. Basic Syntax in Rust",
     "content": " ",
     "url": "/docs/programming/rust/basic-syntax",
     
     "relUrl": "/docs/programming/rust/basic-syntax"
-  },"26": {
+  },"28": {
     "doc": "02. Decorators",
     "title": "Decorator in Python",
     "content": "A decorator is one of the python’s useful syntaxes that literally decorate functions, methods and even classes. ",
     "url": "/docs/programming/python/02.%20Decorator.html#decorator-in-python",
     
     "relUrl": "/docs/programming/python/02.%20Decorator.html#decorator-in-python"
-  },"27": {
+  },"29": {
     "doc": "02. Decorators",
     "title": "A Typical Example of Python Decorator",
     "content": "Many blog posts demonstrate decorators using logging or print statements, as shown in the following example: . import time # make decorator def exec_time(func): def wrapper(*args, **kwargs): starttime = time.perf_counter() res = func(*args, **kwargs) func_exec_time = time.perf_counter() - starttime print(f\"function - `{func.__name__}` conducted in {func_exec_time}s\") return res return wrapper # decorate function with `@exec_time` @exec_time def add(a:int, b:int): return a + b # usage add(100, 30) . The expected output will be as follows: . function - `add` conducted in 6.659999999998611e-07s . ",
     "url": "/docs/programming/python/02.%20Decorator.html#a-typical-example-of-python-decorator",
     
     "relUrl": "/docs/programming/python/02.%20Decorator.html#a-typical-example-of-python-decorator"
-  },"28": {
+  },"30": {
     "doc": "02. Decorators",
     "title": "A Practical Example of Python Decorator",
     "content": "However, my favorite use case for Python decorators is implementing the Singleton pattern with existing functions, methods, or classes as follows: . import threading # make singleton decorator def singleton(func): lock = threading.Lock() # If you need thread-safe one def wrapper(*args, **kwargs): with lock: if wrapper.instance is None: wrapper.instance = func(*args, **kwargs) return wrapper.instance wrapper.instance = None # Ensuring attribute always exists before execution return wrapper # decorate class with `@singleton` @singleton class MySingleton: def __init__(self, value): self.value = value def get_value(self): return self.value # usage instance1 = MySingleton(100) instance2 = MySingleton(30) print(\"is instance 1 is the same with instance 2?\") print(instance1 is instance2) print(\"is instance 1 value\") print(instance1.get_value()) print(\"is instance 2 value\") print(instance2.get_value()) . Then the expected output will be as follows: . is instance 1 is the same with instance 2? True is instance 1 value 100 is instance 2 value 100 . ",
     "url": "/docs/programming/python/02.%20Decorator.html#a-practical-example-of-python-decorator",
     
     "relUrl": "/docs/programming/python/02.%20Decorator.html#a-practical-example-of-python-decorator"
-  },"29": {
+  },"31": {
     "doc": "02. Decorators",
     "title": "Conclusion",
     "content": "Python decorator is powerful because it helps to modify the functionilty of codes without less modifications. ",
     "url": "/docs/programming/python/02.%20Decorator.html#conclusion",
     
     "relUrl": "/docs/programming/python/02.%20Decorator.html#conclusion"
-  },"30": {
+  },"32": {
     "doc": "02. Decorators",
     "title": "02. Decorators",
     "content": " ",
     "url": "/docs/programming/python/02.%20Decorator.html",
     
     "relUrl": "/docs/programming/python/02.%20Decorator.html"
-  },"31": {
+  },"33": {
     "doc": "02. Multitasking",
     "title": "Multitasking",
     "content": "Multitasking is a broad concept that encompasses both multiprocessing and multithreading as specific implementations to achieve concurrent execution of tasks. | Multitasking . | Multiprogramming | Multitasking is a logical extension of Multiprogramming | CPU-bound vs I/O-bound . | CPU-bound | I/O-bound | . | Preemptive Multitasking | Context Switching | Cooperative Multitasking | Multitasking OSs . | Task Isolation | Task Scheduling | . | Conclusion | . | . ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#multitasking",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#multitasking"
-  },"32": {
+  },"34": {
     "doc": "02. Multitasking",
     "title": "Multiprogramming",
     "content": "Multiprogramming is a technique that allows multiple programs to reside in memory simultaneously, enabling the CPU to switch between them when the current program is waiting for I/O operations. This maximizes CPU utilization by reducing idle time. However, in multiprogramming, context switches occur primarily when a program voluntarily yields control (e.g., during I/O waits). ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#multiprogramming",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#multiprogramming"
-  },"33": {
+  },"35": {
     "doc": "02. Multitasking",
     "title": "Multitasking is a logical extension of Multiprogramming",
     "content": "Multitasking, as a logical extension, introduces time-sharing through frequent context switches based on a fixed time quantum. This creates the illusion of simultaneous execution, allowing users to interact with multiple tasks concurrently. While multiprogramming focuses on CPU efficiency, multitasking emphasizes responsiveness and interactive user experiences. In multi-tasking systems, the CPU executes multiple jobs by switching among them rapidly, ensuring fair resource allocation and seamless user interaction. ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#multitasking-is-a-logical-extension-of-multiprogramming",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#multitasking-is-a-logical-extension-of-multiprogramming"
-  },"34": {
+  },"36": {
     "doc": "02. Multitasking",
     "title": "CPU-bound vs I/O-bound",
     "content": "Applications often consist of intensive CPU work, but they may also interact with I/O devices like keyboards, disks, or networks to read inputs or produce outputs. ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#cpu-bound-vs-io-bound",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#cpu-bound-vs-io-bound"
-  },"35": {
+  },"37": {
     "doc": "02. Multitasking",
     "title": "CPU-bound",
     "content": "An application is CPU-bound if its performance primarily depends on CPU speed. Such applications would run faster with a more powerful CPU. Examples: . | Mathematical computations (e.g., matrix multiplication) | Image/video processing | Encryption/decryption algorithms | . ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#cpu-bound",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#cpu-bound"
-  },"36": {
+  },"38": {
     "doc": "02. Multitasking",
     "title": "I/O-bound",
     "content": "An application is I/O-bound if its performance depends on the speed of I/O subsystems (e.g., disk, network). These applications benefit from faster I/O devices or optimized I/O operations. Examples: . | Database queries reading from disk | Graphical user interfaces (GUIs) waiting for user input | Web servers handling network requests | . ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#io-bound",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#io-bound"
-  },"37": {
+  },"39": {
     "doc": "02. Multitasking",
     "title": "Preemptive Multitasking",
     "content": "Preemptive multitasking allows the operating system to forcibly interrupt a running task to allocate CPU time to another task. This is typically achieved through time-slicing, where each task runs for a predefined interval before the OS preempts it. Preemption ensures fair CPU usage, prevents monopolization by a single task, and enhances system responsiveness. Modern operating systems (e.g., Windows, Linux) use this approach to manage multiple processes and threads efficiently. ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#preemptive-multitasking",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#preemptive-multitasking"
-  },"38": {
+  },"40": {
     "doc": "02. Multitasking",
     "title": "Context Switching",
     "content": "Context switching is the process of saving the state (e.g., registers, program counter) of a running task and restoring the state of another task. While essential for multitasking, it introduces overhead as the CPU spends time managing switches rather than executing tasks. Optimizations like hardware-supported context switching and efficient scheduling algorithms minimize this overhead. ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#context-switching",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#context-switching"
-  },"39": {
+  },"41": {
     "doc": "02. Multitasking",
     "title": "Cooperative Multitasking",
     "content": "In cooperative multitasking, tasks voluntarily yield control to the scheduler, allowing other tasks to run. The OS cannot forcibly preempt a task; instead, tasks must explicitly relinquish control (e.g., via yield() calls). This approach requires careful programming, as a misbehaving task that fails to yield can block the entire system. Cooperative multitasking was used in early systems like Windows 3.x and classic Mac OS. It is also prevalent in runtime environments for asynchronous programming (e.g., Python’s asyncio, JavaScript’s event loop). ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#cooperative-multitasking",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#cooperative-multitasking"
-  },"40": {
+  },"42": {
     "doc": "02. Multitasking",
     "title": "Multitasking OSs",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#multitasking-oss",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#multitasking-oss"
-  },"41": {
+  },"43": {
     "doc": "02. Multitasking",
     "title": "Task Isolation",
     "content": "Task isolation ensures that tasks operate independently without interfering with each other. Modern OSs achieve this through virtual memory, memory protection, and separate address spaces. For example, processes run in isolated memory spaces, while threads within a process share memory but synchronize access to avoid concurrency issues. Isolation enhances security and stability, preventing crashes in one task from affecting others. ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#task-isolation",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#task-isolation"
-  },"42": {
+  },"44": {
     "doc": "02. Multitasking",
     "title": "Task Scheduling",
     "content": "Task scheduling determines how the OS allocates CPU time to tasks. Common algorithms include: . | Round Robin: Tasks execute in fixed time slices. | Priority-Based: Higher-priority tasks run first. | Shortest Job Next (SJN): Prioritizes tasks with the smallest execution time. Modern schedulers dynamically adjust priorities and use hybrid strategies to optimize throughput, latency, and fairness. | . ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#task-scheduling",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#task-scheduling"
-  },"43": {
+  },"45": {
     "doc": "02. Multitasking",
     "title": "Conclusion",
     "content": "Multi-tasking is foundational to modern computing, enabling concurrent execution of tasks through preemptive or cooperative strategies. Preemptive multitasking, driven by time-slicing and context switching, ensures responsiveness and fairness in general-purpose OSs. Cooperative multitasking, while less common today, remains relevant in specific asynchronous programming paradigms. Understanding CPU-bound vs I/O-bound tasks helps optimize performance, while advancements in task isolation and scheduling continue to enhance system efficiency and reliability. ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html#conclusion",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html#conclusion"
-  },"44": {
+  },"46": {
     "doc": "02. Multitasking",
     "title": "02. Multitasking",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/02.%20Multitasking.html",
     
     "relUrl": "/docs/programming/concurrent-programming/02.%20Multitasking.html"
-  },"45": {
+  },"47": {
+    "doc": "02. Pointers - In progress",
+    "title": "Pointers in C / C++",
+    "content": "Pointer is the most notorious but most powerful syntax/keyword in C/C++. Although the concept of pointer is simple that pointer simply points to something. As pointer can points actually everything and it could work outside of code scopes, it causes complexities. In addition to this, with combining dynamic memory allocation (heap allocation), it often causes serious problem in memory leakages, dangling pointer, buffer overflow and securities (e.g. stack smashing). | Pointers in C / C++ . | Basic Pointer | Dynamic Allocation with Pointers | C-style Dynamic Allocation | C++ - RAII Dynamic Allocation | . | . ",
+    "url": "/docs/programming/cpp/02.%20Pointers.html#pointers-in-c--c",
+    
+    "relUrl": "/docs/programming/cpp/02.%20Pointers.html#pointers-in-c--c"
+  },"48": {
+    "doc": "02. Pointers - In progress",
+    "title": "Basic Pointer",
+    "content": "Here’s C / C++ basic raw-pointer. In this example, we simply points the stack memories. If you follow comments and compare them to the outputs, you can easily follow how the pointer can be used in stack memory. #include &lt;iostream&gt; void CStylePointer() { std::cout &lt;&lt; \"\\n\\n==== BASIC C-style RAW POINTER - Declaration ====\\n\"; int int1 = 13; int int2 = 5; int* int1Ptr = &amp;int1; int* int2Ptr = &amp;int2; // Even if another pointer points to the same value, it points to the same address of int1, // but the pointer location itself is different. int* int3Ptr = &amp;int1; std::cout &lt;&lt; \"int1Ptr address: \" &lt;&lt; &amp;int1Ptr &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"int2Ptr address: \" &lt;&lt; &amp;int2Ptr &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"int3Ptr address: \" &lt;&lt; &amp;int3Ptr &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"\\n\\n==== BASIC C-style RAW POINTER - Swap Values ====\\n\"; std::cout &lt;&lt; \"Before swap:\\n\"; std::cout &lt;&lt; \"int1Ptr points to \" &lt;&lt; int1Ptr &lt;&lt; \" with value: \" &lt;&lt; *int1Ptr &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"int2Ptr points to \" &lt;&lt; int2Ptr &lt;&lt; \" with value: \" &lt;&lt; *int2Ptr &lt;&lt; \"\\n\"; // Swapping values int tempInt = *int1Ptr; *int1Ptr = *int2Ptr; *int2Ptr = tempInt; std::cout &lt;&lt; \"After swap:\\n\"; std::cout &lt;&lt; \"int1Ptr points to \" &lt;&lt; int1Ptr &lt;&lt; \" with value: \" &lt;&lt; *int1Ptr &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"int2Ptr points to \" &lt;&lt; int2Ptr &lt;&lt; \" with value: \" &lt;&lt; *int2Ptr &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"int3Ptr still points to int1, so its value also changed: \" &lt;&lt; *int3Ptr &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"\\n\\n==== BASIC C-style RAW POINTER - 1D Array and Pointer Arithmetic ====\\n\"; int array1D[5] = {0, 1, 2, 3, 4}; int* arr1DPtr = array1D; int* arr1DPtrAlias = &amp;array1D[0]; std::cout &lt;&lt; \"arr1DPtr : \" &lt;&lt; arr1DPtr &lt;&lt; '\\n'; std::cout &lt;&lt; \"arr1DPtrAlias : \" &lt;&lt; arr1DPtrAlias &lt;&lt; '\\n'; // Pointer Arithmetic std::cout &lt;&lt; \"Pointer arithmetic:\\n\"; std::cout &lt;&lt; \"arr1DPtr is at address: \" &lt;&lt; arr1DPtr &lt;&lt; \" with value: \" &lt;&lt; *arr1DPtr &lt;&lt; '\\n'; arr1DPtr++; std::cout &lt;&lt; \"After ++arr1DPtr, new address: \" &lt;&lt; arr1DPtr &lt;&lt; \" with value: \" &lt;&lt; *arr1DPtr &lt;&lt; '\\n'; std::cout &lt;&lt; \"Value at arr1DPtr + 2: \" &lt;&lt; *(arr1DPtr + 2) &lt;&lt; \" (moves forward by 2 integers)\\n\"; // Iterate through array using pointer arithmetic std::cout &lt;&lt; \"Iterating array using pointer arithmetic: \"; for (int offset = 0; offset &lt; 5; ++offset) { std::cout &lt;&lt; *(array1D + offset) &lt;&lt; \" \"; } std::cout &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"\\n\\n==== BASIC C-style RAW POINTER - 2D Array ====\\n\"; int array2D[2][5] = { {0, 1, 2, 3, 4}, {5, 6, 7, 8, 9} }; std::cout &lt;&lt; \"**array2D points to: \" &lt;&lt; **array2D &lt;&lt; \" (first element: 0)\\n\"; std::cout &lt;&lt; \"**(array2D + 1) points to: \" &lt;&lt; **(array2D + 1) &lt;&lt; \" (first element of second row: 5)\\n\"; std::cout &lt;&lt; \"*((*array2D) + 5) points to: \" &lt;&lt; *((*array2D) + 5) &lt;&lt; \" (linear memory access to second row first element: 5)\\n\"; std::cout &lt;&lt; \"*(*(array2D + 1) + 2) points to: \" &lt;&lt; *(*(array2D + 1) + 2) &lt;&lt; \" (element at row 1, col 2: 7)\\n\"; // Pointer Aliases for Rows int* arr2DPtr0 = array2D[0]; int* arr2DPtr0Alias = *array2D; int* arr2DPtr1 = array2D[1]; std::cout &lt;&lt; \"array2D base address: \" &lt;&lt; array2D &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"arr2DPtr0 (first row): \" &lt;&lt; arr2DPtr0 &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"arr2DPtr0Alias (alias for first row): \" &lt;&lt; arr2DPtr0Alias &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"arr2DPtr1 (second row): \" &lt;&lt; arr2DPtr1 &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"array2D[1] (second row): \" &lt;&lt; array2D[1] &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"(array2D[0] + 5) (next row start): \" &lt;&lt; (array2D[0] + 5) &lt;&lt; \"\\n\"; std::cout &lt;&lt; \"(array2D + 1) (pointer to second row): \" &lt;&lt; (array2D + 1) &lt;&lt; \"\\n\"; } int main() { CStylePointer(); return 0; } . ",
+    "url": "/docs/programming/cpp/02.%20Pointers.html#basic-pointer",
+    
+    "relUrl": "/docs/programming/cpp/02.%20Pointers.html#basic-pointer"
+  },"49": {
+    "doc": "02. Pointers - In progress",
+    "title": "Dynamic Allocation with Pointers",
+    "content": "When it comes to the dynamic allocation (or heap allocation), the pointer needs developer’s management. Unlike modern managed languages using garbage collections such as Python, JAVA and so on, developers needs to indicate when the memory is deleted explicitly. In C-style, we use malloc (which refers to “memory allocate”) for allocating heap memory, and use free (which refers to “free memory”) for deallocating the existing memory. Those functions are in stdlib.h. Note - malloc, calloc, realloc and alloca malloc is generally used for memory allocation, while calloc clear the memory first then allocate. realloc often uses for resize allocation memory. and finally alloca is stack-heap memory allocation depends on the platforms (OS (that supports which compilers) / architecture). In C++ style, we can use C-style allocation, however, we generally use built-in memory allocation keywords: new and delete. In either style, C or C++, A developer must use pointer to access memory and manage the memory with pointer. Of course the best option is writing code only using stack memory (which is controlled by the code block), however, unfortunately, we generally needs large memory space in most programming. RAII (Resource Acquisition Is Initialization) pattern might be the best pattern that using heap memory effectively by mimicing the stack behavior (automatic deallocation of memory when the code block is ended and even unexpectedly ended). In C++, std::memory like libraries supports RAII pattern such as std::unique_ptr, std::shared_ptr and std::weak_ptr. In most case, using std::unique_ptr is effectively used for without concerns, however, there is no free lunch, most big tech companies using C++ have their own std::memory-like library for their own purposes: some of them are more debuggable or much more safer or much more powerful. ",
+    "url": "/docs/programming/cpp/02.%20Pointers.html#dynamic-allocation-with-pointers",
+    
+    "relUrl": "/docs/programming/cpp/02.%20Pointers.html#dynamic-allocation-with-pointers"
+  },"50": {
+    "doc": "02. Pointers - In progress",
+    "title": "C-style Dynamic Allocation",
+    "content": "{please provide C-style dynamic allocation that matches up under C+ RAII Dynamic Allocation} . #include &lt;iostream&gt; #include &lt;cstdlib&gt; // &lt;stdlib.h&gt; void CStyleDynamicAllocation() { std::cout &lt;&lt; \"\\n\\n==== C-style Dynamic Allocation ====\\n\"; // Allocate memory for an integer int* intPtr = (int*)malloc(sizeof(int)); if (intPtr == nullptr) { std::cerr &lt;&lt; \"Memory allocation failed!\\n\"; return; } *intPtr = 123; std::cout &lt;&lt; \"Allocated integer value: \" &lt;&lt; *intPtr &lt;&lt; \"\\n\"; // Free the allocated memory free(intPtr); std::cout &lt;&lt; \"Freed integer memory.\\n\"; // Allocate memory for an array of integers int* arrayPtr = (int*)malloc(5 * sizeof(int)); if (arrayPtr == nullptr) { std::cerr &lt;&lt; \"Memory allocation failed for array!\\n\"; return; } for (int i = 0; i &lt; 5; ++i) { arrayPtr[i] = i * 10; } std::cout &lt;&lt; \"Allocated array values: \"; for (int i = 0; i &lt; 5; ++i) { std::cout &lt;&lt; arrayPtr[i] &lt;&lt; \" \"; } std::cout &lt;&lt; \"\\n\"; // Free the allocated array memory free(arrayPtr); std::cout &lt;&lt; \"Freed array memory.\\n\"; } int main() { CStyleDynamicAllocation(); return 0; } . ",
+    "url": "/docs/programming/cpp/02.%20Pointers.html#c-style-dynamic-allocation",
+    
+    "relUrl": "/docs/programming/cpp/02.%20Pointers.html#c-style-dynamic-allocation"
+  },"51": {
+    "doc": "02. Pointers - In progress",
+    "title": "C++ - RAII Dynamic Allocation",
+    "content": "The following UniquePtr is mocking of std::unique_ptr in standard library, that make a pointer delete its occupation of memory automatically when the code block ends. #include &lt;iostream&gt; #include &lt;functional&gt; // for C++ style function pointers (callbacks) template &lt;typename T, typename Deleter = std::function&lt;void(T*)&gt;&gt; class UniquePtr { public: // Constructor (default deleter uses `delete`) // for default value of deleter, set a normal function that deletes pointer : delete p; explicit UniquePtr(T* ptr = nullptr, Deleter deleter = [](T* p) { delete p; }) : m_Ptr(ptr), m_Deleter(deleter) {} // Destructor ~UniquePtr() { if (m_Ptr) { m_Deleter(m_Ptr); std::cout &lt;&lt; \"[DEBUG] Deleted object at \" &lt;&lt; m_Ptr &lt;&lt; std::endl; } } // Delete Copy Constructor &amp; Copy Assignment UniquePtr(const UniquePtr&amp;) = delete; UniquePtr&amp; operator=(const UniquePtr&amp;) = delete; // Move Constructor UniquePtr(UniquePtr&amp;&amp; other) noexcept : m_Ptr(other.m_Ptr), m_Deleter(std::move(other.m_Deleter)) { other.m_Ptr = nullptr; } // Move Assignment UniquePtr&amp; operator=(UniquePtr&amp;&amp; other) noexcept { if (this != &amp;other) { Reset(); // Delete current resource m_Ptr = other.m_Ptr; m_Deleter = std::move(other.m_Deleter); other.m_Ptr = nullptr; } return *this; } // Overloaded Operators T&amp; operator*() const { return *m_Ptr; } T* operator-&gt;() const { return m_Ptr; } // Getter T* Get() const { return m_Ptr; } // Reset function void Reset(T* newPtr = nullptr) { if (m_Ptr) { m_Deleter(m_Ptr); std::cout &lt;&lt; \"[DEBUG] Reset deleted object at \" &lt;&lt; m_Ptr &lt;&lt; std::endl; } m_Ptr = newPtr; } // Release function (returns the raw pointer and removes ownership) T* Release() { T* temp = m_Ptr; m_Ptr = nullptr; return temp; } private: T* m_Ptr; Deleter m_Deleter; }; // for Arrays template &lt;typename T, typename Deleter&gt; class UniquePtr&lt;T[], Deleter&gt; { public: // Constructor explicit UniquePtr(T* ptr = nullptr, Deleter deleter = [](T* p) { delete[] p; }) : m_Ptr(ptr), m_Deleter(deleter) {} // Destructor ~UniquePtr() { if (m_Ptr) { m_Deleter(m_Ptr); std::cout &lt;&lt; \"[DEBUG] Deleted array at \" &lt;&lt; m_Ptr &lt;&lt; std::endl; } } // Delete Copy Constructor &amp; Copy Assignment UniquePtr(const UniquePtr&amp;) = delete; UniquePtr&amp; operator=(const UniquePtr&amp;) = delete; // Move Constructor UniquePtr(UniquePtr&amp;&amp; other) noexcept : m_Ptr(other.m_Ptr), m_Deleter(std::move(other.m_Deleter)) { other.m_Ptr = nullptr; } // Move Assignment UniquePtr&amp; operator=(UniquePtr&amp;&amp; other) noexcept { if (this != &amp;other) { Reset(); m_Ptr = other.m_Ptr; m_Deleter = std::move(other.m_Deleter); other.m_Ptr = nullptr; } return *this; } // Overloaded Operator (array-style access) T&amp; operator[](size_t index) const { return m_Ptr[index]; } // Getter T* Get() const { return m_Ptr; } // Reset function void Reset(T* newPtr = nullptr) { if (m_Ptr) { m_Deleter(m_Ptr); std::cout &lt;&lt; \"[DEBUG] Reset deleted array at \" &lt;&lt; m_Ptr &lt;&lt; std::endl; } m_Ptr = newPtr; } // Release function T* Release() { T* temp = m_Ptr; m_Ptr = nullptr; return temp; } private: T* m_Ptr; Deleter m_Deleter; }; int main() { // Managing a single object with default deleter UniquePtr&lt;int&gt; singlePtr(new int(42)); std::cout &lt;&lt; \"Single Value: \" &lt;&lt; *singlePtr &lt;&lt; std::endl; // Managing a single object with a custom deleter UniquePtr&lt;int&gt; customDelPtr(new int(99), [](int* p) { std::cout &lt;&lt; \"[DEBUG] Custom deleter called for \" &lt;&lt; *p &lt;&lt; std::endl; delete p; }); // Managing a dynamic array with default deleter UniquePtr&lt;int[]&gt; arrayPtr(new int[5]{1, 2, 3, 4, 5}); std::cout &lt;&lt; \"Array Values: \"; for (int i = 0; i &lt; 5; ++i) std::cout &lt;&lt; arrayPtr[i] &lt;&lt; \" \"; std::cout &lt;&lt; std::endl; // Resetting a pointer singlePtr.Reset(new int(77)); std::cout &lt;&lt; \"After Reset: \" &lt;&lt; *singlePtr &lt;&lt; std::endl; // Transferring ownership UniquePtr&lt;int[]&gt; movedArray = std::move(arrayPtr); if (!arrayPtr.Get()) std::cout &lt;&lt; \"Ownership transferred successfully!\" &lt;&lt; std::endl; return 0; } . ",
+    "url": "/docs/programming/cpp/02.%20Pointers.html#c---raii-dynamic-allocation",
+    
+    "relUrl": "/docs/programming/cpp/02.%20Pointers.html#c---raii-dynamic-allocation"
+  },"52": {
+    "doc": "02. Pointers - In progress",
+    "title": "02. Pointers - In progress",
+    "content": " ",
+    "url": "/docs/programming/cpp/02.%20Pointers.html",
+    
+    "relUrl": "/docs/programming/cpp/02.%20Pointers.html"
+  },"53": {
     "doc": "03. Multiprocessing",
     "title": "Multiprocessing",
     "content": "Multiprocessing is technique of executing multiple processes concurrently. A process is a program in execution. A process is not just a program (space aspect) but also an instance of execution (time aspect). | Multiprocessing . | More on Processes | What is in a Process | States of a Process | How Multiple Processes Work? | Examples of Multiprocessing . | Multiprocessing in python | Multiprocessing in C++ | . | Conclusion | . | . ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#multiprocessing",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#multiprocessing"
-  },"46": {
+  },"54": {
     "doc": "03. Multiprocessing",
     "title": "More on Processes",
     "content": "A process’s space is the allocated memory. This memory includes the code of the program, the data using for the program, and the stack. Here, the stack is used to store the state of the process, such as the values of the registers and the program counter . In terms of time aspect, the time includes the process waiting time for its running, process running time, and its waiting I/O time. These aspects of a process are closely related. The allocated memory of a process influences its execution time, and vice versa. ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#more-on-processes",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#more-on-processes"
-  },"47": {
+  },"55": {
     "doc": "03. Multiprocessing",
     "title": "What is in a Process",
     "content": ". | Process ID (PID) | Process State | Executable (Binary) | Files | Address space | Registers | Stack | Heap | Data Segment | Process Control Block (PCB) | . PCB PCB is a data structure maintained by the OS that stores all the information about a process (including all the items listed above). The PCB is how the OS manages and keeps track of processes. ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#what-is-in-a-process",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#what-is-in-a-process"
-  },"48": {
+  },"56": {
     "doc": "03. Multiprocessing",
     "title": "States of a Process",
     "content": "A process is generally created and controlled by the OS. graph LR %% Define process states new[\"New Process\"] ready[\"Ready\"] running[\"Running\"] wait[\"Waiting\"] zombie[\"Zombie\"] terminated[\"Terminated\"] %% Define transitions new --&gt;|Admitted to execution| ready ready --&gt;|Gets CPU execution| running running --&gt;|Loses CPU execution| ready running --&gt;|Waits for event| wait wait --&gt;|Event occurs| ready running --&gt;|Process completes| zombie zombie --&gt;|Parent process ends| terminated %% Group active states subgraph Active States ready running wait end . ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#states-of-a-process",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#states-of-a-process"
-  },"49": {
+  },"57": {
     "doc": "03. Multiprocessing",
     "title": "How Multiple Processes Work?",
     "content": "A process can create child processes through OS system calls, this is known as spawning. | fork() (Unix-like): Creates a new process that is a copy of the parent process. The child process gets its own copy of the parent’s address space (initially). | spawn() (Windows): Creates a new process, but the way it’s done is different from fork(). It’s generally more efficient than fork() on Windows, but the child process doesn’t inherit the parent’s memory in the same way. | . Child processes are independent forks of the main process. Each child process isolated in terms of memory address space. As operating system controls this isolation, a direct access of instructions and data among the processes is not allowed. ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#how-multiple-processes-work",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#how-multiple-processes-work"
-  },"50": {
+  },"58": {
     "doc": "03. Multiprocessing",
     "title": "Examples of Multiprocessing",
     "content": "Here are naive examples in Python and C++. ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#examples-of-multiprocessing",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#examples-of-multiprocessing"
-  },"51": {
+  },"59": {
     "doc": "03. Multiprocessing",
     "title": "Multiprocessing in python",
     "content": "In Python, by using multiprocessing library, we can achieve the multiprocessing. import os import time from multiprocessing import Process def run_child(cpu_waste_seconds:int) -&gt; None: time.sleep(cpu_waste_seconds) curr_pid = os.getpid() print(f\"child ({curr_pid}) : finished job\") def run_parent(num_children:int=3, cpu_waste_seconds:int=2) -&gt; None: curr_pid = os.getpid() child_processes = [ Process(target=run_child, args=(cpu_waste_seconds,)) for _ in range(num_children) ] for child_process in child_processes: child_process.start() for child_process in child_processes: child_process.join() print(f\"parent's ({curr_pid}) : finished job\") if __name__ == \"__main__\": num_children : int = 3 child_process_time : int = 2 run_parent(num_children=num_children, cpu_waste_seconds=child_process_time) . ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#multiprocessing-in-python",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#multiprocessing-in-python"
-  },"52": {
+  },"60": {
     "doc": "03. Multiprocessing",
     "title": "Multiprocessing in C++",
     "content": "In C++, unlike multithreading, there is no standard library that interfaces multiprocessing, in other words, you should write multiprocessing calls that depend on the target OS. Here’s an example of naive multiprocessing in UNIX-like OS environment. #include &lt;iostream&gt; #include &lt;chrono&gt; //UNIX dependency (POSIX). Not compatible with Windows. #include &lt;unistd.h&gt; #include &lt;sys/types.h&gt; #include &lt;sys/wait.h&gt; #include &lt;thread&gt; // to use thread - sleep void SleepFor(int sleepSeconds) { auto sleepLiteral = std::chrono::seconds(sleepSeconds); std::this_thread::sleep_for(sleepLiteral); } void RunChild(int sleepSeconds) { pid_t currPID = getpid(); SleepFor(sleepSeconds); std::cout &lt;&lt; \"Child process PID: \" &lt;&lt; currPID &lt;&lt; std::endl; } void RunParent(int numChildren = 3, int sleepSeconds = 2) { pid_t currPID = getpid(); std::cout &lt;&lt; \"Parent process PID: \" &lt;&lt; currPID &lt;&lt; std::endl; for (int i = 0; i &lt; numChildren; ++i) { pid_t PID = fork(); if (PID &lt; 0) { std::cerr &lt;&lt; \"Fork failed\" &lt;&lt; std::endl; } else if (PID == 0) { RunChild(sleepSeconds); _exit(0); // Terminate child process } } // Parent waits for all children to finish for (int i = 0; i &lt; numChildren; ++i) { waitpid(-1, nullptr, 0); } } int main() { const int NUM_CHILDREN = 3; const int SLEEP_SECONDS = 2; RunParent(NUM_CHILDREN, SLEEP_SECONDS); return 0; } . ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#multiprocessing-in-c",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#multiprocessing-in-c"
-  },"53": {
+  },"61": {
     "doc": "03. Multiprocessing",
     "title": "Conclusion",
     "content": "Processes are fundamental to concurrent programming, providing independent execution environments that enable efficient multitasking. Processes do not share memory directly, ensuring greater isolation and stability but at the cost of increased communication overhead. Multiprocessing allows programs to leverage multiple CPU cores, making it ideal for CPU-bound tasks. However, inter-process communication (IPC, which will be discussed in the future) mechanisms such as pipes, shared memory, and message queues are required for data exchange between processes. While Python’s multiprocessing module provides a high-level abstraction for spawning and managing processes, C++ requires explicit system calls like fork() (Unix) or spawn() (Windows). Each approach comes with its own trade-offs in terms of portability, efficiency, and complexity. ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#conclusion",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html#conclusion"
-  },"54": {
+  },"62": {
     "doc": "03. Multiprocessing",
     "title": "03. Multiprocessing",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html",
     
     "relUrl": "/docs/programming/concurrent-programming/03.%20Multiprocessing.html"
-  },"55": {
+  },"63": {
     "doc": "03. Pointers in Rust",
     "title": "3. Pointer / memory related features",
     "content": "As rust has no garbage collector, programmer needs to allocate memory manually. | 3. Pointer / memory related features . | 3.1 Memory in Computer | 3.2. Owenership | 3.3. Pointers . | 3.3.1. Reference | 3.3.2. Raw Pointer | 3.3.3. Smart Pointer | . | 3.4. Lifetimes | . | . ",
     "url": "/docs/programming/rust/memory-related#3-pointer--memory-related-features",
     
     "relUrl": "/docs/programming/rust/memory-related#3-pointer--memory-related-features"
-  },"56": {
+  },"64": {
     "doc": "03. Pointers in Rust",
     "title": "3.1 Memory in Computer",
     "content": "In operating system, memory (RAM) is divided into 5 parts (regions, segments): Text (code), bss, data, heap and stack. Those manage memory in runtime. ref: data segment image from wikipedia . | Text (code) Text stores executable code, generally fixed size. | Data Data stores initialized global variables and static variables. | BSS (Block Started by Symbol) BSS generally depends on Programming language, however, like C programming language, manages unintialized static variable. | Stack Stack is a LIFO (last-in first-out) data structure, using a mechanism like a piling up pancakes on a plate. Stack manages function calls, local variables, function parameters, and return addresses. Stack pointer is a special register in the CPU keeps track of the top of the stack, pointing the current memory address where new data can be added(malloc), also deleting(free) the topmost data easily. | When a function is called, a new stack frame is created on the stack to hold its local variables, parameters and return address. | For a memory allocation, compiler analyzes the code to determine the size of each function’s stack frame. Next, compiler generates instructions to adjust the stack pointer, allocating and dellocating space as needed. | function calls and returns automatically add (push) and remove (pop) stack frames, ensuring efficient memory usage. | . | Heap Heap is a kind of less organized region of memory, which can be manually directed by user. In the sense of automatic managing, many languages support garbage collection in these days. Rust does not have a traditional garbage collector. Instead, it relies on ownership and borrowing. Rust also supports pointers like in C or C++ for user’s memory manipulation. | . ",
     "url": "/docs/programming/rust/memory-related#31-memory-in-computer",
     
     "relUrl": "/docs/programming/rust/memory-related#31-memory-in-computer"
-  },"57": {
+  },"65": {
     "doc": "03. Pointers in Rust",
     "title": "3.2. Owenership",
     "content": "Ownership is one of the unique features in rust for handling memory not only within a code block (scope) but also between code blocks. the book suggests three ownership rules as follows: . | Each value in Rust has an owner. | There can only be one owner at a time. | When the owner goes out of scope, the value will be dropped. | . Because of axiom #2 and #3, programmers who are familiar with other languages could have in trouble. For instance, in the case of python, the following would work. # python if __name__ == \"__main__\": x = \"hello\" y = x print((id(x) == id(y))) # you can see True, they indicates the same memory address print(y) # you can get 'hello' print(x) # you can get 'hello' . with checking ids of x and y are equal, we can see x and y indicates the same address. however, in rust programming, the following rust code which is similar to the above code won’t be compiled. fn main(){ let x = String::from(\"hello\"); let y = x; println!(\"{}\", y); println!(\"{}\", x); // compile error because x has no ownership of value } . It seems that y and x “shares” the same address, however, it is not. As I mentioned first, in dealing with heap memory, rust basically moves the ownership from x to y. As y has got ownership of the string value “hello”, x cannot access the value until it retrieved ownership back or get new value assigned. ",
     "url": "/docs/programming/rust/memory-related#32-owenership",
     
     "relUrl": "/docs/programming/rust/memory-related#32-owenership"
-  },"58": {
+  },"66": {
     "doc": "03. Pointers in Rust",
     "title": "3.3. Pointers",
     "content": "To solve the above ownership problem, we can also use other options : use memory address! . ",
     "url": "/docs/programming/rust/memory-related#33-pointers",
     
     "relUrl": "/docs/programming/rust/memory-related#33-pointers"
-  },"59": {
+  },"67": {
     "doc": "03. Pointers in Rust",
     "title": "3.3.1. Reference",
     "content": "The foremost option is that borrow x’s value with reference. Here is an example of borrowing that y borrows the value from x, and return back automatically when y is called. fn main(){ let x = String::from(\"hello\"); let y = &amp;x; // y borrows (refers) the value of x; println!(\"{}\", y); println!(\"{}\", x); // no error: Still, x is owner of \"hello\" } . This &amp; operator is for referring to x, or borrowing x address. It seems that reference is the same as the pointer in C, however references are always valid and automatically managed by Rust’s borrow checker. They cannot outlive the data they brought and cannot be null. You can see that those exmaples are based on string type because string in rust works allocating the memory based on move, not copy or clone. If you use the same examples but int allocation, there is no error since the basic trait of allocation in int is value shallow copying. The following code which seems like simply adding a dereference operator * could make you a little bit crazy. fn main() { let x = String::from(\"hello\"); // we know, x is a string value \"hello\"; String let y = &amp;x; // y borrows (refers) the value of x; &amp;String let z = &amp;*x; // (*x) is dereference of x, which is inner string (or string slice) : str // and then we refer &amp;(*x), which is reference of string slice : &amp;str println!(\"{}\", y); println!(\"{}\", x); println!(\"{}\", z); } . I added the explanation of x, y and z in the code above with inline comment. ",
     "url": "/docs/programming/rust/memory-related#331-reference",
     
     "relUrl": "/docs/programming/rust/memory-related#331-reference"
-  },"60": {
+  },"68": {
     "doc": "03. Pointers in Rust",
     "title": "3.3.2. Raw Pointer",
     "content": "Still, C-like pointer is also supported in Rust, named as raw pointer. Raw pointers in Rust are necessary for certain tasks where you need to interact with low-level code, such as interfacing with C libraries, implementing low-level data structures, or performing certain operations that can’t be expressed safely within Rust’s safe abstraction. Here are some scenarios where raw pointers are useful: . | Interfacing with C Code: Rust often needs to interact with C libraries, which typically use raw pointers extensively. Rust’s FFI (Foreign Function Interface) allows you to call functions from C libraries and vice versa, and raw pointers are often used to pass data between Rust and C code. | Unsafe Operations: Some operations inherently require unsafe behavior, such as dereferencing a pointer to arbitrary memory or performing low-level memory manipulation. While these operations should be avoided whenever possible, there are situations where they’re necessary for performance reasons or to implement certain algorithms. | Unsafe Abstractions: Sometimes, you may need to implement your own safe abstractions that rely on unsafe operations internally. While the interface exposed to the user remains safe, the implementation may use raw pointers or other unsafe constructs to achieve certain behaviors efficiently. | Low-Level Data Structures: Implementing low-level data structures like linked lists, trees, or graphs may require direct manipulation of memory addresses, which is facilitated by raw pointers. While Rust’s standard library provides safe abstractions for common data structures, there are cases where custom implementations are necessary or desirable. | Embedded Systems and Systems Programming: In systems programming and embedded systems development, you often need precise control over memory layout and low-level hardware interactions. Raw pointers allow you to express such operations safely within the context of an unsafe block. | . It’s important to note that while raw pointers are a powerful tool, they come with significant responsibility. Rust’s safety guarantees are designed to prevent common programming errors and security vulnerabilities, and bypassing these guarantees with raw pointers can introduce bugs, crashes, or security vulnerabilities if used incorrectly. fn main() { let x = 42; // Reference to x let reference = &amp;x; println!(\"Reference: {}\", reference); // Raw pointer to x let raw_ptr: *const i32 = &amp;x as *const i32; unsafe { println!(\"Raw pointer: {}\", *raw_ptr); } } . ",
     "url": "/docs/programming/rust/memory-related#332-raw-pointer",
     
     "relUrl": "/docs/programming/rust/memory-related#332-raw-pointer"
-  },"61": {
+  },"69": {
     "doc": "03. Pointers in Rust",
     "title": "3.3.3. Smart Pointer",
     "content": "Smart pointers in Rust are data structures that not only hold a value but also contain metadata and provide additional functionality beyond what regular pointers offer. They enforce various safety guarantees at compile time, ensuring memory safety and preventing common programming errors. One of the most commonly used smart pointers in Rust is Box&lt;T&gt;. It allows you to allocate values on the heap rather than the stack and provides ownership semantics like any other value in Rust. Here’s a brief overview of Box&lt;T&gt;: . | Box&lt;T&gt;: Box is a smart pointer that owns the data it points to and is stored on the heap (if you’re C++ programmer it resembles unique_ptr but not nullable.). It’s used when you need to have a value with a known size at compile time but don’t know the precise size until runtime, or when you want to transfer ownership of a value across scopes or threads. | . Here’s a simple example of Box&lt;T&gt;: . fn main() { let x = Box::new(42); // Allocate an integer on the heap println!(\"Value: {}\", x); // Print the value stored in the Box } . In addition to Box&lt;T&gt;, Rust provides other smart pointers like Rc&lt;T&gt; and Arc&lt;T&gt; for shared ownership (shared_ptr in C++), Cell&lt;T&gt; and RefCell&lt;T&gt; for interior mutability, and Mutex&lt;T&gt; and RwLock&lt;T&gt; for synchronization, among others. Each smart pointer type has its own characteristics and use cases, allowing you to choose the appropriate one based on your requirements. Smart pointers enable you to write safer, more expressive code by encapsulating complex memory management logic and providing clear ownership semantics. ",
     "url": "/docs/programming/rust/memory-related#333-smart-pointer",
     
     "relUrl": "/docs/programming/rust/memory-related#333-smart-pointer"
-  },"62": {
+  },"70": {
     "doc": "03. Pointers in Rust",
     "title": "3.4. Lifetimes",
     "content": "The following’s a code from the book. fn longest(x: &amp;str, y:&amp;str) -&gt; &amp;str { if x.len() &gt;= y.len() { return x; } else { return y; } } fn main() { let string1 = String::from(\"abcd\"); let string2 = \"xyz\"; let result = longest(string1.as_str(), string2); println!(\"The longest string is {}\", result); } . If you compile the code above, you will get an error . error[E0106]: missing lifetime specifier --&gt; src/main.rs:1:32 | 1 | fn longest(x: &amp;str, y:&amp;str) -&gt; &amp;str { | ---- ---- ^ expected named lifetime parameter | = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `x` or `y` help: consider introducing a named lifetime parameter | 1 | fn longest&lt;'a&gt;(x: &amp;'a str, y:&amp;'a str) -&gt; &amp;'a str { | ++++ ++ ++ ++ For more information about this error, try `rustc --explain E0106`. what is a lifetime? . As we mentioned in 3.1.3. reference, rust compiler prevent the reference outlive the data by using borrow checker : so to speak, try to prevent dangling pointer. With this function of references signatures, rust compiler worry about the rest of reference. If x is returned, what about y? y could become a dangling pointer. vice versa. Therefore, we need to notify to compiler (actually for ourselves) that the rest reference will be terminated in the same lifetime of the picked (returned) one. In function longest, returning a reference to x would invalidate y (become a dangling reference) if x was longer. Lifetimes prevent this by making the references’ validity explicit. The fixed version is as follows: . fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str { if x.len() &gt;= y.len() { return x; } else { return y; } } . ",
     "url": "/docs/programming/rust/memory-related#34-lifetimes",
     
     "relUrl": "/docs/programming/rust/memory-related#34-lifetimes"
-  },"63": {
+  },"71": {
     "doc": "03. Pointers in Rust",
     "title": "03. Pointers in Rust",
     "content": " ",
     "url": "/docs/programming/rust/memory-related",
     
     "relUrl": "/docs/programming/rust/memory-related"
-  },"64": {
+  },"72": {
     "doc": "04. Multithreading",
     "title": "Multithreading",
     "content": "Multithreading is technique of executing multiple threads concurrently. A thread is an independent sequence of instructions within a process. It is the smallest unit of execution that the operating system (OS) can schedule. Multiple threads within a process share the same memory space but execute independently. | Multithreading . | More on Threads | Advantages and Disadvantages . | Memory / Communication efficiency | Unmanaged Synchronization. | . | Example of Multithreading . | Multithreading in Python | MultiThreading in C++ | . | Conclusion | . | . ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html#multithreading",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html#multithreading"
-  },"65": {
+  },"73": {
     "doc": "04. Multithreading",
     "title": "More on Threads",
     "content": "A thread is the smallest sequence of instructions that can be executed independently. Each thread has its own stack and registers, but it shares the same memory with other threads in the same process. This means threads in a process can access the same data, but they cannot modify each other’s register value without proper synchronization. In short, each thread operates independently, unaware of the others unless explicitly designed to interact. ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html#more-on-threads",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html#more-on-threads"
-  },"66": {
+  },"74": {
     "doc": "04. Multithreading",
     "title": "Advantages and Disadvantages",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html#advantages-and-disadvantages",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html#advantages-and-disadvantages"
-  },"67": {
+  },"75": {
     "doc": "04. Multithreading",
     "title": "Memory / Communication efficiency",
     "content": ". | Efficient Memory Usage: Threads require significantly less memory overhead compared to creating new processes with fork()/spawn(). | Fast Communication: Since threads within the same process share memory, they can exchange data efficiently without requiring OS managed inter-process communication (IPC). | Use Case: Multithreading is particularly useful in high-performance applications such as graphics rendering and deep learning. | . ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html#memory--communication-efficiency",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html#memory--communication-efficiency"
-  },"68": {
+  },"76": {
     "doc": "04. Multithreading",
     "title": "Unmanaged Synchronization.",
     "content": ". | Lack of Isolation: Unlike processes, threads do not have full isolation which automatically controlled by OS. If one thread crashes or corrupts shared data, it can affect all threads within the processes. Improper synchronization can lead to race conditions, deadlocks, and performance bottlenecks. | . ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html#unmanaged-synchronization",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html#unmanaged-synchronization"
-  },"69": {
+  },"77": {
     "doc": "04. Multithreading",
     "title": "Example of Multithreading",
     "content": "Below are basic implementations of multithreading in Python and C++. ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html#example-of-multithreading",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html#example-of-multithreading"
-  },"70": {
+  },"78": {
     "doc": "04. Multithreading",
     "title": "Multithreading in Python",
     "content": "Python’s Global Interpreter Lock (GIL) prevents true parallel execution for CPU-bound tasks but still allows efficient multithreading for I/O-bound operations. Note - GIL In CPython, the Global Interpreter Lock (GIL) is a mutex that ensures only one thread executes Python bytecode at a time. This design simplifies memory management and prevents race conditions, but it also means that multi-threaded Python programs may not fully utilize multi-core processors for CPU-bound tasks. However, for I/O-bound operations, threading can still be effective. (ref: realpython.com) . Python MultiThreading Example . import os import time import threading from threading import Thread def run_sub_thread(idx: int, sleep_time:int=2) -&gt; None: sub_thread_name = threading.current_thread().name print( f\"{sub_thread_name} in PID({os.getpid()}) \" f\"is doing {idx} work\" ) time.sleep(sleep_time) def display_threads() -&gt; None: print(\"================\") print(f\"Active threads : {threading.active_count()}\") for thread_ in threading.enumerate(): print(thread_) def main( num_threads : int = 5, sleep_time : int = 2 ) -&gt; None: display_threads() threads = [ Thread( target=run_sub_thread, args=(idx, sleep_time) ) for idx in range(num_threads) ] for thread_ in threads: thread_.start() display_threads() for thread_ in threads: thread_.join() display_threads() # to check only one thread is available now if \"__main__\" == __name__: num_threads : int = 5 main(num_threads) . ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html#multithreading-in-python",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html#multithreading-in-python"
-  },"71": {
+  },"79": {
     "doc": "04. Multithreading",
     "title": "MultiThreading in C++",
     "content": "C++ provides robust multithreading support, we must take care of managing synchronization effectively. Basic C++ MultiThreading Example . #include &lt;iostream&gt; #include &lt;chrono&gt; #include &lt;thread&gt; #include &lt;unistd.h&gt; #include &lt;string&gt; #include &lt;sys/types.h&gt; #include \"Timer.h\" void ExecuteThread(int idx, int sleepSeconds) { pid_t threadPID = getpid(); std::thread::id threadID = std::this_thread::get_id(); std::cout &lt;&lt; \"Thread - \"&lt;&lt; idx &lt;&lt; \" (\"&lt;&lt; threadID &lt;&lt; \") in PID (\" &lt;&lt; threadPID &lt;&lt; \")\" &lt;&lt; \"\\n\"; std::this_thread::sleep_for(std::chrono::seconds(sleepSeconds)); } int main() { Timer timer; const int NUM_THREAD = 5; const int SLEEP_SECONDS = 2; std::thread threads[NUM_THREAD]; for (int i=0; i &lt; NUM_THREAD; i++) { threads[i] = std::thread(ExecuteThread, i, SLEEP_SECONDS); } for ( int i=0; i &lt; NUM_THREAD; i++) { threads[i].join(); } } . Then the output would be: . Thread - 0 (Thread - 0x16d2a7000) in PID (91237) Thread - Thread - 4 (0x16d4d7000) in PID (91237) 3 (0x16d44b000) in PID (91237) 1 (0x16d333000) in PID (91237) Thread - 2 (0x16d3bf000) in PID (91237) Process Ended in 2.00527 [s]. The output of the above code might be scrambled, demonstrating a race condition. Because std::cout is a shared resource, multiple threads trying to write to it simultaneously can interleave their output. This is a classic example of why proper synchronization is essential. Note - Race condition A race condition occurs in concurrent programming when the behavior of a program depends on the relative timing of events, such as the order in which threads or processes are scheduled to run. This can lead to unpredictable and erroneous results because the outcome depends on the interleaving of operations performed by multiple threads or processes. To solve this, I put the following print class represented as ThreadSafePrinter class using the concept of mutex (mutual exclusion, we will discuss in the future). Thread-Safe Printing Utility . // ThreadSafeUtils.h #pragma once #include &lt;mutex&gt; #include &lt;string&gt; class ThreadSafePrinter { public: void Print(const std::string&amp; str); private: std::mutex m_Mutex; }; . // ThreadSafeUtils.cpp #include &lt;iostream&gt; #include \"ThreadSafeUtils.h\" void ThreadSafePrinter::Print(const std::string&amp; str) { std::lock_guard&lt;std::mutex&gt; lock(m_Mutex); std::cout &lt;&lt; str ; } . Updated Multithreading Code with Thread-Safe Printing . #include &lt;chrono&gt; #include &lt;iostream&gt; #include &lt;mutex&gt; #include &lt;string&gt; #include &lt;sstream&gt; #include &lt;thread&gt; #include &lt;unistd.h&gt; #include &lt;sys/types.h&gt; #include \"Timer.h\" #include \"ThreadSafeUtils.h\" void ExecuteThread(int idx, int sleepSeconds, ThreadSafePrinter&amp; printer) { pid_t threadPID = getpid(); std::thread::id threadID = std::this_thread::get_id(); std::ostringstream ss; ss &lt;&lt; \"Thread - \"&lt;&lt; idx &lt;&lt; \" (\"&lt;&lt; threadID &lt;&lt; \") in PID (\" &lt;&lt; threadPID &lt;&lt; \")\" &lt;&lt; \"\\n\"; printer.Print(ss.str()); std::this_thread::sleep_for(std::chrono::seconds(sleepSeconds)); } int main() { Timer timer; ThreadSafePrinter safePrinter; const int NUM_THREAD = 5; const int SLEEP_SECONDS = 2; std::thread threads[NUM_THREAD]; for (int i=0; i &lt; NUM_THREAD; i++) { threads[i] = std::thread(ExecuteThread, i, SLEEP_SECONDS, std::ref(safePrinter)); } for ( int i=0; i &lt; NUM_THREAD; i++) { threads[i].join(); } } . Then the expected output will be looked like as follows: . Thread - 0 (0x16bb77000) in PID (92800) Thread - 3 (0x16bd1b000) in PID (92800) Thread - 4 (0x16bda7000) in PID (92800) Thread - 1 (0x16bc03000) in PID (92800) Thread - 2 (0x16bc8f000) in PID (92800) Process Ended in 2.00515 [s]. This updated version ensures synchronized output using a mutex, preventing race conditions in multi-threaded environments. ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html#multithreading-in-c",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html#multithreading-in-c"
-  },"72": {
+  },"80": {
     "doc": "04. Multithreading",
     "title": "Conclusion",
     "content": "Multithreading is powerful, but it comes with challenges like synchronization. Python and C++ handle threads differently, but both require careful management to avoid race conditions and performance issues. ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html#conclusion",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html#conclusion"
-  },"73": {
+  },"81": {
     "doc": "04. Multithreading",
     "title": "04. Multithreading",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/04.%20Multithreading.html",
     
     "relUrl": "/docs/programming/concurrent-programming/04.%20Multithreading.html"
-  },"74": {
+  },"82": {
     "doc": "05. Inter-Process Communication (IPC)",
     "title": "IPC (Inter-Process Communication)",
     "content": "In concurrent programming, multiple processes or threads (we simply gonna say those two be tasks) often need to communicate to coordinate works, share data, or manage resources. This communication is known as Inter-Process Communication (IPC). Even when tasks do not explicitly exchange messages, they might still interact implicitly by competing for shared resources. Technically, IPC seems that it only refers to communication between the processes, but it is not. We could also apply this techniques in terms of between threads. | IPC (Inter-Process Communication) . | Types of IPC | . | . ",
     "url": "/docs/programming/concurrent-programming/05.%20IPC.html#ipc-inter-process-communication",
     
     "relUrl": "/docs/programming/concurrent-programming/05.%20IPC.html#ipc-inter-process-communication"
-  },"75": {
+  },"83": {
     "doc": "05. Inter-Process Communication (IPC)",
     "title": "Types of IPC",
     "content": "IPC mechanisms can be broadly classified into two categories: . Message-Passing IPC – Tasks communicate by sending and receiving messages. This method provides more isolation but may involve more overhead compared to shared memory. Shared-Memory IPC – Tasks share a common memory space to exchange data. (This approach requires synchronization techniques to prevent race conditions.) . ",
     "url": "/docs/programming/concurrent-programming/05.%20IPC.html#types-of-ipc",
     
     "relUrl": "/docs/programming/concurrent-programming/05.%20IPC.html#types-of-ipc"
-  },"76": {
+  },"84": {
     "doc": "05. Inter-Process Communication (IPC)",
     "title": "05. Inter-Process Communication (IPC)",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/05.%20IPC.html",
     
     "relUrl": "/docs/programming/concurrent-programming/05.%20IPC.html"
-  },"77": {
+  },"85": {
     "doc": "06. IPC - Message Passing",
     "title": "Message-Passing IPC",
     "content": "Message-passing IPC provides a structured way for tasks to communicate without directly sharing memory. It is widely used in distributed systems and multiprocessing environments where isolation between processes is crucial. In message-passing IPC, each task is identified by a unique name, and tasks interact by sending and receiving messages to and from named tasks. The OS establishes a communication channel and provides proper system calls for tasks to pass messages through this channel. The advantage of Message-Passing is that the OS manages the channel, providing a useful interface to send and receive data without conflict. However, there is a huge communication cost. To transfer any piece of information between tasks, information must be copied from the task’s user space to the OS channel through system calls and then copied back to the address space of the receiving task. | Message-Passing IPC . | Pipe . | Python Example | C++ Example | . | Message Queue . | Python Example | C++ Example | . | Socket . | Python Example | C++ Example | . | Conclusion | . | . ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#message-passing-ipc",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#message-passing-ipc"
-  },"78": {
+  },"86": {
     "doc": "06. IPC - Message Passing",
     "title": "Pipe",
     "content": "Pipes provide a unidirectional communication channel between two processes (one-to-one, one way, write then read). They are commonly used for parent-child process communication and allow data transfer in a sequential manner. sequenceDiagram participant Process A participant Pipe participant Process B Process A-&gt;&gt;Pipe: Write Data Pipe--&gt;&gt;Process B: Read Data Process B-&gt;&gt;Process B: Process Data . ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#pipe",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#pipe"
-  },"79": {
+  },"87": {
     "doc": "06. IPC - Message Passing",
     "title": "Python Example",
     "content": "import time import threading from threading import Thread from multiprocessing import Pipe from multiprocessing.connection import Connection from utils import Timer ## (ref) - algorithm tab - Useful Timer Class class WriterThread(object): def __init__(self, name:str, conn:Connection, data:list=[]): self.conn = conn self.data = data self._thread = Thread( target=self.do_thread_job, name=name, ) def start(self): self._thread.start() def join(self): self._thread.join() def do_thread_job(self): print(f\"{self._thread.name} thread: {threading.current_thread()}\") time.sleep(1) self.conn.send(self.data) class ReceiverThread(object): def __init__(self, name:str, conn: Connection): self.conn = conn self._thread = Thread( target=self.do_thread_job, name=name ) def start(self): self._thread.start() def join(self): self._thread.join() def do_thread_job(self): print(f\"{self._thread.name} thread: {threading.current_thread()}\") messages = self.conn.recv() print(messages) def main(): timer = Timer() conn1, conn2 = Pipe() writer_thread = WriterThread( name=\"writer\", conn=conn1, data=[\"Hello World!\", \"why so serious\"] ) receiver_thread = ReceiverThread( name=\"receiver\", conn=conn2 ) threads = [writer_thread, receiver_thread] for thread_ in threads: thread_.start() for thread_ in threads: thread_.join() if \"__main__\" == __name__: main() . ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#python-example",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#python-example"
-  },"80": {
+  },"88": {
     "doc": "06. IPC - Message Passing",
     "title": "C++ Example",
     "content": "In C++, we need to use OS dependent headers to use message passing IPC. In the following examples, we will use UNIX (POSIX) dependent libraries (i.e. unistd.h). #include &lt;iostream&gt; #include &lt;thread&gt; #include &lt;string&gt; #include &lt;chrono&gt; #include &lt;vector&gt; #include &lt;sstream&gt; #include &lt;cstring&gt; // UNIX dependency - POSIX . Not working in Windows #include &lt;unistd.h&gt; // for pipe(), write(), read() #include \"Timer.h\" // (ref) - algorithm tab - Useful Timer Class struct ThreadMessage { int messageNumber; std::string message; }; class PipedThread { public: PipedThread(std::string name, int pipeNum, int numMessages, void(*threadJob)(int, int)) // use function pointer :m_Name(name) ,m_PipeNum(pipeNum) ,m_Thread(threadJob, pipeNum, numMessages) { std::cout &lt;&lt; \"Initiated \" &lt;&lt; m_Name &lt;&lt;\" Thread: \" &lt;&lt; std::this_thread::get_id() &lt;&lt; \"\\n\"; } void Join() { m_Thread.join(); } private: std::string m_Name; std::thread m_Thread; int m_PipeNum; }; void WriteToPipe(const int writeFd, const int numMessages) { using namespace std::chrono_literals; std::stringstream message[numMessages]; for (int i=0; i&lt;numMessages; i++) { std::this_thread::sleep_for(1s); for (int j=0; j&lt;i+1; j++) { message[i] &lt;&lt; \"Pika! \"; } std::string stringMessage = message[i].str(); ThreadMessage messageWritten = {i, stringMessage}; write(writeFd, &amp;messageWritten, sizeof(messageWritten)); std::cout &lt;&lt; \"[Writer] Message \" &lt;&lt; i+1 &lt;&lt; \" Sented \\n\"; } } void ReadFromPipe(const int readerFd, const int numMessages) { std::stringstream messages[numMessages]; for (int i=0; i &lt; numMessages ; i++) { ThreadMessage messageReceived; read(readerFd, &amp;messageReceived, sizeof(messageReceived)); std::cout &lt;&lt; \"[Reader] Message \" &lt;&lt; i+1 &lt;&lt; \" was \" &lt;&lt; messageReceived.message &lt;&lt;\"\\n\"; } } int main() { Timer timer; int pipeFds[2]; const int numMessages = 2; if (pipe(pipeFds) == -1) { std::cerr &lt;&lt; \"Pipe creation failed!\\n\"; return 1; } PipedThread writerThread = {\"Writer\", pipeFds[1], numMessages, WriteToPipe}; // 1 is writer PipedThread readerThread = {\"Reader\", pipeFds[0], numMessages, ReadFromPipe}; // 0 is reader writerThread.Join(); readerThread.Join(); } . The expected output will be as follows: . Initiated Writer Thread: 0x1ef558c00 Initiated Reader Thread: 0x1ef558c00 [Writer] Message 1 Sented [Reader] Message 1 was Pika! [Writer] Message 2 Sented [Reader] Message 2 was Pika! Pika! Process Ended in 2.00611 [s]. ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#c-example",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#c-example"
-  },"81": {
+  },"89": {
     "doc": "06. IPC - Message Passing",
     "title": "Message Queue",
     "content": "Message queues allow multiple processes to exchange discrete messages asynchronously. This mechanism ensures structured communication and enables better decoupling of process execution. sequenceDiagram participant Process A participant Process B participant Process C participant Message Queue participant Process D participant Process E Process A-&gt;&gt;Message Queue: Send Message 1 Process B-&gt;&gt;Message Queue: Send Message 2 Process C-&gt;&gt;Message Queue: Send Message 3 Message Queue--&gt;&gt;Process D: Deliver Message 1 Message Queue--&gt;&gt;Process E: Deliver Message 2 Message Queue--&gt;&gt;Process D: Deliver Message 3 Process D-&gt;&gt;Process D: Process Message 1 &amp; 3 Process E-&gt;&gt;Process E: Process Message 2 . ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#message-queue",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#message-queue"
-  },"82": {
+  },"90": {
     "doc": "06. IPC - Message Passing",
     "title": "Python Example",
     "content": "from queue import Queue from threading import Thread, current_thread from utils import Timer class QueueSwaper(Thread): def __init__(self, queue_in: Queue, queue_out: Queue, id: int): super().__init__(name=str(id)) self.queue_in = queue_in self.queue_out = queue_out def run(self) -&gt; None: while not self.queue_in.empty(): item = self.queue_in.get() self.queue_out.put(f\"Thread-{current_thread}: Data - {item}\") def main(num_items:int, num_threads: int) -&gt; None: queue_in = Queue() queue_out = Queue() for item_number in range(num_items): queue_in.put(item_number) threads = [] for thread_idx in range(num_threads): thread_ = QueueSwaper(queue_in, queue_out, thread_idx + 1) threads.append(thread_) for thread_ in threads: thread_.start() for thread_ in threads: thread_.join() for item in queue_out.queue: print(item) if \"__main__\" == __name__: num_threads: int = 2 num_items: int = 65545 timer: Timer = Timer() main(num_items, num_threads) . ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#python-example-1",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#python-example-1"
-  },"83": {
+  },"91": {
     "doc": "06. IPC - Message Passing",
     "title": "C++ Example",
     "content": "#include &lt;chrono&gt; #include &lt;iostream&gt; #include &lt;mutex&gt; #include &lt;thread&gt; #include &lt;string&gt; #include &lt;queue&gt; #include &lt;deque&gt; #include &lt;array&gt; #include &lt;sstream&gt; #include &lt;atomic&gt; #include \"Timer.h\" struct QueueThreadSafe { QueueThreadSafe(std::string id) : m_ID(id), m_Done(false) {} std::string m_ID; std::deque&lt;std::string&gt; m_Data; std::mutex m_Mutex; std::condition_variable m_CV; std::atomic&lt;bool&gt; m_Done; }; void ConsumeTime(QueueThreadSafe&amp; queue) { using namespace std::chrono_literals; std::this_thread::sleep_for(1s); std::cout &lt;&lt; \"Thread [\"&lt;&lt; std::this_thread::get_id() &lt;&lt; \"] finalizes the job. (spends some time) \\n\"; } void SwapQueue(QueueThreadSafe&amp; srcQueue, QueueThreadSafe&amp; destQueue) { // Timer timer; std::thread::id threadID = std::this_thread::get_id(); while (true) { std::string data; { std::unique_lock&lt;std::mutex&gt; src_lk(srcQueue.m_Mutex); srcQueue.m_CV.wait( src_lk, [&amp;srcQueue] { return !srcQueue.m_Data.empty() || srcQueue.m_Done; } ); if (srcQueue.m_Data.empty() &amp;&amp; srcQueue.m_Done) { break; } data = srcQueue.m_Data.front(); srcQueue.m_Data.pop_front(); } std::stringstream tempStr; tempStr &lt;&lt; \"[\" &lt;&lt; threadID &lt;&lt; \"] :\" &lt;&lt; data; std::string processedData = tempStr.str(); { std::lock_guard&lt;std::mutex&gt; dest_lk(destQueue.m_Mutex); destQueue.m_Data.push_back(processedData); } destQueue.m_CV.notify_one(); } ConsumeTime(destQueue); } int main() { Timer timer; const int numThreads = 2; const int numDummyStrings = 100; QueueThreadSafe srcQueue(\"srcQueue\"); QueueThreadSafe destQueue(\"destQueue\"); for (int idx = 0; idx &lt; numDummyStrings; idx++) { std::stringstream tempStr; tempStr &lt;&lt; \"Data - \" &lt;&lt; idx; srcQueue.m_Data.push_back(tempStr.str()); } std::array&lt;std::thread, numThreads&gt; threads; // Start worker threads for (std::thread&amp; thread : threads) { thread = std::thread(SwapQueue, std::ref(srcQueue), std::ref(destQueue)); } { std::lock_guard&lt;std::mutex&gt; lock(srcQueue.m_Mutex); srcQueue.m_Done = true; // Mark queue as done } srcQueue.m_CV.notify_all(); // Wake up all threads // Wait for all threads to finish for (auto&amp; thread : threads) { thread.join(); } // Print results for (auto&amp; datum : destQueue.m_Data) { std::cout &lt;&lt; datum &lt;&lt; \"\\n\"; } return 0; } . The expected output would be as follows: . Thread [0x16b81f000] finalizes the job. (spends some time) Thread [0x16b793000] finalizes the job. (spends some time) [0x16b793000] :Data - 0 [0x16b81f000] :Data - 1 [0x16b793000] :Data - 2 [0x16b793000] :Data - 4 [0x16b81f000] :Data - 3 [0x16b793000] :Data - 5 ... [0x16b793000] :Data - 99 Process Ended in 1.00558 [s]. ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#c-example-1",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#c-example-1"
-  },"84": {
+  },"92": {
     "doc": "06. IPC - Message Passing",
     "title": "Socket",
     "content": "Sockets provide communication between processes over a network or within the same machine. They support both connection-oriented (TCP) and connectionless (UDP) communication models, making them suitable for distributed systems. In this case, we use local socket by using AF_UNIX to communicate between threads. sequenceDiagram participant Process A participant Socket participant Process B Process A-&gt;&gt;Socket: Connect to Process B Process B--&gt;&gt;Socket: Accept Connection Process A-&gt;&gt;Socket: Send Data (Message 1) Socket--&gt;&gt;Process B: Receive Data (Message 1) Process B-&gt;&gt;Socket: Send Response (Message 2) Socket--&gt;&gt;Process A: Receive Response (Message 2) . Using multiple sockets, we can provide typical web server architecture, which will be discussed in the future. ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#socket",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#socket"
-  },"85": {
+  },"93": {
     "doc": "06. IPC - Message Passing",
     "title": "Python Example",
     "content": "import os import socket from threading import Thread import time SOCKET_FILE = \"./mailBox\" class Sender(Thread): def __init__(self): super().__init__() self.client = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) def run(self): self.client.connect(SOCKET_FILE) messages = [\"Hello World!\", \" \", \"Why so serious?\"] with self.client: for message in messages: self.client.sendall(message.encode()) class Receiver(Thread): def __init__(self): super().__init__() self.server = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) def run(self): self.server.bind(SOCKET_FILE) self.server.listen() conn, addr = self.server.accept() while True: data = conn.recv(1024) if not data: break message = data.decode() print(message) self.server.close() def remove_socket(): if os.path.exists(SOCKET_FILE): os.remove(SOCKET_FILE) def main(): remove_socket() receiver : Thread = Receiver() sender : Thread = Sender() receiver.start() time.sleep(1) sender.start() receiver.join() sender.join() remove_socket() if \"__main__\" == __name__: main() . ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#python-example-2",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#python-example-2"
-  },"86": {
+  },"94": {
     "doc": "06. IPC - Message Passing",
     "title": "C++ Example",
     "content": "#include &lt;iostream&gt; #include &lt;cstring&gt; // For memset() #include &lt;sys/socket.h&gt; #include &lt;sys/un.h&gt; // For local file sockets #include &lt;unistd.h&gt; // For close(), unlink() #include &lt;thread&gt; #include &lt;chrono&gt; const char* SOCKET_FILE_PATH = \"./mailBox\"; class Client { public: Client() { m_Socket = socket(AF_UNIX, SOCK_STREAM, 0); if (m_Socket == -1) { perror(\"Client: Socket creation failed\"); exit(EXIT_FAILURE); } memset(&amp;m_Client, 0, sizeof(m_Client)); m_Client.sun_family = AF_UNIX; strncpy(m_Client.sun_path, SOCKET_FILE_PATH, sizeof(m_Client.sun_path) - 1); } void SendMessageLoop(int numMessages) { int messageCount = 1; while (messageCount &lt; numMessages) { int sock = socket(AF_UNIX, SOCK_STREAM, 0); if (connect(sock, (struct sockaddr*)&amp;m_Client, sizeof(m_Client)) == -1) { perror(\"Client: Connection failed\"); close(sock); return; } std::string message = \"Message \" + std::to_string(messageCount++); send(sock, message.c_str(), message.size(), 0); close(sock); std::this_thread::sleep_for(std::chrono::milliseconds(60)); } ++messageCount; } private: int m_Socket; struct sockaddr_un m_Client; }; class Server { public: Server() { m_Socket = socket(AF_UNIX, SOCK_STREAM, 0); if (m_Socket == -1) { perror(\"Server: Socket creation failed\"); exit(EXIT_FAILURE); } memset(&amp;m_Server, 0, sizeof(m_Server)); m_Server.sun_family = AF_UNIX; strncpy(m_Server.sun_path, SOCKET_FILE_PATH, sizeof(m_Server.sun_path) - 1); unlink(SOCKET_FILE_PATH); if (bind(m_Socket, (struct sockaddr*)&amp;m_Server, sizeof(m_Server)) == -1) { perror(\"Server: Bind failed\"); close(m_Socket); exit(EXIT_FAILURE); } if (listen(m_Socket, 5) == -1) { perror(\"Server: Listen failed\"); close(m_Socket); exit(EXIT_FAILURE); } } ~Server() { close(m_Socket); unlink(SOCKET_FILE_PATH); } void ReceiveMessage() { while (true) { std::cout &lt;&lt; \"Server: Waiting for a client...\\n\"; int clientSocket = accept(m_Socket, nullptr, nullptr); if (clientSocket == -1) { perror(\"Server: Accept failed\"); continue; } char messageBuffer[1024] = {0}; recv(clientSocket, messageBuffer, sizeof(messageBuffer), 0); std::cout &lt;&lt; \"Server received: \" &lt;&lt; messageBuffer &lt;&lt; \"\\n\"; close(clientSocket); } } private: int m_Socket; struct sockaddr_un m_Server; }; int main() { Server server; std::thread serverThread(&amp;Server::ReceiveMessage, &amp;server); // not server.ReceiveMessage (binded funciton only can be used as function call) sleep(1); // system sleep Client client; std::thread clientThread(&amp;Client::SendMessageLoop, &amp;client, 10); serverThread.join(); clientThread.join(); } . The expected output would be as follows: . Server: Waiting for a client... Server received: Message 1 Server: Waiting for a client... Server received: Message 2 Server: Waiting for a client... Server received: Message 3 Server: Waiting for a client... Server received: Message 4 Server: Waiting for a client... Server received: Message 5 Server: Waiting for a client... Server received: Message 6 Server: Waiting for a client... Server received: Message 7 Server: Waiting for a client... Server received: Message 8 Server: Waiting for a client... Server received: Message 9 Server: Waiting for a client... ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#c-example-2",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#c-example-2"
-  },"87": {
+  },"95": {
     "doc": "06. IPC - Message Passing",
     "title": "Conclusion",
     "content": "Inter-Process Communication (IPC) is fundamental to concurrent programming, allowing processes and threads to coordinate efficiently. Message-passing IPC techniques provide better isolation and modularity at the cost of high-performance compared to shared-memory IPC. ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#conclusion",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html#conclusion"
-  },"88": {
+  },"96": {
     "doc": "06. IPC - Message Passing",
     "title": "06. IPC - Message Passing",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html",
     
     "relUrl": "/docs/programming/concurrent-programming/06.%20IPC-Message-Passing.html"
-  },"89": {
+  },"97": {
     "doc": "07. IPC - Shared Memory",
     "title": "Shared-Memory IPC",
     "content": "Shared-memory IPC allows multiple tasks to access a common memory segment. This technique is fast because there is no need to copy data between tasks, but it requires proper synchronization mechanisms like semaphores or mutexes to ensure data consistency. | Shared-Memory IPC . | Mutex (Lock) | Condition Variable | Shared Memory . | Characteristics of Shared Memory | Python Example | C++ Example | . | Thread Pool Pattern . | Thread Pool in Python | Thread Pool in C++ | . | Conclusion | . | . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory-ipc",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory-ipc"
-  },"90": {
+  },"98": {
     "doc": "07. IPC - Shared Memory",
     "title": "Mutex (Lock)",
     "content": "Unlike message-passing IPC, shared memory is not managed by the OS. Therefore, developers must use a mutex (refers to mutual exclusion, often referred to as a lock) to prevent simultaneous access to shared resources by multiple threads. ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#mutex-lock",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#mutex-lock"
-  },"91": {
+  },"99": {
     "doc": "07. IPC - Shared Memory",
     "title": "Condition Variable",
     "content": "Condition variables are a synchronization primitive that allows threads to wait until a specific condition is matched. They are essential for coordinating actions between threads, especially in scenarios where threads need to communicate about the state of shared data. In short, mutexes protect shared data while condition variables allow threads to wait efficiently for changes in that shared data. ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#condition-variable",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#condition-variable"
-  },"92": {
+  },"100": {
     "doc": "07. IPC - Shared Memory",
     "title": "Shared Memory",
     "content": "Shared memory is a region of memory that can be accessed by multiple processes. It enables high-speed data exchange but requires explicit synchronization to prevent data corruption or race conditions. sequenceDiagram participant Process A participant Mutex participant Shared Memory participant Process B Process A-&gt;&gt;Mutex: Lock Mutex (Access Shared Memory) Process A-&gt;&gt;Shared Memory: Write Data (Critical Section) Process A-&gt;&gt;Mutex: Unlock Mutex Process B-&gt;&gt;Mutex: Lock Mutex (Wait for Process A) Process B-&gt;&gt;Shared Memory: Read Data (Critical Section) Process B-&gt;&gt;Mutex: Unlock Mutex . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#shared-memory"
-  },"93": {
+  },"101": {
     "doc": "07. IPC - Shared Memory",
     "title": "Characteristics of Shared Memory",
     "content": ". | Direct Access Shared memory involves creating a region of memory in userland that multiple processes or threads can directly access. | Speed Shared memory is generally faster than message passing because it avoids the overhead of copying data. | Developer Responsibility The OS provides the mechanism to create the shared memory region, but it does not manage concurrent access. | . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#characteristics-of-shared-memory",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#characteristics-of-shared-memory"
-  },"94": {
+  },"102": {
     "doc": "07. IPC - Shared Memory",
     "title": "Python Example",
     "content": "import time import threading SHARED_ARR_SIZE = 5 SHARED_ARR = [-1] * SHARED_ARR_SIZE lock = threading.Lock() def producer(writing_time: float = 1): thread_name = threading.current_thread().name for i in range(SHARED_ARR_SIZE): time.sleep(writing_time) with lock: SHARED_ARR[i] = i print(f\"{thread_name} writes index {i}: {i}\") def consumer(penalty=1): thread_name = threading.current_thread().name for i in range(SHARED_ARR_SIZE): while True: with lock: data = SHARED_ARR[i] if data == -1: print(f\"{thread_name}: No data at index {i}, waiting {penalty} sec\") time.sleep(penalty) else: print(f\"{thread_name} consumes index {i}, data: {data}\") break if __name__ == \"__main__\": consumer_thread = threading.Thread(name=\"Consumer\", target=consumer, args=(1,)) producer_thread = threading.Thread(name=\"Producer\", target=producer, args=(0.5,)) producer_thread.start() consumer_thread.start() producer_thread.join() consumer_thread.join() . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#python-example",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#python-example"
-  },"95": {
+  },"103": {
     "doc": "07. IPC - Shared Memory",
     "title": "C++ Example",
     "content": "#include &lt;iostream&gt; #include &lt;thread&gt; #include &lt;string&gt; #include &lt;chrono&gt; #include &lt;mutex&gt; static const int s_NumData =5; static int s_SharedArr[s_NumData]; std::mutex mutex; void ProduceJob(unsigned int producingSeconds) { std::cout &lt;&lt; std::this_thread::get_id() &lt;&lt; \"\\n\"; auto producingTime = std::chrono::seconds(producingSeconds); std::this_thread::sleep_for(producingTime); for (int idx=0; idx&lt;s_NumData; ++idx) { std::lock_guard&lt;std::mutex&gt; lk(mutex); std::cout &lt;&lt; \"Writing [\" &lt;&lt; idx &lt;&lt; \"] data \\n\"; s_SharedArr[idx] = idx; } } void ConsumeJob(unsigned int penaltySeconds) { for (int idx = 0; idx &lt; s_NumData; ++idx) { while (true) { { std::lock_guard&lt;std::mutex&gt; lk(mutex); if (s_SharedArr[idx] != -1) { std::cout &lt;&lt; \"Consumer read [\" &lt;&lt; idx &lt;&lt; \"] data: \" &lt;&lt; s_SharedArr[idx] &lt;&lt; \"\\n\"; break; } } std::cout &lt;&lt; \"Consumer: No data at index \" &lt;&lt; idx &lt;&lt; \", waiting \" &lt;&lt; penaltySeconds &lt;&lt; \" sec\\n\"; std::this_thread::sleep_for(std::chrono::seconds(penaltySeconds)); } } } int main() { for (int idx=0; idx&lt;s_NumData; ++idx) { s_SharedArr[idx] = -1; } const int numThread = 2; std::thread threads[numThread]; threads[0] = std::thread(ProduceJob,1); threads[1] = std::thread(ConsumeJob,2); for (int idx=0; idx &lt; numThread; ++idx) { threads[idx].join(); } } . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#c-example",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#c-example"
-  },"96": {
+  },"104": {
     "doc": "07. IPC - Shared Memory",
     "title": "Thread Pool Pattern",
     "content": "A thread pool consists of multiple worker threads that execute tasks concurrently. These threads share resources, reducing the overhead of creating and destroying threads frequently. Synchronization techniques, such as mutexes and condition variables, help manage access to shared resources efficiently. sequenceDiagram participant Client1 participant Client2 participant TaskQueue participant ThreadPool participant Worker1 participant Worker2 Client1-&gt;&gt;TaskQueue: Submit Task A Client2-&gt;&gt;TaskQueue: Submit Task B TaskQueue--&gt;&gt;ThreadPool: Notify New Tasks ThreadPool-&gt;&gt;Worker1: Assign Task A Worker1-&gt;&gt;Worker1: Process Task A ThreadPool-&gt;&gt;Worker2: Assign Task B Worker2-&gt;&gt;Worker2: Process Task B . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-pattern",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-pattern"
-  },"97": {
+  },"105": {
     "doc": "07. IPC - Shared Memory",
     "title": "Thread Pool in Python",
     "content": "import time from queue import Queue import threading from threading import Thread from typing import Callable, Any, Tuple from utils import Timer # typedef Callback = Callable[..., None] Task = Tuple[Callback, Any, Any] class Worker(Thread): def __init__(self, tasks:Queue[Task]): super().__init__() self.tasks : Queue = tasks def run(self): while True: if not self.tasks.empty(): func, args, kwargs = self.tasks.get() func(*args, **kwargs) self.tasks.task_done() class ThreadPool: def __init__(self, num_threads:int): self.tasks = Queue(num_threads) self.num_threads = num_threads for _ in range(self.num_threads): worker = Worker(self.tasks) worker.setDaemon(True) worker.start() def submit(self, func:Callback, *args, **kwargs): self.tasks.put((func, args, kwargs)) def wait(self): self.tasks.join() def cpu_waster(idx: int) -&gt; None: name = threading.current_thread().getName() print(f\"{name} : doing {idx} work\") time.sleep(3) def main(): num_jobs : int = 20 num_threads : int = 5 timer : Timer = Timer() pool = ThreadPool(num_threads = num_threads) for idx in range(num_jobs): pool.submit(cpu_waster, idx) pool.wait() if \"__main__\" == __name__: main() . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-in-python",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-in-python"
-  },"98": {
+  },"106": {
     "doc": "07. IPC - Shared Memory",
     "title": "Thread Pool in C++",
     "content": "#include &lt;iostream&gt; #include &lt;thread&gt; #include &lt;vector&gt; #include &lt;queue&gt; #include &lt;functional&gt; #include &lt;mutex&gt; #include &lt;condition_variable&gt; #include &lt;chrono&gt; #include &lt;atomic&gt; std::mutex coutMtx; using Task = std::function&lt;void()&gt;; class ThreadPool { public: ThreadPool(size_t numThreads) : mb_Stop(false) { for (size_t i = 0; i &lt; numThreads; ++i) { m_Workers.emplace_back([this] { workerThread(); }); } } ~ThreadPool() { { std::unique_lock&lt;std::mutex&gt; lock(m_queueMtx); mb_Stop = true; } m_CV.notify_all(); for (auto&amp; worker : m_Workers) { worker.join(); } } template &lt;typename Func, typename... Args&gt; void Submit(Func&amp;&amp; func, Args&amp;&amp;... args) { { std::unique_lock&lt;std::mutex&gt; lk(m_queueMtx); m_Tasks.emplace(std::bind(std::forward&lt;Func&gt;(func), std::forward&lt;Args&gt;(args)...)); } m_CV.notify_one(); } void Wait() { std::unique_lock&lt;std::mutex&gt; lk(m_WaitMtx); m_CVWait.wait(lk, [this] { return m_Tasks.empty(); }); } private: void workerThread() { while (true) { Task task; { std::unique_lock&lt;std::mutex&gt; lock(m_queueMtx); m_CV.wait(lock, [this] { return mb_Stop || !m_Tasks.empty(); }); if (mb_Stop &amp;&amp; m_Tasks.empty()) { return; } task = std::move(m_Tasks.front()); m_Tasks.pop(); if(m_Tasks.empty()){ m_CVWait.notify_one(); } } task(); } } std::vector&lt;std::thread&gt; m_Workers; std::queue&lt;Task&gt; m_Tasks; std::mutex m_queueMtx; std::condition_variable m_CV; std::mutex m_WaitMtx; std::condition_variable m_CVWait; std::atomic&lt;bool&gt; mb_Stop; }; void cpu_waster(int idx) { std::this_thread::sleep_for(std::chrono::seconds(3)); { std::lock_guard&lt;std::mutex&gt; lk(coutMtx); std::cout &lt;&lt; std::this_thread::get_id() &lt;&lt; \" : doing \" &lt;&lt; idx &lt;&lt; \" work\" &lt;&lt; std::endl; } } int main() { int numJobs = 20; int numThreads = 5; ThreadPool pool(numThreads); for (int idx = 0; idx &lt; numJobs; ++idx) { pool.Submit(cpu_waster, idx); } pool.Wait(); return 0; } . ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-in-c",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#thread-pool-in-c"
-  },"99": {
+  },"107": {
     "doc": "07. IPC - Shared Memory",
     "title": "Conclusion",
     "content": "Inter-Process Communication (IPC) is fundamental to concurrent programming, allowing processes and threads to coordinate efficiently. Shared-memory IPC techniques provide high performance but require great caution from developers to ensure safe code because OS merely manages the shared memory control in userland. ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#conclusion",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html#conclusion"
-  },"100": {
+  },"108": {
     "doc": "07. IPC - Shared Memory",
     "title": "07. IPC - Shared Memory",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html",
     
     "relUrl": "/docs/programming/concurrent-programming/07.%20IPC-Shared-Memory.html"
-  },"101": {
+  },"109": {
     "doc": "08. Decomposition",
     "title": "Decomposition",
     "content": "So far, we have discussed the basic usage of multiprocessing / multithreading and basic methodologies (IPC). However, without knowing when to use and how to use, the methodiology is useless. In this section, we discuss popular programming patterns in concurrent applications. In other words, we discuss how we can decompose an application to effectively apply the concurrent programming paradigm from two perspectives: by process and by data. | Decomposition . | Dependency Analysis | Types of decompositions | . | . ",
     "url": "/docs/programming/concurrent-programming/08.%20Decomposition.html#decomposition",
     
     "relUrl": "/docs/programming/concurrent-programming/08.%20Decomposition.html#decomposition"
-  },"102": {
+  },"110": {
     "doc": "08. Decomposition",
     "title": "Dependency Analysis",
     "content": "Decomposing a problem into concurrent tasks is the first and foremost step. Without knowing the dependencies between tasks, concurrent programming might result in serious resource problems or unexpected outputs. Therefore, it is highly recommended to first draw a concurrent programming flowchart or sequence diagram and then apply the diagram to your code. Such a diagram is called a dependency graph. ",
     "url": "/docs/programming/concurrent-programming/08.%20Decomposition.html#dependency-analysis",
     
     "relUrl": "/docs/programming/concurrent-programming/08.%20Decomposition.html#dependency-analysis"
-  },"103": {
+  },"111": {
     "doc": "08. Decomposition",
     "title": "Types of decompositions",
     "content": "There are two base decomposition strategies - task decomposition and data decomposition. | Task Decomposition | Data Decomposition | . Modern programs in real world, of course, usually use both strategies : deeplearning models, video games, web services, data engineering and LLM services. If we think of manufacturing, task decomposition means using different type of workers, and data decomposition means co-working between the same typed workers. Let us suppose that we runs a Fashion company that makes a hand-made bag. Instead of hiring some workers that can have ability of planning, manufacturing and managing, we might hire a designer, manufacturers, and a manager. By separating the tasks as designing, manufacturing, and managing, we also effectively uses the resources and time, in the example, we might hire more manufacturers because manufacturing is time consuming compared to designing or managing. This concept might also be applied on your program, your program might have some steps, and some of the steps would take a long time than others. If we decompose the steps, and put more resources on the time-consuming steps, we could reduce the execution time and use resources efficiently. ",
     "url": "/docs/programming/concurrent-programming/08.%20Decomposition.html#types-of-decompositions",
     
     "relUrl": "/docs/programming/concurrent-programming/08.%20Decomposition.html#types-of-decompositions"
-  },"104": {
+  },"112": {
     "doc": "08. Decomposition",
     "title": "08. Decomposition",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/08.%20Decomposition.html",
     
     "relUrl": "/docs/programming/concurrent-programming/08.%20Decomposition.html"
-  },"105": {
+  },"113": {
     "doc": "09. Decomposition - Task Parallelism",
     "title": "Task Decomposition",
     "content": "As in the metaphor (Designer, Manufacturer and Manager), we can describe the task decomposition is way to hire the workers into designing / manufacturing and managing and work concurrently as possible. | Task Decomposition . | Pipeline Pattern . | Dependency Graph Example | Python Example | C++ Example | . | . | . ",
     "url": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#task-decomposition",
     
     "relUrl": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#task-decomposition"
-  },"106": {
+  },"114": {
     "doc": "09. Decomposition - Task Parallelism",
     "title": "Pipeline Pattern",
     "content": "Pipeline pattern is the most common in task decomposition. We design the steps be in different resources (thread / processes ) and then control the internal outputs/artifacts between the steps by IPC or thread-safe queues, because the steps are usually not finished at the same time. ",
     "url": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#pipeline-pattern",
     
     "relUrl": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#pipeline-pattern"
-  },"107": {
+  },"115": {
     "doc": "09. Decomposition - Task Parallelism",
     "title": "Dependency Graph Example",
     "content": ". ",
     "url": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#dependency-graph-example",
     
     "relUrl": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#dependency-graph-example"
-  },"108": {
+  },"116": {
     "doc": "09. Decomposition - Task Parallelism",
     "title": "Python Example",
     "content": "import time import threading from queue import Queue import typing as T from utils import Timer Workload = T.AnyStr class SharedCounter: def __init__(self, initial_value:int = 0): self._value = initial_value self._mutex = threading.Lock() def increment(self): with self._mutex: self._value += 1 def decrement(self): with self._mutex: self._value -= 1 def get(self): with self._mutex: return self._value class Worker(threading.Thread): def __init__( self, in_queue: Queue[Workload], out_queue: T.Optional[Queue[Workload]], job_type: str, turnaround_time: int = 4, num_projects: int = 4, # Ensure workers know the number of projects process_counter: T.Optional[SharedCounter] = None ): super().__init__() self.in_queue = in_queue self.out_queue = out_queue self.job_type = job_type self.turnaround_time = turnaround_time self.num_projects = num_projects if process_counter: self.process_counter = process_counter else: self.process_counter = SharedCounter(initial_value=0) def run(self) -&gt; None: while self.process_counter.get() &lt; self.num_projects: try: workload = self.in_queue.get(timeout=1) # Avoid infinite blocking except Exception: continue # Keep checking if no task available if workload is None: self.in_queue.task_done() break # Stop if sentinel received print(f\"{self.job_type} .... {workload}\") time.sleep(self.turnaround_time) self.process_counter.increment() if self.out_queue: self.out_queue.put(workload) self.in_queue.task_done() class Pipeline: def __init__(self, num_projects: int = 4): self.num_projects = num_projects def assemble_leathers(self) -&gt; Queue[Workload]: projects_in: Queue[Workload] = Queue() for idx in range(self.num_projects): projects_in.put(f\"Shoes #{idx}\") return projects_in def run_concurrently(self) -&gt; None: to_be_planned = self.assemble_leathers() to_be_programmed = Queue() to_be_finalized = Queue() designer = Worker(to_be_planned, to_be_programmed, \"Designer\", turnaround_time=0.2, num_projects=self.num_projects) # Assume that data decomposition. we hired multiple manufacturers. shared_counter = SharedCounter(initial_value=0) # use as an atomic value in C++ # suppose that manufacturer1 is more skillful than manufacturer2 manufacturer1 = Worker(to_be_programmed, to_be_finalized, \"Manufacturer 1\", turnaround_time=0.4, num_projects=self.num_projects, process_counter=shared_counter) manufacturer2 = Worker(to_be_programmed, to_be_finalized, \"Manufacturer 2\", turnaround_time=0.5, num_projects=self.num_projects, process_counter=shared_counter) manager = Worker(to_be_finalized, None, \"Manager\", turnaround_time=0.1, num_projects=self.num_projects) designer.start() manufacturer1.start() manufacturer2.start() manager.start() # Wait for all tasks to be processed designer.join() manufacturer1.join() manufacturer2.join() manager.join() if __name__ == \"__main__\": with Timer() as timer: pipeline = Pipeline(num_projects=100) pipeline.run_concurrently() . ",
     "url": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#python-example",
     
     "relUrl": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#python-example"
-  },"109": {
+  },"117": {
     "doc": "09. Decomposition - Task Parallelism",
     "title": "C++ Example",
     "content": "#include &lt;iostream&gt; #include &lt;queue&gt; #include &lt;mutex&gt; #include &lt;condition_variable&gt; #include &lt;thread&gt; #include &lt;memory&gt; #include &lt;chrono&gt; #include &lt;string&gt; template&lt;typename T&gt; class ThreadSafeQueue { public: void Push(T item) { std::lock_guard&lt;std::mutex&gt; lock(m_Mutex); m_Queue.push(std::move(item)); m_CV.notify_one(); } bool Pop(T&amp; item, std::chrono::milliseconds timeout) { std::unique_lock&lt;std::mutex&gt; lock(m_Mutex); if (m_CV.wait_for(lock, timeout, [this] { return !m_Queue.empty(); })) { item = std::move(m_Queue.front()); m_Queue.pop(); return true; } return false; } private: std::queue&lt;T&gt; m_Queue; mutable std::mutex m_Mutex; std::condition_variable m_CV; }; class SharedCounter { public: SharedCounter(int initialValue = 0) : m_Value(initialValue) {} void Increment() { std::lock_guard&lt;std::mutex&gt; lock(m_Mutex); ++m_Value; } void Decrement() { std::lock_guard&lt;std::mutex&gt; lock(m_Mutex); --m_Value; } int Get() { std::lock_guard&lt;std::mutex&gt; lock(m_Mutex); return m_Value; } private: int m_Value; std::mutex m_Mutex; }; class Worker { public: Worker( ThreadSafeQueue&lt;std::string&gt;&amp; queueIn, ThreadSafeQueue&lt;std::string&gt;* queueOut, std::string jobType, std::chrono::milliseconds turnaroundTime, int numProjects, std::shared_ptr&lt;SharedCounter&gt; processCounter = nullptr ) : m_QueueIn(queueIn), m_QueueOut(queueOut), m_JobType(std::move(jobType)), m_TurnaroundTime(turnaroundTime), m_NumProjects(numProjects), m_ProcessCounter(processCounter ? processCounter : std::make_shared&lt;SharedCounter&gt;()) {} void Start() { m_Thread = std::thread(&amp;Worker::run, this); } void Join() { if (m_Thread.joinable()) { m_Thread.join(); } } ~Worker() { Join(); } private: void run() { while (m_ProcessCounter-&gt;Get() &lt; m_NumProjects) { std::string workload; bool got = m_QueueIn.Pop(workload, std::chrono::seconds(1)); if (got) { std::cout &lt;&lt; m_JobType &lt;&lt; \" .... \" &lt;&lt; workload &lt;&lt; std::endl; std::this_thread::sleep_for(m_TurnaroundTime); m_ProcessCounter-&gt;Increment(); if (m_QueueOut) { m_QueueOut-&gt;Push(workload); } } } } private: ThreadSafeQueue&lt;std::string&gt;&amp; m_QueueIn; ThreadSafeQueue&lt;std::string&gt;* m_QueueOut; std::string m_JobType; std::chrono::milliseconds m_TurnaroundTime; int m_NumProjects; std::shared_ptr&lt;SharedCounter&gt; m_ProcessCounter; std::thread m_Thread; }; class Pipeline { public: Pipeline(int numProjects) : m_NumProjects(numProjects) {} void RunConcurrently() { ThreadSafeQueue&lt;std::string&gt; toBePlanned; for (int idx = 0; idx &lt; m_NumProjects; ++idx) { toBePlanned.Push(\"Shoes #\" + std::to_string(idx)); } ThreadSafeQueue&lt;std::string&gt; toBeProgrammed; ThreadSafeQueue&lt;std::string&gt; toBeFinalized; Worker designer(toBePlanned, &amp;toBeProgrammed, \"Designer\", std::chrono::milliseconds(200), m_NumProjects); auto sharedCounter = std::make_shared&lt;SharedCounter&gt;(); Worker manufacturer1(toBeProgrammed, &amp;toBeFinalized, \"Manufacturer 1\", std::chrono::milliseconds(400), m_NumProjects, sharedCounter); Worker manufacturer2(toBeProgrammed, &amp;toBeFinalized, \"Manufacturer 2\", std::chrono::milliseconds(500), m_NumProjects, sharedCounter); Worker manager(toBeFinalized, nullptr, \"Manager\", std::chrono::milliseconds(100), m_NumProjects); designer.Start(); manufacturer1.Start(); manufacturer2.Start(); manager.Start(); designer.Join(); manufacturer1.Join(); manufacturer2.Join(); manager.Join(); } private: int m_NumProjects; }; class Timer { private: std::chrono::time_point&lt;std::chrono::high_resolution_clock&gt; start; public: Timer() { start = std::chrono::high_resolution_clock::now(); } ~Timer() { auto end = std::chrono::high_resolution_clock::now(); auto duration = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(end - start); std::cout &lt;&lt; \"Time taken: \" &lt;&lt; duration.count() &lt;&lt; \" milliseconds\" &lt;&lt; std::endl; } }; int main() { { Timer timer; Pipeline pipeline(100); pipeline.RunConcurrently(); } return 0; } . ",
     "url": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#c-example",
     
     "relUrl": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html#c-example"
-  },"110": {
+  },"118": {
     "doc": "09. Decomposition - Task Parallelism",
     "title": "09. Decomposition - Task Parallelism",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html",
     
     "relUrl": "/docs/programming/concurrent-programming/09.%20Decomposition%20-%20Task.html"
-  },"111": {
+  },"119": {
     "doc": "10. Decomposition - Data Parallelism",
     "title": "10. Decomposition - Data Parallelism",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/10.%20Decomposition%20-%20Data.html",
     
     "relUrl": "/docs/programming/concurrent-programming/10.%20Decomposition%20-%20Data.html"
-  },"112": {
+  },"120": {
     "doc": "11. Synchronization",
     "title": "11. Synchronization",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/11.%20Synchronization.html",
     
     "relUrl": "/docs/programming/concurrent-programming/11.%20Synchronization.html"
-  },"113": {
+  },"121": {
     "doc": "12. Synchronization - Mutexes and Semaphores",
     "title": "12. Synchronization - Mutexes and Semaphores",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/12.%20Synchronization%20-%20Mutexes%20and%20Semaphores.html",
     
     "relUrl": "/docs/programming/concurrent-programming/12.%20Synchronization%20-%20Mutexes%20and%20Semaphores.html"
-  },"114": {
+  },"122": {
     "doc": "13. Synchronization - Deadlock",
     "title": "13. Synchronization - Deadlock",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/13.%20Synchronization%20-%20Deadlocks.html",
     
     "relUrl": "/docs/programming/concurrent-programming/13.%20Synchronization%20-%20Deadlocks.html"
-  },"115": {
+  },"123": {
     "doc": "14. Synchronization - Starvation",
     "title": "14. Synchronization - Starvation",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/14.%20Synchronization%20-%20Starvation.html",
     
     "relUrl": "/docs/programming/concurrent-programming/14.%20Synchronization%20-%20Starvation.html"
-  },"116": {
+  },"124": {
     "doc": "15. Synchronization - RWLock, Spin Lock",
     "title": "15. Synchronization - RWLock, Spin Lock",
     "content": " ",
     "url": "/docs/programming/concurrent-programming/15.%20Synchronization%20-%20RWLocks%20and%20Spin%20Locks.html",
     
     "relUrl": "/docs/programming/concurrent-programming/15.%20Synchronization%20-%20RWLocks%20and%20Spin%20Locks.html"
-  },"117": {
+  },"125": {
     "doc": "3D Image Reconstruction",
     "title": "3D Image Reconstruction",
     "content": ". | 3D Image Reconstruction . | 3D Reconstruction - Introduction . | Backgrounds | Datasets, Metrics and Representations . | Datasets | Metrics | 3D Computer Vision Representation | . | . | References | . | . ",
     "url": "/docs/ai-research/computer-vision/3d-reconstruction",
     
     "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction"
-  },"118": {
+  },"126": {
     "doc": "3D Image Reconstruction",
     "title": "3D Reconstruction - Introduction",
     "content": " Introductions to 3D Reconstruction : Backgrounds, Metrics and Representations . ",
     "url": "/docs/ai-research/computer-vision/3d-reconstruction#3d-reconstruction---introduction",
     
     "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#3d-reconstruction---introduction"
-  },"119": {
+  },"127": {
     "doc": "3D Image Reconstruction",
     "title": "Backgrounds",
     "content": "3D reconstruction, which is 3-Dimensional representation of objects, can be used for many applications such as video games, animation, navigation and so on. There are many traditional methods in 3D reconstruction like SfM(Structure from Motion), Dense Reconstruction and MVS(Multi-View Stereo). Those traditional methods are based on photogrammetry. It is true that understanding the basics of photogrammetry is very important to understand deep-learning based 3D reconstruction because deep-learning based methods are built on top of these photogrammetry techniques. In this post, however, it is assumed that the readers have knowledge about deep learning models rather than 3D reconstructions. Hence, the discussion will focus on deep-learning based 3D reconstructions while traditional techniques will be mentioned only as needed for readers to comprehend the deep-learning models. ",
     "url": "/docs/ai-research/computer-vision/3d-reconstruction#backgrounds",
     
     "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#backgrounds"
-  },"120": {
+  },"128": {
     "doc": "3D Image Reconstruction",
     "title": "Datasets, Metrics and Representations",
     "content": "Based on 3D reconstruction using deep learning : a survey [1] . Starting with a good review paper helps to understand the field and the potential research directions. In deep learning based 3D reconstruction, luckily we can access a good review paper [1] for free. ",
     "url": "/docs/ai-research/computer-vision/3d-reconstruction#datasets-metrics-and-representations",
     
     "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#datasets-metrics-and-representations"
-  },"121": {
+  },"129": {
     "doc": "3D Image Reconstruction",
     "title": "Datasets",
     "content": "The paper[1] show us several useful dataset for 3D reconstructions: . | ShapeNet It is a very large scale dataset for CAD models developed by Chang et al.[2] from Stanford University, Princeton University and the Toyota Technological Institute at Chicago, USA. | Pascal3D+ It is a multi-view datasets, if you are familiar with Object Detection Task, you might be heard of PASCAL VOC dataset. Pascal3D+ has 12 categories of rigid object from PASCAL VOC 2012. This dataset is developed by Yu Xiang et al[3] from Computational Vision and Geometry Lab at Stanford University. | ObjectNet3D It is a large scale database for 3D objects. Like as Pascal3D+, this dataset is developed by Yu Xiang et al[4] from Computational Vision and Geometry Lab at Stanford University. | KITTI If you are familiar with Computer Vision in automous driving and mobile robotics, I am sure that you heard of this dataset. This was introduced by Andres Geiger et al[5]. | . ",
     "url": "/docs/ai-research/computer-vision/3d-reconstruction#datasets",
     
     "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#datasets"
-  },"122": {
+  },"130": {
     "doc": "3D Image Reconstruction",
     "title": "Metrics",
     "content": "The paper[1] briefly explains 3 commonly used metric used: MSE, Voxel IoU and cross-entropy. I think the reader might familiar with MSE and cross-entropy. Therefore, I will skip their details. Voxel IoU . In many cases in Computer Vision, IoU represents an abbreviation of Intersection over Union. As you might guess. Voxel IoU is mere volumetric extension of 2D-pixel-IoU. which is: . \\[{IoU={G \\cap P \\over G \\cup P}}\\] Here, G stands for a set of voxels in a ground truth, while P stands for a set of voxels in prediction/reconstruction. This metric is also widely used for 3D object detection or segmentation. Also, for point cloud and mesh representation, sevaral distance metrics between groundtruth and reconstruction can be used as metric. I beleive that readers are familiar with Euclidean Distance, I will post about Chamfer Distance and EMD instead. Chamfer Distance . Chamfer Distance is average of the summation of closest point pairs. \\[Chamfer(G,P) = {1\\over{n}}(\\sum_i \\min_j(||g_i - p_j||) + \\sum_j \\min_i(||g_i - p_j||))\\] More precisely, The formula represents average of distance from each point in one point cloud to its closest point in the other point cloud. and vice versa. EMD . Earth mover’s distance (EMD), also known as the Wasserstein distance, stands for the distance between probability distributions over a region in statistics. \\[EMD(P, \\hat{P})=\\min_{\\phi:P\\rightarrow\\hat{P}} \\sum_{p_i\\in P}||p_i - \\phi(p_i)||\\] This can be computed using the Hungarian Algorithm or Sinkhorn-Knopp algorithm. ",
     "url": "/docs/ai-research/computer-vision/3d-reconstruction#metrics",
     
     "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#metrics"
-  },"123": {
+  },"131": {
     "doc": "3D Image Reconstruction",
     "title": "3D Computer Vision Representation",
     "content": "The original survey [1] divides the reconstruction techniques into two main categories by the number of sources. (Reconstruction based on single image or multiple images.) After that, it lists up middle categories with way of representations or how outcome look like with a short descriptions. These could be very helpful for the researchers who are familiar with 3D Computer Vision. However, for the newcomers (I assume that most of readers of survey papers are newcomers), I think that it would be more effective writing if it explains the ways of representing 3D object first, and then explains the models and results. Voxel Representation . Voxel is a volumetric representation which can be comparing to pixel representation in 2D images. Actually, by adding depth (D) into pixel, Voxel achieves representation of 3D. \\(pixel : H \\times W \\times C\\) \\(voxel : H \\times W \\times D \\times C\\) \\(, where \\ H : height , \\ W : width, \\ D : depth, \\ C : channel \\ (color)\\) . Point Cloud Representation . Point Cloud is another way to represent 3D object. A single point cloud is a collection of 3D points (mostly a collection of Cartesian coordinate positions) : . point_cloud = [ [x1, y1, z1], [x2, y2, z2], ... [xN, yN, zN] ] . Mesh Representation . Mesh representation could be another option. Mesh is a collection of base geometry to represent surface. Since the least number of points to construct a surface is 3 (triangle), triangle is widely used for mesh representations: . mesh_representation = [ [point_1, point_2, point_3], [point_4, point_5, point_6], ... [point_a, point_b, point_c] ] . Each point (vertex) represents 3d point (x,y,z) . Other Representation . Implicit Surface . Implicit Surface is a model based surface representation. Models can be a continuous decision boundary of deeplearning network classifiers, suggested in OccNet6, or multi-layer network architecture to extract geometry features and represents 3D shapes in an Euclidean preserving latent space as in UCLID-Net7 This concept is novel but thinking of the mathematics, we can easily see the concepts: . \\[f_{model}(x,y,z) = 0\\] which resembles our well-known implicit surface: . \\[f(x,y,z) = x^2+y^2+z^2 -1 =0\\] a sphere! . depth . About generating depths based on a 2D images, 3D representation also be achieved. ",
     "url": "/docs/ai-research/computer-vision/3d-reconstruction#3d-computer-vision-representation",
     
     "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#3d-computer-vision-representation"
-  },"124": {
+  },"132": {
     "doc": "3D Image Reconstruction",
     "title": "References",
     "content": "[1] Jin, Y., Jiang, D., &amp; Cai, M. (2020). 3d reconstruction using deep learning: a survey. Communications in Information and Systems, 20(4), 389-413. [2] Chang, A. X., Funkhouser, T., Guibas, L., Hanrahan, P., Huang, Q., Li, Z., … &amp; Yu, F. (2015). Shapenet: An information-rich 3d model repository. arXiv preprint arXiv:1512.03012. [3] Y. Xiang, R. Mottaghi and S. Savarese, “Beyond PASCAL: A benchmark for 3D object detection in the wild,” IEEE Winter Conference on Applications of Computer Vision, Steamboat Springs, CO, USA, 2014, pp. 75-82, doi: 10.1109/WACV.2014.6836101. [4] Xiang, Y., Kim, W., Chen, W., Ji, J., Choy, C., Su, H., … &amp; Savarese, S. (2016). Objectnet3d: A large scale database for 3d object recognition. In Computer Vision–ECCV 2016: 14th European Conference, Amsterdam, The Netherlands, October 11-14, 2016, Proceedings, Part VIII 14 (pp. 160-176). Springer International Publishing. [5] A. Geiger, P. Lenz and R. Urtasun, “Are we ready for autonomous driving? The KITTI vision benchmark suite,” 2012 IEEE Conference on Computer Vision and Pattern Recognition, Providence, RI, USA, 2012, pp. 3354-3361, doi: 10.1109/CVPR.2012.6248074. [6] L. Mescheder, M. Oechsle, M. Niemeyer, S. Nowozin, and A. Geiger, “Occupancy networks: Learning 3d reconstruction in function space,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019, pp. 4460–4470. [7] L. Mescheder, M. Oechsle, M. Niemeyer, S. Nowozin, and A. Geiger, “Occupancy networks: Learning 3d reconstruction in function space,” in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019, pp. 4460–4470. ",
     "url": "/docs/ai-research/computer-vision/3d-reconstruction#references",
     
     "relUrl": "/docs/ai-research/computer-vision/3d-reconstruction#references"
-  },"125": {
+  },"133": {
     "doc": "Useful Timer Class",
     "title": "Timer class",
     "content": "When we compare the algorithms, we use Big-O notation for the time-space efficiency. However, making a timer is often more practical. For the algorithm section, we will use a simple Timer class both in python and C++. ",
     "url": "/docs/programming/algorithms/Useful%20Timer%20Class.html#timer-class",
     
     "relUrl": "/docs/programming/algorithms/Useful%20Timer%20Class.html#timer-class"
-  },"126": {
+  },"134": {
     "doc": "Useful Timer Class",
     "title": "C++ version Timer",
     "content": "By using constructor and destructor, we can make a simple Timer as followings: . Timer.h . // Timer.h #pragma once #include &lt;chrono&gt; struct Timer { std::chrono::time_point&lt;std::chrono::steady_clock&gt; m_Start; Timer(); ~Timer(); }; . Timer.cpp . // Timer.cpp #include &lt;iostream&gt; #include \"Timer.h\" Timer::Timer() : m_Start(std::chrono::high_resolution_clock::now()) { } Timer::~Timer() { auto end = std::chrono::high_resolution_clock::now(); std::chrono::duration&lt;float&gt; duration = end - m_Start; std::cout &lt;&lt; \"Process Ended in \" &lt;&lt; duration.count() &lt;&lt; \" [s].\\n\"; } . When we use this timer, it is only to instantiate the struct as the following Main.cpp. Main.cpp . #include &lt;iostream&gt; #include \"Timer.h\" int main() { Timer timer; { Timer timer2; // it counts only this code block. // do inner job }// inner code block ends, timer2 shows how much time passed in this block. // ... do something } // code block ends, timer shows the time passed of main() . At the end of code block, timer’s destructor Timer::~Timer() would be called, printing the duration of the code block. ",
     "url": "/docs/programming/algorithms/Useful%20Timer%20Class.html#c-version-timer",
     
     "relUrl": "/docs/programming/algorithms/Useful%20Timer%20Class.html#c-version-timer"
-  },"127": {
+  },"135": {
     "doc": "Useful Timer Class",
     "title": "Python version Timer",
     "content": "In python, we can establish the Timer class similar to C++ version (it works), however, it is recommended using __enter__ and __exit__ methods with with statement because of robustness (Timer2) and clarifying the target code block (as we cannot use curly brackets). utils.py . import time class Timer(object): def __init__(self): self._start_time = time.perf_counter() def __del__(self): print( \"Process Ended in \" f\"{time.perf_counter()-self._start_time} [s]\" ) class Timer2(object): def __init__(self): self._start_time = None def __enter__(self): self._start_time = time.perf_counter() return self def __exit__(self, *exc_info): print( \"Process Ended in \" f\"{time.perf_counter()-self._start_time} [s]\" ) . main.py . from utils import Timer, Timer2 def main1(): timer = Timer() # do something ... def main2(): with Timer2() as timer2: #do something ... with Timer2() as timer3: # do something ## get final job when it ends ## final job ## get the timer2 output . ",
     "url": "/docs/programming/algorithms/Useful%20Timer%20Class.html#python-version-timer",
     
     "relUrl": "/docs/programming/algorithms/Useful%20Timer%20Class.html#python-version-timer"
-  },"128": {
+  },"136": {
     "doc": "Useful Timer Class",
     "title": "Useful Timer Class",
     "content": " ",
     "url": "/docs/programming/algorithms/Useful%20Timer%20Class.html",
     
     "relUrl": "/docs/programming/algorithms/Useful%20Timer%20Class.html"
-  },"129": {
+  },"137": {
     "doc": "About",
     "title": "Sanhan",
     "content": ". Work as a software researcher. ",
     "url": "/docs/about.html#sanhan",
     
     "relUrl": "/docs/about.html#sanhan"
-  },"130": {
+  },"138": {
     "doc": "About",
     "title": "Careers",
     "content": " ",
     "url": "/docs/about.html#careers",
     
     "relUrl": "/docs/about.html#careers"
-  },"131": {
+  },"139": {
     "doc": "About",
     "title": "Software Engineer / Researcher at LG Electronics, Seoul",
     "content": ". | DX Center in CSO division (Jan.2025~) | AI Bigdata department in CDO division (Aug.2022~Jan.2025) | Smartdata department in CTO division (Aug.2020~Aug.2022) | . ",
     "url": "/docs/about.html#software-engineer--researcher-at-lg-electronics-seoul",
     
     "relUrl": "/docs/about.html#software-engineer--researcher-at-lg-electronics-seoul"
-  },"132": {
+  },"140": {
     "doc": "About",
     "title": "Education",
     "content": " ",
     "url": "/docs/about.html#education",
     
     "relUrl": "/docs/about.html#education"
-  },"133": {
+  },"141": {
     "doc": "About",
     "title": "Master of Science in Engineering at University of Michigan, Ann Arbor",
     "content": ". | Mechanical Engineering specialized on mechatronics and controls (May.2020) | . ",
     "url": "/docs/about.html#master-of-science-in-engineering-at-university-of-michigan-ann-arbor",
     
     "relUrl": "/docs/about.html#master-of-science-in-engineering-at-university-of-michigan-ann-arbor"
-  },"134": {
+  },"142": {
     "doc": "About",
     "title": "Bachelor of Science in Engineering at Yonsei University, Seoul",
     "content": ". | Mechanical Engineering (Aug.2018) | . ",
     "url": "/docs/about.html#bachelor-of-science-in-engineering-at-yonsei-university-seoul",
     
     "relUrl": "/docs/about.html#bachelor-of-science-in-engineering-at-yonsei-university-seoul"
-  },"135": {
+  },"143": {
     "doc": "About",
     "title": "About",
     "content": " ",
     "url": "/docs/about.html",
     
     "relUrl": "/docs/about.html"
-  },"136": {
+  },"144": {
     "doc": "Algorithms and Data structures",
     "title": "Algorithms and Data structures",
     "content": "python / C++ based approaches. ",
     "url": "/docs/programming/algorithms",
     
     "relUrl": "/docs/programming/algorithms"
-  },"137": {
+  },"145": {
     "doc": "ARC-AGI",
     "title": "ARC-AGI",
     "content": "https://arcprize.org/arc . In 2019, François Chollet - creator of Keras, an open-source deep learning library adopted by over 2.5M developers - published the influential paper “On the Measure of Intelligence” where he introduced the “Abstract and Reasoning Corpus for Artificial General Intelligence” (ARC-AGI) benchmark to measure the efficiency of AI skill-acquisition on unknown tasks. ",
     "url": "/docs/ai-research/arc-agi",
     
     "relUrl": "/docs/ai-research/arc-agi"
-  },"138": {
+  },"146": {
     "doc": "Computer Vision",
     "title": "Computer Vision",
     "content": "simple definition : Computer Vision is a visionary understanding of computer. With a significant acheivement in Deep Learning Architectures ( CNN, RNN, transformers, GAN, leveraging LLM, Diffusion Models, and so on) with large datasets like ImageNet, there are a significant progress in computer vision. However, there are still unsolved questions, efficiency, reliability, robustness, linkage to other modalities, temporal evolution of scene in computer vision and understanding the gap between computer vision and human visionary behavior. ",
     "url": "/docs/ai-research/computer-vision",
     
     "relUrl": "/docs/ai-research/computer-vision"
-  },"139": {
+  },"147": {
     "doc": "Concurrent Programming",
     "title": "Concurrent Programming",
     "content": "Explanation of concurrent / parallel programming (with C++ and python codes). ",
     "url": "/docs/programming/concurrent-programming",
     
     "relUrl": "/docs/programming/concurrent-programming"
-  },"140": {
+  },"148": {
     "doc": "Control theory of LLM",
     "title": "A Control Theory of LLM prompting",
     "content": ". | A Control Theory of LLM prompting . | Paper Review - What's the Magic Word? A Control Theory of LLM prompting . | Introduction | Basic Control Theory: System | Basic Control Theory: Reachability, Observability and Controllability . | Reachability, Observable and Controllability . | Event | Reacability and Controllability | . | . | Control Theory of LLM . | Notations | Assumptions | Definitions . | Definition 1. Autoregressive LLM system | Definition 2. LLM Output Reachability | Definition 3. Output Reachablility Set | Definition 4. Output Controllabilty (Revised from the paper.) | Definition 5. \\(k-\\epsilon\\) Controllability | . | Apply to the Self-Attention Mechanism. - Preliminaries . | Definition 6. Self-attention. | definition 7. Reachability of self-attention | . | Apply to the Self-Attention mechanism - Theorem . | Theorem: reachability in the Self-attention mechanism | . | . | . | References | . | . ",
     "url": "/docs/ai-research/llm/control-theory#a-control-theory-of-llm-prompting",
     
     "relUrl": "/docs/ai-research/llm/control-theory#a-control-theory-of-llm-prompting"
-  },"141": {
+  },"149": {
     "doc": "Control theory of LLM",
     "title": "Paper Review - What's the Magic Word? A Control Theory of LLM prompting",
     "content": " ",
     "url": "/docs/ai-research/llm/control-theory#paper-review---whats-the-magic-word-a-control-theory-of-llm-prompting",
     
     "relUrl": "/docs/ai-research/llm/control-theory#paper-review---whats-the-magic-word-a-control-theory-of-llm-prompting"
-  },"142": {
+  },"150": {
     "doc": "Control theory of LLM",
     "title": "Introduction",
     "content": "In this post, I will review a very interesting recenet paper about LLM : What's the Magic Word? A Control Theory of LLM prompting.[1]. The reason why I review this paper is that it gives us a new perspective on LLM, with the glasses of control theory. The main concept of the paper is that analogy on LLM system to control system : LLM be as a plant and the prompt be as a control input. Unlike other ML/DL framework, most of studies on LLM prompting were emperical, without mathematical evidence. This is because that LLM is too huge to understand. The paper, however, tries to understand LLM itself but treat it as a plant to control and give us a concrete understanding. ",
     "url": "/docs/ai-research/llm/control-theory#introduction",
     
     "relUrl": "/docs/ai-research/llm/control-theory#introduction"
-  },"143": {
+  },"151": {
     "doc": "Control theory of LLM",
     "title": "Basic Control Theory: System",
     "content": "To understand this paper, we need to know basic concepts of state space representation and control theory. The authors put the Appendix on the paper [1], however, it is better to read Chapter 1-3 of [2]. It is online free. Briefly speaking, control theory depicts a system whether it is reachable (observable, controllable) and find out how to observe the system’s state and control the system with external inputs (force, current and so on.) . In mathematically, system is the set of state of plant, time, control input. and transition of state. If we have output space (observable output), we could add output and readout map to the original system. In addition to the appendix [1], . A system (\\(\\Sigma\\)) consists of: . | State (\\(X\\)): The state of a plant refers to the minimal set of variables that completely define its behavior at any given time. These variables capture the internal condition of the plant. | Control Input (\\(U\\)): Control inputs are the external influences applied to the plant to manipulate its behavior. | Time (\\(T\\)): Time set, the ordered set of positive values. | Transition map (\\(\\phi: X \\times U \\times T^{2} \\rightarrow X\\)): Transition map takes a current state (X(t)) at time t and a control input (u(t)) at time t, and returns the next state (X(t+1)) at the next time step (t+1). Note: \\(T\\) or \\(T^2\\)? If the control varies in time like as in feedback control or time-varying control strategy, we could add additional time space to describe the transition map. In the paper, however, as the transitted time t’ differs from the original t, it seems that author put the additional time space into the collection. I suppose that the authors want to describe t’ and t are nomially different. | Output (\\(Y\\)): Observed output space. | Readout map (\\(h: X \\times U \\times T \\rightarrow Y\\)): Readout map takes a current state (X(t)) at time t and a control input (u(t)) at the time t, and returns the observed(read out) value (Y(t)). | . ",
     "url": "/docs/ai-research/llm/control-theory#basic-control-theory-system",
     
     "relUrl": "/docs/ai-research/llm/control-theory#basic-control-theory-system"
-  },"144": {
+  },"152": {
     "doc": "Control theory of LLM",
     "title": "Basic Control Theory: Reachability, Observability and Controllability",
     "content": "In the above definition, we can set almost everything to be a system. For example, a totally random process like rolling a perfect dice, we can set a system. Let us say that the state be the top face of dice, control input be the human random force of rolling a dice (make the statements stronger, let us assume that this force is just rolling a dice without any intention in every trials), and the transition map be the state transition between trials. However, even we designed this rolling a dice to be a system with mathematical terms, it is hard to say that we can control the system. Then, what does make a system be controllable? . ref: dices image from wikipedia ",
     "url": "/docs/ai-research/llm/control-theory#basic-control-theory-reachability-observability-and-controllability",
     
     "relUrl": "/docs/ai-research/llm/control-theory#basic-control-theory-reachability-observability-and-controllability"
-  },"145": {
+  },"153": {
     "doc": "Control theory of LLM",
     "title": "Reachability, Observable and Controllability",
     "content": "Back to the rolling a dice system, we can say that this system is reachable because we could potentially role any number, and always be observable. However, we cannot say that this system is controllable because we cannot make intended input. Mathematically, we can define the reachability as in [2]. ",
     "url": "/docs/ai-research/llm/control-theory#reachability-observable-and-controllability",
     
     "relUrl": "/docs/ai-research/llm/control-theory#reachability-observable-and-controllability"
-  },"146": {
+  },"154": {
     "doc": "Control theory of LLM",
     "title": "Event",
     "content": "As we defined before, an arbitary system \\(\\Sigma\\) can be defined as \\(\\Sigma = (T, X, U, \\phi)\\) . An event is a state at a time, a pair of state and time \\((x, t) \\in X \\times T\\). ",
     "url": "/docs/ai-research/llm/control-theory#event",
     
     "relUrl": "/docs/ai-research/llm/control-theory#event"
-  },"147": {
+  },"155": {
     "doc": "Control theory of LLM",
     "title": "Reacability and Controllability",
     "content": "The event \\((z, \\tau)\\) can be reached from a state \\((x,\\sigma)\\), if and only if there is a path of \\(\\Sigma\\) on \\([\\sigma, \\tau]\\) and if there exists an \\(\\omega \\in U^{[\\sigma, \\tau)}\\) such that \\(\\phi(\\tau, \\sigma, x, \\omega) = z\\), we can say we can control the state x to state z. Again with the rolling a dice system, now we can see the problem, we put the human random force be the input, but it is not controllable. ",
     "url": "/docs/ai-research/llm/control-theory#reacability-and-controllability",
     
     "relUrl": "/docs/ai-research/llm/control-theory#reacability-and-controllability"
-  },"148": {
+  },"156": {
     "doc": "Control theory of LLM",
     "title": "Control Theory of LLM",
     "content": "Now we can discuss control of LLM with the paper [1]. All the following concepts and logics are originated from the paper. ",
     "url": "/docs/ai-research/llm/control-theory#control-theory-of-llm",
     
     "relUrl": "/docs/ai-research/llm/control-theory#control-theory-of-llm"
-  },"149": {
+  },"157": {
     "doc": "Control theory of LLM",
     "title": "Notations",
     "content": "In the paper, they denoted \\(P_{LM}\\) be a causal language model, \\(V\\) be a vocabulary set, \\(V^*\\) be the set of all possible sequences of any length composed of tokens from \\(V\\). The bold lowercase stands for sequence (vector) \\(\\bm{x}\\), while the unbolded lowercase letter \\(x\\) be an individual token. ",
     "url": "/docs/ai-research/llm/control-theory#notations",
     
     "relUrl": "/docs/ai-research/llm/control-theory#notations"
-  },"150": {
+  },"158": {
     "doc": "Control theory of LLM",
     "title": "Assumptions",
     "content": "Here are some assumptions before stating the definitions: . | The LLM system is discrete time: It is quite natural if we come across LLM chatbots, we get output token from LLM when we put query input. | The LLM system follows Shift-and-Grow State dynamics: Whereas the system state in an ODE-based system has a fixed size over time, the system state x(t) for LLM systems grows as tokens are added to the state sequence. | It is assumed that the LLM system follows a Markov Transition (In paper it is said in more gently as Mutual exclusion on control input token vs. generated token): The newest token is either drawn from the control input \\(u(t)\\) or is generated by the LLM by sampling \\(x{'} \\sim P_{LM} (x' | x(t))\\). This differs from traditional discrete stochastic systems, where the control sequence and internal dynamics generally affect the state synchronously. | . From the basic control theory and the followed assumptions, the authors defined the LLM systems and Control Input as follows: . ",
     "url": "/docs/ai-research/llm/control-theory#assumptions",
     
     "relUrl": "/docs/ai-research/llm/control-theory#assumptions"
-  },"151": {
+  },"159": {
     "doc": "Control theory of LLM",
     "title": "Definitions",
     "content": " ",
     "url": "/docs/ai-research/llm/control-theory#definitions",
     
     "relUrl": "/docs/ai-research/llm/control-theory#definitions"
-  },"152": {
+  },"160": {
     "doc": "Control theory of LLM",
     "title": "Definition 1. Autoregressive LLM system",
     "content": "An autoregressive LLM system \\(\\Sigma = (V, P_{LM})\\) with control input consists of time set (\\(T\\)), state space (\\(X\\)), input (\\(U\\)), transition map (\\(\\phi\\)) and readout map \\(h\\). | Time set \\(T\\) is a set of sequence number (natural number): \\(T = N\\). | The state space \\(X\\) is the set of all possible sequences of any length formed from the vocabulary set \\(V\\): \\(X = V^{*}\\) | The input space is the set of sequences but also allows the no inputs \\(\\empty\\): \\(U = V \\bigcup {\\{ \\empty \\}}\\) | The transition map \\(\\phi\\) is sum of current state and input: \\(\\phi : X \\times U \\times T^{2}\\) such that \\(\\phi(x(t), u(t), t, t+1) = \\begin{cases} x(t) + u(t) &amp; \\text{if $u(t) \\neq \\empty$}\\\\ x(t) + x' &amp; \\text{otherwise} \\end{cases}\\) where \\(x' \\sim P_{LM}(x' | x(t))\\). Sadly because they use the plus sign as a operator wihtout the definition, we need to assume that this is an operator that represent concatenation of state because we assume that it is autoregressive. More than that, as it is autoregressive, the output is deterministic. | The readout map returns the most recent r tokens from the state x: \\(h(x(t);r) = [x^{t-r}(t), ... , x^{t}(t)]\\) | . ",
     "url": "/docs/ai-research/llm/control-theory#definition-1-autoregressive-llm-system",
     
     "relUrl": "/docs/ai-research/llm/control-theory#definition-1-autoregressive-llm-system"
-  },"153": {
+  },"161": {
     "doc": "Control theory of LLM",
     "title": "Definition 2. LLM Output Reachability",
     "content": "\\(y \\in V^r\\) is reachable from the initial state \\(x_0 \\in V^*\\) if and only if there exists some time \\(T\\) and input sequences \\(u^* \\in U^k\\) for some \\(k + |x_0| \\leq T\\) that makes the initial state \\(x_0\\) move to output \\(y = h(x(T), r)\\) at time \\(T\\) . ",
     "url": "/docs/ai-research/llm/control-theory#definition-2-llm-output-reachability",
     
     "relUrl": "/docs/ai-research/llm/control-theory#definition-2-llm-output-reachability"
-  },"154": {
+  },"162": {
     "doc": "Control theory of LLM",
     "title": "Definition 3. Output Reachablility Set",
     "content": "The reachable output set from the initial state \\(x_0 \\in V^*\\) is denoted \\(R_y(x_0)\\). ",
     "url": "/docs/ai-research/llm/control-theory#definition-3-output-reachablility-set",
     
     "relUrl": "/docs/ai-research/llm/control-theory#definition-3-output-reachablility-set"
-  },"155": {
+  },"163": {
     "doc": "Control theory of LLM",
     "title": "Definition 4. Output Controllabilty (Revised from the paper.)",
     "content": "An LLM system is output controllable if and only if, \\(\\forall x_0 \\in V^*\\) and \\(\\forall y \\in V^r\\), there exists a time \\(T \\geq |x_0|\\) and the input sequence \\(u^* \\in U^k\\), where \\(k\\leq T - |x_0|\\) such that the probability \\(P(h(x(T),r) = y | x_0, u^*) &gt; 0\\). ",
     "url": "/docs/ai-research/llm/control-theory#definition-4-output-controllabilty-revised-from-the-paper",
     
     "relUrl": "/docs/ai-research/llm/control-theory#definition-4-output-controllabilty-revised-from-the-paper"
-  },"156": {
+  },"164": {
     "doc": "Control theory of LLM",
     "title": "Definition 5. \\(k-\\epsilon\\) Controllability",
     "content": "If a datset of state-output pairs \\(D = \\{(x^{i}_{0}, y^{i})\\}_{i\\in [N]}\\), an LLM system \\(\\Sigma = (V, P_{LM})\\) is \\(k-\\epsilon\\) controllable with respect to D, if and only if \\(P\\{y \\notin R^{k}_{y}(x_0)\\} &lt; \\epsilon\\) for \\((x_0, y) \\sim D\\), where \\(R^k_y(x^i_0)\\) is reachable set of outputs as definition 3. under the constraint that prompt (input) u must have length \\(|u| \\leq k\\). ",
     "url": "/docs/ai-research/llm/control-theory#definition-5-k-epsilon-controllability",
     
     "relUrl": "/docs/ai-research/llm/control-theory#definition-5-k-epsilon-controllability"
-  },"157": {
+  },"165": {
     "doc": "Control theory of LLM",
     "title": "Apply to the Self-Attention Mechanism. - Preliminaries",
     "content": "Above the definition on LLM controllability could be nice for generalization, we need to prove it with actual models and calculations. The paper choose the self-attention which dominates in LLMs. ",
     "url": "/docs/ai-research/llm/control-theory#apply-to-the-self-attention-mechanism---preliminaries",
     
     "relUrl": "/docs/ai-research/llm/control-theory#apply-to-the-self-attention-mechanism---preliminaries"
-  },"158": {
+  },"166": {
     "doc": "Control theory of LLM",
     "title": "Definition 6. Self-attention.",
     "content": "Self-attention \\(\\Xi\\) is parameterized by weight metrics \\(\\theta = (W_q, W_{key}, W_v)\\) (query, key, value). \\(\\Xi\\) is a mapping from the input token (\\(R^{N \\times d_{in}}\\)) to output token (\\(R^{N \\times d_{out}}\\)), . \\[\\Xi(X;\\theta) = D^{-1} exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right)\\] where exp() denotes element-wise exponential of matrix entries, \\(W_q, W_{key} \\in R^{d_{in} \\times d_{key}}\\), \\(W_v \\in R^{d_{in} \\times d_{out}}\\), \\(Q = XW_q\\), \\(K=XW_{key}\\), \\(V=XW_{v}\\) and D is a diagonal positive definite matrix, \\(D:= diag \\left( exp\\left( {QK^{T}}\\over{\\sqrt{d_{key}}} \\right) \\bm{1}_{N \\times 1 } \\right)\\) . In this paper, the reachability of output token representations \\(\\Xi (X; \\theta)\\), they partitioned the input \\(X \\in R^{(k+m)\\times d_{in}}\\) into a \\(k \\times d_{in}\\) block of control input representations \\(U\\) and an \\(m\\times d_{in}\\) block of imposed state representations \\(X_0\\) where \\(k + m = N\\). With this partitioning, the definition of self-attention can be re-written as followings: . \\[\\begin{align}\\Xi (X; \\theta) = \\Xi \\left( \\left[{U \\atop X_0} \\right] ; \\theta \\right) = \\Xi ([U; X_0]; \\theta) = \\left[{U' \\atop Y} \\right] = [U' ; Y] \\end{align}\\] Also, the output \\(X' = \\Xi (X; \\theta) \\in R^{(k+m) \\times d_{in}}\\) into a corresponding \\(k \\times d_{out}\\) matrix \\(U'\\) and an \\(m \\times d_{out}\\) matrix Y. ",
     "url": "/docs/ai-research/llm/control-theory#definition-6-self-attention",
     
     "relUrl": "/docs/ai-research/llm/control-theory#definition-6-self-attention"
-  },"159": {
+  },"167": {
     "doc": "Control theory of LLM",
     "title": "definition 7. Reachability of self-attention",
     "content": "Following the definition 2, let \\(Y^* \\in R^{m \\times d_{out}}\\) be the desired output, reachability for Self-attention can be defined as followings: \\(Y^*\\) is reachable from initial state \\(X_0\\) if and only if there exists some U that steers the output of \\(\\Xi (\\left[U; X_0 \\right] ; \\theta ]\\) to output \\(\\left[ U' ; Y \\right]\\) such that \\(Y = Y^*\\) . ",
     "url": "/docs/ai-research/llm/control-theory#definition-7-reachability-of-self-attention",
     
     "relUrl": "/docs/ai-research/llm/control-theory#definition-7-reachability-of-self-attention"
-  },"160": {
+  },"168": {
     "doc": "Control theory of LLM",
     "title": "Apply to the Self-Attention mechanism - Theorem",
     "content": "The key of defining the reachability begins with partitioning the output: \\(Y = Y_u + Y_x\\), assuming that the output can be partitioned by output from control input and that from imposed state. \\(Y_x\\) can be bounded as a function of \\(X\\), \\(k\\), and \\(theta\\). While \\(Y_u\\) is the remaining component from U. \\[\\begin{align} &amp; Y = Y_u + Y_x \\\\ &amp; = (Y_{u,\\|} + Y_{u, \\perp}) + (Y_{x, \\|} + Y_{x, \\perp}) \\\\ &amp; = (Y_{u,\\|} + Y_{x, \\|}) + (Y_{u, \\perp} + Y_{x, \\perp}) \\in span(Y^*) \\oplus span(Y^*)^\\perp \\\\ \\end{align}\\] Here, the parallel to and orthogonal to is in respect to the desired output \\(Y^*\\). Remember that Y is partitioned output . \\[\\Xi ([U; X_0]; \\theta) = \\left[ {U' \\atop Y} \\right]\\] Before the theorem and its proof, let us define matrix \\(A\\). \\[A := exp\\left(\\frac{QK^T}{\\sqrt{d_{key}}}\\right) = exp \\left( \\left[ \\begin{matrix} Q_u K_u^T &amp; Q_u K_x^T\\\\ Q_x K_u^T &amp; Q_x K_x^T \\end{matrix} \\right] \\frac{1} {\\sqrt{d_{key}}} \\right) = \\left[ \\begin{matrix} A_{uu} &amp; A_{ux}\\\\ A_{xu} &amp; A_{xx} \\end{matrix} \\right]\\] where, \\(Q.\\) and \\(K.\\) are partitioned components of \\(Q\\) and \\(K\\): . \\[Q = \\left[ Q_u \\atop Q_x \\right]= \\left[U \\atop X_0 \\right] W_q\\\\\\] \\[K=\\left[K_u \\atop K_x \\right]=\\left[U \\atop X_0 \\right] W_{key}\\] Similarly, \\(D\\) is also be partitioned as followigs: . \\[D = diag \\left(exp \\left(\\frac{Q K^T}{\\sqrt{d_{key}}}\\right) \\bm{1}_{N \\times 1}\\right) = \\left[\\begin{matrix} D_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D_x \\end{matrix} \\right]\\] With the definitions and notions above, \\(Y\\) can be defined as follows: . \\[\\begin{align} &amp; \\Xi(X; \\theta) = D^{-1} A V \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u &amp; \\bm{0}\\\\ \\bm{0} &amp; D^{-1}_{x} \\end{matrix} \\right] \\left[ \\begin{matrix} A_{uu} &amp; A_{xu}\\\\ A_{ux} &amp; A_{xx} \\end{matrix} \\right] \\left[ \\begin{matrix} V_{u} \\\\ V_{x} \\end{matrix} \\right] \\\\ &amp; = \\left[ \\begin{matrix} D^{-1}_u A_{uu} V_u + D^{-1}_u A_{ux} V_x\\\\ D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x \\end{matrix} \\right] \\\\ &amp; = \\left[ U' \\atop Y \\right] \\end{align}\\] \\[\\begin{align} \\therefore Y = D^{-1}_x A_{xu} V_u + D^{-1}_{x} A_{xx} V_x = Y_u + Y_x \\end{align}\\] ",
     "url": "/docs/ai-research/llm/control-theory#apply-to-the-self-attention-mechanism---theorem",
     
     "relUrl": "/docs/ai-research/llm/control-theory#apply-to-the-self-attention-mechanism---theorem"
-  },"161": {
+  },"169": {
     "doc": "Control theory of LLM",
     "title": "Theorem: reachability in the Self-attention mechanism",
     "content": "Let \\(Y^{max}_x = \\Xi (X_0 ; \\theta)\\) be the output of the self-attention layer given only the imposed state (initial state) \\(X_0\\), and i-th row of the orthogonal component of \\(Y^{max}_x\\) to the desired output \\(Y^*\\) be \\(Y^{max, i}_{x, \\perp}\\). \\({Y^*}\\) is unreachable for any control input \\({U}\\) if, for any \\({i \\in \\{1, ... , m\\} }\\), . \\[\\begin{align} \\|Y^{max, i}_{x, \\perp}\\| &gt; k \\gamma_{i} (X_0, \\theta) \\\\ \\end{align}\\] where, . \\[\\begin{align} \\gamma_{i}(X_0 , \\theta) := \\frac{e^\\alpha}{g_i}\\sigma_v M_u, \\quad \\alpha = \\sigma_q \\sigma_{key} M_u M_x / \\sqrt{d_{key}} \\end{align}\\] \\[\\begin{align} g_i (X_0, \\theta) := \\Sigma^{m}_{j=1} exp ((X_0)^i W_q W^T_{key} (X_0)^{jT} / \\sqrt{d_{key}}) \\end{align}\\] \\(\\sigma_v\\), \\(\\sigma_q\\) and \\(\\sigma_{key}\\) being the maximum singular values of the value, query, and key projection matrices, respectively. and with \\(M_u := \\max_j \\|(X_0)^j \\|\\) being the maximum norms of the control and imposed token embeddings, respectively. I will not repeat the proof of the paper because after partitioning, the rest of the proof is only about how to set some-what contrived constant and use basic row-wise summation and applying rudimentary inequity (Cauchy-Schwarz). ",
     "url": "/docs/ai-research/llm/control-theory#theorem-reachability-in-the-self-attention-mechanism",
     
     "relUrl": "/docs/ai-research/llm/control-theory#theorem-reachability-in-the-self-attention-mechanism"
-  },"162": {
+  },"170": {
     "doc": "Control theory of LLM",
     "title": "References",
     "content": "[1] Bhargava, A., Witkowski, C., Shah, M., &amp; Thomson, M. (2023). What’s the Magic Word? A Control Theory of LLM Prompting. arXiv preprint arXiv:2310.04444. [2] Sontag, E. D. (2013). Mathematical control theory: deterministic finite dimensional systems (Vol. 6). Springer Science &amp; Business Media. ",
     "url": "/docs/ai-research/llm/control-theory#references",
     
     "relUrl": "/docs/ai-research/llm/control-theory#references"
-  },"163": {
+  },"171": {
     "doc": "Control theory of LLM",
     "title": "Control theory of LLM",
     "content": " ",
     "url": "/docs/ai-research/llm/control-theory",
     
     "relUrl": "/docs/ai-research/llm/control-theory"
-  },"164": {
+  },"172": {
     "doc": "C / C++",
     "title": "Tips for C/C++",
     "content": "Figure out powerful and safe approach. ",
     "url": "/docs/programming/c-cpp#tips-for-cc",
     
     "relUrl": "/docs/programming/c-cpp#tips-for-cc"
-  },"165": {
+  },"173": {
     "doc": "C / C++",
     "title": "C / C++",
     "content": " ",
     "url": "/docs/programming/c-cpp",
     
     "relUrl": "/docs/programming/c-cpp"
-  },"166": {
+  },"174": {
     "doc": "ARC-AGI dataset",
     "title": "ARC-AGI Dataset",
     "content": ". | ARC-AGI Dataset . | 2024 ARC-AGI Dataset . | Data format | Visualization | . | . | . ",
     "url": "/docs/ai-research/arc-agi/dataset#arc-agi-dataset",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset#arc-agi-dataset"
-  },"167": {
+  },"175": {
     "doc": "ARC-AGI dataset",
     "title": "2024 ARC-AGI Dataset",
     "content": "Let us begin with understanding the data. ",
     "url": "/docs/ai-research/arc-agi/dataset#2024-arc-agi-dataset",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset#2024-arc-agi-dataset"
-  },"168": {
+  },"176": {
     "doc": "ARC-AGI dataset",
     "title": "Data format",
     "content": "All the data is JSON encoded, the structures of JSON are as followings (* stands for training , evaluation and test) : . | *_challenges { \"task_id\": { \"test\": [ { \"input\": [[...], ..., [...]] } ], \"train\": [ { \"input\": [[...], ..., [...]], \"output\": [[...], ..., [...]] }, ... ] }, ... } . | *_solutions { \"task_id\": [[...], ..., [...]], ... } . | submission format { \"task_id\": [ { \"attempt_1\": [[...], ..., [...]], \"attempt_2\": [[...], ..., [...]] }, ], ... } . | . All the arrays have integer digits in range 0 to 9, and each element stands index of some hex_colors, . hex_colors = ['#000000', '#0074D9','#FF4136','#2ECC40','#FFDC00', '#AAAAAA', '#F012BE', '#FF851B', '#7FDBFF', '#870C25'] . ",
     "url": "/docs/ai-research/arc-agi/dataset#data-format",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset#data-format"
-  },"169": {
+  },"177": {
     "doc": "ARC-AGI dataset",
     "title": "Visualization",
     "content": "Let’s visualize the data (I choose f35d900a and fcb5c309) Basically, we visaulize the data in 2d-grid with colors, however, we could treat the color values not as color channel but as positional values in z-axis, thinking that we applied one-hot encoding. The third one is colored 3-d scatter, just for highlights the z-level. |   | f35d900a | fcb5c309 | . | Basic | | | . | 3d scatter | | | . | 3d scatter (colored) | | | . ",
     "url": "/docs/ai-research/arc-agi/dataset#visualization",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset#visualization"
-  },"170": {
+  },"178": {
     "doc": "ARC-AGI dataset",
     "title": "ARC-AGI dataset",
     "content": " ",
     "url": "/docs/ai-research/arc-agi/dataset",
     
     "relUrl": "/docs/ai-research/arc-agi/dataset"
-  },"171": {
+  },"179": {
     "doc": "Devlog",
     "title": "Devlog",
     "content": "Snippets of my works. ",
     "url": "/docs/devlog",
     
     "relUrl": "/docs/devlog"
-  },"172": {
+  },"180": {
     "doc": "Home",
     "title": "Home",
     "content": "The one and only. ",
     "url": "/",
     
     "relUrl": "/"
-  },"173": {
+  },"181": {
     "doc": "LLM",
     "title": "LLM",
     "content": "Large Language Model studies and utilizations . ",
     "url": "/docs/ai-research/llm",
     
     "relUrl": "/docs/ai-research/llm"
-  },"174": {
+  },"182": {
     "doc": "LLM",
     "title": "Paradigm Shifts in Language Models",
     "content": "From beginning of Markov based approach that predicting next n-words, Language Model (LM) evolved drastically with the Transformers and GPT-2 / BERT - approaches. LLM stands for concurrent (2025) LM, mostly served by big tech companies and startups, most of them are now closed source but several LLM architectures and their way of training are officially open (LLama, Deepseek, and so on.) . (ref. https://arxiv.org/pdf/2303.18223.pdf ) . | Type | Backbone Architecture | Description | Example | . | LLM (Large Language Model, early 2020s ~ present) | Transformers (primarily) | Scaled up PLMs, dataset size, and computational resources. Trained with Human interactions (RLHF - Reinforcement Learning from Human Feedback) or other Reinforcement Learning techniques | GPT-3, GPT-4, PaLM-2, Gemini-1.5, LLama-3.1, DeepSeek-V3 | . | PLM (Pre-trained Language Model, late 2010s) | Transformers, RNNs (earlier models) | Massive data induced deep learning model when pre-training, followed by fine-tuning for specific (downstream) tasks. Self-supervised learning with masked language model (MLM - ELMo, BERT, RoBERTa) and causal language model (GPT) applied for training. | ELMo (RNNs), BERT, RoBERTa, GPT-2 (Transformers) | . | NLM (Neural Language Model, early-mid 2010s) | RNNs, Feedforward Neural Networks | Introduces neural networks to model language, enabling distributed representations (word vectors) and overcoming some limitations of SLMs. | word2vec (Feedforward), GloVe (Matrix Factorization), Recurrent Neural Networks | . | SLM (Statistical Language Model, Pre 2010s) | N/A (Statistical methods) | Traditional probabilistic models (Markov assumption). Predicts next words / context(n-words). | n-gram language model | . In brief, there are no huge differences between LLMs and PLMs in model base architecture. However, as a LLM has much larger size in terms of model parameters and it requires much more data, AI scientists tried various training techniques to train / fine-tuning the models. ",
     "url": "/docs/ai-research/llm#paradigm-shifts-in-language-models",
     
     "relUrl": "/docs/ai-research/llm#paradigm-shifts-in-language-models"
-  },"175": {
+  },"183": {
     "doc": "Mathematics",
     "title": "Mathematics",
     "content": "Graduate-level mathematics to understand modern AI, Graphics and Robotics. | Linear algebra (linear control system) | Probability and Random process | Set theory and Topology | Graph theory | Mathematical Analysis, Differential Equations | Mathematical Manifolds and Categorical Theorem | . ",
     "url": "/docs/mathematics",
     
     "relUrl": "/docs/mathematics"
-  },"176": {
+  },"184": {
     "doc": "Minimal layout test",
     "title": "Minimal layout test",
     "content": "Return to main website. This page demonstrates the packaged minimal layout, which does not render the sidebar or header. It can be used for standalone pages. It is also an example of using the new modular site components to define custom layouts; see “Custom layouts and includes” in the customization docs for more information. ",
     "url": "/docs/minimal-test.html",
     
     "relUrl": "/docs/minimal-test.html"
-  },"177": {
+  },"185": {
     "doc": "Programming",
     "title": "Programming",
     "content": " ",
     "url": "/docs/programming",
     
     "relUrl": "/docs/programming"
-  },"178": {
+  },"186": {
     "doc": "Python",
     "title": "Tips for Python",
     "content": "When I think of Python, I feel a sense of irony. Although it’s one of the most versatile programming languages, at its core, Python is often used as an “interface language” or a “glue language” to connect to compiled libraries (written in C or C++). Ironically, it’s precisely this “glue” characteristic that has driven Python’s popularity across numerous fields, including automation, web backends, and especially machine learning and deep learning. This section provides useful tips for achieving fast processing and well-designed programming with Python. ",
     "url": "/docs/programming/python#tips-for-python",
     
     "relUrl": "/docs/programming/python#tips-for-python"
-  },"179": {
+  },"187": {
     "doc": "Python",
     "title": "Python",
     "content": " ",
     "url": "/docs/programming/python",
     
     "relUrl": "/docs/programming/python"
-  },"180": {
+  },"188": {
     "doc": "Research on ARC-AGI",
     "title": "Research Note",
     "content": ". | Research Note . | Feb. 2025. | Problem definition | Approach - Baseline | . | . | . ",
     "url": "/docs/ai-research/arc-agi/resarch-note#research-note",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#research-note"
-  },"181": {
+  },"189": {
     "doc": "Research on ARC-AGI",
     "title": "Feb. 2025.",
     "content": " ",
     "url": "/docs/ai-research/arc-agi/resarch-note#feb-2025",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#feb-2025"
-  },"182": {
+  },"190": {
     "doc": "Research on ARC-AGI",
     "title": "Problem definition",
     "content": "Suppose that we’re designing a single model that solves the ARC-AGI problem. There are several conditions which the model needs to deal with. | The dimensionality of input/output is not pre-determined. | Though all the tasks can be grouped as a IQ test, all the detailed tasks have less in common. | The tasks in evaluation steps are totally different from those in the train steps. | The model has only 2~9 examples (mostly 3) to solve each task. –&gt; | . ",
     "url": "/docs/ai-research/arc-agi/resarch-note#problem-definition",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#problem-definition"
-  },"183": {
+  },"191": {
     "doc": "Research on ARC-AGI",
     "title": "Approach - Baseline",
     "content": "Instead of seeking a direct transformation that converts the input \\(X_{in}\\) into the output \\(X_{out}\\), we leverage generative models (such as VAE, flow-based model and diffusion models) to create a latent representation \\(X_{latent}\\) from both input and output. To achieve this, we introduce two projections: . \\[\\begin{align} f: X^{*} \\rightarrow X_{in}\\\\ g: X^{*} \\rightarrow X_{out} \\end{align}\\] Here, \\(X^*\\) represents a higher-dimensional latent space designed to capture complex relationships and interactions between \\(X_{in}\\) and \\(X_{out}\\). By utilizing dual parameterized projections \\(f\\) and \\(g\\), we enable a more controlled and nuanced learning process, allowing the model to optimize representations that are tailored for both input reconstruction and output generation. ",
     "url": "/docs/ai-research/arc-agi/resarch-note#approach---baseline",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note#approach---baseline"
-  },"184": {
+  },"192": {
     "doc": "Research on ARC-AGI",
     "title": "Research on ARC-AGI",
     "content": " ",
     "url": "/docs/ai-research/arc-agi/resarch-note",
     
     "relUrl": "/docs/ai-research/arc-agi/resarch-note"
-  },"185": {
+  },"193": {
     "doc": "Research on Machine Unlearning",
     "title": "Research Note",
     "content": ". | Research Note . | Tries to findout fundamental ways (2024) . | change the ways | . | sRFL (Dec. 2023) . | sRFL - Introduction | sRFL - pseudo code | sRFL - conclusion | . | . | . ",
     "url": "/docs/ai-research/unlearning/resarch-note#research-note",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#research-note"
-  },"186": {
+  },"194": {
     "doc": "Research on Machine Unlearning",
     "title": "Tries to findout fundamental ways (2024)",
     "content": " ",
     "url": "/docs/ai-research/unlearning/resarch-note#tries-to-findout-fundamental-ways-2024",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#tries-to-findout-fundamental-ways-2024"
-  },"187": {
+  },"195": {
     "doc": "Research on Machine Unlearning",
     "title": "change the ways",
     "content": ". | Redefine the assessment | universal framework needed for CV, LM, and so on | need more mathematical approach | . might we need to interact the data manifold. (2024. 12.) . ",
     "url": "/docs/ai-research/unlearning/resarch-note#change-the-ways",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#change-the-ways"
-  },"188": {
+  },"196": {
     "doc": "Research on Machine Unlearning",
     "title": "sRFL (Dec. 2023)",
     "content": " ",
     "url": "/docs/ai-research/unlearning/resarch-note#srfl-dec-2023",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl-dec-2023"
-  },"189": {
+  },"197": {
     "doc": "Research on Machine Unlearning",
     "title": "sRFL - Introduction",
     "content": "sRFL is my works based on NeurIPS 2023 Machine Unlearning Challenge’s dataset (celebrities face dataset), It seems that the following methods achieved huge accuracy decoupling between retain and forget dataset in training, seams that it has a chance to achieve the machine unlearning. I focused on the decoupling in the logit spaces, using teacher-student framework. | sRFL (simple Rolling in Forget Logits) | . ",
     "url": "/docs/ai-research/unlearning/resarch-note#srfl---introduction",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---introduction"
-  },"190": {
+  },"198": {
     "doc": "Research on Machine Unlearning",
     "title": "sRFL - pseudo code",
     "content": "1. Copy a model from original trained model . teacher_model &lt;- copy.deepcopy(model) teacher_model.eval() // teacher model will not be trained . 2. Freeze layers of model except for first two backbones (feature extracting) . 3-1. Loop : Generate logits by teacher model . for data in datasets (retain + forget dataset): retain_data, forget_data &lt;- data pseudo_forget_logits &lt;- teacher_model(forget_data) pseudo_retain_logits &lt;- teacher_model(retain_data) . 3-2. Roll only the pseudo_forget_logits (same mechanism in torch.roll with random roll steps in [-1,1]) . rolled_pseudo_logits &lt;- roll(pseudo_forget_logits) . 3-3. Minimize KL-divergence between rolled_pseudo_logits and model’s output (from forget data), and use cosine similarity be a regularization and use retain_loss (KL-divergence between pseudo-label(not-rolled) and model outputs about retain dataset) . forget_outputs &lt;- model(forget_data) retain_outputs &lt;- model(retain_data) forget_loss &lt;- KLDiv(rolled_pseudo_logits, forget_outputs) \\ - cosine_similarity(rolled_pseudo_logits, forget_outputs)\\ + KLDiv(pseudo_retain_logits, retain_outputs) . 3-4. backward propagation by forget_loss . forget_loss.backward() . End of Loop. ",
     "url": "/docs/ai-research/unlearning/resarch-note#srfl---pseudo-code",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---pseudo-code"
-  },"191": {
+  },"199": {
     "doc": "Research on Machine Unlearning",
     "title": "sRFL - conclusion",
     "content": "simple Rolling in Forget Logits (sRFL) is a simple way of disturbing the forget label in finetuning framework. The following is about train accuracy about CIFAR-10 . In the figure above, facc stands for accuracy of forgetting dataset, racc stands for accuracy of retain dataset. While it achieved high decoupling, there’s a huge claim about their metrics and evaluation. Even though the competition is completed with some argues, the main idea of machine unlearning is quite crucial in privacy and robustness of the ml-based services. In the future, I will progress my works. ",
     "url": "/docs/ai-research/unlearning/resarch-note#srfl---conclusion",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note#srfl---conclusion"
-  },"192": {
+  },"200": {
     "doc": "Research on Machine Unlearning",
     "title": "Research on Machine Unlearning",
     "content": " ",
     "url": "/docs/ai-research/unlearning/resarch-note",
     
     "relUrl": "/docs/ai-research/unlearning/resarch-note"
-  },"193": {
+  },"201": {
     "doc": "AI Research",
     "title": "AI Research",
     "content": "AI researches. ",
     "url": "/docs/ai-research",
     
     "relUrl": "/docs/ai-research"
-  },"194": {
+  },"202": {
     "doc": "Rust",
     "title": "Let’s Learn Rust Programming Language, together.",
     "content": "About rust programming, I hope everyone to read the official documentation, especially for installation of compilers for your computer. As the official documentation is well documented with the syntax, best practices, standard libraries and online console for practice. ",
     "url": "/docs/programming/rust#lets-learn-rust-programming-language-together",
     
     "relUrl": "/docs/programming/rust#lets-learn-rust-programming-language-together"
-  },"195": {
+  },"203": {
     "doc": "Rust",
     "title": "Rust",
     "content": " ",
     "url": "/docs/programming/rust",
     
     "relUrl": "/docs/programming/rust"
-  },"196": {
+  },"204": {
     "doc": "Machine Unlearning",
     "title": "Machine Unlearning",
     "content": "Machine unlearing is a quite adacious study compare to major AI researches. It tries to make a model forget some data while the rest of data kept learnt. ",
     "url": "/docs/ai-research/unlearning",
     
     "relUrl": "/docs/ai-research/unlearning"
-  },"197": {
+  },"205": {
     "doc": "LLM Utilizations",
     "title": "LLM Utilizations",
     "content": "Utilizations that ensure robustness in LLM predictions while merely deforming base model architecture. | LLM Utilizations . | RAG . | Basic Implementation | Output | . | References | . | . ",
     "url": "/docs/ai-research/llm/utilizations",
     
     "relUrl": "/docs/ai-research/llm/utilizations"
-  },"198": {
+  },"206": {
     "doc": "LLM Utilizations",
     "title": "RAG",
     "content": "In the adevent of LLM, many AI researchers try to engage pretrained LLM with their own data. This is because training LLM from scratch is costly and hard. In this background, one of the powerful engaging method is RAG (Retrieval-augmented generation) [1]. The concept of RAG is quite simple but powerful. The following diagram is an architecture of LLM service with RAG, drawn by myself, which could be a little bit different from the original paper[1]. flowchart LR %% Document Indexing Phase subgraph Indexing Phase A[Document Collection] --&gt; B[Shared Encoder] B --&gt; C[Document Embeddings] C --&gt; D[Document Index] end %% Query Processing &amp; Generation Phase subgraph Query &amp; Generation Phase E[User Query] --&gt; F[Shared Encoder] F --&gt; G[Query Embedding] G --&gt; H[Similarity Search in Index] H --&gt; I[Top-K Relevant Documents] I --&gt; J[Augmented Query] J --&gt; K[Large Language Model] K --&gt; L[Generated Response] end %% Connect the index from the indexing phase to the search D -.-&gt; H . In batch process, we can save our constarints (contexts, documents or policies) with embedding models, (vectorization / encoding / graph embedding and so on). Once we have a language query from user, we simply encode the query with the same embedding models, and findout the document near the vector. Finally, we simply put found documents and original user’s query to LLM, we can get generated output with our intended contexts. ",
     "url": "/docs/ai-research/llm/utilizations#rag",
     
     "relUrl": "/docs/ai-research/llm/utilizations#rag"
-  },"199": {
+  },"207": {
     "doc": "LLM Utilizations",
     "title": "Basic Implementation",
     "content": ". ├── lib │ ├── llm │ └── OpenBLAS ├── scripts │ └── add_document.py ├── src │ ├── core.py │ ├── embedding.py │ └── utils.py ├── vector_store │ └── .gitkeep ├── download_model.sh ├── easy_rag.py ├── vector_index.py └── README.md . For detailed installation and usage, please visit my git repository. visit : easy_rag . ",
     "url": "/docs/ai-research/llm/utilizations#basic-implementation",
     
     "relUrl": "/docs/ai-research/llm/utilizations#basic-implementation"
-  },"200": {
+  },"208": {
     "doc": "LLM Utilizations",
     "title": "Output",
     "content": ". In this example, I put this blog-post into the vector-store. Therefore, as you might notice in the above example, this chat-bot answers depend on this page and the page navigations. Focus on the answer (The concept of RAG is simple but powerful), which is derived in the first paragraph of this post (The concept of RAG is quite simple but powerful). ",
     "url": "/docs/ai-research/llm/utilizations#output",
     
     "relUrl": "/docs/ai-research/llm/utilizations#output"
-  },"201": {
+  },"209": {
     "doc": "LLM Utilizations",
     "title": "References",
     "content": "[1] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., … &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in Neural Information Processing Systems, 33, 9459-9474. ",
