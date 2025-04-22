@@ -2,7 +2,7 @@
 layout: default
 title: Python
 parent: Programming
-nav_order: 4
+nav_order: 
 tags: 
   - python
 permalink: /docs/programming/python
