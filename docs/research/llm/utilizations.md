@@ -82,7 +82,7 @@ In batch process, we can save our constarints (contexts, documents or policies) 
 
 For detailed installation and usage, please visit my git repository.
 
- > visit : [easy_rag](https://github.com/Sangdo-Han/public-studies/tree/master/llm/rag)
+ > visit : [easy_rag](https://github.com/Sangdo-Han/miscellaneous/tree/master/llm/rag)
 
 ### Output
 <p align="center">
